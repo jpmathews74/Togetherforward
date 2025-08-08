@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Complete Guide to Nonprofit Investment Advisors | Together Forward Capital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e4d8b;
+            --secondary-blue: #3a7bc8;
+            --primary-green: #2e7d32;
+            --secondary-green: #4caf50;
+            --accent-indigo: #5c6bc0;
+            --accent-teal: #00897b;
+            --light-blue: #e3f2fd;
+            --light-green: #e8f5e9;
+            --light-indigo: #e8eaf6;
+            --light-teal: #e0f2f1;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-light: #e0e0e0;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary-blue: #4a7dc7;
+            --secondary-blue: #6fa3e0;
+            --primary-green: #4caf50;
+            --secondary-green: #66bb6a;
+            --accent-indigo: #7986cb;
+            --accent-teal: #00acc1;
+            --light-blue: #1a2332;
+            --light-green: #1a2e1c;
+            --light-indigo: #1a1f3d;
+            --light-teal: #1a2e2a;
+            --text-dark: #e0e0e0;
+            --text-gray: #b0b0b0;
+            --white: #0f1419;
+            --light-gray: #1a1f2e;
+            --bg-dark: #0a0e17;
+            --card-bg: #151922;
+            --nav-bg: #0f1419;
+            --border-color: #2a3441;
+            --border-light: #2a3441;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-dark);
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--secondary-green);
+            color: var(--bg-dark);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            height: 125px;
+            width: auto;
+            transition: filter 0.3s ease;
+        }
+
+        [data-theme="dark"] .logo img {
+            filter: brightness(1.2);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* Dropdown Menu Styles */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        [data-theme="dark"] .dropdown-menu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        [data-theme="dark"] .dropdown-menu a:hover {
+            background: var(--light-gray);
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Submenu Styles */
+        .dropdown-menu .has-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .submenu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .dropdown-menu .has-submenu:hover + .submenu,
+        .submenu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .submenu a:hover {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        [data-theme="dark"] .submenu a:hover {
+            background: var(--light-gray);
+        }
+
+        .submenu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .submenu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-teal) 100%);
+            padding: 140px 2rem 80px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, #3949ab 0%, #00695c 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-30px, -30px) rotate(120deg); }
+            66% { transform: translate(30px, -15px) rotate(240deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Visual Statistics Section */
+        .visual-stats {
+            background: var(--white);
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .visual-stats {
+            background: var(--nav-bg);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .stats-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Performance Chart Visual */
+        .performance-visual {
+            background: linear-gradient(135deg, var(--light-indigo) 0%, var(--light-teal) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .performance-visual {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 100%);
+        }
+
+        .chart-container {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .chart-container {
+            background: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Simulated Chart Bars */
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 300px;
+            margin: 2rem 0;
+            padding: 0 2rem;
+        }
+
+        .chart-bar {
+            width: 80px;
+            background: linear-gradient(to top, var(--accent-indigo) 0%, var(--accent-teal) 100%);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .chart-bar:hover {
+            transform: scaleY(1.05);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+        }
+
+        .chart-bar-1 { height: 75%; }
+        .chart-bar-2 { height: 85%; }
+        .chart-bar-3 { height: 90%; }
+        .chart-bar-4 { height: 60%; }
+        .chart-bar-5 { height: 95%; }
+
+        .chart-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            white-space: nowrap;
+        }
+
+        .chart-value {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        /* Key Benefits Grid */
+        .benefits-overview {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-stat {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .benefit-stat {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .benefit-stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon-large {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-teal) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .benefit-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-indigo);
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-label {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        /* Main Content Layout */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr 320px;
+            gap: 3rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .toc-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .toc-card {
+            background: var(--card-bg);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .toc-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc-list a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.25rem 0;
+            border-left: 2px solid transparent;
+            padding-left: 0.75rem;
+        }
+
+        .toc-list a:hover {
+            color: var(--accent-indigo);
+            border-left-color: var(--accent-indigo);
+            padding-left: 1rem;
+        }
+
+        .toc-list a.active {
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .main-content {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .content-section h2 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--accent-indigo);
+        }
+
+        .content-section h3 {
+            color: var(--accent-indigo);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .content-section p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Advisor Types Comparison */
+        .advisor-types-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .advisor-type-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        [data-theme="dark"] .advisor-type-card {
+            background: var(--card-bg);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .advisor-type-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .advisor-type-header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-1 { background: linear-gradient(135deg, var(--light-indigo) 0%, var(--accent-indigo) 100%); }
+        .type-2 { background: linear-gradient(135deg, var(--light-teal) 0%, var(--accent-teal) 100%); }
+        .type-3 { background: linear-gradient(135deg, var(--light-blue) 0%, var(--secondary-blue) 100%); }
+
+        .advisor-type-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .advisor-type-title {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .advisor-type-content {
+            padding: 2rem;
+        }
+
+        .advisor-features {
+            list-style: none;
+        }
+
+        .advisor-features li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .advisor-features li:last-child {
+            border-bottom: none;
+        }
+
+        .advisor-features li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-indigo);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Selection Criteria Visual */
+        .criteria-visual {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        [data-theme="dark"] .criteria-visual {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--card-bg) 100%);
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .criteria-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--accent-indigo);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .criteria-card {
+            background: var(--card-bg);
+        }
+
+        .criteria-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .criteria-number {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-indigo);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .criteria-title {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .criteria-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Vertical Process Timeline */
+        .process-timeline-vertical {
+            background: linear-gradient(135deg, var(--light-indigo) 0%, var(--light-teal) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        [data-theme="dark"] .process-timeline-vertical {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 100%);
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .timeline-line-vertical {
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent-indigo) 0%, var(--accent-teal) 100%);
+        }
+
+        .timeline-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-step:last-child .timeline-line-vertical {
+            display: none;
+        }
+
+        .timeline-number {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border: 4px solid var(--accent-indigo);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-indigo);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .timeline-number {
+            background: var(--card-bg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .timeline-step:hover .timeline-number {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .timeline-step:last-child .timeline-number {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            border-color: var(--primary-green);
+            color: white;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            flex: 1;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .timeline-content {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid var(--white);
+        }
+
+        [data-theme="dark"] .timeline-content::before {
+            border-right-color: var(--card-bg);
+        }
+
+        .timeline-step:hover .timeline-content {
+            transform: translateX(5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .timeline-title {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .timeline-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-duration {
+            display: inline-block;
+            background: var(--light-indigo);
+            color: var(--accent-indigo);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        [data-theme="dark"] .timeline-duration {
+            background: var(--light-gray);
+        }
+
+        /* Cost Structure Comparison */
+        .cost-comparison {
+            background: var(--light-indigo);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        [data-theme="dark"] .cost-comparison {
+            background: var(--light-gray);
+        }
+
+        .cost-table {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .cost-table {
+            background: var(--card-bg);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .cost-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .cost-table th {
+            background: var(--accent-indigo);
+            color: white;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .cost-table td {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-dark);
+        }
+
+        .cost-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cost-table tr:hover {
+            background: var(--light-gray);
+        }
+
+        [data-theme="dark"] .cost-table tr:hover {
+            background: var(--light-gray);
+        }
+
+        /* Red Flags Alert Box */
+        .red-flags-alert {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-left: 5px solid #f44336;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        [data-theme="dark"] .red-flags-alert {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid #f44336;
+        }
+
+        .red-flags-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .red-flags-icon {
+            width: 50px;
+            height: 50px;
+            background: #f44336;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .red-flags-title {
+            color: #d32f2f;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .red-flags-list {
+            list-style: none;
+        }
+
+        .red-flags-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .red-flags-list li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Best Practices Checklist */
+        .best-practices-section {
+            background: var(--light-gray);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        [data-theme="dark"] .best-practices-section {
+            background: var(--light-gray);
+        }
+
+        .practices-checklist {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .practice-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .practice-item {
+            background: var(--card-bg);
+        }
+
+        .practice-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .practice-check {
+            width: 30px;
+            height: 30px;
+            background: var(--secondary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .faq-item {
+            background: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--light-indigo);
+        }
+
+        [data-theme="dark"] .faq-question:hover {
+            background: var(--light-gray);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        [data-theme="dark"] .sidebar-card {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sidebar-card p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: block;
+            background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-teal) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Quick Stats Widget */
+        .quick-stats {
+            background: linear-gradient(135deg, var(--light-indigo) 0%, var(--light-teal) 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        [data-theme="dark"] .quick-stats {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 100%);
+        }
+
+        .quick-stats h4 {
+            color: var(--accent-indigo);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .stat-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        .stat-value {
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-align: left;
+            min-width: 100px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        [data-theme="dark"] footer {
+            background: #000000;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .toc, .sidebar {
+                display: none;
+            }
+
+            .advisor-types-grid {
+                grid-template-columns: 1fr;
+            }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .toc, .sidebar {
+                display: none;
+            }
+
+            .advisor-types-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Vertical timeline mobile adjustments */
+            .timeline-container {
+                padding: 0 1rem;
+            }
+
+            .timeline-line-vertical {
+                left: 30px;
+            }
+
+            .timeline-step {
+                gap: 1rem;
+            }
+
+            .timeline-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .timeline-content {
+                padding: 1.5rem;
+            }
+
+            .timeline-content::before {
+                display: none;
+            }
+
+            .timeline-title {
+                font-size: 1.1rem;
+            }
+
+            .timeline-description {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .benefits-overview {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .criteria-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .practices-checklist {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .chart-bars {
+                height: 200px;
+            }
+
+            .benefits-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .theme-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="together-forward-capital-logo-horizontal.png" alt="Together Forward Capital">
+            </a>
+            <ul class="nav-links">
+                <li class="nav-dropdown">
+                    <a href="#">About Us</a>
+                    <div class="dropdown-menu">
+                        <a href="about.html">Our Story</a>
+                        <a href="team.html">Our Team</a>
+                        <a href="mission.html">Mission & Values</a>
+                    </div>
+                </li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#process">Our Process</a></li>
+                <li><a href="index.html#why-us">Why Choose Us</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="has-submenu">Guides →</a>
+                        <div class="submenu">
+                            <a href="investment-policy-guide.html">Investment Policy Guide</a>
+                            <a href="endowment-guide.html">Endowment Building Guide</a>
+                            <a href="nonprofit-investing-guide.html">Nonprofit Investing Guide</a>
+                            <a href="nonprofit-investment-advisors-guide.html">Investment Advisors Guide</a>
+                            <a href="daf-guide.html">Donor Advised Funds Guide</a>
+                            <a href="stock-donations-guide.html">Stock Donations Guide</a>
+                            <a href="financial-sustainability-guide.html">Financial Sustainability Guide</a>
+                        </div>
+                        <a href="insights.html">Market Insights</a>
+                        <a href="tools.html">Planning Tools</a>
+                    </div>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Choosing the Right Investment Advisor</h1>
+            <p class="hero-subtitle">Navigate the complex landscape of nonprofit investment advisors to find the perfect partner for your organization's financial future</p>
+        </div>
+    </section>
+
+    <!-- Visual Statistics Section -->
+    <section class="visual-stats">
+        <div class="stats-container">
+            <div class="stats-header">
+                <h2>The Impact of Professional Investment Management</h2>
+                <p style="color: var(--text-gray); max-width: 700px; margin: 0 auto;">Organizations working with specialized nonprofit advisors consistently outperform their peers</p>
+            </div>
+
+            <div class="performance-visual">
+                <div class="chart-container">
+                    <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem;">Average Annual Returns by Management Type</h3>
+                    <div class="chart-bars">
+                        <div class="chart-bar chart-bar-1">
+                            <span class="chart-value">6.2%</span>
+                            <span class="chart-label">Self-Managed</span>
+                        </div>
+                        <div class="chart-bar chart-bar-2">
+                            <span class="chart-value">7.8%</span>
+                            <span class="chart-label">General Advisor</span>
+                        </div>
+                        <div class="chart-bar chart-bar-3">
+                            <span class="chart-value">8.4%</span>
+                            <span class="chart-label">Nonprofit Specialist</span>
+                        </div>
+                        <div class="chart-bar chart-bar-4">
+                            <span class="chart-value">5.1%</span>
+                            <span class="chart-label">Bank Trust</span>
+                        </div>
+                        <div class="chart-bar chart-bar-5">
+                            <span class="chart-value">9.2%</span>
+                            <span class="chart-label">Endowment Consultant</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; color: var(--text-gray); margin-top: 2rem; font-size: 0.9rem;">
+                        *Based on 10-year rolling averages for nonprofit portfolios
+                    </p>
+                </div>
+            </div>
+
+            <div class="benefits-overview">
+                <div class="benefit-stat">
+                    <div class="benefit-icon-large">📊</div>
+                    <div class="benefit-number">2.3%</div>
+                    <div class="benefit-label">Higher Returns</div>
+                </div>
+                <div class="benefit-stat">
+                    <div class="benefit-icon-large">🛡️</div>
+                    <div class="benefit-number">35%</div>
+                    <div class="benefit-label">Lower Volatility</div>
+                </div>
+                <div class="benefit-stat">
+                    <div class="benefit-icon-large">⚖️</div>
+                    <div class="benefit-number">98%</div>
+                    <div class="benefit-label">Compliance Rate</div>
+                </div>
+                <div class="benefit-stat">
+                    <div class="benefit-icon-large">🕐</div>
+                    <div class="benefit-number">15hrs</div>
+                    <div class="benefit-label">Monthly Time Saved</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Table of Contents -->
+        <aside class="toc">
+            <div class="toc-card">
+                <h3 class="toc-title">Contents</h3>
+                <ul class="toc-list">
+                    <li><a href="#understanding" class="active">Understanding Your Needs</a></li>
+                    <li><a href="#types">Types of Advisors</a></li>
+                    <li><a href="#selection">Selection Criteria</a></li>
+                    <li><a href="#process">Evaluation Process</a></li>
+                    <li><a href="#costs">Cost Considerations</a></li>
+                    <li><a href="#red-flags">Red Flags to Avoid</a></li>
+                    <li><a href="#best-practices">Best Practices</a></li>
+                    <li><a href="#faqs">Common Questions</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Article Content -->
+        <article class="main-content">
+            <!-- Understanding Your Needs -->
+            <section class="content-section" id="understanding">
+                <h2>Understanding Your Organization's Investment Advisory Needs</h2>
+                <p>The decision to engage an investment advisor represents a critical inflection point for nonprofit organizations. Whether you're managing a growing endowment, optimizing operating reserves, or stewarding planned gifts, the right advisor can transform your financial trajectory while the wrong choice can jeopardize your mission.</p>
+                
+                <p>Before beginning your search, it's essential to understand that nonprofit investment management differs fundamentally from personal wealth management or corporate treasury functions. Your advisor must navigate unique challenges including UPMIFA compliance, spending policy optimization, donor restrictions, and the delicate balance between financial returns and mission alignment.</p>
+
+                <h3>Assessing Your Current Situation</h3>
+                <p>Start by evaluating your organization's specific circumstances. Consider your asset size and complexity—a $5 million endowment requires different expertise than a $500 million portfolio with alternative investments. Examine your board's financial sophistication and capacity for oversight. Some boards need education and hand-holding, while others seek sophisticated analysis and strategic partnership.</p>
+
+                <p>Your organizational culture also matters significantly. Some nonprofits prioritize cost minimization above all else, while others value comprehensive service and strategic guidance. Understanding these preferences helps identify advisors whose approach aligns with your values and expectations.</p>
+
+                <h3>Defining Success Metrics</h3>
+                <p>Clear success metrics guide both advisor selection and ongoing evaluation. Beyond investment returns, consider factors like risk-adjusted performance, spending policy sustainability, board satisfaction with reporting and communication, and contribution to overall organizational stability. The best advisor relationships enhance not just your portfolio performance but your entire financial ecosystem.</p>
+            </section>
+
+            <!-- Types of Advisors -->
+            <section class="content-section" id="types">
+                <h2>Types of Investment Advisors for Nonprofits</h2>
+                <p>The investment advisory landscape offers multiple options for nonprofits, each with distinct advantages and limitations. Understanding these differences helps narrow your search to advisors best suited for your specific needs.</p>
+
+                <div class="advisor-types-grid">
+                    <div class="advisor-type-card">
+                        <div class="advisor-type-header type-1">
+                            <div class="advisor-type-icon">🏢</div>
+                            <h4 class="advisor-type-title">Institutional Consultants</h4>
+                        </div>
+                        <div class="advisor-type-content">
+                            <ul class="advisor-features">
+                                <li>Serve large endowments and foundations</li>
+                                <li>Sophisticated asset allocation modeling</li>
+                                <li>Access to institutional share classes</li>
+                                <li>Comprehensive performance attribution</li>
+                                <li>Typically require $50M+ in assets</li>
+                                <li>Higher fees but extensive resources</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="advisor-type-card">
+                        <div class="advisor-type-header type-2">
+                            <div class="advisor-type-icon">🎯</div>
+                            <h4 class="advisor-type-title">Nonprofit Specialists</h4>
+                        </div>
+                        <div class="advisor-type-content">
+                            <ul class="advisor-features">
+                                <li>Focus exclusively on nonprofit sector</li>
+                                <li>Deep UPMIFA and compliance knowledge</li>
+                                <li>Understand mission-based investing</li>
+                                <li>Board education expertise</li>
+                                <li>Work with organizations of all sizes</li>
+                                <li>Competitive specialized pricing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="advisor-type-card">
+                        <div class="advisor-type-header type-3">
+                            <div class="advisor-type-icon">🏦</div>
+                            <h4 class="advisor-type-title">Wealth Management Firms</h4>
+                        </div>
+                        <div class="advisor-type-content">
+                            <ul class="advisor-features">
+                                <li>Broad investment capabilities</li>
+                                <li>May lack nonprofit expertise</li>
+                                <li>Often serve board members personally</li>
+                                <li>Variable nonprofit experience</li>
+                                <li>Standard retail pricing models</li>
+                                <li>Limited specialized reporting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Boutique vs. Large Firm Considerations</h3>
+                <p>The size of your advisory firm impacts service delivery and relationship dynamics. Large institutional consultants offer extensive resources, global research capabilities, and sophisticated technology platforms. However, they may provide less personalized attention and flexibility for smaller organizations.</p>
+
+                <p>Boutique firms specializing in nonprofits often deliver more personalized service, direct access to senior professionals, and flexibility in approach. They may lack the extensive resources of larger firms but compensate through focused expertise and responsive service. Many successful nonprofit investment programs thrive with boutique partners who deeply understand their unique needs.</p>
+            </section>
+
+            <!-- Selection Criteria -->
+            <section class="content-section" id="selection">
+                <h2>Key Selection Criteria for Nonprofit Advisors</h2>
+                <p>Choosing the right investment advisor requires systematic evaluation across multiple dimensions. These criteria help distinguish truly qualified nonprofit specialists from generalists claiming nonprofit expertise.</p>
+
+                <div class="criteria-visual">
+                    <h3 style="color: var(--primary-blue); text-align: center; margin-bottom: 1rem;">Essential Evaluation Factors</h3>
+                    <div class="criteria-grid">
+                        <div class="criteria-card">
+                            <div class="criteria-number">1</div>
+                            <h4 class="criteria-title">Nonprofit Experience</h4>
+                            <p class="criteria-description">Look for advisors managing at least 30% of assets for nonprofits, with 5+ years focused experience and demonstrated knowledge of sector-specific regulations and best practices.</p>
+                        </div>
+                        <div class="criteria-card">
+                            <div class="criteria-number">2</div>
+                            <h4 class="criteria-title">Performance Track Record</h4>
+                            <p class="criteria-description">Request composite performance for nonprofit clients specifically, not firm-wide results. Evaluate risk-adjusted returns and consistency across market cycles.</p>
+                        </div>
+                        <div class="criteria-card">
+                            <div class="criteria-number">3</div>
+                            <h4 class="criteria-title">Service Model</h4>
+                            <p class="criteria-description">Assess meeting frequency, reporting capabilities, board presentation skills, and accessibility of senior professionals who will actually manage your relationship.</p>
+                        </div>
+                        <div class="criteria-card">
+                            <div class="criteria-number">4</div>
+                            <h4 class="criteria-title">Investment Philosophy</h4>
+                            <p class="criteria-description">Ensure alignment between their approach and your organization's values, risk tolerance, and long-term objectives. Beware of one-size-fits-all strategies.</p>
+                        </div>
+                        <div class="criteria-card">
+                            <div class="criteria-number">5</div>
+                            <h4 class="criteria-title">Fee Transparency</h4>
+                            <p class="criteria-description">Demand complete fee disclosure including advisory fees, underlying fund expenses, transaction costs, and any revenue sharing arrangements.</p>
+                        </div>
+                        <div class="criteria-card">
+                            <div class="criteria-number">6</div>
+                            <h4 class="criteria-title">Technology & Reporting</h4>
+                            <p class="criteria-description">Evaluate online portals, performance reporting systems, and ability to provide customized reports for different stakeholder audiences.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Reference Checking and Due Diligence</h3>
+                <p>Thorough reference checking reveals the reality behind polished presentations. Request references from organizations similar in size and complexity to yours. Ask specific questions about responsiveness during market downturns, quality of board communications, and whether promised service levels materialized.</p>
+
+                <p>Verify regulatory records through FINRA BrokerCheck and SEC Investment Adviser Public Disclosure. Look for any disciplinary actions, customer complaints, or regulatory violations. While minor issues aren't necessarily disqualifying, patterns of problems warrant serious concern.</p>
+            </section>
+
+            <!-- Evaluation Process -->
+            <section class="content-section" id="process">
+                <h2>The Advisor Evaluation Process</h2>
+                <p>A structured evaluation process ensures objective decision-making and stakeholder buy-in. This systematic approach typically spans 3-6 months but yields long-term benefits through careful selection.</p>
+
+                <div class="process-timeline-vertical">
+                    <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 3rem;">Your Roadmap to Advisor Selection</h3>
+                    <div class="timeline-container">
+                        <div class="timeline-line-vertical"></div>
+                        
+                        <div class="timeline-step">
+                            <div class="timeline-number">1</div>
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Internal Preparation</h4>
+                                <p class="timeline-description">Form selection committee, define objectives and criteria, develop RFP if desired, and establish timeline with key milestones.</p>
+                                <span class="timeline-duration">Month 1</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="timeline-number">2</div>
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Market Research</h4>
+                                <p class="timeline-description">Identify 8-12 potential advisors through peer recommendations, industry associations, and professional networks.</p>
+                                <span class="timeline-duration">Month 2</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="timeline-number">3</div>
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Initial Screening</h4>
+                                <p class="timeline-description">Narrow to 4-6 finalists based on experience, size compatibility, service model, and preliminary fee information.</p>
+                                <span class="timeline-duration">Month 3</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="timeline-number">4</div>
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Detailed Presentations</h4>
+                                <p class="timeline-description">Conduct 2-3 hour meetings with finalists including investment philosophy, team introductions, and specific recommendations.</p>
+                                <span class="timeline-duration">Month 4</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="timeline-number">5</div>
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Final Selection</h4>
+                                <p class="timeline-description">Check references thoroughly, negotiate terms and fees, present recommendation to board, and execute advisory agreement.</p>
+                                <span class="timeline-duration">Month 5-6</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>RFP Considerations</h3>
+                <p>While formal RFPs aren't always necessary, they provide structure and ensure consistent information gathering. Effective RFPs balance comprehensiveness with respect for advisors' time. Focus on questions that reveal true capabilities rather than generating lengthy boilerplate responses.</p>
+
+                <p>Key RFP sections should cover organizational background and philosophy, specific nonprofit experience and client list, investment approach and sample portfolios, fee structure with full transparency, service model and team structure, performance reporting capabilities, and approach to board education and support.</p>
+            </section>
+
+            <!-- Cost Considerations -->
+            <section class="content-section" id="costs">
+                <h2>Understanding Investment Advisory Costs</h2>
+                <p>Investment advisory fees represent a significant ongoing expense requiring careful analysis. Understanding typical fee structures and hidden costs helps negotiate fair arrangements that align advisor compensation with your success.</p>
+
+                <div class="cost-comparison">
+                    <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem;">Typical Fee Structures by Advisor Type</h3>
+                    <div class="cost-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Advisor Type</th>
+                                    <th>Asset Range</th>
+                                    <th>Typical Fees</th>
+                                    <th>Additional Costs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Institutional Consultant</strong></td>
+                                    <td>$50M+</td>
+                                    <td>0.15% - 0.50%</td>
+                                    <td>Custodian fees, manager fees</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Nonprofit Specialist</strong></td>
+                                    <td>$5M - $100M</td>
+                                    <td>0.50% - 1.00%</td>
+                                    <td>Fund expenses, transaction costs</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Wealth Manager</strong></td>
+                                    <td>$1M - $50M</td>
+                                    <td>0.75% - 1.25%</td>
+                                    <td>Platform fees, fund expenses</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Bank Trust Department</strong></td>
+                                    <td>$500K+</td>
+                                    <td>1.00% - 1.50%</td>
+                                    <td>Proprietary fund markups</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Robo-Advisor</strong></td>
+                                    <td>Any size</td>
+                                    <td>0.25% - 0.50%</td>
+                                    <td>Limited service, ETF expenses</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="text-align: center; color: var(--text-gray); margin-top: 1rem; font-size: 0.9rem;">
+                        *Fees typically decrease with asset size and may be negotiable
+                    </p>
+                </div>
+
+                <h3>Hidden Costs to Investigate</h3>
+                <p>Advisory fees represent only part of total investment costs. Diligent organizations investigate underlying fund expenses, which can range from 0.05% for index funds to 2%+ for alternative investments. Transaction costs, custodian fees, and performance-based fees can materially impact net returns.</p>
+
+                <p>Some advisors receive revenue sharing from fund companies or use proprietary products with higher expenses. While not necessarily improper, these arrangements create potential conflicts requiring disclosure and evaluation. Always ask whether advisors receive any compensation beyond stated advisory fees.</p>
+
+                <h3>Value-Based Fee Evaluation</h3>
+                <p>Lowest fees don't always represent best value. Consider what services are included: investment management only versus comprehensive wealth planning, quarterly meetings versus monthly availability, basic reporting versus customized analytics. A slightly higher fee for significantly better service often proves worthwhile.</p>
+            </section>
+
+            <!-- Red Flags -->
+            <section class="content-section" id="red-flags">
+                <h2>Red Flags to Avoid in Advisor Selection</h2>
+                <p>Recognizing warning signs early prevents costly mistakes and protects your organization's assets. These red flags, drawn from sector experience, should prompt careful scrutiny or outright elimination from consideration.</p>
+
+                <div class="red-flags-alert">
+                    <div class="red-flags-header">
+                        <div class="red-flags-icon">🚩</div>
+                        <h3 class="red-flags-title">Critical Warning Signs</h3>
+                    </div>
+                    <ul class="red-flags-list">
+                        <li><strong>Guaranteed Returns:</strong> Any advisor promising specific returns or "market-beating" performance lacks integrity or understanding of investment realities.</li>
+                        <li><strong>Proprietary Products Push:</strong> Heavy emphasis on proprietary funds or insurance products suggests revenue generation trumps client interests.</li>
+                        <li><strong>Unclear Fee Structure:</strong> Inability or unwillingness to clearly explain all fees and compensation indicates problematic transparency.</li>
+                        <li><strong>Limited Nonprofit Experience:</strong> Advisors who "also work with nonprofits" rather than specializing often lack crucial sector knowledge.</li>
+                        <li><strong>High Turnover:</strong> Frequent team changes or recent loss of key nonprofit professionals suggests instability.</li>
+                        <li><strong>Aggressive Sales Tactics:</strong> Pressure for quick decisions or dismissal of your due diligence process reveals cultural misalignment.</li>
+                        <li><strong>One-Size-Fits-All Approach:</strong> Advisors pushing identical strategies for all nonprofits ignore the unique needs of each organization.</li>
+                        <li><strong>Poor References:</strong> Reluctance to provide relevant references or consistently lukewarm feedback from clients signals problems.</li>
+                    </ul>
+                </div>
+
+                <h3>Regulatory and Compliance Concerns</h3>
+                <p>Beyond behavioral red flags, investigate regulatory compliance thoroughly. Check whether advisors are properly registered with the SEC or state regulators. Verify their Form ADV disclosures for any disciplinary actions, conflicts of interest, or financial distress. Multiple customer complaints or regulatory sanctions warrant extreme caution.</p>
+
+                <p>Be particularly wary of advisors operating under multiple entities or complex corporate structures that obscure accountability. Legitimate advisors maintain clean, straightforward business structures with clear regulatory oversight.</p>
+            </section>
+
+            <!-- Best Practices -->
+            <section class="content-section" id="best-practices">
+                <h2>Best Practices for Advisor Relationships</h2>
+                <p>Successful investment advisory relationships require ongoing attention beyond initial selection. These best practices, refined through decades of nonprofit experience, help maximize value from your advisor partnership.</p>
+
+                <div class="best-practices-section">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Building Strong Partnerships</h3>
+                    <div class="practices-checklist">
+                        <div class="practice-item">
+                            <div class="practice-check">✓</div>
+                            <div>
+                                <strong>Set Clear Expectations</strong>
+                                <p>Document service levels, communication frequency, and performance benchmarks in your advisory agreement</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-check">✓</div>
+                            <div>
+                                <strong>Establish Regular Reviews</strong>
+                                <p>Schedule quarterly meetings minimum, with annual deep-dive strategy sessions including full board</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-check">✓</div>
+                            <div>
+                                <strong>Demand Transparency</strong>
+                                <p>Require clear reporting on performance, fees, and any changes to investment strategy or team</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-check">✓</div>
+                            <div>
+                                <strong>Maintain Independence</strong>
+                                <p>Preserve ability to terminate relationship by avoiding long-term contracts or proprietary investments</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-check">✓</div>
+                            <div>
+                                <strong>Monitor Performance Holistically</strong>
+                                <p>Evaluate risk-adjusted returns, service quality, and contribution to organizational goals</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-check">✓</div>
+                            <div>
+                                <strong>Engage Your Board</strong>
+                                <p>Ensure trustees understand their fiduciary duties and receive appropriate education from advisors</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-check">✓</div>
+                            <div>
+                                <strong>Document Decisions</strong>
+                                <p>Maintain clear records of investment decisions, rationale, and advisor recommendations</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-check">✓</div>
+                            <div>
+                                <strong>Plan for Transitions</strong>
+                                <p>Understand how relationship would transfer if key personnel leave advisor firm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Ongoing Relationship Management</h3>
+                <p>The best advisor relationships evolve from transactional service providers to strategic partners. Encourage your advisor to understand your mission deeply, attend key organizational events, and integrate with your leadership team. This deeper engagement enables more valuable strategic counsel beyond pure investment management.</p>
+
+                <p>Regular performance evaluation keeps relationships healthy and productive. Assess not just investment returns but also service quality, responsiveness, proactive communication, and value-added insights. Address concerns promptly rather than allowing frustrations to accumulate.</p>
+            </section>
+
+            <!-- FAQs -->
+            <section class="content-section" id="faqs">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How often should we consider changing investment advisors?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>There's no fixed timeline for advisor changes. Evaluate your relationship annually, but avoid frequent switching which disrupts portfolio management and incurs transition costs. Common triggers for change include persistent underperformance (3+ years), deteriorating service quality, loss of key personnel, or significant organizational changes requiring different expertise. The average nonprofit maintains advisor relationships for 7-10 years.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Should we use the same advisor as our board members?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>While board members' personal advisors may offer familiarity and trust, this arrangement creates potential conflicts. Personal wealth management differs significantly from institutional nonprofit investing. If considering this path, ensure the advisor has genuine nonprofit expertise, implement strong conflict of interest policies, and consider whether the relationship could compromise independent oversight. Many organizations find separation beneficial.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What size endowment justifies hiring an investment advisor?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Organizations with as little as $1-2 million can benefit from professional investment advice, though the service model varies by size. Smaller organizations might use robo-advisors or pooled nonprofit funds, while those above $5 million typically access customized portfolio management. Consider your internal capacity, investment complexity, and fiduciary comfort level alongside pure asset size. The cost-benefit typically becomes clearly positive around $3-5 million in investable assets.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do we evaluate advisor performance fairly?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Fair performance evaluation requires appropriate benchmarks, sufficient time periods (minimum 3-5 years), and risk-adjusted analysis. Compare returns to relevant indices and peer organizations with similar risk profiles. Consider performance across different market cycles, not just bull markets. Evaluate total portfolio performance, not individual holdings. Remember that consistent median performance with lower risk often serves nonprofits better than volatile returns that occasionally excel.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can we negotiate investment advisory fees?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely. Most advisory fees are negotiable, particularly for larger accounts or comprehensive relationships. Negotiate based on asset size, service scope, and relationship duration. Consider performance-based fees, breakpoints for asset growth, and inclusive versus a la carte pricing. Some advisors offer nonprofit discounts. Always negotiate total relationship pricing, not just advisory fees, including custody, trading, and underlying fund expenses.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What about using multiple advisors?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Using multiple advisors can provide diversification of thinking and risk management, particularly for larger endowments. However, this approach requires strong internal coordination, may increase costs and complexity, and can lead to portfolio overlap or gaps. Most organizations under $50 million find a single, well-chosen advisor more efficient. If using multiple advisors, clearly delineate responsibilities and ensure someone maintains overall portfolio oversight.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Taking the Next Step</h3>
+                <p>Selecting an investment advisor represents one of your board's most important fiduciary decisions. The right partner enhances not just investment returns but your entire organization's financial sustainability and mission impact. Take time to thoroughly evaluate options, check references carefully, and ensure cultural alignment alongside technical competence.</p>
+
+                <p>Remember that the lowest fee rarely represents the best value, and the largest firm isn't always the best fit. Focus on finding an advisor who understands your unique needs, shares your values, and demonstrates genuine commitment to nonprofit success. With careful selection and ongoing relationship management, your investment advisor becomes a valuable partner in achieving your mission for years to come.</p>
+            </section>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3>Need Help Selecting an Advisor?</h3>
+                <p>Our team brings decades of experience helping nonprofits evaluate and select investment advisors. We can guide your selection process or serve as your dedicated nonprofit investment partner.</p>
+                <a href="index.html#contact" class="cta-button">Schedule a Consultation</a>
+            </div>
+
+            <div class="sidebar-card">
+                <div class="quick-stats">
+                    <h4>Industry Insights</h4>
+                    <div class="stat-item">
+                        <span class="stat-label">Average RFP Process</span>
+                        <span class="stat-value">3-4 months</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Typical Finalist Pool</span>
+                        <span class="stat-value">3-5 advisors</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Average Relationship</span>
+                        <span class="stat-value">7-10 years</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Board Satisfaction</span>
+                        <span class="stat-value">85%<br><span style="font-size: 0.8rem; font-weight: 500;">with specialists</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Key Takeaway</h3>
+                <p>The best investment advisor for your nonprofit isn't necessarily the largest or cheapest—it's the one whose expertise, service model, and values align with your organization's unique needs and goals.</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="legal-disclosures.html">Disclosures</a></li>
+                <li><a href="form-crs.pdf" target="_blank">Form CRS</a></li>
+                <li><a href="form-adv-part-2a.pdf" target="_blank">Form ADV</a></li>
+            </ul>
+            <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
+            <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">Investment advisory services offered through Together Forward Capital, a DBA of R.F. Lafferty & Co., Inc., an investment adviser registered with the Securities and Exchange Commission.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            
+            if (window.scrollY > 50) {
+                if (currentTheme === 'dark') {
+                    nav.style.background = 'rgba(15, 20, 25, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                }
+            } else {
+                nav.style.background = '';
+                nav.style.boxShadow = '';
+            }
+        });
+
+        // Table of Contents active state
+        const sections = document.querySelectorAll('.content-section');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') && link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't already active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to cards and sections
+        document.querySelectorAll('.benefit-stat, .advisor-type-card, .criteria-card, .timeline-item, .practice-item, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

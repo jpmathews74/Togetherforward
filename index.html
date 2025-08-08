@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Together Forward Capital - Philanthropic Investment Excellence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e4d8b;
+            --secondary-blue: #3a7bc8;
+            --primary-green: #2e7d32;
+            --secondary-green: #4caf50;
+            --light-blue: #e3f2fd;
+            --light-green: #e8f5e9;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary-blue: #4a7dc7;
+            --secondary-blue: #6fa3e0;
+            --primary-green: #4caf50;
+            --secondary-green: #66bb6a;
+            --light-blue: #1a2332;
+            --light-green: #1a2e1c;
+            --text-dark: #e0e0e0;
+            --text-gray: #b0b0b0;
+            --white: #0f1419;
+            --light-gray: #1a1f2e;
+            --bg-dark: #0a0e17;
+            --card-bg: #151922;
+            --nav-bg: #0f1419;
+            --border-color: #2a3441;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-color: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-dark);
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--secondary-green);
+            color: var(--bg-dark);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            height: 125px;
+            width: auto;
+            transition: filter 0.3s ease;
+        }
+
+        [data-theme="dark"] .logo img {
+            filter: brightness(1.2);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* Dropdown Menu Styles */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        [data-theme="dark"] .dropdown-menu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        [data-theme="dark"] .dropdown-menu a:hover {
+            background: var(--light-gray);
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Submenu Styles */
+        .dropdown-menu .has-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .submenu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .dropdown-menu .has-submenu:hover + .submenu,
+        .submenu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .submenu a:hover {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        [data-theme="dark"] .submenu a:hover {
+            background: var(--light-gray);
+        }
+
+        .submenu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .submenu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
+            color: #ffffff;
+            padding: 8rem 2rem 4rem;
+            margin-top: 157px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, #1a3a5c 0%, #1a4a1e 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-50px, -50px) rotate(120deg); }
+            66% { transform: translate(50px, -25px) rotate(240deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #ffffff;
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        [data-theme="dark"] .cta-button {
+            background: var(--secondary-green);
+            color: var(--bg-dark);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Value Proposition */
+        .value-props {
+            padding: 4rem 2rem;
+            background: var(--light-gray);
+        }
+
+        [data-theme="dark"] .value-props {
+            background: var(--bg-dark);
+        }
+
+        .value-props-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .value-card {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-blue) 0%, var(--secondary-green) 100%);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        [data-theme="dark"] .value-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .value-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .value-card p {
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        [data-theme="dark"] .services {
+            background: var(--nav-bg);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .services-grid-centered {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            justify-items: center;
+        }
+
+        .services-grid-centered .service-item {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .service-item {
+            padding: 2rem;
+            border: 2px solid var(--light-blue);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            background: var(--white);
+        }
+
+        [data-theme="dark"] .service-item {
+            background: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--secondary-green) 100%);
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .service-item:hover::before {
+            opacity: 0.35;
+        }
+
+        .service-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .service-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .service-item ul {
+            list-style: none;
+            color: var(--text-dark);
+        }
+
+        .service-item li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-item li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-green);
+            font-weight: bold;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 100%);
+        }
+
+        [data-theme="dark"] .process {
+            background: linear-gradient(135deg, #1a2332 0%, #1a2e1c 100%);
+        }
+
+        .process-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            color: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        [data-theme="dark"] .step-number {
+            background: var(--card-bg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.1);
+        }
+
+        .step h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: var(--text-dark);
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        [data-theme="dark"] .why-us {
+            background: var(--bg-dark);
+        }
+
+        .why-us-grid {
+            max-width: 1200px;
+            margin: 3rem auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .why-us-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+        }
+
+        .why-us-content p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        [data-theme="dark"] .stat {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-dark);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 2rem;
+            background: var(--primary-blue);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        [data-theme="dark"] .contact {
+            background: linear-gradient(135deg, #1a3a5c 0%, #1a4a1e 100%);
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #ffffff;
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 3rem;
+        }
+
+        [data-theme="dark"] .contact-button {
+            background: var(--secondary-green);
+            color: var(--bg-dark);
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-info a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: #ffffff;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        [data-theme="dark"] footer {
+            background: #000000;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-green);
+        }
+
+        .disclosure {
+            font-size: 0.85rem;
+            color: #ccc;
+            margin-top: 1.5rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .why-us-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .theme-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="together-forward-capital-logo-horizontal.png" alt="Together Forward Capital">
+            </a>
+            <ul class="nav-links">
+                <li class="nav-dropdown">
+                    <a href="#">About Us</a>
+                    <div class="dropdown-menu">
+                        <a href="about.html">Our Story</a>
+                        <a href="team.html">Our Team</a>
+                        <a href="mission.html">Mission & Values</a>
+                    </div>
+                </li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#process">Our Process</a></li>
+                <li><a href="index.html#why-us">Why Choose Us</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="has-submenu">Guides →</a>
+                        <div class="submenu">
+                            <a href="investment-policy-guide.html">Investment Policy Guide</a>
+                            <a href="endowment-guide.html">Endowment Building Guide</a>
+                            <a href="nonprofit-investing-guide.html">Nonprofit Investing Guide</a>
+			    <a href="nonprofit-investment-advisors-guide.html">Investment Advisors Guide</a>
+                            <a href="daf-guide.html">Donor Advised Funds Guide</a>
+                            <a href="stock-donations-guide.html">Stock Donations Guide</a>
+                            <a href="financial-sustainability-guide.html">Financial Sustainability Guide</a>
+                        </div>
+                        <a href="insights.html">Market Insights</a>
+                        <a href="tools.html">Planning Tools</a>
+                    </div>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Investing in Mission, Building Tomorrow</h1>
+            <p>Together Forward Capital partners with foundations, endowments, and nonprofits to create sustainable investment strategies that amplify your philanthropic impact.</p>
+            <a href="#contact" class="cta-button">Start Your Journey</a>
+        </div>
+    </section>
+
+    <!-- Value Propositions -->
+    <section class="value-props">
+        <div class="value-props-container">
+            <div class="value-card">
+                <h3>Mission-Aligned Investing</h3>
+                <p>We understand that your investments must reflect your values. Our strategies are designed to generate returns while supporting your organization's core mission and ethical standards.</p>
+            </div>
+            <div class="value-card">
+                <h3>Fiduciary Excellence</h3>
+                <p>As your trusted partner, we take our fiduciary responsibilities seriously, providing transparent, objective guidance that always puts your organization's best interests first.</p>
+            </div>
+            <div class="value-card">
+                <h3>Sustainable Growth</h3>
+                <p>Our disciplined approach focuses on long-term sustainability, ensuring your philanthropic funds continue to make a meaningful impact for generations to come.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-container">
+            <div class="section-header">
+                <h2>Comprehensive Investment Services</h2>
+                <p>Tailored solutions designed to meet the unique needs of philanthropic organizations</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-item">
+                    <h4>Investment Policy Development</h4>
+                    <ul>
+                        <li>Custom Investment Policy Statement (IPS) creation</li>
+                        <li>Spending policy optimization</li>
+                        <li>Risk management framework</li>
+                        <li>Governance structure consulting</li>
+                    </ul>
+                </div>
+                <div class="service-item">
+                    <h4>Portfolio Management</h4>
+                    <ul>
+                        <li>Strategic asset allocation</li>
+                        <li>Manager selection and monitoring</li>
+                        <li>ESG and impact investing integration</li>
+                        <li>Regular rebalancing and optimization</li>
+                    </ul>
+                </div>
+                <div class="service-item">
+                    <h4>Specialized Solutions</h4>
+                    <ul>
+                        <li>Planned giving strategies</li>
+                        <li>Donor advised fund management</li>
+                        <li>Alternative investment evaluation</li>
+                        <li>Legacy planning consultation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="services-grid-centered">
+                <div class="service-item">
+                    <h4>Fiduciary Support</h4>
+                    <ul>
+                        <li>Board and committee education</li>
+                        <li>Quarterly performance reporting</li>
+                        <li>Compliance monitoring</li>
+                        <li>Best practices implementation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="process-container">
+            <div class="section-header">
+                <h2>Our Partnership Process</h2>
+                <p>A structured approach to building lasting financial sustainability</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Discovery</h4>
+                    <p>We begin by understanding your mission, values, and financial objectives through comprehensive consultation</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Strategy Development</h4>
+                    <p>Create a customized investment policy and strategy aligned with your organization's unique needs</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Implementation</h4>
+                    <p>Execute the investment strategy with careful attention to risk management and opportunity capture</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Ongoing Partnership</h4>
+                    <p>Provide continuous monitoring, reporting, and strategic adjustments to ensure long-term success</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us" id="why-us">
+        <div class="section-header">
+            <h2>Why Partner with Together Forward Capital</h2>
+            <p>Experience, expertise, and a genuine commitment to your mission</p>
+        </div>
+        <div class="why-us-grid">
+            <div class="why-us-content">
+                <h3>Dedicated to Nonprofits</h3>
+                <p>Unlike generalist advisors, we exclusively serve philanthropic organizations. This specialized focus means we understand your unique challenges, from UPMIFA compliance to donor stewardship.</p>
+                
+                <h3>Transparent Partnership</h3>
+                <p>We believe in complete transparency. Our fee structure is straightforward, our reporting is comprehensive, and our communication is always clear and accessible.</p>
+                
+                <h3>Proven Track Record</h3>
+                <p>Our team brings decades of experience managing philanthropic assets, with a consistent focus on sustainable growth and mission alignment.</p>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">$153M+</div>
+                    <div class="stat-label">Combined Team Experience in AUM</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Nonprofit Partners</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years of Investment Management Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Client Retention Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Ready to Amplify Your Impact?</h2>
+        <p>Let's discuss how Together Forward Capital can help your organization achieve its financial goals while staying true to its mission.</p>
+        <a href="mailto:info@togetherforwardcap.com" class="contact-button">Schedule a Consultation</a>
+        <div class="contact-info">
+            <p><strong>Together Forward Capital</strong></p>
+            <p>851 Broken Sound Parkway NW, Suite 280<br>
+            Boca Raton, FL 33487</p>
+            <p>Phone: <a href="tel:8883307090">(888) 330-7090</a><br>
+            E-mail: <a href="mailto:info@togetherforwardcap.com">info@togetherforwardcap.com</a></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="legal-disclosures.html">Disclosures</a></li>
+                <li><a href="form-crs.pdf" target="_blank">Form CRS</a></li>
+                <li><a href="form-adv-part-2a.pdf" target="_blank">Form ADV</a></li>
+            </ul>
+            <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
+            <p class="disclosure">Investment advisory services offered through Together Forward Capital, a DBA of <a href="https://www.rflafferty.com" target="_blank" style="color: #ffffff; text-decoration: underline;">R.F. Lafferty & Co., Inc.</a>, an investment adviser registered with the Securities and Exchange Commission.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Get the height of the fixed navigation
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            
+            if (window.scrollY > 50) {
+                if (currentTheme === 'dark') {
+                    nav.style.background = 'rgba(15, 20, 25, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                }
+            } else {
+                nav.style.background = '';
+                nav.style.boxShadow = '';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to cards and sections
+        document.querySelectorAll('.value-card, .service-item, .step, .stat').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

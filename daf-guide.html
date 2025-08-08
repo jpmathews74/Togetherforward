@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Guide to Donor Advised Funds | Together Forward Capital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e4d8b;
+            --secondary-blue: #3a7bc8;
+            --primary-green: #2e7d32;
+            --secondary-green: #4caf50;
+            --accent-purple: #7b68ee;
+            --accent-orange: #ff7043;
+            --accent-teal: #26a69a;
+            --light-blue: #e3f2fd;
+            --light-green: #e8f5e9;
+            --light-purple: #f3e5f5;
+            --light-orange: #fbe9e7;
+            --light-teal: #e0f2f1;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-light: #e0e0e0;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary-blue: #4a7dc7;
+            --secondary-blue: #6fa3e0;
+            --primary-green: #4caf50;
+            --secondary-green: #66bb6a;
+            --accent-purple: #9575cd;
+            --accent-orange: #ff8a65;
+            --accent-teal: #4db6ac;
+            --light-blue: #1a2332;
+            --light-green: #1a2e1c;
+            --light-purple: #2a1f3d;
+            --light-orange: #2a1f1a;
+            --light-teal: #1a2e2a;
+            --text-dark: #e0e0e0;
+            --text-gray: #b0b0b0;
+            --white: #0f1419;
+            --light-gray: #1a1f2e;
+            --bg-dark: #0a0e17;
+            --card-bg: #151922;
+            --nav-bg: #0f1419;
+            --border-color: #2a3441;
+            --border-light: #2a3441;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-dark);
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--secondary-green);
+            color: var(--bg-dark);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            height: 125px;
+            width: auto;
+            transition: filter 0.3s ease;
+        }
+
+        [data-theme="dark"] .logo img {
+            filter: brightness(1.2);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* Dropdown Menu Styles */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        [data-theme="dark"] .dropdown-menu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        [data-theme="dark"] .dropdown-menu a:hover {
+            background: var(--light-gray);
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Submenu Styles */
+        .dropdown-menu .has-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .submenu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .dropdown-menu .has-submenu:hover + .submenu,
+        .submenu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .submenu a:hover {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        [data-theme="dark"] .submenu a:hover {
+            background: var(--light-gray);
+        }
+
+        .submenu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .submenu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--secondary-blue) 100%);
+            padding: 140px 2rem 80px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, #4a3a7c 0%, #1a3a5c 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-30px, -30px) rotate(120deg); }
+            66% { transform: translate(30px, -15px) rotate(240deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Interactive Visual Stats Bar */
+        .visual-stats {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--light-blue) 100%);
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .visual-stats {
+            background: linear-gradient(135deg, #2a1f3d 0%, #1a2332 100%);
+        }
+
+        .visual-stats::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 20% 50%, rgba(123,104,238,0.1) 0%, transparent 40%);
+            animation: float 25s ease-in-out infinite;
+        }
+
+        .visual-stats::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 80% 50%, rgba(58,123,200,0.1) 0%, transparent 40%);
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-50px, -50px) rotate(120deg); }
+            66% { transform: translate(50px, -25px) rotate(240deg); }
+        }
+
+        .visual-stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .stats-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stats-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+        }
+
+        .stats-grid-single {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 769px) and (max-width: 1100px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 600px;
+            }
+            
+            .stats-grid-single {
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 600px;
+            }
+            
+            .stats-grid-single {
+                margin-top: 2rem;
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 600px;
+            }
+        }
+
+        .stat-visual {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(123,104,238,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="dark"] .stat-visual {
+            background: rgba(21,25,34,0.9);
+            border: 1px solid rgba(149,117,205,0.3);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-visual:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(123,104,238,0.15);
+            border-color: var(--accent-purple);
+            background: rgba(255,255,255,0.95);
+        }
+
+        [data-theme="dark"] .stat-visual:hover {
+            box-shadow: 0 20px 40px rgba(149,117,205,0.2);
+            background: rgba(21,25,34,0.95);
+        }
+
+        .stat-visual::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--accent-purple), var(--secondary-blue), var(--accent-purple));
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .stat-visual:hover::before {
+            opacity: 1;
+        }
+
+        .stat-icon-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+
+        .stat-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--secondary-blue) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(123,104,238,0.3);
+        }
+
+        .stat-circle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: inherit;
+            filter: blur(20px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        .stat-circle::after {
+            content: '';
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            background: var(--white);
+            border-radius: 50%;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .stat-circle::after {
+            background: var(--card-bg);
+        }
+
+        .stat-number {
+            position: relative;
+            z-index: 1;
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--secondary-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            text-align: center;
+        }
+
+        .stat-label {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Main Content Layout */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr 320px;
+            gap: 3rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .toc-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .toc-card {
+            background: var(--card-bg);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .toc-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc-list a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.25rem 0;
+            border-left: 2px solid transparent;
+            padding-left: 0.75rem;
+        }
+
+        .toc-list a:hover {
+            color: var(--accent-purple);
+            border-left-color: var(--accent-purple);
+            padding-left: 1rem;
+        }
+
+        .toc-list a.active {
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .main-content {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .content-section h2 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--accent-purple);
+        }
+
+        .content-section h3 {
+            color: var(--accent-purple);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .content-section p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Visual DAF Process Flow */
+        .daf-process-visual {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--light-blue) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .daf-process-visual {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--light-gray) 100%);
+        }
+
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .process-icon {
+            background: var(--card-bg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .process-step:hover .process-icon {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .process-arrow {
+            position: absolute;
+            top: 50px;
+            right: -1rem;
+            width: 2rem;
+            height: 2px;
+            background: var(--accent-purple);
+            z-index: 1;
+        }
+
+        .process-arrow::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid var(--accent-purple);
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+
+        .process-step:last-child .process-arrow {
+            display: none;
+        }
+
+        .process-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .process-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Animated Benefits Cards */
+        .benefits-showcase {
+            margin: 3rem 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .benefit-card {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-purple) 0%, var(--accent-orange) 50%, var(--accent-teal) 100%);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--secondary-blue) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-title {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .benefit-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .benefit-highlight {
+            background: var(--light-purple);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--accent-purple);
+        }
+
+        [data-theme="dark"] .benefit-highlight {
+            background: var(--light-gray);
+        }
+
+        /* Interactive Comparison Visualization */
+        .comparison-visual {
+            margin: 3rem 0;
+        }
+
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .comparison-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            position: relative;
+        }
+
+        .comparison-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .comparison-card {
+            background: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison-card.daf {
+            border-top: 6px solid var(--accent-purple);
+        }
+
+        .comparison-card.foundation {
+            border-top: 6px solid var(--accent-orange);
+        }
+
+        .comparison-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .comparison-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .comparison-title.daf {
+            color: var(--accent-purple);
+        }
+
+        .comparison-title.foundation {
+            color: var(--accent-orange);
+        }
+
+        .comparison-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-gray);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .comparison-features {
+            list-style: none;
+        }
+
+        .comparison-features li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .comparison-features li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .feature-icon.pro {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        .feature-icon.con {
+            background: var(--light-orange);
+            color: var(--accent-orange);
+        }
+
+        .vs-divider {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-orange) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        /* Strategy Visual Cards */
+        .strategy-visual-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .strategy-visual-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        [data-theme="dark"] .strategy-visual-card {
+            background: var(--card-bg);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .strategy-visual-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .strategy-visual-header {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-visual-header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .strategy-1 { background: linear-gradient(135deg, var(--light-purple) 0%, var(--accent-purple) 100%); }
+        .strategy-2 { background: linear-gradient(135deg, var(--light-orange) 0%, var(--accent-orange) 100%); }
+        .strategy-3 { background: linear-gradient(135deg, var(--light-teal) 0%, var(--accent-teal) 100%); }
+        .strategy-4 { background: linear-gradient(135deg, var(--light-blue) 0%, var(--secondary-blue) 100%); }
+        .strategy-5 { background: linear-gradient(135deg, var(--light-green) 0%, var(--secondary-green) 100%); }
+        .strategy-6 { background: linear-gradient(135deg, var(--light-purple) 0%, var(--accent-orange) 100%); }
+
+        .strategy-visual-content {
+            padding: 1.5rem;
+        }
+
+        .strategy-visual-title {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .strategy-visual-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Tax Benefits Calculator Visual */
+        .tax-calculator-visual {
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--light-blue) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .tax-calculator-visual {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--card-bg) 100%);
+        }
+
+        .calculator-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .calculator-visual {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .calc-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .calc-item {
+            background: var(--card-bg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .calc-item:hover {
+            transform: scale(1.05);
+        }
+
+        .calc-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .calc-number.contribution {
+            color: var(--primary-blue);
+        }
+
+        .calc-number.deduction {
+            color: var(--accent-purple);
+        }
+
+        .calc-number.savings {
+            color: var(--primary-green);
+        }
+
+        .calc-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .calculator-note {
+            text-align: center;
+            color: var(--text-gray);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        [data-theme="dark"] .sidebar-card {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sidebar-card p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: block;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--secondary-blue) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Visual Stat Widget */
+        .stat-widget {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--light-blue) 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .stat-widget {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 100%);
+        }
+
+        .stat-widget::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(123,104,238,0.1) 0%, transparent 50%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .widget-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .widget-title {
+            color: var(--accent-purple);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .widget-stat {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .widget-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section Visual Enhancement */
+        .faq-container {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        [data-theme="dark"] .faq-container {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--card-bg) 100%);
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .faq-item {
+            background: var(--card-bg);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--light-purple);
+        }
+
+        .faq-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--accent-purple);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            background: var(--secondary-blue);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        [data-theme="dark"] footer {
+            background: #000000;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-green);
+        }
+
+        .disclosure {
+            font-size: 0.85rem;
+            color: #ccc;
+            margin-top: 1.5rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .toc, .sidebar {
+                display: none;
+            }
+
+            .comparison-cards {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .vs-divider {
+                display: none;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .strategy-visual-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .calculator-visual {
+                grid-template-columns: 1fr;
+            }
+
+            .process-flow {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .process-arrow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .strategy-visual-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .theme-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="together-forward-capital-logo-horizontal.png" alt="Together Forward Capital">
+            </a>
+            <ul class="nav-links">
+                <li class="nav-dropdown">
+                    <a href="#">About Us</a>
+                    <div class="dropdown-menu">
+                        <a href="about.html">Our Story</a>
+                        <a href="team.html">Our Team</a>
+                        <a href="mission.html">Mission & Values</a>
+                    </div>
+                </li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#process">Our Process</a></li>
+                <li><a href="index.html#why-us">Why Choose Us</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="has-submenu">Guides →</a>
+                        <div class="submenu">
+                            <a href="investment-policy-guide.html">Investment Policy Guide</a>
+                            <a href="endowment-guide.html">Endowment Building Guide</a>
+                            <a href="nonprofit-investing-guide.html">Nonprofit Investing Guide</a>
+			    <a href="nonprofit-investment-advisors-guide.html">Investment Advisors Guide</a>
+                            <a href="daf-guide.html">Donor Advised Funds Guide</a>
+                            <a href="stock-donations-guide.html">Stock Donations Guide</a>
+                            <a href="financial-sustainability-guide.html">Financial Sustainability Guide</a>
+                        </div>
+                        <a href="insights.html">Market Insights</a>
+                        <a href="tools.html">Planning Tools</a>                    
+                    </div>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Master Donor Advised Funds</h1>
+            <p class="hero-subtitle">Unlock the power of strategic philanthropy through smart DAF management and optimization</p>
+        </div>
+    </section>
+
+    <!-- Visual Stats Section -->
+    <section class="visual-stats">
+        <div class="visual-stats-container">
+            <div class="stats-header">
+                <h2>The DAF Revolution by the Numbers</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-visual">
+                    <div class="stat-icon-container">
+                        <div class="stat-circle">
+                            <div class="stat-number">$234B</div>
+                        </div>
+                    </div>
+                    <div class="stat-label">Total DAF Assets</div>
+                    <div class="stat-description">Growing 20% annually</div>
+                </div>
+                <div class="stat-visual">
+                    <div class="stat-icon-container">
+                        <div class="stat-circle">
+                            <div class="stat-number">1.9M</div>
+                        </div>
+                    </div>
+                    <div class="stat-label">Active Accounts</div>
+                    <div class="stat-description">Doubled in 5 years</div>
+                </div>
+                <div class="stat-visual">
+                    <div class="stat-icon-container">
+                        <div class="stat-circle">
+                            <div class="stat-number">$52B</div>
+                        </div>
+                    </div>
+                    <div class="stat-label">Annual Grants</div>
+                    <div class="stat-description">Supporting 170,000+ charities</div>
+                </div>
+            </div>
+            <div class="stats-grid-single">
+                <div class="stat-visual">
+                    <div class="stat-icon-container">
+                        <div class="stat-circle">
+                            <div class="stat-number">24hrs</div>
+                        </div>
+                    </div>
+                    <div class="stat-label">Setup Time</div>
+                    <div class="stat-description">Start giving immediately</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Table of Contents -->
+        <aside class="toc">
+            <div class="toc-card">
+                <h3 class="toc-title">Contents</h3>
+                <ul class="toc-list">
+                    <li><a href="#understanding" class="active">Understanding DAFs</a></li>
+                    <li><a href="#how-it-works">How DAFs Work</a></li>
+                    <li><a href="#benefits">Key Benefits</a></li>
+                    <li><a href="#strategies">Strategic Uses</a></li>
+                    <li><a href="#comparison">DAF vs. Private Foundation</a></li>
+                    <li><a href="#selection">Choosing a Provider</a></li>
+                    <li><a href="#best-practices">Best Practices</a></li>
+                    <li><a href="#faqs">Common Questions</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Article Content -->
+        <article class="main-content">
+            <!-- Understanding DAFs -->
+            <section class="content-section" id="understanding">
+                <h2>Understanding Donor Advised Funds</h2>
+                <p>Donor Advised Funds (DAFs) have revolutionized charitable giving in America, offering a powerful yet accessible vehicle for strategic philanthropy. Think of a DAF as your personal charitable savings account—a place where you can contribute assets, receive an immediate tax deduction, and then recommend grants to your favorite charities over time.</p>
+                
+                <p>Since their inception, DAFs have grown exponentially, now representing over $234 billion in charitable assets. This growth isn't accidental. DAFs solve real challenges that donors face: timing mismatches between income and giving desires, complexity in donating appreciated assets, and the administrative burden of tracking charitable activities.</p>
+
+                <h3>The Evolution of Modern Philanthropy</h3>
+                <p>The philanthropic landscape has transformed dramatically over the past decade. Today's donors seek flexibility, control, and strategic impact—exactly what DAFs provide. Unlike traditional giving methods where donations immediately transfer to charities, DAFs allow donors to be thoughtful and strategic about their philanthropic journey.</p>
+
+                <p>This shift reflects broader changes in how we approach charitable giving. Modern donors want to maximize both their tax benefits and charitable impact. They seek tools that align with their financial planning while enabling meaningful contributions to causes they care about. DAFs bridge this gap elegantly, providing sophisticated giving strategies once reserved for ultra-wealthy philanthropists to donors at all levels.</p>
+            </section>
+
+            <!-- How DAFs Work -->
+            <section class="content-section" id="how-it-works">
+                <h2>How Donor Advised Funds Work</h2>
+                <p>The mechanics of a DAF are elegantly simple, yet the strategic possibilities are profound. Understanding the process empowers donors to maximize both their charitable impact and financial benefits.</p>
+
+                <div class="daf-process-visual">
+                    <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem;">Your DAF Journey in 4 Simple Steps</h3>
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <div class="process-icon">📝</div>
+                            <div class="process-arrow"></div>
+                            <div class="process-title">Open Account</div>
+                            <div class="process-description">Quick setup with your chosen provider</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="process-icon">💰</div>
+                            <div class="process-arrow"></div>
+                            <div class="process-title">Contribute</div>
+                            <div class="process-description">Fund with cash, stocks, or other assets</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="process-icon">📈</div>
+                            <div class="process-arrow"></div>
+                            <div class="process-title">Grow</div>
+                            <div class="process-description">Investments grow tax-free over time</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="process-icon">🎁</div>
+                            <div class="process-title">Grant</div>
+                            <div class="process-description">Support charities at your own pace</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Legal Structure and Oversight</h3>
+                <p>Technically, when you contribute to a DAF, you're making an irrevocable gift to the sponsoring organization. However, you retain advisory privileges over how those funds are distributed and invested. This structure provides the tax benefits of an immediate donation while preserving your influence over the charitable impact.</p>
+
+                <p>The IRS maintains specific regulations governing DAFs, including prohibited benefits, minimum distributions for certain accounts, and qualified recipient requirements. Understanding these rules ensures compliant, effective philanthropic strategies.</p>
+            </section>
+
+            <!-- Key Benefits -->
+            <section class="content-section" id="benefits">
+                <h2>Key Benefits of Donor Advised Funds</h2>
+                <p>DAFs offer a unique combination of financial advantages and philanthropic flexibility that traditional giving methods simply can't match. Let's explore the compelling benefits that have made DAFs the fastest-growing charitable vehicle in America.</p>
+
+                <div class="benefits-showcase">
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">💎</div>
+                            <div class="benefit-title">Maximize Tax Benefits</div>
+                            <div class="benefit-description">
+                                Claim immediate deductions up to 60% of AGI for cash and 30% for appreciated assets. Avoid capital gains taxes entirely on donated securities.
+                            </div>
+                            <div class="benefit-highlight">Save up to 37% + avoid 20% capital gains</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">⏰</div>
+                            <div class="benefit-title">Time Your Giving Perfectly</div>
+                            <div class="benefit-description">
+                                Separate your tax deduction timing from charitable decisions. Fund during high-income years, then distribute thoughtfully over time.
+                            </div>
+                            <div class="benefit-highlight">Bunch 5 years of giving into 1 tax year</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🌱</div>
+                            <div class="benefit-title">Grow Your Impact</div>
+                            <div class="benefit-description">
+                                Your contributions are invested and grow tax-free, potentially increasing your charitable impact significantly over time.
+                            </div>
+                            <div class="benefit-highlight">7-9% average annual growth</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">👨‍👩‍👧‍👦</div>
+                            <div class="benefit-title">Create a Family Legacy</div>
+                            <div class="benefit-description">
+                                Involve multiple generations in giving decisions. Name successors to continue your charitable vision for decades to come.
+                            </div>
+                            <div class="benefit-highlight">Teach philanthropy across generations</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tax-calculator-visual">
+                    <div class="calculator-content">
+                        <div class="calculator-header">
+                            <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem;">See Your Potential Tax Savings</h3>
+                            <p style="color: var(--text-gray);">Example: Contributing appreciated stock worth $100,000 (cost basis $25,000)</p>
+                        </div>
+                        <div class="calculator-visual">
+                            <div class="calc-item">
+                                <div class="calc-number contribution">$100,000</div>
+                                <div class="calc-label">Charitable Deduction</div>
+                            </div>
+                            <div class="calc-item">
+                                <div class="calc-number deduction">$37,000</div>
+                                <div class="calc-label">Income Tax Savings</div>
+                            </div>
+                            <div class="calc-item">
+                                <div class="calc-number savings">$15,000</div>
+                                <div class="calc-label">Capital Gains Tax Avoided</div>
+                            </div>
+                        </div>
+                        <p class="calculator-note">Total Tax Benefit: $52,000 (52% of your contribution!)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Strategic Uses -->
+            <section class="content-section" id="strategies">
+                <h2>Strategic Uses for Different Life Situations</h2>
+                <p>DAFs adapt to various life circumstances and financial events, providing tailored solutions for strategic philanthropy. Understanding these applications helps donors maximize both charitable impact and personal financial benefits.</p>
+
+                <div class="strategy-visual-grid">
+                    <div class="strategy-visual-card">
+                        <div class="strategy-visual-header strategy-1">💼</div>
+                        <div class="strategy-visual-content">
+                            <div class="strategy-visual-title">Business Sale or IPO</div>
+                            <div class="strategy-visual-description">Contribute shares before the sale to maximize deductions and eliminate capital gains on your charitable portion.</div>
+                        </div>
+                    </div>
+                    <div class="strategy-visual-card">
+                        <div class="strategy-visual-header strategy-2">📈</div>
+                        <div class="strategy-visual-content">
+                            <div class="strategy-visual-title">Market Highs</div>
+                            <div class="strategy-visual-description">Lock in maximum charitable deductions when your investments reach peak values, especially for concentrated positions.</div>
+                        </div>
+                    </div>
+                    <div class="strategy-visual-card">
+                        <div class="strategy-visual-header strategy-3">🏛️</div>
+                        <div class="strategy-visual-content">
+                            <div class="strategy-visual-title">Estate Planning</div>
+                            <div class="strategy-visual-description">Reduce estate taxes while creating a permanent family giving vehicle that continues your legacy for generations.</div>
+                        </div>
+                    </div>
+                    <div class="strategy-visual-card">
+                        <div class="strategy-visual-header strategy-4">🎓</div>
+                        <div class="strategy-visual-content">
+                            <div class="strategy-visual-title">Teaching Philanthropy</div>
+                            <div class="strategy-visual-description">Engage children in charitable decisions through family grant meetings and matching programs.</div>
+                        </div>
+                    </div>
+                    <div class="strategy-visual-card">
+                        <div class="strategy-visual-header strategy-5">🏖️</div>
+                        <div class="strategy-visual-content">
+                            <div class="strategy-visual-title">Retirement Transitions</div>
+                            <div class="strategy-visual-description">Pre-fund charitable giving before retirement when income is higher, creating sustainable giving strategies.</div>
+                        </div>
+                    </div>
+                    <div class="strategy-visual-card">
+                        <div class="strategy-visual-header strategy-6">🌟</div>
+                        <div class="strategy-visual-content">
+                            <div class="strategy-visual-title">Crisis Response</div>
+                            <div class="strategy-visual-description">Maintain charitable reserves for rapid response to emergencies or coordinate giving for amplified impact.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DAF vs Private Foundation -->
+            <section class="content-section" id="comparison">
+                <h2>DAF vs. Private Foundation: Making the Right Choice</h2>
+                <p>For donors considering structured philanthropy, the choice between a Donor Advised Fund and a private foundation represents a critical decision. Each vehicle offers distinct advantages depending on your goals, resources, and desired level of control.</p>
+
+                <div class="comparison-visual">
+                    <div class="comparison-header">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem;">Side-by-Side Comparison</h3>
+                        <p style="color: var(--text-gray);">Choose the right vehicle for your philanthropic goals</p>
+                    </div>
+                    <div class="comparison-cards">
+                        <div class="comparison-card daf">
+                            <div class="comparison-title daf">
+                                <div class="comparison-icon">🎯</div>
+                                <span>Donor Advised Fund</span>
+                            </div>
+                            <ul class="comparison-features">
+                                <li>
+                                    <span class="feature-icon pro">✓</span>
+                                    <span>Setup in 24 hours for minimal cost</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon pro">✓</span>
+                                    <span>Start with as little as $5,000</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon pro">✓</span>
+                                    <span>60% AGI deduction for cash gifts</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon pro">✓</span>
+                                    <span>No operating expenses or excise taxes</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon pro">✓</span>
+                                    <span>Complete anonymity option</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon con">✗</span>
+                                    <span>Limited to public charities only</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon con">✗</span>
+                                    <span>No direct control over investments</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="vs-divider">VS</div>
+                        <div class="comparison-card foundation">
+                            <div class="comparison-title foundation">
+                                <div class="comparison-icon">🏛️</div>
+                                <span>Private Foundation</span>
+                            </div>
+                            <ul class="comparison-features">
+                                <li>
+                                    <span class="feature-icon con">✗</span>
+                                    <span>Months to establish, $5K-25K cost</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon con">✗</span>
+                                    <span>Typically need $1-5 million</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon con">✗</span>
+                                    <span>30% AGI deduction limit</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon con">✗</span>
+                                    <span>$15K+ annual operating costs</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon con">✗</span>
+                                    <span>Must file public 990-PF</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon pro">✓</span>
+                                    <span>Can make grants to individuals</span>
+                                </li>
+                                <li>
+                                    <span class="feature-icon pro">✓</span>
+                                    <span>Complete investment control</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Choosing a Provider -->
+            <section class="content-section" id="selection">
+                <h2>Choosing the Right DAF Provider</h2>
+                <p>Selecting a DAF sponsor significantly impacts your philanthropic experience. With numerous providers offering varying features, costs, and services, understanding the landscape helps ensure alignment with your giving goals.</p>
+
+                <h3>Types of DAF Sponsors</h3>
+                <p><strong>National Charitable Sponsors:</strong> Organizations like Fidelity Charitable, Schwab Charitable, and Vanguard Charitable offer scale, technology, and integration with investment accounts. They typically feature low minimums, diverse investment options, and sophisticated online platforms. Best for donors valuing convenience and investment flexibility.</p>
+
+                <p><strong>Community Foundations:</strong> Local and regional foundations provide deep community knowledge, personalized service, and connections to area nonprofits. They often offer donor education, collaborative funding opportunities, and local expertise. Ideal for place-based philanthropy and donors seeking community engagement.</p>
+
+                <p><strong>Single-Issue Sponsors:</strong> Organizations focused on specific causes (Jewish federations, university foundations, religious organizations) combine DAF services with mission alignment. They offer specialized knowledge and connections within their focus areas. Perfect for donors with defined philanthropic interests.</p>
+            </section>
+
+            <!-- Best Practices -->
+            <section class="content-section" id="best-practices">
+                <h2>DAF Best Practices for Maximum Impact</h2>
+                <p>Successful DAF donors employ strategies that optimize both financial benefits and charitable outcomes. These proven practices help transform good intentions into meaningful impact.</p>
+
+                <h3>Optimize Your Contributions</h3>
+                <p><strong>Donate Appreciated Assets:</strong> Always contribute securities or property held over one year rather than cash when possible. This strategy eliminates capital gains taxes while providing full fair market value deductions. For highly appreciated assets, the tax savings can effectively increase your giving capacity by 20% or more.</p>
+
+                <p><strong>Time Contributions Strategically:</strong> Bunch multiple years of giving into high-income years. If you typically give $10,000 annually, consider contributing $30,000 to your DAF in a high-income year, then distribute over three years. This approach maximizes tax benefits while maintaining consistent charitable support.</p>
+
+                <h3>Enhance Your Impact</h3>
+                <p><strong>Research Before Granting:</strong> Leverage the time flexibility DAFs provide to thoroughly investigate charities. Use resources like GuideStar, Charity Navigator, and provider research tools. Visit organizations, meet leadership, and understand their impact metrics before committing support.</p>
+
+                <p><strong>Consider Multi-Year Commitments:</strong> While maintaining flexibility, communicate multi-year support intentions to charities when appropriate. This helps organizations plan effectively while preserving your ability to adjust based on performance and changing priorities.</p>
+            </section>
+
+            <!-- Common Questions -->
+            <section class="content-section" id="faqs">
+                <h2>Common Questions About DAFs</h2>
+                <p>Understanding the nuances of DAF operations helps donors make informed decisions and maximize their philanthropic impact.</p>
+
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What happens if my DAF provider denies a grant recommendation?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>While rare, providers may decline recommendations to organizations that don't qualify as public charities or that violate their policies. Most providers work with donors to find acceptable alternatives or help organizations achieve qualifying status.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can I claim tax deductions for grants made from my DAF?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No. You claim the tax deduction when you contribute to the DAF, not when grants are made. This is why DAFs are so powerful for tax planning—you get the immediate deduction but can distribute over time.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do fees work with DAF providers?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Most providers charge annual administrative fees ranging from 0.6% to 2.0% of assets, plus underlying investment fees. Some have minimums or transaction fees. Compare total costs, not just management fees, when evaluating providers.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What investment options are typically available?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Most providers offer diversified investment pools ranging from conservative to aggressive growth strategies. Some provide ESG options, target-date funds, or even individual stock and bond selection for larger accounts.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can I involve my family in DAF decisions?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely! Many providers allow multiple advisors and successors. This makes DAFs excellent tools for teaching philanthropy across generations and creating family giving traditions.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Your Philanthropic Journey Starts Here</h2>
+                <p>Donor Advised Funds represent more than just a giving vehicle—they're a pathway to strategic, impactful philanthropy that can span generations. Whether you're a first-time donor or a seasoned philanthropist, DAFs offer the flexibility, tax advantages, and growth potential to amplify your charitable impact.</p>
+
+                <p>The key to DAF success lies in understanding your options, choosing the right provider, and implementing best practices that align with your values and goals. With proper planning and execution, your DAF can become a cornerstone of your legacy, creating lasting change in the causes you care about most.</p>
+
+                <p>Ready to explore how a Donor Advised Fund can enhance your philanthropic journey? Our experts are here to help you navigate the options and develop a strategy that maximizes both your tax benefits and charitable impact.</p>
+            </section>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3>Ready to Start Your DAF?</h3>
+                <p>Our experts can help you choose the right provider and develop strategies to maximize your philanthropic impact.</p>
+                <a href="index.html#contact" class="cta-button">Schedule Consultation</a>
+            </div>
+
+            <div class="stat-widget">
+                <div class="widget-content">
+                    <div class="widget-title">DAF Growth</div>
+                    <div class="widget-stat">20%</div>
+                    <div class="widget-description">Annual growth rate of DAF assets over the past decade</div>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Tax Planning Tip</h3>
+                <p>Consider "bunching" several years of charitable giving into one high-income year to maximize your tax benefits while maintaining steady support to your favorite causes.</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="legal-disclosures.html">Disclosures</a></li>
+                <li><a href="form-crs.pdf" target="_blank">Form CRS</a></li>
+                <li><a href="form-adv-part-2a.pdf" target="_blank">Form ADV</a></li>
+            </ul>
+            <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
+            <p class="disclosure">Investment advisory services offered through Together Forward Capital, a DBA of R.F. Lafferty & Co., Inc., an investment adviser registered with the Securities and Exchange Commission.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            
+            if (window.scrollY > 50) {
+                if (currentTheme === 'dark') {
+                    nav.style.background = 'rgba(15, 20, 25, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                }
+            } else {
+                nav.style.background = '';
+                nav.style.boxShadow = '';
+            }
+        });
+
+        // Table of Contents active state
+        const sections = document.querySelectorAll('.content-section');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') && link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't already active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to cards and sections
+        document.querySelectorAll('.stat-visual, .benefit-card, .strategy-visual-card, .comparison-card, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

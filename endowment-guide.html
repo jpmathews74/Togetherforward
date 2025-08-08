@@ -1,0 +1,1413 @@
+<h3>Strategic Development Roadmap</h3><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building & Managing Nonprofit Endowments | Together Forward Capital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e4d8b;
+            --secondary-blue: #3a7bc8;
+            --primary-green: #2e7d32;
+            --secondary-green: #4caf50;
+            --accent-purple: #6b46c1;
+            --light-blue: #e3f2fd;
+            --light-green: #e8f5e9;
+            --light-purple: #ede7f6;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-light: #e0e0e0;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary-blue: #4a7dc7;
+            --secondary-blue: #6fa3e0;
+            --primary-green: #4caf50;
+            --secondary-green: #66bb6a;
+            --accent-purple: #9575cd;
+            --light-blue: #1a2332;
+            --light-green: #1a2e1c;
+            --light-purple: #2a1f3d;
+            --text-dark: #e0e0e0;
+            --text-gray: #b0b0b0;
+            --white: #0f1419;
+            --light-gray: #1a1f2e;
+            --bg-dark: #0a0e17;
+            --card-bg: #151922;
+            --nav-bg: #0f1419;
+            --border-color: #2a3441;
+            --border-light: #2a3441;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-dark);
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--secondary-green);
+            color: var(--bg-dark);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            height: 125px;
+            width: auto;
+            transition: filter 0.3s ease;
+        }
+
+        [data-theme="dark"] .logo img {
+            filter: brightness(1.2);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* Dropdown Menu Styles */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        [data-theme="dark"] .dropdown-menu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        [data-theme="dark"] .dropdown-menu a:hover {
+            background: var(--light-gray);
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Submenu Styles */
+        .dropdown-menu .has-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .submenu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .dropdown-menu .has-submenu:hover + .submenu,
+        .submenu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .submenu a:hover {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        [data-theme="dark"] .submenu a:hover {
+            background: var(--light-gray);
+        }
+
+        .submenu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .submenu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-blue) 100%);
+            padding: 140px 2rem 80px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, #1a4a1e 0%, #1a3a5c 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Key Stats Bar */
+        .stats-bar {
+            background: var(--white);
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 100;
+        }
+
+        [data-theme="dark"] .stats-bar {
+            background: var(--nav-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1rem;
+            border-right: 2px solid var(--border-light);
+        }
+
+        .stat-card:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        /* Main Content Layout */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr 320px;
+            gap: 3rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .toc-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .toc-card {
+            background: var(--card-bg);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .toc-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc-list a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.25rem 0;
+            border-left: 2px solid transparent;
+            padding-left: 0.75rem;
+        }
+
+        .toc-list a:hover {
+            color: var(--primary-green);
+            border-left-color: var(--primary-green);
+            padding-left: 1rem;
+        }
+
+        .toc-list a.active {
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .main-content {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 250px;
+        }
+
+        .content-section h2 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--secondary-green);
+        }
+
+        .content-section h3 {
+            color: var(--primary-green);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .content-section p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Endowment Types Grid */
+        .endowment-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .type-card {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--light-blue) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .type-card {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--light-gray) 100%);
+            border: 1px solid var(--border-color);
+        }
+
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-purple) 0%, var(--secondary-blue) 100%);
+        }
+
+        .type-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        [data-theme="dark"] .type-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .type-card h4 {
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .type-card p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Building Blocks */
+        .building-blocks {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        [data-theme="dark"] .building-blocks {
+            background: var(--light-gray);
+            border: 1px solid var(--border-color);
+        }
+
+        .blocks-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .block-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-green);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .block-item {
+            background: var(--card-bg);
+        }
+
+        .block-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .block-item h5 {
+            color: var(--primary-green);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .block-item p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Strategy Timeline */
+        .strategy-timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin: 2rem 0;
+            background: var(--light-gray);
+            border-radius: 12px;
+        }
+
+        [data-theme="dark"] .strategy-timeline {
+            background: var(--light-gray);
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 40px;
+            top: 2rem;
+            bottom: 2rem;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary-green) 0%, var(--secondary-blue) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            padding-right: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border: 4px solid var(--primary-green);
+            border-radius: 50%;
+            left: 31px;
+            top: 0.5rem;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 1.25rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        [data-theme="dark"] .timeline-content {
+            background: var(--card-bg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: var(--primary-green);
+            font-size: 1.1rem;
+            min-width: 80px;
+        }
+
+        .timeline-text {
+            flex: 1;
+        }
+
+        .timeline-title {
+            color: var(--primary-blue);
+            margin-bottom: 0.25rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .timeline-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: var(--white);
+            border: 2px solid var(--primary-green);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        [data-theme="dark"] .checklist {
+            background: var(--card-bg);
+            border-color: var(--primary-green);
+        }
+
+        .checklist h4 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .checklist-items {
+            list-style: none;
+        }
+
+        .checklist-items li {
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background: var(--light-green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .checklist-items li {
+            background: var(--light-gray);
+        }
+
+        .checklist-items li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .checklist-items li::before {
+            content: '✓';
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        [data-theme="dark"] .sidebar-card {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sidebar-card p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: block;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-blue) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Quick Tips */
+        .quick-tips {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        [data-theme="dark"] .quick-tips {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 100%);
+        }
+
+        .quick-tips h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            color: var(--text-dark);
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .tips-list li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        [data-theme="dark"] footer {
+            background: #000000;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .toc, .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-card {
+                border-right: none;
+                border-bottom: 2px solid var(--border-light);
+            }
+
+            .blocks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                width: 100%;
+                margin-left: 0 !important;
+                text-align: left !important;
+                padding-left: 60px;
+                padding-right: 1rem;
+            }
+
+            .timeline-line {
+                left: 20px;
+            }
+
+            .timeline-dot {
+                left: 11px !important;
+                right: auto !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 1rem 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .endowment-types {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="together-forward-capital-logo-horizontal.png" alt="Together Forward Capital">
+            </a>
+            <ul class="nav-links">
+                <li class="nav-dropdown">
+                    <a href="#">About Us</a>
+                    <div class="dropdown-menu">
+                        <a href="about.html">Our Story</a>
+                        <a href="team.html">Our Team</a>
+                        <a href="mission.html">Mission & Values</a>
+                    </div>
+                </li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#process">Our Process</a></li>
+                <li><a href="index.html#why-us">Why Choose Us</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="has-submenu">Guides →</a>
+                        <div class="submenu">
+                            <a href="investment-policy-guide.html">Investment Policy Guide</a>
+                            <a href="endowment-guide.html">Endowment Building Guide</a>
+                            <a href="nonprofit-investing-guide.html">Nonprofit Investing Guide</a>
+			    <a href="nonprofit-investment-advisors-guide.html">Investment Advisors Guide</a>
+                            <a href="daf-guide.html">Donor Advised Funds Guide</a>
+                            <a href="stock-donations-guide.html">Stock Donations Guide</a>
+                            <a href="financial-sustainability-guide.html">Financial Sustainability Guide</a>
+                        </div>
+                        <a href="insights.html">Market Insights</a>
+                        <a href="tools.html">Planning Tools</a>
+                    </div>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Build Your Legacy Through Endowments</h1>
+            <p class="hero-subtitle">Transform your nonprofit's financial future with strategic endowment development and professional management</p>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">$1.2T</div>
+                <div class="stat-label">Total U.S. Endowment Assets</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">87%</div>
+                <div class="stat-label">Organizations with Endowments Report Greater Stability</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4-5%</div>
+                <div class="stat-label">Typical Annual Distribution Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Years of Potential Impact</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Table of Contents -->
+        <aside class="toc">
+            <div class="toc-card">
+                <h3 class="toc-title">Contents</h3>
+                <ul class="toc-list">
+                    <li><a href="#understanding" class="active">Understanding Endowments</a></li>
+                    <li><a href="#types">Types of Endowments</a></li>
+                    <li><a href="#building">Building Your Endowment</a></li>
+                    <li><a href="#management">Management Strategies</a></li>
+                    <li><a href="#governance">Governance Framework</a></li>
+                    <li><a href="#growth">Growth Strategies</a></li>
+                    <li><a href="#success">Success Metrics</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Article Content -->
+        <article class="main-content">
+            <!-- Understanding Endowments -->
+            <section class="content-section" id="understanding">
+                <h2>Understanding Nonprofit Endowments</h2>
+                <p>An endowment represents more than just a financial asset—it's a promise of perpetual support for your mission. These permanent funds generate investment income that provides stable, predictable revenue year after year, allowing your organization to weather economic storms and pursue long-term strategic initiatives with confidence.</p>
+                
+                <p>For nonprofits navigating an increasingly competitive funding landscape, endowments offer a path to true financial independence. Rather than relying solely on annual fundraising cycles and grant applications, organizations with robust endowments can focus more energy on mission delivery and innovation.</p>
+
+                <h3>The Power of Perpetuity</h3>
+                <p>The fundamental principle of an endowment is elegantly simple: preserve the principal while spending only the investment returns. This approach creates a sustainable funding stream that can support your organization indefinitely. A well-managed endowment acts as a financial foundation, providing both stability and flexibility.</p>
+
+                <div class="building-blocks">
+                    <h4>Core Components of Successful Endowments</h4>
+                    <div class="blocks-grid">
+                        <div class="block-item">
+                            <h5>Principal Preservation</h5>
+                            <p>Maintaining the purchasing power of the original gift through strategic investment and controlled spending</p>
+                        </div>
+                        <div class="block-item">
+                            <h5>Income Generation</h5>
+                            <p>Creating reliable revenue streams through diversified investment portfolios optimized for long-term growth</p>
+                        </div>
+                        <div class="block-item">
+                            <h5>Strategic Distribution</h5>
+                            <p>Balancing current needs with future sustainability through disciplined spending policies</p>
+                        </div>
+                        <div class="block-item">
+                            <h5>Donor Stewardship</h5>
+                            <p>Building lasting relationships that encourage additional contributions and legacy commitments</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Types of Endowments -->
+            <section class="content-section" id="types">
+                <h2>Types of Endowments</h2>
+                <p>Understanding the various endowment structures enables organizations to offer donors flexible giving options while meeting diverse philanthropic goals. Each type serves specific purposes and comes with unique advantages and considerations.</p>
+
+                <div class="endowment-types">
+                    <div class="type-card">
+                        <h4>True Endowment</h4>
+                        <p>Permanently restricted funds where the principal must remain intact in perpetuity. Only investment earnings can be spent, ensuring the gift continues giving forever. Ideal for donors seeking to create a lasting legacy.</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>Quasi-Endowment</h4>
+                        <p>Board-designated funds functioning as endowments but without donor restrictions. Organizations maintain flexibility to access principal if needed, while benefiting from the discipline of endowment management.</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>Term Endowment</h4>
+                        <p>Restricted for a specific time period or until certain conditions are met. After the term expires, both principal and earnings become available for use. Perfect for time-bound initiatives or projects.</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>Expendable Endowment</h4>
+                        <p>Allows spending of both principal and income at the board's discretion. Provides maximum flexibility while encouraging long-term thinking about resource allocation and sustainability.</p>
+                    </div>
+                </div>
+
+                <h3>Designated vs. Unrestricted Endowments</h3>
+                <p>Beyond structural types, endowments can be further categorized by their designated use. Unrestricted endowments provide maximum flexibility, allowing boards to direct funds where they're needed most. Designated endowments support specific programs, positions, or purposes, appealing to donors with particular passions.</p>
+            </section>
+
+            <!-- Building Your Endowment -->
+            <section class="content-section" id="building">
+                <h2>Building Your Endowment Program</h2>
+                <p>Launching a successful endowment program requires careful planning, stakeholder buy-in, and a long-term perspective. The journey from concept to fully-funded endowment typically spans years, but the financial security it provides makes the investment worthwhile.</p>
+
+                <h3>Strategic Development Roadmap</h3>
+
+                <div class="strategy-timeline">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Year 1</div>
+                            <div class="timeline-text">
+                                <div class="timeline-title">Foundation Setting</div>
+                                <div class="timeline-description">Establish policies, create gift acceptance guidelines, and secure board commitment</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Year 2-3</div>
+                            <div class="timeline-text">
+                                <div class="timeline-title">Campaign Launch</div>
+                                <div class="timeline-description">Identify lead donors, launch quiet phase, and build momentum with major gifts</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Year 4-5</div>
+                            <div class="timeline-text">
+                                <div class="timeline-title">Public Phase</div>
+                                <div class="timeline-description">Expand outreach, engage broader donor base, and celebrate milestones</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Ongoing</div>
+                            <div class="timeline-text">
+                                <div class="timeline-title">Stewardship & Growth</div>
+                                <div class="timeline-description">Maintain donor relationships, report on impact, and continue building</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checklist">
+                    <h4>Essential Steps for Endowment Launch</h4>
+                    <ul class="checklist-items">
+                        <li>Conduct feasibility study to assess donor interest and capacity</li>
+                        <li>Develop comprehensive investment and spending policies</li>
+                        <li>Create compelling case for endowment support</li>
+                        <li>Identify and cultivate leadership gift prospects</li>
+                        <li>Establish gift recognition and naming opportunities</li>
+                        <li>Build infrastructure for professional fund management</li>
+                        <li>Implement robust reporting and stewardship systems</li>
+                        <li>Train board and staff on endowment benefits and processes</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Management Strategies -->
+            <section class="content-section" id="management">
+                <h2>Investment Management Strategies</h2>
+                <p>Professional endowment management balances competing objectives: generating current income, preserving purchasing power, and achieving long-term growth. Success requires a disciplined approach grounded in modern portfolio theory and best practices.</p>
+
+                <h3>Asset Allocation Framework</h3>
+                <p>The foundation of endowment investing lies in strategic asset allocation. Diversification across asset classes, geographies, and investment styles helps manage risk while capturing growth opportunities. Most endowments employ a balanced approach, combining traditional assets like stocks and bonds with alternative investments for enhanced returns and further diversification.</p>
+
+                <h3>Spending Policy Considerations</h3>
+                <p>Your spending policy determines how much of the endowment's value can be distributed annually. Common approaches include spending a fixed percentage of average market value (typically 4-5%), using a hybrid model that considers both market value and inflation, or employing a banded approach that adjusts spending based on market conditions.</p>
+
+                <p>The key is finding the right balance—spending enough to make a meaningful impact today while preserving sufficient assets for tomorrow's needs. This requires regular review and adjustment as circumstances change.</p>
+            </section>
+
+            <!-- Governance Framework -->
+            <section class="content-section" id="governance">
+                <h2>Governance & Oversight Framework</h2>
+                <p>Strong governance structures ensure endowments fulfill their purpose while meeting fiduciary obligations. Clear roles, responsibilities, and decision-making processes protect both the institution and its donors.</p>
+
+                <h3>Committee Structure</h3>
+                <p>Most organizations benefit from a dedicated investment or endowment committee comprising board members with relevant expertise. This committee oversees investment strategy, monitors performance, and ensures compliance with policies and regulations. Regular meetings, typically quarterly, maintain appropriate oversight without micromanaging daily operations.</p>
+
+                <h3>Fiduciary Responsibilities</h3>
+                <p>Board members and committees managing endowments must understand their fiduciary duties under UPMIFA (Uniform Prudent Management of Institutional Funds Act). These include duties of care, loyalty, and obedience to donor intent. Proper documentation of decisions and rationale provides essential protection.</p>
+
+                <div class="building-blocks">
+                    <h4>Key Governance Principles</h4>
+                    <div class="blocks-grid">
+                        <div class="block-item">
+                            <h5>Transparency</h5>
+                            <p>Regular reporting to stakeholders on performance, fees, and strategic decisions</p>
+                        </div>
+                        <div class="block-item">
+                            <h5>Independence</h5>
+                            <p>Avoiding conflicts of interest and maintaining arms-length relationships with advisors</p>
+                        </div>
+                        <div class="block-item">
+                            <h5>Expertise</h5>
+                            <p>Ensuring committee members have appropriate knowledge or access to professional advice</p>
+                        </div>
+                        <div class="block-item">
+                            <h5>Documentation</h5>
+                            <p>Maintaining comprehensive records of policies, decisions, and performance</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Growth Strategies -->
+            <section class="content-section" id="growth">
+                <h2>Strategies for Endowment Growth</h2>
+                <p>Growing an endowment requires a multi-faceted approach combining fundraising excellence, investment performance, and strategic reinvestment. Successful organizations employ various tactics to accelerate growth while maintaining sustainable operations.</p>
+
+                <h3>Fundraising Approaches</h3>
+                <p>Effective endowment fundraising goes beyond traditional annual campaigns. Consider implementing planned giving programs that encourage bequests and life income gifts. Create named endowment opportunities at various giving levels. Develop challenge grants that leverage matching funds to inspire broader participation.</p>
+
+                <h3>The Role of Legacy Giving</h3>
+                <p>Planned gifts often represent the largest endowment contributions. Educate donors about charitable remainder trusts, charitable gift annuities, and bequest options. These vehicles allow supporters to make substantial future commitments while potentially receiving current benefits.</p>
+
+                <div class="quick-tips">
+                    <h4>Growth Accelerators</h4>
+                    <ul class="tips-list">
+                        <li>Launch annual "Endowment Day" giving campaigns</li>
+                        <li>Create giving societies recognizing endowment donors</li>
+                        <li>Share compelling stories demonstrating endowment impact</li>
+                        <li>Offer flexible payment options for endowment pledges</li>
+                        <li>Partner with community foundations for administrative support</li>
+                        <li>Celebrate milestones publicly to build momentum</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Success Metrics -->
+            <section class="content-section" id="success">
+                <h2>Measuring Endowment Success</h2>
+                <p>Evaluating endowment performance requires looking beyond simple investment returns. Comprehensive assessment considers multiple dimensions of success, from financial metrics to mission impact.</p>
+
+                <h3>Key Performance Indicators</h3>
+                <p>Track both absolute and relative investment performance against appropriate benchmarks. Monitor spending rate sustainability and purchasing power preservation. Measure donor satisfaction and retention rates. Assess the endowment's contribution to overall organizational stability and mission advancement.</p>
+
+                <h3>Reporting Excellence</h3>
+                <p>Regular, transparent reporting builds donor confidence and demonstrates responsible stewardship. Provide annual reports showing investment performance, distributions made, and programs supported. Share stories illustrating how endowment income enables mission delivery. Acknowledge donors appropriately while respecting privacy preferences.</p>
+
+                <div class="checklist">
+                    <h4>Annual Reporting Checklist</h4>
+                    <ul class="checklist-items">
+                        <li>Investment performance versus benchmarks and peers</li>
+                        <li>Asset allocation and rebalancing activities</li>
+                        <li>Spending distributions and impact achieved</li>
+                        <li>New gifts received and donor recognition</li>
+                        <li>Compliance with policies and regulations</li>
+                        <li>Committee activities and governance updates</li>
+                        <li>Progress toward long-term growth objectives</li>
+                    </ul>
+                </div>
+
+                <h3>Looking Forward</h3>
+                <p>Building and managing a successful endowment is a marathon, not a sprint. It requires patience, discipline, and unwavering commitment to your mission. But the reward—permanent financial support for your cause—makes the journey worthwhile. With proper planning, professional management, and persistent cultivation, your endowment can become a cornerstone of organizational sustainability, ensuring your mission thrives for generations to come.</p>
+            </section>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3>Ready to Build Your Endowment?</h3>
+                <p>Our experts specialize in helping nonprofits establish and grow sustainable endowment programs.</p>
+                <a href="index.html#contact" class="cta-button">Schedule Consultation</a>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Did You Know?</h3>
+                <p>Organizations with endowments covering at least 10% of their annual budget report 40% less stress about financial sustainability and can focus more resources on mission delivery.</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="legal-disclosures.html">Disclosures</a></li>
+                <li><a href="form-crs.pdf">Form CRS</a></li>
+            </ul>
+            <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
+            <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">Investment advisory services offered through Together Forward Capital, a DBA of R.F. Lafferty & Co., Inc.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            
+            if (window.scrollY > 50) {
+                if (currentTheme === 'dark') {
+                    nav.style.background = 'rgba(15, 20, 25, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                }
+            } else {
+                nav.style.background = '';
+                nav.style.boxShadow = '';
+            }
+        });
+
+        // Table of Contents active state
+        const sections = document.querySelectorAll('.content-section');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 250;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.type-card, .block-item, .timeline-item, .checklist-items li').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

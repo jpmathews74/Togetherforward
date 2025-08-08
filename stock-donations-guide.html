@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accepting Stock Donations: A Complete Guide for Nonprofits | Together Forward Capital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e4d8b;
+            --secondary-blue: #3a7bc8;
+            --primary-green: #2e7d32;
+            --secondary-green: #4caf50;
+            --accent-gold: #f9a825;
+            --accent-coral: #ff6b6b;
+            --light-blue: #e3f2fd;
+            --light-green: #e8f5e9;
+            --light-gold: #fff8e1;
+            --light-coral: #ffe0e0;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-light: #e0e0e0;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary-blue: #4a7dc7;
+            --secondary-blue: #6fa3e0;
+            --primary-green: #4caf50;
+            --secondary-green: #66bb6a;
+            --accent-gold: #fbc02d;
+            --accent-coral: #ff8787;
+            --light-blue: #1a2332;
+            --light-green: #1a2e1c;
+            --light-gold: #2a2a1a;
+            --light-coral: #2a1a1a;
+            --text-dark: #e0e0e0;
+            --text-gray: #b0b0b0;
+            --white: #0f1419;
+            --light-gray: #1a1f2e;
+            --bg-dark: #0a0e17;
+            --card-bg: #151922;
+            --nav-bg: #0f1419;
+            --border-color: #2a3441;
+            --border-light: #2a3441;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-dark);
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--secondary-green);
+            color: var(--bg-dark);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            height: 125px;
+            width: auto;
+            transition: filter 0.3s ease;
+        }
+
+        [data-theme="dark"] .logo img {
+            filter: brightness(1.2);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* Dropdown Menu Styles */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        [data-theme="dark"] .dropdown-menu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        [data-theme="dark"] .dropdown-menu a:hover {
+            background: var(--light-gray);
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Submenu Styles */
+        .dropdown-menu .has-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .submenu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .dropdown-menu .has-submenu:hover + .submenu,
+        .submenu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .submenu a:hover {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        [data-theme="dark"] .submenu a:hover {
+            background: var(--light-gray);
+        }
+
+        .submenu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .submenu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--primary-green) 100%);
+            padding: 140px 2rem 80px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, #8b6914 0%, #1a4a1e 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -30px) rotate(180deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Impact Stats Bar */
+        .impact-stats {
+            background: var(--white);
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 100;
+        }
+
+        [data-theme="dark"] .impact-stats {
+            background: var(--nav-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .impact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .impact-card {
+            text-align: center;
+            padding: 1rem;
+            border-right: 2px solid var(--border-light);
+        }
+
+        .impact-card:last-child {
+            border-right: none;
+        }
+
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--primary-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-label {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
+        /* Main Content Layout */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr 320px;
+            gap: 3rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .toc-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .toc-card {
+            background: var(--card-bg);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .toc-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc-list a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.25rem 0;
+            border-left: 2px solid transparent;
+            padding-left: 0.75rem;
+        }
+
+        .toc-list a:hover {
+            color: var(--accent-gold);
+            border-left-color: var(--accent-gold);
+            padding-left: 1rem;
+        }
+
+        .toc-list a.active {
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .main-content {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+
+        .content-section h2 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .content-section h3 {
+            color: var(--accent-gold);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .content-section p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Process Visual Timeline */
+        .process-timeline {
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--light-green) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .process-timeline {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--card-bg) 100%);
+        }
+
+        .timeline-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 80px;
+            width: 3px;
+            height: calc(100% + 2rem);
+            background: var(--accent-gold);
+            opacity: 0.3;
+        }
+
+        .step-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+            margin-right: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        [data-theme="dark"] .step-icon {
+            background: var(--card-bg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .step-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .benefit-box {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .benefit-box {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .benefit-box.donor {
+            border-top-color: var(--accent-gold);
+        }
+
+        .benefit-box.nonprofit {
+            border-top-color: var(--primary-green);
+        }
+
+        .benefit-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .benefit-box h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .benefit-box.donor .benefit-icon {
+            background: var(--light-gold);
+            color: var(--accent-gold);
+        }
+
+        .benefit-box.nonprofit .benefit-icon {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        .benefit-list {
+            list-style: none;
+        }
+
+        .benefit-list li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .benefit-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-green);
+            font-weight: bold;
+        }
+
+        /* Requirements Checklist */
+        .requirements-checklist {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin: 2rem 0;
+        }
+
+        [data-theme="dark"] .requirements-checklist {
+            background: var(--light-gray);
+            border: 1px solid var(--border-color);
+        }
+
+        .checklist-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .checklist-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--primary-green) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .checklist-title {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .checklist-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .checklist-item {
+            background: var(--card-bg);
+        }
+
+        .checklist-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .checklist-check {
+            width: 30px;
+            height: 30px;
+            background: var(--light-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Tax Savings Calculator */
+        .calculator-section {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        [data-theme="dark"] .calculator-section {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 100%);
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .calculator-example {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        [data-theme="dark"] .calculator-example {
+            background: var(--card-bg);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .calc-row:last-child {
+            border-bottom: none;
+            margin-top: 1rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--accent-gold);
+        }
+
+        .calc-label {
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .calc-value {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        .calc-row.total .calc-label,
+        .calc-row.total .calc-value {
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+        }
+
+        /* Best Practices Cards */
+        .practices-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .practice-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .practice-card {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .practice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold) 0%, var(--primary-green) 100%);
+        }
+
+        .practice-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .practice-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--light-green) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .practice-title {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .practice-text {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            line-height: 1.35;
+        }
+
+        /* Common Mistakes Alert */
+        .mistakes-alert {
+            background: var(--light-coral);
+            border-left: 5px solid var(--accent-coral);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        [data-theme="dark"] .mistakes-alert {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 5px solid var(--accent-coral);
+        }
+
+        .mistakes-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mistakes-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-coral);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .mistakes-title {
+            color: var(--accent-coral);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .mistakes-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .mistakes-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .mistakes-list li::before {
+            content: '⚠️';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        [data-theme="dark"] .sidebar-card {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sidebar-card p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: block;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--primary-green) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Resource Box */
+        .resource-box {
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--white) 100%);
+            border: 2px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        [data-theme="dark"] .resource-box {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 100%);
+            border-color: var(--accent-gold);
+        }
+
+        .resource-box h4 {
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .resource-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resource-box li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+        }
+
+        .resource-box li::before {
+            content: '→';
+            color: var(--primary-green);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            margin-top: 3rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .faq-item {
+            background: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--light-gold);
+        }
+
+        [data-theme="dark"] .faq-question:hover {
+            background: var(--light-gray);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        [data-theme="dark"] footer {
+            background: #000000;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .toc, .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .practices-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .checklist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .timeline-step:not(:last-child)::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .step-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .impact-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .impact-card {
+                border-right: none;
+                border-bottom: 2px solid var(--border-light);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .theme-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="together-forward-capital-logo-horizontal.png" alt="Together Forward Capital">
+            </a>
+            <ul class="nav-links">
+                <li class="nav-dropdown">
+                    <a href="#">About Us</a>
+                    <div class="dropdown-menu">
+                        <a href="about.html">Our Story</a>
+                        <a href="team.html">Our Team</a>
+                        <a href="mission.html">Mission & Values</a>
+                    </div>
+                </li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#process">Our Process</a></li>
+                <li><a href="index.html#why-us">Why Choose Us</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="has-submenu">Guides →</a>
+                        <div class="submenu">
+                            <a href="investment-policy-guide.html">Investment Policy Guide</a>
+                            <a href="endowment-guide.html">Endowment Building Guide</a>
+                            <a href="nonprofit-investing-guide.html">Nonprofit Investing Guide</a>
+			    <a href="nonprofit-investment-advisors-guide.html">Investment Advisors Guide</a>
+                            <a href="daf-guide.html">Donor Advised Funds Guide</a>
+                            <a href="stock-donations-guide.html">Stock Donations Guide</a>
+                            <a href="financial-sustainability-guide.html">Financial Sustainability Guide</a>
+                        </div>
+                        <a href="insights.html">Market Insights</a>
+                        <a href="tools.html">Planning Tools</a>
+                    </div>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Unlock the Power of Stock Donations</h1>
+            <p class="hero-subtitle">Transform appreciated securities into amplified charitable impact while maximizing tax benefits for donors</p>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="impact-stats">
+        <div class="impact-container">
+            <div class="impact-card">
+                <div class="impact-number">20%</div>
+                <div class="impact-label">More Value Than Cash</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-number">37%</div>
+                <div class="impact-label">Tax Savings Potential</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-number">$25B+</div>
+                <div class="impact-label">Annual Stock Donations</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-number">2-3x</div>
+                <div class="impact-label">Larger Average Gift Size</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Table of Contents -->
+        <aside class="toc">
+            <div class="toc-card">
+                <h3 class="toc-title">Contents</h3>
+                <ul class="toc-list">
+                    <li><a href="#why-stocks" class="active">Why Accept Stocks</a></li>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="#process">The Process</a></li>
+                    <li><a href="#requirements">Requirements</a></li>
+                    <li><a href="#tax-benefits">Tax Benefits</a></li>
+                    <li><a href="#best-practices">Best Practices</a></li>
+                    <li><a href="#common-mistakes">Common Mistakes</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Article Content -->
+        <article class="main-content">
+            <!-- Why Accept Stock Donations -->
+            <section class="content-section" id="why-stocks">
+                <h2>Why Your Nonprofit Should Accept Stock Donations</h2>
+                <p>Stock donations represent one of the most powerful yet underutilized forms of charitable giving. When donors contribute appreciated securities directly to your nonprofit, they unlock significant tax advantages while potentially increasing their giving capacity by 20% or more compared to cash donations.</p>
+                
+                <p>For nonprofits, accepting stock donations opens the door to larger gifts from a broader donor base. The average stock gift is typically 2-3 times larger than the average cash donation, as donors feel empowered to give more when they're simultaneously avoiding capital gains taxes and receiving charitable deductions.</p>
+
+                <div class="benefits-grid">
+                    <div class="benefit-box donor">
+                        <h4>
+                            <div class="benefit-icon">👤</div>
+                            <span>Benefits for Donors</span>
+                        </h4>
+                        <ul class="benefit-list">
+                            <li>Avoid capital gains taxes entirely on appreciated stocks</li>
+                            <li>Claim charitable deduction for full market value</li>
+                            <li>Potentially give 20% more than selling and donating cash</li>
+                            <li>Simplify portfolio rebalancing through charitable giving</li>
+                            <li>Make larger gifts without impacting cash flow</li>
+                        </ul>
+                    </div>
+                    <div class="benefit-box nonprofit">
+                        <h4>
+                            <div class="benefit-icon">🏛️</div>
+                            <span>Benefits for Nonprofits</span>
+                        </h4>
+                        <ul class="benefit-list">
+                            <li>Receive larger average gift sizes</li>
+                            <li>Attract sophisticated donors and planned gifts</li>
+                            <li>Build deeper relationships with investment-minded supporters</li>
+                            <li>Diversify revenue streams beyond cash contributions</li>
+                            <li>Position organization as financially sophisticated</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>The Growing Importance of Non-Cash Gifts</h3>
+                <p>As wealth increasingly concentrates in appreciated assets rather than cash, nonprofits that fail to accept stock donations miss significant fundraising opportunities. Consider that many major donors hold the majority of their wealth in securities, real estate, and business interests—not checking accounts.</p>
+
+                <p>By establishing the infrastructure to accept stock donations, you signal to these donors that your organization understands their financial reality and can accommodate their preferred giving methods. This sophistication often leads to conversations about even more substantial planned gifts and complex asset donations.</p>
+            </section>
+
+            <!-- Getting Started -->
+            <section class="content-section" id="getting-started">
+                <h2>Getting Started with Stock Donations</h2>
+                <p>Establishing a stock donation program doesn't require extensive resources or expertise. With proper planning and the right partnerships, organizations of any size can begin accepting securities within weeks.</p>
+
+                <h3>Essential First Steps</h3>
+                <p>Your journey begins with understanding the basic infrastructure needed. Most nonprofits choose between two primary approaches: opening a brokerage account directly or partnering with a donation processing service. Each path offers distinct advantages depending on your organization's size, technical capacity, and donation volume.</p>
+
+                <p>Direct brokerage accounts provide maximum control and potentially lower costs for high-volume programs. However, they require staff time for processing transfers, liquidating positions, and maintaining records. Donation processing services handle these logistics for you, though they typically charge fees ranging from 2-5% of each donation.</p>
+
+                <div class="requirements-checklist">
+                    <div class="checklist-header">
+                        <div class="checklist-icon">📋</div>
+                        <h3 class="checklist-title">Setup Requirements Checklist</h3>
+                    </div>
+                    <div class="checklist-grid">
+                        <div class="checklist-item">
+                            <div class="checklist-check">✓</div>
+                            <div>
+                                <strong>Board Authorization</strong>
+                                <p>Formal resolution approving stock acceptance and processing procedures</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checklist-check">✓</div>
+                            <div>
+                                <strong>Investment Policy</strong>
+                                <p>Guidelines for holding periods, liquidation timing, and risk management</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checklist-check">✓</div>
+                            <div>
+                                <strong>Brokerage Account</strong>
+                                <p>Institutional account with reputable broker or donation processor</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checklist-check">✓</div>
+                            <div>
+                                <strong>Gift Acceptance Policy</strong>
+                                <p>Clear guidelines on acceptable securities and minimum gift sizes</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checklist-check">✓</div>
+                            <div>
+                                <strong>Donor Communications</strong>
+                                <p>Website information, marketing materials, and acknowledgment templates</p>
+                            </div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="checklist-check">✓</div>
+                            <div>
+                                <strong>Staff Training</strong>
+                                <p>Development and finance teams understand process and benefits</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Process -->
+            <section class="content-section" id="process">
+                <h2>The Stock Donation Process</h2>
+                <p>A smooth, efficient process encourages donors to give stocks and ensures proper handling of these valuable gifts. Understanding each step helps your team guide donors confidently through their contribution.</p>
+
+                <div class="process-timeline">
+                    <div class="timeline-container">
+                        <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem;">From Intent to Impact: The Journey</h3>
+                        
+                        <div class="timeline-step">
+                            <div class="step-icon">💬</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Initial Donor Contact</h4>
+                                <p class="step-description">Donor expresses interest in stock gift. Development team provides transfer instructions and discusses timing, valuation date preferences, and any restrictions.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-icon">📄</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Transfer Instructions</h4>
+                                <p class="step-description">Provide donor with DTC transfer information, account numbers, and contact details. Include letter of authorization template for their broker.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-icon">📊</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Stock Transfer</h4>
+                                <p class="step-description">Donor initiates transfer through their broker. Monitor account for receipt, typically 3-5 business days. Communicate with donor upon arrival.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-icon">💰</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Liquidation</h4>
+                                <p class="step-description">Execute sale according to investment policy. Most organizations sell immediately to avoid market risk and realize full donation value.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step">
+                            <div class="step-icon">📨</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Acknowledgment</h4>
+                                <p class="step-description">Send official acknowledgment letter within 24-48 hours, including date received, number of shares, and ticker symbol. Do not include valuation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Critical Timeline Considerations</h3>
+                <p>Timing matters significantly in stock donations. The donation date determines both the donor's tax deduction and potential capital gains exposure. Generally, the gift is complete when the stock arrives in your account, not when the donor initiates the transfer. This distinction becomes crucial near year-end when donors rush to complete gifts for tax purposes.</p>
+
+                <p>Establish clear communication protocols about expected transfer times and your organization's holiday processing schedules. Many nonprofits find that publicizing a "December 15th recommended deadline" for year-end stock gifts helps manage donor expectations and ensures smooth processing.</p>
+            </section>
+
+            <!-- Requirements -->
+            <section class="content-section" id="requirements">
+                <h2>Legal and Compliance Requirements</h2>
+                <p>While accepting stock donations is straightforward, several legal and compliance considerations ensure proper handling and protect both your organization and donors.</p>
+
+                <h3>IRS Regulations and Documentation</h3>
+                <p>The IRS requires specific documentation for non-cash charitable contributions exceeding $500. For stock donations over $5,000, donors must obtain a qualified appraisal and file Form 8283. While the appraisal responsibility lies with the donor, your organization must sign Part IV of Form 8283 acknowledging receipt of the gift.</p>
+
+                <p>Your acknowledgment letter serves as crucial documentation for the donor's tax records. Include the date of receipt, number of shares, and company name, but never include the value of the securities. Valuation is the donor's responsibility, and providing it could create liability for your organization.</p>
+
+                <h3>Gift Acceptance Policies</h3>
+                <p>A comprehensive gift acceptance policy protects your organization from problematic donations while providing clear guidelines for staff and donors. Address these key areas:</p>
+
+                <ul style="margin-left: 2rem; color: var(--text-dark); line-height: 1.8;">
+                    <li><strong>Acceptable Securities:</strong> Publicly traded stocks, bonds, and mutual funds are typically accepted. Consider restrictions on penny stocks, options, or thinly traded securities.</li>
+                    <li><strong>Minimum Gift Size:</strong> Establish thresholds that balance accessibility with administrative efficiency. Many organizations set minimums of $1,000-5,000.</li>
+                    <li><strong>Holding Period:</strong> Define how quickly securities will be liquidated. Immediate sale policies minimize market risk.</li>
+                    <li><strong>Restricted Securities:</strong> Determine whether you'll accept securities with holding restrictions or registration requirements.</li>
+                </ul>
+            </section>
+
+            <!-- Tax Benefits -->
+            <section class="content-section" id="tax-benefits">
+                <h2>Understanding the Tax Benefits</h2>
+                <p>The compelling tax advantages of stock donations motivate donors to give more generously. Understanding these benefits helps your team communicate effectively with potential donors.</p>
+
+                <div class="calculator-section">
+                    <div class="calculator-header">
+                        <h3 style="color: var(--primary-blue);">Real-World Tax Savings Example</h3>
+                        <p style="color: var(--text-gray);">Comparing cash vs. stock donation strategies</p>
+                    </div>
+                    <div class="calculator-example">
+                        <h4 style="color: var(--accent-gold); margin-bottom: 1.5rem;">Scenario: Donor with $50,000 in Appreciated Stock</h4>
+                        <p style="margin-bottom: 1.5rem;">Original purchase price: $10,000 | Current value: $50,000 | Holding period: 5 years</p>
+                        
+                        <div class="calc-row">
+                            <span class="calc-label">If Sold and Donated Cash:</span>
+                            <span class="calc-value"></span>
+                        </div>
+                        <div class="calc-row">
+                            <span class="calc-label">Capital Gains Tax (20% + 3.8% NIIT)</span>
+                            <span class="calc-value">-$9,520</span>
+                        </div>
+                        <div class="calc-row">
+                            <span class="calc-label">Cash Available to Donate</span>
+                            <span class="calc-value">$40,480</span>
+                        </div>
+                        <div class="calc-row">
+                            <span class="calc-label">Tax Deduction Value (37% bracket)</span>
+                            <span class="calc-value">$14,978</span>
+                        </div>
+                        
+                        <div class="calc-row" style="margin-top: 1rem;">
+                            <span class="calc-label">If Donated Directly:</span>
+                            <span class="calc-value"></span>
+                        </div>
+                        <div class="calc-row">
+                            <span class="calc-label">Capital Gains Tax</span>
+                            <span class="calc-value">$0</span>
+                        </div>
+                        <div class="calc-row">
+                            <span class="calc-label">Donation Amount</span>
+                            <span class="calc-value">$50,000</span>
+                        </div>
+                        <div class="calc-row">
+                            <span class="calc-label">Tax Deduction Value (37% bracket)</span>
+                            <span class="calc-value">$18,500</span>
+                        </div>
+                        
+                        <div class="calc-row total">
+                            <span class="calc-label">Additional Benefit of Stock Donation</span>
+                            <span class="calc-value">$13,042</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Maximizing Donor Benefits</h3>
+                <p>Help donors optimize their tax benefits by understanding key strategies. Encourage donations of highly appreciated securities held over one year, as these provide the greatest tax advantages. Short-term holdings receive less favorable treatment, with deductions limited to cost basis rather than market value.</p>
+
+                <p>The annual deduction limit for stock donations is 30% of adjusted gross income, with five-year carryforward provisions for excess amounts. This allows major donors to make transformational gifts while spreading tax benefits across multiple years.</p>
+            </section>
+
+            <!-- Best Practices -->
+            <section class="content-section" id="best-practices">
+                <h2>Best Practices for Stock Donation Programs</h2>
+                <p>Successful stock donation programs combine efficient operations with strategic donor cultivation. These proven practices help maximize both donation volume and donor satisfaction.</p>
+
+                <div class="practices-grid">
+                    <div class="practice-card">
+                        <div class="practice-icon">📈</div>
+                        <h4 class="practice-title">Market Strategically</h4>
+                        <p class="practice-text">Promote stock giving during market highs when donors have maximum gains. Create targeted campaigns for year-end tax planning.</p>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-icon">🔄</div>
+                        <h4 class="practice-title">Streamline Process</h4>
+                        <p class="practice-text">Provide clear, simple transfer instructions. Consider online forms and automated acknowledgments to reduce friction.</p>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-icon">📚</div>
+                        <h4 class="practice-title">Educate Constituents</h4>
+                        <p class="practice-text">Regular communication about stock giving benefits. Host webinars with financial advisors during tax season.</p>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-icon">🤝</div>
+                        <h4 class="practice-title">Partner with Advisors</h4>
+                        <p class="practice-text">Build relationships with wealth managers and CPAs who can recommend stock gifts to their clients.</p>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-icon">📊</div>
+                        <h4 class="practice-title">Track and Report</h4>
+                        <p class="practice-text">Monitor program metrics, including average gift size, processing time, and donor retention rates.</p>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-icon">🎁</div>
+                        <h4 class="practice-title">Recognize Donors</h4>
+                        <p class="practice-text">Create special recognition for securities donors. Consider exclusive events or giving society membership.</p>
+                    </div>
+                </div>
+
+                <h3>Communication Strategies</h3>
+                <p>Effective communication about stock donations requires balancing technical accuracy with accessibility. Avoid jargon while ensuring donors understand the benefits. Create materials for different audiences: simple overviews for general donors, detailed guides for financial advisors, and technical specifications for brokers.</p>
+
+                <p>Time your communications strategically. Promote stock giving when markets reach new highs, during tax planning season (October-December), and after major market events. Remember that donors with appreciated stocks are often looking for tax-efficient giving opportunities—your job is to make their decision easy.</p>
+            </section>
+
+            <!-- Common Mistakes -->
+            <section class="content-section" id="common-mistakes">
+                <h2>Avoiding Common Pitfalls</h2>
+                <p>Learning from others' mistakes helps your program run smoothly from day one. These common pitfalls can discourage donors and create administrative headaches.</p>
+
+                <div class="mistakes-alert">
+                    <div class="mistakes-header">
+                        <div class="mistakes-icon">⚠️</div>
+                        <h3 class="mistakes-title">Critical Mistakes to Avoid</h3>
+                    </div>
+                    <ul class="mistakes-list">
+                        <li><strong>Providing Valuations:</strong> Never include gift values in acknowledgment letters. This is the donor's responsibility and could create legal liability.</li>
+                        <li><strong>Delayed Liquidation:</strong> Holding stocks exposes your organization to market risk. Establish clear policies for prompt liquidation.</li>
+                        <li><strong>Poor Communication:</strong> Unclear transfer instructions or slow acknowledgments frustrate donors and may cost you future gifts.</li>
+                        <li><strong>Ignoring Small Gifts:</strong> Today's $1,000 stock donor could be tomorrow's major planned giving prospect.</li>
+                        <li><strong>Inadequate Tracking:</strong> Failing to properly record stock gifts can cause accounting issues and donor relations problems.</li>
+                        <li><strong>Missing Deadlines:</strong> Not publicizing year-end deadlines leads to last-minute scrambles and disappointed donors.</li>
+                    </ul>
+                </div>
+
+                <h3>Risk Management Considerations</h3>
+                <p>Protect your organization by establishing clear policies around unusual donations. Be cautious with restricted securities, stocks in closely-held companies, or securities with limited marketability. When in doubt, consult legal counsel before accepting complex gifts.</p>
+
+                <p>Consider market risk carefully. While some organizations hold securities hoping for appreciation, this strategy can backfire spectacularly. Most nonprofits benefit from immediate liquidation policies that convert stocks to usable cash while avoiding market volatility.</p>
+            </section>
+
+            <!-- FAQs -->
+            <section class="content-section" id="faqs">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What if we receive stocks we cannot immediately identify?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Mystery stocks occasionally arrive without clear donor identification. Work with your broker to trace the transfer through DTC records. Maintain a "pending gifts" file and cross-reference with donors who've expressed interest. If unclaimed after reasonable efforts, follow your state's unclaimed property laws.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do we handle international stock donations?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>International securities add complexity including currency conversion, foreign tax implications, and longer transfer times. Many organizations partner with specialized international donation processors or limit acceptance to U.S.-traded securities. Consult legal counsel for cross-border gift policies.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Should we accept cryptocurrency donations?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Cryptocurrency follows similar tax principles to stock donations but requires different infrastructure. If your donors express interest, consider partnering with crypto donation processors who handle conversion and compliance. The volatility requires even faster liquidation policies than traditional securities.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What about stock options or restricted stock units?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Stock options and RSUs require careful handling. Options must be exercised before donation, potentially triggering taxable events. RSUs often have vesting restrictions preventing immediate transfer. Work closely with donors and their advisors to navigate these complex gifts properly.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How quickly must we provide donation acknowledgments?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>While the IRS requires acknowledgments before donors file their tax returns, best practice is to send them within 24-48 hours of receiving the stock. Quick acknowledgments build donor confidence and allow them to complete their tax planning promptly.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can small nonprofits successfully accept stock donations?</span>
+                            <div class="faq-icon">+</div>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely! Many donation processing services cater specifically to smaller organizations, handling all technical aspects for reasonable fees. Even organizations with limited staff can offer stock donations by partnering with these services. The potential for larger gifts often justifies the modest costs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Your Next Steps</h3>
+                <p>Accepting stock donations opens new possibilities for your fundraising program. Start by assessing your current donor base for prospects who might benefit from stock giving. Implement basic infrastructure, educate your team, and begin promoting this powerful giving option.</p>
+
+                <p>Remember that every major stock gift typically leads to additional donations as satisfied donors share their positive experiences. By making the process smooth and beneficial for all parties, you create a sustainable source of increased funding for your mission.</p>
+            </section>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3>Need Help Setting Up?</h3>
+                <p>Our experts can guide you through establishing a stock donation program that maximizes both donor benefits and organizational impact.</p>
+                <a href="index.html#contact" class="cta-button">Get Expert Guidance</a>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Quick Tip</h3>
+                <p>December accounts for nearly 40% of annual stock donations. Start promoting your stock giving options in October to capture year-end tax planning gifts.</p>
+            </div>
+
+            <div class="resource-box">
+                <h4>Essential Resources</h4>
+                <ul>
+                    <li><a href="https://www.irs.gov/forms-pubs/about-publication-526" target="_blank" style="color: var(--primary-blue); text-decoration: underline;">IRS Publication 526 (Charitable Contributions)</a></li>
+                    <li><a href="https://www.irs.gov/forms-pubs/about-form-8283" target="_blank" style="color: var(--primary-blue); text-decoration: underline;">Form 8283 for non-cash donations</a></li>
+                    <li>Sample acknowledgment letters</li>
+                    <li>Donor education materials</li>
+                    <li>Transfer instruction templates</li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="legal-disclosures.html">Disclosures</a></li>
+                <li><a href="form-crs.pdf" target="_blank">Form CRS</a></li>
+                <li><a href="form-adv-part-2a.pdf" target="_blank">Form ADV</a></li>
+            </ul>
+            <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
+            <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">Investment advisory services offered through Together Forward Capital, a DBA of R.F. Lafferty & Co., Inc.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            
+            if (window.scrollY > 50) {
+                if (currentTheme === 'dark') {
+                    nav.style.background = 'rgba(15, 20, 25, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                }
+            } else {
+                nav.style.background = '';
+                nav.style.boxShadow = '';
+            }
+        });
+
+        // Table of Contents active state
+        const sections = document.querySelectorAll('.content-section');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') && link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't already active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to cards and sections
+        document.querySelectorAll('.impact-card, .benefit-box, .checklist-item, .practice-card, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

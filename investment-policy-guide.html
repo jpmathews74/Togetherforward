@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Strong Investment Policies for Nonprofits | Together Forward Capital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e4d8b;
+            --secondary-blue: #3a7bc8;
+            --primary-green: #2e7d32;
+            --secondary-green: #4caf50;
+            --accent-teal: #006064;
+            --light-blue: #e3f2fd;
+            --light-green: #e8f5e9;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-light: #e0e0e0;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary-blue: #4a7dc7;
+            --secondary-blue: #6fa3e0;
+            --primary-green: #4caf50;
+            --secondary-green: #66bb6a;
+            --accent-teal: #00838f;
+            --light-blue: #1a2332;
+            --light-green: #1a2e1c;
+            --text-dark: #e0e0e0;
+            --text-gray: #b0b0b0;
+            --white: #0f1419;
+            --light-gray: #1a1f2e;
+            --bg-dark: #0a0e17;
+            --card-bg: #151922;
+            --nav-bg: #0f1419;
+            --border-color: #2a3441;
+            --border-light: #2a3441;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-dark);
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--secondary-green);
+            color: var(--bg-dark);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation - Simplified for this page */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* Dropdown Menu Styles */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        [data-theme="dark"] .dropdown-menu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        [data-theme="dark"] .dropdown-menu a:hover {
+            background: var(--light-gray);
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Submenu Styles */
+        .dropdown-menu .has-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .submenu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .dropdown-menu .has-submenu:hover + .submenu,
+        .submenu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .submenu a:hover {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        [data-theme="dark"] .submenu a:hover {
+            background: var(--light-gray);
+        }
+
+        .submenu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .submenu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-teal) 100%);
+            padding: 140px 2rem 60px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .faq-item {
+            background: var(--card-bg);
+            border-color: var(--border-color);
+        }
+
+        [data-theme="dark"] .hero-banner {
+            background: linear-gradient(135deg, #1a3a5c 0%, #1a4a1e 100%);
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff10" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,186.7C960,192,1056,160,1152,149.3C1248,139,1344,149,1392,154.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        /* Quick Navigation */
+        .quick-nav {
+            background: var(--white);
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 132px;
+            z-index: 100;
+        }
+
+        [data-theme="dark"] .quick-nav {
+            background: var(--nav-bg);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .quick-nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-nav a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .quick-nav a:hover {
+            background: var(--light-blue);
+            transform: translateY(-2px);
+        }
+
+        [data-theme="dark"] .quick-nav a:hover {
+            background: var(--light-gray);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 3rem;
+        }
+
+        .content-section {
+            background: var(--white);
+        }
+
+        .content-block {
+            margin-bottom: 3rem;
+            scroll-margin-top: 240px;
+        }
+
+        .content-block h2 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--secondary-green);
+        }
+
+        .content-block h3 {
+            color: var(--accent-teal);
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .content-block p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Key Components Card */
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        [data-theme="dark"] .best-practices {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .component-card {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 50%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        [data-theme="dark"] .component-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 50%);
+            border: 1px solid var(--border-color);
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .component-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .component-card h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .component-card p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Process Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--secondary-blue) 0%, var(--secondary-green) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border: 3px solid var(--secondary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+
+        .timeline-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        /* Best Practices Section */
+        .best-practices {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .best-practices h3 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .best-practices h3::before {
+            content: '✓';
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--secondary-green);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .practice-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .practice-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--white);
+            border-left: 4px solid var(--secondary-green);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .practice-list li {
+            background: var(--light-gray);
+            border-left-color: var(--secondary-green);
+        }
+
+        [data-theme="dark"] nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .practice-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 220px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        [data-theme="dark"] .sidebar-card {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sidebar-card p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: block;
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--secondary-green) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Resource Box */
+        .resource-box {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
+            border: 2px solid var(--secondary-blue);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        [data-theme="dark"] .resource-box {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 100%);
+            border-color: var(--border-color);
+        }
+
+        .resource-box h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .resource-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resource-box li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+        }
+
+        .resource-box li::before {
+            content: '→';
+            color: var(--secondary-green);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--light-blue);
+        }
+
+        [data-theme="dark"] .faq-question:hover {
+            background: var(--light-gray);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        [data-theme="dark"] footer {
+            background: #000000;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .quick-nav {
+                position: static;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-item::before {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="together-forward-capital-logo-horizontal.png" alt="Together Forward Capital">
+            </a>
+            <ul class="nav-links">
+                <li class="nav-dropdown">
+                    <a href="#">About Us</a>
+                    <div class="dropdown-menu">
+                        <a href="about.html">Our Story</a>
+                        <a href="team.html">Our Team</a>
+                        <a href="mission.html">Mission & Values</a>
+                    </div>
+                </li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#process">Our Process</a></li>
+                <li><a href="index.html#why-us">Why Choose Us</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="has-submenu">Guides →</a>
+                        <div class="submenu">
+                            <a href="investment-policy-guide.html">Investment Policy Guide</a>
+                            <a href="endowment-guide.html">Endowment Building Guide</a>
+                            <a href="nonprofit-investing-guide.html">Nonprofit Investing Guide</a>
+			    <a href="nonprofit-investment-advisors-guide.html">Investment Advisors Guide</a>
+                            <a href="daf-guide.html">Donor Advised Funds Guide</a>
+                            <a href="stock-donations-guide.html">Stock Donations Guide</a>
+                            <a href="financial-sustainability-guide.html">Financial Sustainability Guide</a>
+                        </div>
+                        <a href="insights.html">Market Insights</a>
+                        <a href="tools.html">Planning Tools</a>
+                    </div>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>Master Your Nonprofit's Investment Policy</h1>
+            <p>A comprehensive guide to creating, implementing, and maintaining investment policies that protect your mission while growing your impact</p>
+        </div>
+    </section>
+
+    <!-- Quick Navigation -->
+    <div class="quick-nav">
+        <div class="quick-nav-container">
+            <a href="#foundation">Foundation</a>
+            <a href="#components">Key Components</a>
+            <a href="#development">Development Process</a>
+            <a href="#governance">Governance</a>
+            <a href="#best-practices">Best Practices</a>
+            <a href="#faqs">FAQs</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="content-section">
+            <!-- Foundation Section -->
+            <div class="content-block" id="foundation">
+                <h2>The Foundation: Understanding Investment Policies</h2>
+                <p>An Investment Policy Statement (IPS) serves as the North Star for your nonprofit's financial stewardship. More than just a document, it's a living framework that bridges your mission with sustainable financial management, ensuring every investment decision advances your organization's purpose.</p>
+                
+                <p>For nonprofits, foundations, and endowments, an IPS isn't merely a best practice—it's the cornerstone of fiduciary responsibility. It transforms abstract goals into actionable strategies while providing clear guardrails for decision-making during both calm markets and turbulent times.</p>
+
+                <h3>Why Your Organization Needs a Robust Policy</h3>
+                <p>Investment policies protect both your assets and your board. They create institutional memory that transcends individual board members, ensure compliance with UPMIFA and other regulations, and demonstrate to donors that their contributions are managed with professional rigor.</p>
+
+                <div class="best-practices">
+                    <h3>Core Benefits of a Well-Crafted IPS</h3>
+                    <ul class="practice-list">
+                        <li><strong>Mission Alignment:</strong> Ensures every investment decision supports your organizational purpose and values</li>
+                        <li><strong>Risk Management:</strong> Establishes clear boundaries for acceptable risk levels based on your specific needs</li>
+                        <li><strong>Consistency:</strong> Provides continuity through board transitions and market cycles</li>
+                        <li><strong>Accountability:</strong> Creates measurable benchmarks for evaluating investment performance</li>
+                        <li><strong>Donor Confidence:</strong> Demonstrates professional stewardship of charitable assets</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Key Components Section -->
+            <div class="content-block" id="components">
+                <h2>Essential Components of Your Investment Policy</h2>
+                <p>A comprehensive investment policy addresses multiple interconnected elements. Each component should reflect your organization's unique circumstances while maintaining professional investment standards.</p>
+
+                <div class="components-grid">
+                    <div class="component-card">
+                        <h4>Mission & Purpose Statement</h4>
+                        <p>Clearly articulates how investments support your charitable mission and defines the role of the investment portfolio in achieving organizational goals.</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>Investment Objectives</h4>
+                        <p>Establishes specific, measurable goals including return targets, risk tolerance, and time horizons aligned with your spending needs.</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>Asset Allocation Framework</h4>
+                        <p>Defines target allocations across asset classes with acceptable ranges, rebalancing triggers, and strategic vs. tactical parameters.</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>Spending Policy</h4>
+                        <p>Outlines sustainable withdrawal rates, calculation methodologies, and smoothing mechanisms to balance current needs with long-term growth.</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>Risk Management Guidelines</h4>
+                        <p>Identifies acceptable risk levels, concentration limits, liquidity requirements, and strategies for various market scenarios.</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>ESG & Values Integration</h4>
+                        <p>Incorporates environmental, social, and governance factors along with mission-related investments and screening criteria.</p>
+                    </div>
+                </div>
+
+                <h3>Governance & Oversight Structure</h3>
+                <p>Your policy should clearly define roles and responsibilities for the board, investment committee, staff, and external advisors. This includes decision-making authority, reporting requirements, and review schedules.</p>
+            </div>
+
+            <!-- Development Process Section -->
+            <div class="content-block" id="development">
+                <h2>Developing Your Investment Policy: A Strategic Approach</h2>
+                <p>Creating an effective investment policy requires thoughtful planning and broad stakeholder engagement. Our proven process ensures your policy reflects both best practices and your organization's unique needs.</p>
+
+                <div class="timeline">
+                    <div class="timeline-item" data-step="1">
+                        <h4>Organizational Assessment</h4>
+                        <p>Begin with a comprehensive review of your mission, financial position, cash flow needs, and risk capacity. Survey board members and key stakeholders to understand perspectives and concerns.</p>
+                    </div>
+                    <div class="timeline-item" data-step="2">
+                        <h4>Objective Setting Workshop</h4>
+                        <p>Facilitate strategic discussions to establish clear investment objectives, return expectations, and risk parameters. Balance competing priorities between current spending and long-term sustainability.</p>
+                    </div>
+                    <div class="timeline-item" data-step="3">
+                        <h4>Policy Drafting</h4>
+                        <p>Develop initial policy framework incorporating best practices while customizing for your specific circumstances. Include all essential components with clear, actionable language.</p>
+                    </div>
+                    <div class="timeline-item" data-step="4">
+                        <h4>Stakeholder Review</h4>
+                        <p>Circulate draft policy for feedback from board, committee members, and advisors. Incorporate input while maintaining policy coherence and effectiveness.</p>
+                    </div>
+                    <div class="timeline-item" data-step="5">
+                        <h4>Board Approval & Implementation</h4>
+                        <p>Present final policy for board adoption with implementation timeline. Establish monitoring procedures and schedule regular reviews.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Governance Section -->
+            <div class="content-block" id="governance">
+                <h2>Governance Excellence: Roles & Responsibilities</h2>
+                <p>Effective investment governance requires clear delineation of responsibilities across multiple levels of your organization. Success depends on each party understanding and fulfilling their specific role.</p>
+
+                <h3>Board of Directors</h3>
+                <p>The board holds ultimate fiduciary responsibility for investment assets. Key responsibilities include approving the investment policy, selecting and overseeing the investment committee, and ensuring alignment with the organizational mission. The board should receive regular reports but avoid day-to-day investment decisions.</p>
+
+                <h3>Investment Committee</h3>
+                <p>This specialized body implements the investment policy through tactical decisions and ongoing oversight. Committee members should bring diverse expertise including investment knowledge, risk management experience, and understanding of nonprofit operations. Regular meetings, documented decisions, and clear reporting to the board are essential.</p>
+
+                <h3>Staff & External Partners</h3>
+                <p>Executive leadership ensures policy compliance and coordinates with external advisors. Investment consultants provide professional expertise and independent perspective. Clear service agreements and performance expectations keep all parties aligned.</p>
+
+                <div class="resource-box">
+                    <h4>Governance Best Practices Checklist</h4>
+                    <ul>
+                        <li>Documented committee charter with clear authority</li>
+                        <li>Regular meeting schedule (typically quarterly)</li>
+                        <li>Comprehensive meeting minutes and decision logs</li>
+                        <li>Annual policy review and update process</li>
+                        <li>Ongoing education for board and committee members</li>
+                        <li>Clear conflict of interest policies</li>
+                        <li>Regular performance evaluation of advisors</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Best Practices Section -->
+            <div class="content-block" id="best-practices">
+                <h2>Implementation Best Practices</h2>
+                <p>Moving from policy creation to successful implementation requires deliberate action and ongoing commitment. These proven practices help organizations maximize the value of their investment policies.</p>
+
+                <h3>Regular Review & Updates</h3>
+                <p>Your investment policy should evolve with your organization. Schedule annual reviews to assess continued relevance and effectiveness. Major organizational changes, significant market events, or regulatory updates may trigger interim reviews. Document all changes with clear rationale and board approval.</p>
+
+                <h3>Performance Monitoring Framework</h3>
+                <p>Establish clear benchmarks and reporting schedules from the outset. Monthly or quarterly performance reports should compare results against policy objectives and peer institutions. Look beyond returns to evaluate risk metrics, costs, and alignment with mission-related goals.</p>
+
+                <h3>Education & Communication</h3>
+                <p>Invest in ongoing education for board and committee members. Regular training on fiduciary responsibilities, market conditions, and investment strategies builds confidence and improves decision-making. Communicate policy principles to staff and stakeholders to ensure organizational alignment.</p>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="content-block" id="faqs">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How often should we update our investment policy?</div>
+                    <div class="faq-answer">
+                        <p>While comprehensive reviews should occur annually, your policy should be a living document that adapts to significant changes. Major updates typically happen every 3-5 years, but trigger events like substantial gifts, organizational restructuring, or dramatic market shifts may necessitate interim revisions. The key is maintaining relevance while avoiding reactive changes to short-term market movements.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What's the ideal spending rate for our endowment?</div>
+                    <div class="faq-answer">
+                        <p>Most organizations adopt spending rates between 3-5% of average market value, calculated over trailing 12-20 quarters. The "right" rate depends on your return expectations, inflation assumptions, and desire for real growth. Consider using a smoothing formula to reduce volatility in annual distributions. Remember that UPMIFA provides flexibility but requires prudent consideration of long-term purchasing power preservation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Should small nonprofits have investment policies?</div>
+                    <div class="faq-answer">
+                        <p>Absolutely. While smaller organizations may have simpler policies, the discipline of documenting investment guidelines benefits organizations of all sizes. Even if you only have operating reserves, a policy helps define liquidity needs, acceptable investments, and decision-making authority. Start with a basic framework and expand as your assets grow.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How do we incorporate ESG factors without sacrificing returns?</div>
+                    <div class="faq-answer">
+                        <p>Modern ESG integration goes beyond simple exclusion screens. Consider approaches like best-in-class selection, thematic investing, or active ownership strategies. Research increasingly shows that thoughtful ESG integration can enhance risk-adjusted returns by identifying well-managed companies and avoiding systemic risks. Define your values-based criteria clearly while maintaining focus on fiduciary duty.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What role should alternative investments play?</div>
+                    <div class="faq-answer">
+                        <p>Alternative investments can enhance diversification and returns but require careful consideration of liquidity needs, fees, complexity, and governance capabilities. Many nonprofits successfully incorporate alternatives through funds-of-funds or liquid alternatives. Your policy should address alternatives explicitly, including allocation limits, due diligence requirements, and monitoring procedures.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3>Get Expert Guidance</h3>
+                <p>Need help developing or refining your investment policy? Our team specializes in creating customized policies for nonprofits, foundations, and endowments.</p>
+                <a href="#contact" class="cta-button">Schedule Consultation</a>
+            </div>
+
+
+        </aside>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact" style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%); color: white; padding: 4rem 2rem; text-align: center;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready to Strengthen Your Investment Policy?</h2>
+        <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem;">Let our experts help you create a policy that protects your mission while optimizing returns.</p>
+        <a href="mailto:info@togetherforwardcap.com" class="cta-button" style="display: inline-block; background: white; color: var(--primary-blue);">Get Started Today</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="legal-disclosures.html">Disclosures</a></li>
+                <li><a href="form-crs.pdf">Form CRS</a></li>
+            </ul>
+            <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
+            <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">Investment advisory services offered through Together Forward Capital, a DBA of R.F. Lafferty & Co., Inc.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            
+            if (window.scrollY > 50) {
+                if (currentTheme === 'dark') {
+                    nav.style.background = 'rgba(15, 20, 25, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                }
+            } else {
+                nav.style.background = '';
+                nav.style.boxShadow = '';
+            }
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 240;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.component-card, .timeline-item, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
