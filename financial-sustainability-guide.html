@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Financial Sustainability for Nonprofits | Together Forward Capital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e4d8b;
+            --secondary-blue: #3a7bc8;
+            --primary-green: #2e7d32;
+            --secondary-green: #4caf50;
+            --accent-purple: #7b68ee;
+            --accent-orange: #ff8a50;
+            --light-blue: #e3f2fd;
+            --light-green: #e8f5e9;
+            --light-purple: #f3e5f5;
+            --light-orange: #fff3e0;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-light: #e0e0e0;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary-blue: #4a7dc7;
+            --secondary-blue: #6fa3e0;
+            --primary-green: #4caf50;
+            --secondary-green: #66bb6a;
+            --accent-purple: #9575cd;
+            --accent-orange: #ffab74;
+            --light-blue: #1a2332;
+            --light-green: #1a2e1c;
+            --light-purple: #2a1f3d;
+            --light-orange: #2a1f1a;
+            --text-dark: #e0e0e0;
+            --text-gray: #b0b0b0;
+            --white: #0f1419;
+            --light-gray: #1a1f2e;
+            --bg-dark: #0a0e17;
+            --card-bg: #151922;
+            --nav-bg: #0f1419;
+            --border-color: #2a3441;
+            --border-light: #2a3441;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-dark);
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--secondary-green);
+            color: var(--bg-dark);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            height: 125px;
+            width: auto;
+            transition: filter 0.3s ease;
+        }
+
+        [data-theme="dark"] .logo img {
+            filter: brightness(1.2);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* Dropdown Menu Styles */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            min-width: 200px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        [data-theme="dark"] .dropdown-menu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        [data-theme="dark"] .dropdown-menu a:hover {
+            background: var(--light-gray);
+        }
+
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-menu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Submenu Styles */
+        .dropdown-menu .has-submenu {
+            position: relative;
+        }
+
+        .submenu {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: var(--white);
+            min-width: 220px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .submenu {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .dropdown-menu .has-submenu:hover + .submenu,
+        .submenu:hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .submenu a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .submenu a:hover {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        [data-theme="dark"] .submenu a:hover {
+            background: var(--light-gray);
+        }
+
+        .submenu a:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .submenu a:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--primary-green) 100%);
+            padding: 140px 2rem 80px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, #4a3a7c 0%, #1a4a1e 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: drift 20s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-30px, -30px) rotate(120deg); }
+            66% { transform: translate(30px, -15px) rotate(240deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Key Metrics Section - Modern Dashboard Layout */
+        .key-metrics {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-purple) 100%);
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .key-metrics {
+            background: linear-gradient(135deg, #1a3a5c 0%, #4a3a7c 100%);
+        }
+
+        .key-metrics::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .metrics-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .metrics-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .metrics-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .metrics-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .metrics-dashboard {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .metric-widget {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .metric-widget {
+            background: rgba(21, 25, 34, 0.3);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .metric-widget::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: rotate 20s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .metric-widget:hover::before {
+            opacity: 1;
+        }
+
+        .metric-widget:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .metric-icon-large {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .metric-stat-large {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .metric-label-large {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            position: relative;
+            z-index: 2;
+        }
+
+        .metric-context {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Floating Elements */
+        .metrics-float {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .float-1 {
+            width: 60px;
+            height: 60px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .float-2 {
+            width: 40px;
+            height: 40px;
+            top: 20%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .float-3 {
+            width: 80px;
+            height: 80px;
+            bottom: 15%;
+            left: 8%;
+            animation-delay: 6s;
+        }
+
+        .float-4 {
+            width: 50px;
+            height: 50px;
+            bottom: 20%;
+            right: 5%;
+            animation-delay: 9s;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateY(-30px) scale(1.1);
+                opacity: 0.6;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .metrics-dashboard {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .metric-stat-large {
+                font-size: 3rem;
+            }
+
+            .metrics-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Main Content Layout */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr 320px;
+            gap: 3rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .toc-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .toc-card {
+            background: var(--card-bg);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .toc-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.75rem;
+        }
+
+        .toc-list a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.25rem 0;
+            border-left: 2px solid transparent;
+            padding-left: 0.75rem;
+        }
+
+        .toc-list a:hover {
+            color: var(--accent-purple);
+            border-left-color: var(--accent-purple);
+            padding-left: 1rem;
+        }
+
+        .toc-list a.active {
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .main-content {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 250px;
+        }
+
+        .content-section h2 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--accent-purple);
+        }
+
+        .content-section h3 {
+            color: var(--accent-purple);
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .content-section p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* Sustainability Framework Visual - Pyramid Layout */
+        .framework-visual {
+            background: linear-gradient(135deg, var(--light-orange) 0%, var(--light-purple) 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .framework-visual {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--card-bg) 100%);
+        }
+
+        .framework-pyramid {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pyramid-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .pyramid-level.level-1 {
+            /* Top level - single item */
+        }
+
+        .pyramid-level.level-2 {
+            gap: 2rem;
+            /* Second level - two items */
+        }
+
+        .pyramid-level.level-3 {
+            /* Bottom level - single item centered */
+        }
+
+        .pyramid-block {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        [data-theme="dark"] .pyramid-block {
+            background: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .pyramid-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .pyramid-block.pillar-1::before {
+            background: linear-gradient(90deg, var(--accent-purple) 0%, var(--secondary-blue) 100%);
+        }
+
+        .pyramid-block.pillar-2::before {
+            background: linear-gradient(90deg, var(--accent-orange) 0%, var(--secondary-green) 100%);
+        }
+
+        .pyramid-block.pillar-3::before {
+            background: linear-gradient(90deg, var(--secondary-green) 0%, var(--accent-purple) 100%);
+        }
+
+        .pyramid-block.pillar-4::before {
+            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--accent-orange) 100%);
+        }
+
+        .pyramid-block:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+        }
+
+        .pyramid-block:hover::before {
+            height: 12px;
+        }
+
+        .pillar-icon-pyramid {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 2rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            position: relative;
+        }
+
+        .pillar-1 .pillar-icon-pyramid {
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--secondary-blue) 100%);
+        }
+
+        .pillar-2 .pillar-icon-pyramid {
+            background: linear-gradient(135deg, var(--accent-orange) 0%, var(--secondary-green) 100%);
+        }
+
+        .pillar-3 .pillar-icon-pyramid {
+            background: linear-gradient(135deg, var(--secondary-green) 0%, var(--accent-purple) 100%);
+        }
+
+        .pillar-4 .pillar-icon-pyramid {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-orange) 100%);
+        }
+
+        .pillar-icon-pyramid::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: inherit;
+            border-radius: 20px;
+            filter: blur(15px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .pillar-title-pyramid {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .pillar-description-pyramid {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .pillar-features-pyramid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            text-align: left;
+        }
+
+        .feature-tag {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 100%);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--primary-blue);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        [data-theme="dark"] .feature-tag {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--card-bg) 100%);
+            border-color: var(--border-color);
+        }
+
+        .feature-tag:hover {
+            transform: scale(1.05);
+            border-color: var(--secondary-green);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Connection Lines */
+        .pyramid-connections {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .connection-line {
+            position: absolute;
+            background: linear-gradient(45deg, var(--accent-purple) 0%, var(--accent-orange) 100%);
+            height: 2px;
+            opacity: 0.3;
+            border-radius: 1px;
+        }
+
+        /* Responsive adjustments for pyramid */
+        @media (max-width: 968px) {
+            .pyramid-level {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            .pyramid-level.level-2 {
+                gap: 2rem;
+            }
+
+            .pillar-features-pyramid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Revenue Strategies Grid */
+        .revenue-strategies {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .strategy-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        [data-theme="dark"] .strategy-card {
+            background: var(--card-bg);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .strategy-header {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-1 { background: linear-gradient(135deg, var(--light-purple) 0%, var(--accent-purple) 100%); }
+        .strategy-2 { background: linear-gradient(135deg, var(--light-orange) 0%, var(--accent-orange) 100%); }
+        .strategy-3 { background: linear-gradient(135deg, var(--light-green) 0%, var(--secondary-green) 100%); }
+        .strategy-4 { background: linear-gradient(135deg, var(--light-blue) 0%, var(--secondary-blue) 100%); }
+        .strategy-5 { background: linear-gradient(135deg, var(--light-orange) 0%, var(--accent-purple) 100%); }
+        .strategy-6 { background: linear-gradient(135deg, var(--light-green) 0%, var(--accent-orange) 100%); }
+
+        .strategy-content {
+            padding: 2rem;
+        }
+
+        .strategy-title {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .strategy-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Assessment Tool */
+        .assessment-tool {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        [data-theme="dark"] .assessment-tool {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 100%);
+        }
+
+        .assessment-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .assessment-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .assessment-category {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .assessment-category {
+            background: var(--card-bg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .assessment-category h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .assessment-questions {
+            list-style: none;
+        }
+
+        .assessment-questions li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .assessment-questions li:last-child {
+            border-bottom: none;
+        }
+
+        .question-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--secondary-green);
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Action Planning Section */
+        .action-planning {
+            background: var(--light-gray);
+            padding: 3rem;
+            border-radius: 16px;
+            margin: 3rem 0;
+        }
+
+        [data-theme="dark"] .action-planning {
+            background: var(--light-gray);
+            border: 1px solid var(--border-color);
+        }
+
+        .planning-timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .timeline-phase {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+        }
+
+        [data-theme="dark"] .timeline-phase {
+            background: var(--card-bg);
+        }
+
+        .phase-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-orange) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .phase-title {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .phase-actions {
+            list-style: none;
+            text-align: left;
+        }
+
+        .phase-actions li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .phase-actions li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-green);
+            font-weight: bold;
+        }
+
+        /* Key Performance Indicators */
+        .kpi-dashboard {
+            background: var(--white);
+            border: 2px solid var(--accent-purple);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        [data-theme="dark"] .kpi-dashboard {
+            background: var(--card-bg);
+            border-color: var(--accent-purple);
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .kpi-item {
+            padding: 1.5rem;
+            background: var(--light-purple);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .kpi-item {
+            background: var(--light-gray);
+        }
+
+        .kpi-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .kpi-title {
+            color: var(--accent-purple);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        [data-theme="dark"] .sidebar-card {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .sidebar-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .sidebar-card p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: block;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--primary-green) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Quick Tips Widget */
+        .quick-tips {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--light-orange) 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        [data-theme="dark"] .quick-tips {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 100%);
+        }
+
+        .quick-tips h4 {
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            color: var(--text-dark);
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .tips-list li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        [data-theme="dark"] footer {
+            background: #000000;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .toc, .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .revenue-strategies {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .planning-timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .assessment-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .metrics-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .revenue-strategies {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .theme-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="together-forward-capital-logo-horizontal.png" alt="Together Forward Capital">
+            </a>
+            <ul class="nav-links">
+                <li class="nav-dropdown">
+                    <a href="#">About Us</a>
+                    <div class="dropdown-menu">
+                        <a href="about.html">Our Story</a>
+                        <a href="team.html">Our Team</a>
+                        <a href="mission.html">Mission & Values</a>
+                    </div>
+                </li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#process">Our Process</a></li>
+                <li><a href="index.html#why-us">Why Choose Us</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="has-submenu">Guides →</a>
+                        <div class="submenu">
+                            <a href="investment-policy-guide.html">Investment Policy Guide</a>
+                            <a href="endowment-guide.html">Endowment Building Guide</a>
+                            <a href="nonprofit-investing-guide.html">Nonprofit Investing Guide</a>
+                            <a href="nonprofit-investment-advisors-guide.html">Investment Advisors Guide</a>
+                            <a href="daf-guide.html">Donor Advised Funds Guide</a>
+                            <a href="stock-donations-guide.html">Stock Donations Guide</a>
+                            <a href="financial-sustainability-guide.html">Financial Sustainability Guide</a>
+                        </div>
+                        <a href="insights.html">Market Insights</a>
+                        <a href="tools.html">Planning Tools</a>
+                    </div>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Building Financial Sustainability for Nonprofits</h1>
+            <p class="hero-subtitle">Create lasting organizational resilience through strategic financial planning and diversified revenue models</p>
+        </div>
+    </section>
+
+    <!-- Key Metrics Section -->
+    <section class="key-metrics">
+        <div class="metrics-container">
+            <div class="metrics-header">
+                <h2 class="metrics-title">The Financial Reality</h2>
+                <p class="metrics-subtitle">Critical data points that underscore the urgent need for strategic financial planning in the nonprofit sector</p>
+            </div>
+            
+            <div class="metrics-dashboard">
+                <div class="metric-widget">
+                    <div class="metric-icon-large">📉</div>
+                    <div class="metric-stat-large">73%</div>
+                    <div class="metric-label-large">of nonprofits lack sustainable funding models</div>
+                    <div class="metric-context">Source: Nonprofit Finance Fund Survey</div>
+                </div>
+                
+                <div class="metric-widget">
+                    <div class="metric-icon-large">🏦</div>
+                    <div class="metric-stat-large">6-12</div>
+                    <div class="metric-label-large">months of reserves recommended for stability</div>
+                    <div class="metric-context">Best practice benchmark</div>
+                </div>
+                
+                <div class="metric-widget">
+                    <div class="metric-icon-large">🌊</div>
+                    <div class="metric-stat-large">5-7</div>
+                    <div class="metric-label-large">revenue streams for optimal diversification</div>
+                    <div class="metric-context">Risk management standard</div>
+                </div>
+                
+                <div class="metric-widget">
+                    <div class="metric-icon-large">📈</div>
+                    <div class="metric-stat-large">20%</div>
+                    <div class="metric-label-large">annual growth in sustainable organizations</div>
+                    <div class="metric-context">Performance advantage</div>
+                </div>
+            </div>
+            
+            <!-- Floating background elements -->
+            <div class="metrics-float float-1"></div>
+            <div class="metrics-float float-2"></div>
+            <div class="metrics-float float-3"></div>
+            <div class="metrics-float float-4"></div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Table of Contents -->
+        <aside class="toc">
+            <div class="toc-card">
+                <h3 class="toc-title">Contents</h3>
+                <ul class="toc-list">
+                    <li><a href="#foundation" class="active">Foundation Principles</a></li>
+                    <li><a href="#framework">Sustainability Framework</a></li>
+                    <li><a href="#revenue">Revenue Diversification</a></li>
+                    <li><a href="#financial-management">Financial Management</a></li>
+                    <li><a href="#assessment">Sustainability Assessment</a></li>
+                    <li><a href="#planning">Action Planning</a></li>
+                    <li><a href="#metrics">Key Performance Indicators</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Article Content -->
+        <article class="main-content">
+            <!-- Foundation Principles -->
+            <section class="content-section" id="foundation">
+                <h2>Foundation Principles of Financial Sustainability</h2>
+                <p>Financial sustainability for nonprofits extends far beyond simply balancing budgets or maintaining cash flow. It represents the organization's ability to secure reliable funding, adapt to changing environments, and maintain mission-critical operations over the long term while building capacity for growth and impact.</p>
+                
+                <p>True financial sustainability creates a virtuous cycle: stable finances enable consistent program delivery, which builds trust with stakeholders, attracts additional resources, and reinforces the organization's capacity to fulfill its mission. This stability becomes the foundation upon which nonprofits can take strategic risks, innovate, and expand their impact.</p>
+
+                <h3>The Business Case for Sustainability</h3>
+                <p>Organizations with strong financial foundations consistently outperform their peers across multiple metrics. They demonstrate higher program effectiveness, attract and retain top talent, weather economic downturns more successfully, and maintain stronger relationships with donors, partners, and communities they serve.</p>
+
+                <p>Moreover, financially sustainable nonprofits can focus leadership attention on mission advancement rather than constant fundraising crises. This strategic advantage allows for long-term planning, measured risk-taking, and the development of innovative solutions to complex social problems.</p>
+
+                <h3>Shifting from Scarcity to Abundance Mindset</h3>
+                <p>Many nonprofit leaders operate from a scarcity mindset, viewing sustainability as merely "keeping the lights on." Sustainable organizations embrace an abundance approach, understanding that financial health enables greater mission impact. This mindset shift influences everything from fundraising strategies to program design and operational decisions.</p>
+            </section>
+
+            <!-- Sustainability Framework -->
+            <section class="content-section" id="framework">
+                <h2>The Four Pillars of Nonprofit Financial Sustainability</h2>
+                <p>Sustainable nonprofit finance rests on four interconnected pillars that work together to create organizational resilience and growth capacity. Each pillar strengthens the others, creating a robust foundation for long-term success.</p>
+
+                <div class="framework-visual">
+                    <div class="framework-pyramid">
+                        <!-- Top Level - Revenue Diversification -->
+                        <div class="pyramid-level level-1">
+                            <div class="pyramid-block pillar-1">
+                                <div class="pillar-icon-pyramid">🌊</div>
+                                <h3 class="pillar-title-pyramid">Revenue Diversification</h3>
+                                <p class="pillar-description-pyramid">Multiple funding streams reduce dependency risk and provide stability during economic shifts or donor changes.</p>
+                                <div class="pillar-features-pyramid">
+                                    <div class="feature-tag">Individual Donors</div>
+                                    <div class="feature-tag">Foundation Grants</div>
+                                    <div class="feature-tag">Fee-for-Service</div>
+                                    <div class="feature-tag">Social Enterprise</div>
+                                    <div class="feature-tag">Investment Income</div>
+                                    <div class="feature-tag">Government Contracts</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Middle Level - Two Supporting Pillars -->
+                        <div class="pyramid-level level-2">
+                            <div class="pyramid-block pillar-2">
+                                <div class="pillar-icon-pyramid">🏛️</div>
+                                <h3 class="pillar-title-pyramid">Reserve Building</h3>
+                                <p class="pillar-description-pyramid">Strategic reserves provide the financial cushion needed to navigate challenges and capitalize on opportunities.</p>
+                                <div class="pillar-features-pyramid">
+                                    <div class="feature-tag">Operating Reserves</div>
+                                    <div class="feature-tag">Capital Funds</div>
+                                    <div class="feature-tag">Opportunity Reserves</div>
+                                    <div class="feature-tag">Risk Mitigation</div>
+                                    <div class="feature-tag">Board Endowment</div>
+                                    <div class="feature-tag">Emergency Capacity</div>
+                                </div>
+                            </div>
+                            <div class="pyramid-block pillar-3">
+                                <div class="pillar-icon-pyramid">⚙️</div>
+                                <h3 class="pillar-title-pyramid">Operational Excellence</h3>
+                                <p class="pillar-description-pyramid">Efficient operations maximize program impact while minimizing unnecessary costs and administrative burden.</p>
+                                <div class="pillar-features-pyramid">
+                                    <div class="feature-tag">Cost-effective Delivery</div>
+                                    <div class="feature-tag">Technology Optimization</div>
+                                    <div class="feature-tag">Staff Development</div>
+                                    <div class="feature-tag">Process Improvement</div>
+                                    <div class="feature-tag">Outcome Measurement</div>
+                                    <div class="feature-tag">Strategic Partnerships</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Level - Foundation -->
+                        <div class="pyramid-level level-3">
+                            <div class="pyramid-block pillar-4">
+                                <div class="pillar-icon-pyramid">📊</div>
+                                <h3 class="pillar-title-pyramid">Financial Oversight</h3>
+                                <p class="pillar-description-pyramid">Robust financial management systems ensure transparency, accountability, and informed decision-making.</p>
+                                <div class="pillar-features-pyramid">
+                                    <div class="feature-tag">Monthly Reporting</div>
+                                    <div class="feature-tag">Independent Audits</div>
+                                    <div class="feature-tag">Board Financial Literacy</div>
+                                    <div class="feature-tag">Cash Flow Forecasting</div>
+                                    <div class="feature-tag">Investment Compliance</div>
+                                    <div class="feature-tag">Risk Assessment</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Connection Lines -->
+                        <div class="pyramid-connections">
+                            <div class="connection-line" style="top: 25%; left: 35%; width: 30%; transform: rotate(25deg);"></div>
+                            <div class="connection-line" style="top: 25%; right: 35%; width: 30%; transform: rotate(-25deg);"></div>
+                            <div class="connection-line" style="bottom: 25%; left: 25%; width: 50%; transform: rotate(0deg);"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Revenue Diversification -->
+            <section class="content-section" id="revenue">
+                <h2>Strategic Revenue Diversification</h2>
+                <p>Revenue diversification protects nonprofits from the inherent volatility of any single funding source while opening new opportunities for growth. The most resilient organizations typically maintain 5-7 distinct revenue streams, ensuring no single source represents more than 40-50% of total revenue.</p>
+
+                <div class="revenue-strategies">
+                    <div class="strategy-card">
+                        <div class="strategy-header strategy-1">👥</div>
+                        <div class="strategy-content">
+                            <h4 class="strategy-title">Individual Donor Development</h4>
+                            <p class="strategy-description">Build sustainable relationships through major gift cultivation, annual giving programs, and planned giving initiatives that create lasting connections.</p>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-header strategy-2">🏢</div>
+                        <div class="strategy-content">
+                            <h4 class="strategy-title">Institutional Partnerships</h4>
+                            <p class="strategy-description">Develop strategic relationships with foundations, corporations, and government agencies aligned with your mission and impact goals.</p>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-header strategy-3">🏪</div>
+                        <div class="strategy-content">
+                            <h4 class="strategy-title">Social Enterprise</h4>
+                            <p class="strategy-description">Generate earned revenue through mission-aligned business ventures, fee-for-service programs, and consulting opportunities.</p>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-header strategy-4">📈</div>
+                        <div class="strategy-content">
+                            <h4 class="strategy-title">Investment Income</h4>
+                            <p class="strategy-description">Build endowments and invest reserves strategically to generate sustainable income streams that support operations.</p>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-header strategy-5">🤝</div>
+                        <div class="strategy-content">
+                            <h4 class="strategy-title">Collaborative Funding</h4>
+                            <p class="strategy-description">Participate in collective impact initiatives, funding collaboratives, and shared grant opportunities with peer organizations.</p>
+                        </div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-header strategy-6">🔄</div>
+                        <div class="strategy-content">
+                            <h4 class="strategy-title">Recurring Revenue Models</h4>
+                            <p class="strategy-description">Develop membership programs, subscription services, and multi-year commitments that provide predictable income flows.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>The Power of Predictable Revenue</h3>
+                <p>While many nonprofits focus primarily on securing large, one-time grants, sustainable organizations prioritize building predictable, recurring revenue streams. Monthly giving programs, membership dues, and service contracts provide the stable foundation that enables strategic planning and program expansion.</p>
+
+                <p>Consider implementing a "Rule of 40" approach: aim for at least 40% of your revenue to come from predictable, recurring sources. This creates the financial stability needed to pursue more speculative but potentially transformational funding opportunities.</p>
+            </section>
+
+            <!-- Financial Management -->
+            <section class="content-section" id="financial-management">
+                <h2>Advanced Financial Management Strategies</h2>
+                <p>Sophisticated financial management goes beyond basic accounting to create systems that inform strategic decisions, optimize resources, and build organizational capacity. The most successful nonprofits treat financial management as a strategic advantage rather than administrative necessity.</p>
+
+                <h3>Cash Flow Optimization</h3>
+                <p>Effective cash flow management requires understanding the timing of revenue and expenses, building buffers for seasonal variations, and maintaining adequate liquidity for operations. Develop rolling 12-month cash flow projections that account for grant payment delays, seasonal giving patterns, and program expense cycles.</p>
+
+                <p>Consider establishing a line of credit for cash flow smoothing, but use it strategically rather than as a crutch for poor financial planning. The goal is maintaining operational flexibility without accumulating unnecessary debt or interest expenses.</p>
+
+                <h3>Cost Structure Analysis</h3>
+                <p>Understanding your organization's cost structure enables informed decisions about program scaling, efficiency improvements, and resource allocation. Analyze costs in terms of fixed versus variable, direct versus indirect, and program versus administrative categories.</p>
+
+                <p>Focus on optimizing cost per outcome rather than simply minimizing total costs. Sometimes increased investment in infrastructure, technology, or staff training produces significant returns in program effectiveness and operational efficiency.</p>
+
+                <h3>Investment Policy Implementation</h3>
+                <p>Organizations with significant reserves should develop and implement investment policies that balance growth potential with capital preservation. Work with qualified investment advisors to create strategies aligned with your risk tolerance, time horizon, and liquidity needs.</p>
+
+                <p>Even modest investment returns can significantly impact long-term sustainability. An organization with $500,000 in reserves earning 5% annually generates $25,000 in additional revenue without any fundraising effort.</p>
+            </section>
+
+            <!-- Sustainability Assessment -->
+            <section class="content-section" id="assessment">
+                <h2>Comprehensive Sustainability Assessment</h2>
+                <p>Regular assessment of your organization's financial health provides early warning signals and identifies opportunities for improvement. Use this framework to evaluate current sustainability and develop targeted improvement strategies.</p>
+
+                <div class="assessment-tool">
+                    <div class="assessment-header">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 1rem;">Financial Sustainability Diagnostic</h3>
+                        <p style="color: var(--text-gray);">Evaluate your organization across four key dimensions</p>
+                    </div>
+                    <div class="assessment-categories">
+                        <div class="assessment-category">
+                            <h4>Revenue Resilience</h4>
+                            <ul class="assessment-questions">
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>No single funding source exceeds 50% of revenue</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>At least 40% of revenue is recurring/predictable</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Revenue has grown consistently over 3 years</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Donor retention rate exceeds 60%</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Pipeline includes 12+ months of prospects</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="assessment-category">
+                            <h4>Financial Reserves</h4>
+                            <ul class="assessment-questions">
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Operating reserves cover 6+ months expenses</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Capital replacement fund is maintained</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Board-designated endowment exists</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Investment policy is implemented</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Reserves earn competitive returns</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="assessment-category">
+                            <h4>Operational Efficiency</h4>
+                            <ul class="assessment-questions">
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Administrative costs below 25% of budget</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Technology systems support efficiency</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Staff turnover is below sector average</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Cost per outcome is tracked and optimized</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Strategic partnerships reduce costs</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="assessment-category">
+                            <h4>Financial Oversight</h4>
+                            <ul class="assessment-questions">
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Monthly financial reports are produced</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Annual independent audit is conducted</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Board receives financial training</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Cash flow is projected 12 months ahead</span>
+                                </li>
+                                <li>
+                                    <div class="question-checkbox"></div>
+                                    <span>Financial policies are documented</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Interpreting Your Assessment Results</h3>
+                <p><strong>Scoring 16-20 items:</strong> Your organization demonstrates strong financial sustainability practices. Focus on maintaining excellence and exploring advanced strategies like impact investing or social enterprise development.</p>
+
+                <p><strong>Scoring 10-15 items:</strong> You have solid financial foundations with opportunities for improvement. Prioritize diversifying revenue streams and building reserves while strengthening existing systems.</p>
+
+                <p><strong>Scoring below 10 items:</strong> Your organization faces sustainability challenges requiring immediate attention. Focus on basic financial management, board development, and strategic planning for long-term viability.</p>
+            </section>
+
+            <!-- Action Planning -->
+            <section class="content-section" id="planning">
+                <h2>Creating Your Sustainability Action Plan</h2>
+                <p>Transforming your organization's financial sustainability requires systematic planning and phased implementation. This roadmap provides a structured approach to building financial resilience over 12-36 months.</p>
+
+                <div class="action-planning">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 2rem;">Three-Phase Implementation Strategy</h3>
+                    <div class="planning-timeline">
+                        <div class="timeline-phase">
+                            <div class="phase-number">1</div>
+                            <h4 class="phase-title">Foundation (Months 1-6)</h4>
+                            <ul class="phase-actions">
+                                <li>Complete comprehensive financial assessment</li>
+                                <li>Establish basic financial controls and reporting</li>
+                                <li>Build 3-month operating reserve</li>
+                                <li>Develop investment policy statement</li>
+                                <li>Create donor database and retention strategy</li>
+                                <li>Train board on fiduciary responsibilities</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-phase">
+                            <div class="phase-number">2</div>
+                            <h4 class="phase-title">Diversification (Months 6-18)</h4>
+                            <ul class="phase-actions">
+                                <li>Launch individual donor development program</li>
+                                <li>Pursue 2-3 new funding relationships</li>
+                                <li>Expand reserves to 6-month target</li>
+                                <li>Implement investment strategy</li>
+                                <li>Develop earned revenue opportunities</li>
+                                <li>Optimize operational efficiency</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-phase">
+                            <div class="phase-number">3</div>
+                            <h4 class="phase-title">Optimization (Months 18-36)</h4>
+                            <ul class="phase-actions">
+                                <li>Launch planned giving program</li>
+                                <li>Achieve 12-month reserve target</li>
+                                <li>Establish board-designated endowment</li>
+                                <li>Scale successful revenue streams</li>
+                                <li>Develop succession planning</li>
+                                <li>Create sustainability policies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Implementation Success Factors</h3>
+                <p>Successful sustainability initiatives share common characteristics: strong board leadership, staff buy-in, clear accountability structures, and regular progress monitoring. Assign specific responsibilities, establish timelines, and celebrate milestones to maintain momentum.</p>
+
+                <p>Consider engaging external experts for specialized needs like investment management, planned giving program development, or earned revenue strategy. The investment in professional guidance often pays for itself through improved outcomes and faster implementation.</p>
+            </section>
+
+            <!-- Key Performance Indicators -->
+            <section class="content-section" id="metrics">
+                <h2>Monitoring Financial Sustainability Through Key Metrics</h2>
+                <p>Effective measurement requires tracking both financial and operational indicators that predict long-term sustainability. These metrics provide early warning signals and help guide strategic decisions.</p>
+
+                <div class="kpi-dashboard">
+                    <h3 style="color: var(--accent-purple); margin-bottom: 2rem;">Essential Financial Sustainability Metrics</h3>
+                    <div class="kpi-grid">
+                        <div class="kpi-item">
+                            <h4 class="kpi-title">Revenue Concentration</h4>
+                            <p class="kpi-description">Percentage of total revenue from largest funding source (Target: <50%)</p>
+                        </div>
+                        <div class="kpi-item">
+                            <h4 class="kpi-title">Reserve Ratio</h4>
+                            <p class="kpi-description">Months of operating expenses covered by reserves (Target: 6-12 months)</p>
+                        </div>
+                        <div class="kpi-item">
+                            <h4 class="kpi-title">Donor Retention Rate</h4>
+                            <p class="kpi-description">Percentage of prior year donors who give again (Target: >60%)</p>
+                        </div>
+                        <div class="kpi-item">
+                            <h4 class="kpi-title">Administrative Efficiency</h4>
+                            <p class="kpi-description">Administrative costs as percentage of total expenses (Target: <25%)</p>
+                        </div>
+                        <div class="kpi-item">
+                            <h4 class="kpi-title">Revenue Growth Rate</h4>
+                            <p class="kpi-description">Year-over-year revenue change (Target: Inflation + 2-3%)</p>
+                        </div>
+                        <div class="kpi-item">
+                            <h4 class="kpi-title">Investment Return</h4>
+                            <p class="kpi-description">Annual return on invested reserves vs. benchmarks</p>
+                        </div>
+                        <div class="kpi-item">
+                            <h4 class="kpi-title">Cash Flow Predictability</h4>
+                            <p class="kpi-description">Percentage of revenue from recurring sources (Target: >40%)</p>
+                        </div>
+                        <div class="kpi-item">
+                            <h4 class="kpi-title">Fundraising ROI</h4>
+                            <p class="kpi-description">Dollars raised per dollar spent on development (Target: >$3:1)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Creating a Measurement Culture</h3>
+                <p>Sustainable organizations embed measurement into their operational DNA. Monthly dashboard reports, quarterly board reviews, and annual sustainability assessments create accountability and drive continuous improvement. Make metrics visible, accessible, and actionable for all stakeholders.</p>
+
+                <p>Remember that metrics are tools for improvement, not ends in themselves. Focus on trends and comparative performance rather than absolute numbers, and always connect financial metrics to mission impact and organizational effectiveness.</p>
+
+                <h3>Building for the Future</h3>
+                <p>Financial sustainability is not a destination but an ongoing journey. As your organization grows and evolves, so too must your financial strategies and systems. Regular review, adaptation, and renewal ensure that your financial foundation continues supporting mission advancement for years to come.</p>
+
+                <p>The investment in building financial sustainability pays dividends far beyond organizational stability. It creates the freedom to focus on impact, the capacity to take strategic risks, and the resilience to weather inevitable challenges. Most importantly, it ensures that your mission-critical work can continue serving communities long into the future.</p>
+            </section>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <h3>Ready to Build Financial Sustainability?</h3>
+                <p>Our team specializes in helping nonprofits develop comprehensive financial sustainability strategies that strengthen operations and amplify impact.</p>
+                <a href="index.html#contact" class="cta-button">Schedule Strategic Consultation</a>
+            </div>
+
+            <div class="sidebar-card">
+                <div class="quick-tips">
+                    <h4>Quick Sustainability Wins</h4>
+                    <ul class="tips-list">
+                        <li>Start monthly giving program with existing donors</li>
+                        <li>Automate recurring gifts to improve retention</li>
+                        <li>Negotiate payment terms with reliable vendors</li>
+                        <li>Create simple investment policy for reserves</li>
+                        <li>Implement monthly financial dashboard</li>
+                        <li>Establish board finance committee</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3>Key Insight</h3>
+                <p>Organizations that invest in financial sustainability early are 3x more likely to weather economic downturns and 2x more likely to achieve their mission goals consistently.</p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="legal-disclosures.html">Disclosures</a></li>
+                <li><a href="form-crs.pdf" target="_blank">Form CRS</a></li>
+                <li><a href="form-adv-part-2a.pdf" target="_blank">Form ADV</a></li>
+            </ul>
+            <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
+            <p style="font-size: 0.85rem; margin-top: 1rem; opacity: 0.8;">Investment advisory services offered through Together Forward Capital, a DBA of R.F. Lafferty & Co., Inc.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Navigation background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            
+            if (window.scrollY > 50) {
+                if (currentTheme === 'dark') {
+                    nav.style.background = 'rgba(15, 20, 25, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+                }
+            } else {
+                nav.style.background = '';
+                nav.style.boxShadow = '';
+            }
+        });
+
+        // Table of Contents active state
+        const sections = document.querySelectorAll('.content-section');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') && link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Interactive assessment checkboxes
+        document.querySelectorAll('.question-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('click', function() {
+                this.classList.toggle('checked');
+                if (this.classList.contains('checked')) {
+                    this.style.backgroundColor = 'var(--secondary-green)';
+                    this.innerHTML = '✓';
+                    this.style.color = 'white';
+                } else {
+                    this.style.backgroundColor = '';
+                    this.innerHTML = '';
+                    this.style.color = '';
+                }
+                updateAssessmentScore();
+            });
+        });
+
+        // Assessment scoring functionality
+        function updateAssessmentScore() {
+            const checkedBoxes = document.querySelectorAll('.question-checkbox.checked');
+            const totalQuestions = document.querySelectorAll('.question-checkbox').length;
+            const score = checkedBoxes.length;
+            
+            // You could add a score display element here if desired
+            console.log(`Assessment Score: ${score}/${totalQuestions}`);
+        }
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation to cards and sections
+        document.querySelectorAll('.metric-widget, .pyramid-block, .strategy-card, .timeline-phase, .kpi-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
