@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Committee Governance Guide | Together Forward Capital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e4d8b;
+            --secondary-blue: #3a7bc8;
+            --primary-green: #2e7d32;
+            --secondary-green: #4caf50;
+            --accent-purple: #6b46c1;
+            --accent-gold: #f9a825;
+            --light-blue: #e3f2fd;
+            --light-green: #e8f5e9;
+            --light-purple: #ede7f6;
+            --light-gold: #fff8e1;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --border-light: #e0e0e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--light-gray);
+        }
+
+        .guide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--white);
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
+        }
+
+        /* Cover Page */
+        .cover-page {
+            background-image: 
+                linear-gradient(135deg, rgba(30, 77, 139, 0.9) 0%, rgba(46, 125, 50, 0.9) 100%),
+                url('committee-meeting-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 100px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 40%);
+            animation: float 25s ease-in-out infinite;
+        }
+
+        .cover-page::after {
+            content: '';
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle at 70% 80%, rgba(255,255,255,0.08) 0%, transparent 40%);
+            animation: float 30s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+            33% { transform: translate(-30%, -60%) rotate(120deg); }
+            66% { transform: translate(-70%, -40%) rotate(240deg); }
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover-logo {
+            width: 500px;
+            max-width: 90%;
+            margin-bottom: 50px;
+        }
+
+        .cover-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .cover-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cover-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            line-height: 1.8;
+            opacity: 0.85;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-blue);
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Table of Contents */
+        .toc-page {
+            padding: 80px 50px;
+            background: var(--white);
+        }
+
+        .toc-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .toc-header h2 {
+            font-size: 2.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .toc-item {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 100%);
+            padding: 30px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toc-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .toc-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .toc-item:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .toc-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            opacity: 0.2;
+            margin-bottom: 10px;
+        }
+
+        .toc-title {
+            font-size: 1.3rem;
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .toc-description {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Content Pages */
+        .content-page {
+            padding: 80px 50px;
+            background: var(--white);
+            page-break-before: always;
+        }
+
+        .content-header {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--secondary-green);
+        }
+
+        .content-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .content-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+        }
+
+        /* Visual Calendar */
+        .calendar-visual {
+            background: linear-gradient(135deg, var(--light-purple) 0%, var(--light-blue) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calendar-quarters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .quarter-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quarter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
+        }
+
+        .quarter-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .quarter-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--secondary-green) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .quarter-label {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .quarter-focus {
+            font-size: 1.1rem;
+            color: var(--secondary-green);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .quarter-tasks {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Governance Wheel */
+        .governance-wheel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            background: var(--light-gray);
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .wheel-segment {
+            position: absolute;
+            width: 200px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .wheel-segment:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .segment-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 10px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .segment-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .segment-desc {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        /* Position wheel segments */
+        .wheel-segment:nth-child(2) { top: 0; left: 50%; transform: translateX(-50%); }
+        .wheel-segment:nth-child(3) { top: 25%; right: 0; }
+        .wheel-segment:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .wheel-segment:nth-child(5) { top: 25%; left: 0; }
+
+        /* Meeting Agenda Template */
+        .agenda-template {
+            background: white;
+            border: 2px solid var(--secondary-green);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .agenda-header {
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--light-blue) 100%);
+            margin: -40px -40px 30px;
+            padding: 30px 40px;
+            border-radius: 14px 14px 0 0;
+        }
+
+        .agenda-header h3 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .agenda-header p {
+            color: var(--text-gray);
+        }
+
+        .agenda-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .agenda-item:last-child {
+            border-bottom: none;
+        }
+
+        .agenda-number {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .agenda-content h4 {
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .agenda-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Responsibility Matrix */
+        .matrix-container {
+            overflow-x: auto;
+            margin: 40px 0;
+        }
+
+        .responsibility-matrix {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .responsibility-matrix th {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .responsibility-matrix td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .responsibility-matrix tr:last-child td {
+            border-bottom: none;
+        }
+
+        .responsibility-matrix tr:hover {
+            background: var(--light-gray);
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .role-primary {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        .role-support {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .role-review {
+            background: var(--light-purple);
+            color: var(--accent-purple);
+        }
+
+        /* Best Practices Cards */
+        .practices-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .practice-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .practice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-gold) 0%, var(--secondary-green) 100%);
+        }
+
+        .practice-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .practice-icon {
+            height: 150px;
+            background: linear-gradient(135deg, var(--light-gold) 0%, var(--light-green) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .practice-content {
+            padding: 25px;
+        }
+
+        .practice-title {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .practice-text {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Checklist */
+        .governance-checklist {
+            background: var(--light-gray);
+            padding: 40px;
+            border-radius: 16px;
+            margin: 40px 0;
+        }
+
+        .checklist-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .checklist-header h3 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .checklist-columns {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .checklist-group {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .checklist-group h4 {
+            color: var(--secondary-green);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .checklist-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 25px;
+            height: 25px;
+            border: 2px solid var(--secondary-green);
+            border-radius: 5px;
+            background: white;
+        }
+
+        .checklist-item:hover::before {
+            background: var(--light-green);
+        }
+
+        /* Download Section */
+        .download-section {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
+            color: white;
+            padding: 80px 50px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .download-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .download-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: var(--primary-blue);
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .guide-footer {
+            background: #f5f5f5;
+            color: #333333;
+            padding: 40px 50px;
+            text-align: center;
+            border-top: 3px solid var(--secondary-green);
+        }
+
+        .footer-logo {
+            width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact {
+            margin-bottom: 20px;
+        }
+
+        .footer-contact a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .footer-contact a:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
+        }
+
+        /* Print Styles */
+        @media print {
+            .download-section, .download-button {
+                display: none;
+            }
+            
+            .content-page {
+                page-break-before: always;
+            }
+            
+            .cover-page {
+                min-height: 100vh;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .calendar-quarters {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .practices-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .checklist-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cover-title {
+                font-size: 2.5rem;
+            }
+            
+            .content-page {
+                padding: 40px 20px;
+            }
+            
+            .calendar-quarters {
+                grid-template-columns: 1fr;
+            }
+            
+            .wheel-container {
+                width: 350px;
+                height: 350px;
+            }
+            
+            .wheel-segment {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="guide-container">
+        <!-- Cover Page -->
+        <div class="cover-page">
+            <div class="cover-content">
+                <img src="together-forward-capital-logo-vertical.png" alt="Together Forward Capital" class="cover-logo">
+                <h1 class="cover-title">Investment Committee Governance Guide</h1>
+                <p class="cover-subtitle">Your Blueprint for Fiduciary Excellence</p>
+                <p class="cover-description">
+                    A comprehensive resource for nonprofit boards and investment committees to build robust governance frameworks, 
+                    fulfill fiduciary responsibilities, and maximize investment impact through structured oversight and strategic planning.
+                </p>
+                <a href="#" class="download-button" onclick="window.print(); return false;">
+                    📥 Download PDF Guide
+                </a>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc-page">
+            <div class="toc-header">
+                <h2>What's Inside This Guide</h2>
+                <p>Navigate through essential governance topics designed to strengthen your investment oversight</p>
+            </div>
+            <div class="toc-grid">
+                <div class="toc-item">
+                    <div class="toc-number">01</div>
+                    <div class="toc-title">Foundation of Governance</div>
+                    <div class="toc-description">Understanding roles, responsibilities, and fiduciary duties</div>
+                </div>
+                <div class="toc-item">
+                    <div class="toc-number">02</div>
+                    <div class="toc-title">Annual Planning Framework</div>
+                    <div class="toc-description">Structuring your year for comprehensive oversight</div>
+                </div>
+                <div class="toc-item">
+                    <div class="toc-number">03</div>
+                    <div class="toc-title">Meeting Excellence</div>
+                    <div class="toc-description">Templates and best practices for productive sessions</div>
+                </div>
+                <div class="toc-item">
+                    <div class="toc-number">04</div>
+                    <div class="toc-title">Tools & Resources</div>
+                    <div class="toc-description">Practical templates, checklists, and implementation guides</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Foundation of Governance -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Foundation of Investment Committee Governance</h2>
+                <p>Building a strong governance structure begins with clarity on roles, responsibilities, and expectations</p>
+            </div>
+
+            <div class="governance-wheel">
+                <div class="wheel-container">
+                    <div class="wheel-center">
+                        Investment<br>Committee<br>Excellence
+                    </div>
+                    <div class="wheel-segment">
+                        <div class="segment-icon">👥</div>
+                        <div class="segment-title">Fiduciary Duty</div>
+                        <div class="segment-desc">Act in the organization's best interest</div>
+                    </div>
+                    <div class="wheel-segment">
+                        <div class="segment-icon">📊</div>
+                        <div class="segment-title">Performance Oversight</div>
+                        <div class="segment-desc">Monitor returns and risk management</div>
+                    </div>
+                    <div class="wheel-segment">
+                        <div class="segment-icon">📋</div>
+                        <div class="segment-title">Policy Governance</div>
+                        <div class="segment-desc">Maintain and update investment policies</div>
+                    </div>
+                    <div class="wheel-segment">
+                        <div class="segment-icon">🎯</div>
+                        <div class="segment-title">Strategic Planning</div>
+                        <div class="segment-desc">Align investments with mission</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin: 40px 0 20px;">Key Governance Principles</h3>
+            <div class="practices-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">🛡️</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Duty of Care</div>
+                        <div class="practice-text">Committee members must act with the care that an ordinarily prudent person would exercise in similar circumstances.</div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">⚖️</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Duty of Loyalty</div>
+                        <div class="practice-text">Place the organization's interests above personal interests and avoid conflicts of interest.</div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">📜</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Duty of Obedience</div>
+                        <div class="practice-text">Ensure compliance with laws, regulations, and the organization's governing documents.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Annual Planning Framework -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Annual Planning Framework</h2>
+                <p>A structured approach to fulfilling your governance responsibilities throughout the year</p>
+            </div>
+
+            <div class="calendar-visual">
+                <h3 style="text-align: center; color: var(--primary-blue); margin-bottom: 30px;">Your Investment Committee Year at a Glance</h3>
+                <div class="calendar-quarters">
+                    <div class="quarter-card">
+                        <div class="quarter-icon">🎯</div>
+                        <div class="quarter-label">Q1</div>
+                        <div class="quarter-focus">Strategic Planning</div>
+                        <div class="quarter-tasks">
+                            • Annual performance review<br>
+                            • Economic outlook discussion<br>
+                            • Committee goals setting<br>
+                            • Charter reaffirmation
+                        </div>
+                    </div>
+                    <div class="quarter-card">
+                        <div class="quarter-icon">⚙️</div>
+                        <div class="quarter-label">Q2</div>
+                        <div class="quarter-focus">Policy & Process</div>
+                        <div class="quarter-tasks">
+                            • Spending policy review<br>
+                            • Liquidity assessment<br>
+                            • Risk management update<br>
+                            • New member onboarding
+                        </div>
+                    </div>
+                    <div class="quarter-card">
+                        <div class="quarter-icon">📋</div>
+                        <div class="quarter-label">Q3</div>
+                        <div class="quarter-focus">Governance Review</div>
+                        <div class="quarter-tasks">
+                            • IPS annual review<br>
+                            • Compliance verification<br>
+                            • Document management<br>
+                            • Succession planning
+                        </div>
+                    </div>
+                    <div class="quarter-card">
+                        <div class="quarter-icon">📈</div>
+                        <div class="quarter-label">Q4</div>
+                        <div class="quarter-focus">Evaluation & Planning</div>
+                        <div class="quarter-tasks">
+                            • Fee benchmarking<br>
+                            • Portfolio rebalancing<br>
+                            • Next year planning<br>
+                            • Committee assessment
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="governance-checklist">
+                <div class="checklist-header">
+                    <h3>Annual Governance Checklist</h3>
+                    <p>Ensure all critical responsibilities are addressed each year</p>
+                </div>
+                <div class="checklist-columns">
+                    <div class="checklist-group">
+                        <h4>Policy & Documentation</h4>
+                        <div class="checklist-item">Review and update Investment Policy Statement</div>
+                        <div class="checklist-item">Confirm spending policy alignment</div>
+                        <div class="checklist-item">Update conflict of interest declarations</div>
+                        <div class="checklist-item">Review gift acceptance policies</div>
+                        <div class="checklist-item">Document meeting minutes and decisions</div>
+                    </div>
+                    <div class="checklist-group">
+                        <h4>Performance & Strategy</h4>
+                        <div class="checklist-item">Conduct quarterly performance reviews</div>
+                        <div class="checklist-item">Evaluate asset allocation targets</div>
+                        <div class="checklist-item">Assess manager performance</div>
+                        <div class="checklist-item">Review fee structures and benchmarks</div>
+                        <div class="checklist-item">Plan for liquidity needs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Meeting Excellence -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Meeting Excellence Framework</h2>
+                <p>Transform your committee meetings into strategic sessions that drive results</p>
+            </div>
+
+            <div class="agenda-template">
+                <div class="agenda-header">
+                    <h3>Sample Quarterly Meeting Agenda</h3>
+                    <p>A structured approach to maximize meeting productivity</p>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">1</div>
+                    <div class="agenda-content">
+                        <h4>Opening & Governance (10 min)</h4>
+                        <p>Roll call, approve minutes, review meeting objectives</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">2</div>
+                    <div class="agenda-content">
+                        <h4>Market Update & Economic Outlook (15 min)</h4>
+                        <p>Review current market conditions and potential impacts on portfolio</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">3</div>
+                    <div class="agenda-content">
+                        <h4>Portfolio Performance Review (20 min)</h4>
+                        <p>Analyze returns, attribution, and comparison to benchmarks</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">4</div>
+                    <div class="agenda-content">
+                        <h4>Strategic Focus Topic (25 min)</h4>
+                        <p>Deep dive into quarterly theme (e.g., asset allocation, risk management)</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">5</div>
+                    <div class="agenda-content">
+                        <h4>Action Items & Next Steps (10 min)</h4>
+                        <p>Document decisions, assign responsibilities, confirm next meeting</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin: 40px 0 20px;">Meeting Best Practices</h3>
+            <div class="practices-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">📅</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Consistent Schedule</div>
+                        <div class="practice-text">Set quarterly meetings well in advance and stick to the schedule to ensure consistent oversight.</div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">📚</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Pre-Meeting Materials</div>
+                        <div class="practice-text">Distribute comprehensive materials at least one week before meetings to allow thorough review.</div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🎯</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Clear Action Items</div>
+                        <div class="practice-text">End each meeting with documented decisions and assigned responsibilities with deadlines.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Roles & Responsibilities -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Roles & Responsibilities Matrix</h2>
+                <p>Clear delineation of duties ensures effective governance and accountability</p>
+            </div>
+
+            <div class="matrix-container">
+                <table class="responsibility-matrix">
+                    <thead>
+                        <tr>
+                            <th>Responsibility</th>
+                            <th>Committee Chair</th>
+                            <th>Committee Members</th>
+                            <th>Staff/CFO</th>
+                            <th>Investment Advisor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Meeting Leadership</td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                        </tr>
+                        <tr>
+                            <td>Policy Development</td>
+                            <td><span class="role-badge role-review">Review</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                        </tr>
+                        <tr>
+                            <td>Performance Monitoring</td>
+                            <td><span class="role-badge role-review">Review</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                            <td><span class="role-badge role-review">Review</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                        </tr>
+                        <tr>
+                            <td>Risk Assessment</td>
+                            <td><span class="role-badge role-review">Review</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                        </tr>
+                        <tr>
+                            <td>Documentation</td>
+                            <td><span class="role-badge role-review">Review</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin: 40px 0 20px;">Committee Member Expectations</h3>
+            <div class="practices-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="practice-card">
+                    <div class="practice-icon">📖</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Preparation & Participation</div>
+                        <div class="practice-text">
+                            • Review all materials before meetings<br>
+                            • Attend meetings consistently<br>
+                            • Ask thoughtful questions<br>
+                            • Contribute expertise and perspectives
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🤝</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Fiduciary Excellence</div>
+                        <div class="practice-text">
+                            • Act in organization's best interest<br>
+                            • Maintain confidentiality<br>
+                            • Disclose conflicts of interest<br>
+                            • Support committee decisions
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Education & Development -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Continuous Education & Development</h2>
+                <p>Building expertise through ongoing learning and professional development</p>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin-bottom: 20px;">Annual Education Calendar</h3>
+            <div class="calendar-visual">
+                <div class="calendar-quarters">
+                    <div class="quarter-card">
+                        <div class="quarter-icon">📚</div>
+                        <div class="quarter-label">Q1</div>
+                        <div class="quarter-focus">Market Outlook</div>
+                        <div class="quarter-tasks">
+                            Economic trends and forecasts for strategic planning
+                        </div>
+                    </div>
+                    <div class="quarter-card">
+                        <div class="quarter-icon">🌱</div>
+                        <div class="quarter-label">Q2</div>
+                        <div class="quarter-focus">ESG/Impact Investing</div>
+                        <div class="quarter-tasks">
+                            Mission-aligned investment strategies and opportunities
+                        </div>
+                    </div>
+                    <div class="quarter-card">
+                        <div class="quarter-icon">⚡</div>
+                        <div class="quarter-label">Q3</div>
+                        <div class="quarter-focus">Risk Management</div>
+                        <div class="quarter-tasks">
+                            Understanding and mitigating portfolio risks
+                        </div>
+                    </div>
+                    <div class="quarter-card">
+                        <div class="quarter-icon">🔍</div>
+                        <div class="quarter-label">Q4</div>
+                        <div class="quarter-focus">Alternative Investments</div>
+                        <div class="quarter-tasks">
+                            Exploring diversification opportunities
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin: 40px 0 20px;">Committee Development Resources</h3>
+            <div class="practices-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">🎓</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Onboarding Program</div>
+                        <div class="practice-text">Comprehensive orientation for new members including governance training, policy review, and portfolio overview.</div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">📊</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Performance Dashboards</div>
+                        <div class="practice-text">Visual tools and reports that help committee members quickly understand portfolio performance and trends.</div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🌐</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Industry Resources</div>
+                        <div class="practice-text">Access to research, whitepapers, and best practices from leading investment and nonprofit organizations.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Section -->
+        <div class="download-section">
+            <h2>Ready to Transform Your Investment Governance?</h2>
+            <p>Download this guide and access our complete toolkit of templates and resources</p>
+            <div class="download-buttons">
+                <a href="#" class="download-btn" onclick="window.print(); return false;">
+                    📄 Download PDF Guide
+                </a>
+                <a href="#" class="download-btn">
+                    📊 Get Excel Templates
+                </a>
+                <a href="#" class="download-btn">
+                    📋 Access Checklists
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="guide-footer">
+            <img src="together-forward-capital-logo-horizontal.png" alt="Together Forward Capital" class="footer-logo">
+            <div class="footer-contact">
+                <p>Need help implementing these governance practices?</p>
+                <p>Contact us at <a href="mailto:info@togetherforwardcap.com">info@togetherforwardcap.com</a> or call (888) 330-7090</p>
+            </div>
+            <p style="font-size: 0.9rem; margin-top: 20px; color: #666666;">
+                © 2025 Together Forward Capital. Investment advisory services offered through Together Forward Capital, 
+                a DBA of R.F. Lafferty & Co., Inc., an investment adviser registered with the SEC.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling for TOC items
+        document.querySelectorAll('.toc-item').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                const sections = document.querySelectorAll('.content-page');
+                if (sections[index]) {
+                    sections[index].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.quarter-card, .practice-card, .wheel-segment').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+
+        // Checklist interaction
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('checked');
+                if (this.classList.contains('checked')) {
+                    this.style.textDecoration = 'line-through';
+                    this.style.opacity = '0.6';
+                    const checkmark = document.createElement('span');
+                    checkmark.textContent = '✓';
+                    checkmark.style.position = 'absolute';
+                    checkmark.style.left = '5px';
+                    checkmark.style.color = 'var(--secondary-green)';
+                    this.insertBefore(checkmark, this.firstChild);
+                } else {
+                    this.style.textDecoration = '';
+                    this.style.opacity = '';
+                    const checkmark = this.querySelector('span');
+                    if (checkmark) checkmark.remove();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

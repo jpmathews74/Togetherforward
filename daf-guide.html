@@ -1450,6 +1450,258 @@
                 gap: 1rem;
             }
         }
+
+        /* ===== MOBILE-ONLY STYLES - DESKTOP REMAINS UNCHANGED ===== */
+
+        /* Mobile Menu Button - Hidden on Desktop */
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Mobile-Only Media Query */
+        @media (max-width: 768px) {
+            /* Show mobile menu button ONLY on mobile */
+            .mobile-menu-toggle {
+                display: flex;
+                flex-direction: column;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 5px;
+                z-index: 1001;
+            }
+
+            .hamburger-line {
+                width: 25px;
+                height: 3px;
+                background: var(--text-dark);
+                margin: 3px 0;
+                transition: 0.3s;
+            }
+
+            [data-theme="dark"] .hamburger-line {
+                background: var(--text-dark);
+            }
+
+            /* Hamburger animation when active */
+            .nav-links.active ~ .mobile-menu-toggle .hamburger-line:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .nav-links.active ~ .mobile-menu-toggle .hamburger-line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-links.active ~ .mobile-menu-toggle .hamburger-line:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            /* Transform navigation ONLY on mobile */
+            .nav-links {
+                position: fixed !important;
+                right: -100%;
+                top: 127px;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 127px);
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                overflow-y: auto;
+                z-index: 999;
+                align-items: flex-start;
+                gap: 1rem;
+                display: flex !important;
+            }
+
+            [data-theme="dark"] .nav-links {
+                background: var(--nav-bg);
+                box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            /* Mobile dropdown behavior */
+            .nav-dropdown {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                box-shadow: none !important;
+                margin-top: 0.5rem;
+                margin-bottom: 1rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-dropdown.active .dropdown-menu {
+                max-height: 500px;
+            }
+
+            .submenu {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                margin-left: 1rem;
+                margin-top: 0.5rem;
+                box-shadow: none !important;
+            }
+
+            /* Smaller logo on mobile */
+            .logo img {
+                height: 80px;
+            }
+
+            /* Adjust hero for smaller nav */
+            .hero {
+                padding: 100px 1rem 60px;
+            }
+
+            /* Make images responsive on mobile */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Typography adjustments for mobile - Override desktop */
+            .hero h1 {
+                font-size: 2.5rem !important;
+                line-height: 1.2;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem !important;
+            }
+
+            .stats-header h2 {
+                font-size: 1.75rem !important;
+            }
+
+            .content-section h2 {
+                font-size: 1.75rem !important;
+            }
+
+            .content-section h3 {
+                font-size: 1.25rem !important;
+            }
+
+            /* Touch-friendly buttons */
+            .cta-button {
+                min-height: 44px;
+                padding: 0.875rem 1.5rem;
+            }
+
+            /* Content wrapper single column - Override desktop */
+            .content-wrapper {
+                grid-template-columns: 1fr !important;
+                padding: 2rem 1rem;
+            }
+
+            /* Hide TOC and sidebar on mobile - Already handled above */
+
+            /* Main content adjustments - Override desktop */
+            .main-content {
+                padding: 2rem 1.5rem !important;
+            }
+
+            /* Stats grid adjustments - Already handled above */
+            
+            /* Benefits grid single column - Override desktop */
+            .benefits-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Strategy grid adjustments - Override desktop */
+            .strategy-visual-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Calculator visual single column - Override desktop */
+            .calculator-visual {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Process flow adjustments - Override desktop */
+            .process-flow {
+                grid-template-columns: 1fr !important;
+                gap: 3rem;
+            }
+
+            .process-arrow {
+                display: none !important;
+            }
+
+            /* Comparison cards stack - Override desktop */
+            .comparison-cards {
+                grid-template-columns: 1fr !important;
+                gap: 2rem;
+            }
+
+            .vs-divider {
+                display: none !important;
+            }
+
+            /* Reduce padding on mobile */
+            section {
+                padding: 3rem 1rem !important;
+            }
+
+            /* Mobile-friendly footer - Already handled above */
+
+            /* Adjust theme toggle for mobile - Already handled above */
+
+            /* Disable hover effects on touch devices */
+            @media (hover: none) {
+                .stat-visual:hover,
+                .benefit-card:hover,
+                .strategy-visual-card:hover,
+                .comparison-card:hover {
+                    transform: none;
+                }
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem !important;
+            }
+
+            .stat-number {
+                font-size: 1.5rem !important;
+            }
+
+            .calc-number {
+                font-size: 2rem !important;
+            }
+
+            /* Single column stats grid on very small screens - Override desktop */
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .stats-grid-single {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* Additional responsive adjustments for mid-size screens - Already handled above */
+
+        /* ===== END OF MOBILE-ONLY STYLES ===== */
     </style>
 </head>
 <body>
@@ -1495,6 +1747,12 @@
                 </li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
+            <!-- Mobile Menu Button - Only visible on mobile -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </nav>
 
@@ -1629,469 +1887,516 @@
                 <p>The IRS maintains specific regulations governing DAFs, including prohibited benefits, minimum distributions for certain accounts, and qualified recipient requirements. Understanding these rules ensures compliant, effective philanthropic strategies.</p>
             </section>
 
-            <!-- Key Benefits -->
-            <section class="content-section" id="benefits">
-                <h2>Key Benefits of Donor Advised Funds</h2>
-                <p>DAFs offer a unique combination of financial advantages and philanthropic flexibility that traditional giving methods simply can't match. Let's explore the compelling benefits that have made DAFs the fastest-growing charitable vehicle in America.</p>
+        <!-- Key Benefits -->
+        <section class="content-section" id="benefits">
+            <h2>Key Benefits of Donor Advised Funds</h2>
+            <p>DAFs offer a unique combination of financial advantages and philanthropic flexibility that traditional giving methods simply can't match. Let's explore the compelling benefits that have made DAFs the fastest-growing charitable vehicle in America.</p>
 
-                <div class="benefits-showcase">
-                    <div class="benefits-grid">
-                        <div class="benefit-card">
-                            <div class="benefit-icon">💎</div>
-                            <div class="benefit-title">Maximize Tax Benefits</div>
-                            <div class="benefit-description">
-                                Claim immediate deductions up to 60% of AGI for cash and 30% for appreciated assets. Avoid capital gains taxes entirely on donated securities.
-                            </div>
-                            <div class="benefit-highlight">Save up to 37% + avoid 20% capital gains</div>
+            <div class="benefits-showcase">
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💎</div>
+                        <div class="benefit-title">Maximize Tax Benefits</div>
+                        <div class="benefit-description">
+                            Claim immediate deductions up to 60% of AGI for cash and 30% for appreciated assets. Avoid capital gains taxes entirely on donated securities.
                         </div>
-                        <div class="benefit-card">
-                            <div class="benefit-icon">⏰</div>
-                            <div class="benefit-title">Time Your Giving Perfectly</div>
-                            <div class="benefit-description">
-                                Separate your tax deduction timing from charitable decisions. Fund during high-income years, then distribute thoughtfully over time.
-                            </div>
-                            <div class="benefit-highlight">Bunch 5 years of giving into 1 tax year</div>
-                        </div>
-                        <div class="benefit-card">
-                            <div class="benefit-icon">🌱</div>
-                            <div class="benefit-title">Grow Your Impact</div>
-                            <div class="benefit-description">
-                                Your contributions are invested and grow tax-free, potentially increasing your charitable impact significantly over time.
-                            </div>
-                            <div class="benefit-highlight">7-9% average annual growth</div>
-                        </div>
-                        <div class="benefit-card">
-                            <div class="benefit-icon">👨‍👩‍👧‍👦</div>
-                            <div class="benefit-title">Create a Family Legacy</div>
-                            <div class="benefit-description">
-                                Involve multiple generations in giving decisions. Name successors to continue your charitable vision for decades to come.
-                            </div>
-                            <div class="benefit-highlight">Teach philanthropy across generations</div>
-                        </div>
+                        <div class="benefit-highlight">Save up to 37% + avoid 20% capital gains</div>
                     </div>
-                </div>
-
-                <div class="tax-calculator-visual">
-                    <div class="calculator-content">
-                        <div class="calculator-header">
-                            <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem;">See Your Potential Tax Savings</h3>
-                            <p style="color: var(--text-gray);">Example: Contributing appreciated stock worth $100,000 (cost basis $25,000)</p>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">⏰</div>
+                        <div class="benefit-title">Time Your Giving Perfectly</div>
+                        <div class="benefit-description">
+                            Separate your tax deduction timing from charitable decisions. Fund during high-income years, then distribute thoughtfully over time.
                         </div>
-                        <div class="calculator-visual">
-                            <div class="calc-item">
-                                <div class="calc-number contribution">$100,000</div>
-                                <div class="calc-label">Charitable Deduction</div>
-                            </div>
-                            <div class="calc-item">
-                                <div class="calc-number deduction">$37,000</div>
-                                <div class="calc-label">Income Tax Savings</div>
-                            </div>
-                            <div class="calc-item">
-                                <div class="calc-number savings">$15,000</div>
-                                <div class="calc-label">Capital Gains Tax Avoided</div>
-                            </div>
-                        </div>
-                        <p class="calculator-note">Total Tax Benefit: $52,000 (52% of your contribution!)</p>
+                        <div class="benefit-highlight">Bunch 5 years of giving into 1 tax year</div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Strategic Uses -->
-            <section class="content-section" id="strategies">
-                <h2>Strategic Uses for Different Life Situations</h2>
-                <p>DAFs adapt to various life circumstances and financial events, providing tailored solutions for strategic philanthropy. Understanding these applications helps donors maximize both charitable impact and personal financial benefits.</p>
-
-                <div class="strategy-visual-grid">
-                    <div class="strategy-visual-card">
-                        <div class="strategy-visual-header strategy-1">💼</div>
-                        <div class="strategy-visual-content">
-                            <div class="strategy-visual-title">Business Sale or IPO</div>
-                            <div class="strategy-visual-description">Contribute shares before the sale to maximize deductions and eliminate capital gains on your charitable portion.</div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🌱</div>
+                        <div class="benefit-title">Grow Your Impact</div>
+                        <div class="benefit-description">
+                            Your contributions are invested and grow tax-free, potentially increasing your charitable impact significantly over time.
                         </div>
+                        <div class="benefit-highlight">7-9% average annual growth</div>
                     </div>
-                    <div class="strategy-visual-card">
-                        <div class="strategy-visual-header strategy-2">📈</div>
-                        <div class="strategy-visual-content">
-                            <div class="strategy-visual-title">Market Highs</div>
-                            <div class="strategy-visual-description">Lock in maximum charitable deductions when your investments reach peak values, especially for concentrated positions.</div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">👨‍👩‍👧‍👦</div>
+                        <div class="benefit-title">Create a Family Legacy</div>
+                        <div class="benefit-description">
+                            Involve multiple generations in giving decisions. Name successors to continue your charitable vision for decades to come.
                         </div>
+                        <div class="benefit-highlight">Teach philanthropy across generations</div>
                     </div>
-                    <div class="strategy-visual-card">
-                        <div class="strategy-visual-header strategy-3">🏛️</div>
-                        <div class="strategy-visual-content">
-                            <div class="strategy-visual-title">Estate Planning</div>
-                            <div class="strategy-visual-description">Reduce estate taxes while creating a permanent family giving vehicle that continues your legacy for generations.</div>
-                        </div>
-                    </div>
-                    <div class="strategy-visual-card">
-                        <div class="strategy-visual-header strategy-4">🎓</div>
-                        <div class="strategy-visual-content">
-                            <div class="strategy-visual-title">Teaching Philanthropy</div>
-                            <div class="strategy-visual-description">Engage children in charitable decisions through family grant meetings and matching programs.</div>
-                        </div>
-                    </div>
-                    <div class="strategy-visual-card">
-                        <div class="strategy-visual-header strategy-5">🏖️</div>
-                        <div class="strategy-visual-content">
-                            <div class="strategy-visual-title">Retirement Transitions</div>
-                            <div class="strategy-visual-description">Pre-fund charitable giving before retirement when income is higher, creating sustainable giving strategies.</div>
-                        </div>
-                    </div>
-                    <div class="strategy-visual-card">
-                        <div class="strategy-visual-header strategy-6">🌟</div>
-                        <div class="strategy-visual-content">
-                            <div class="strategy-visual-title">Crisis Response</div>
-                            <div class="strategy-visual-description">Maintain charitable reserves for rapid response to emergencies or coordinate giving for amplified impact.</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- DAF vs Private Foundation -->
-            <section class="content-section" id="comparison">
-                <h2>DAF vs. Private Foundation: Making the Right Choice</h2>
-                <p>For donors considering structured philanthropy, the choice between a Donor Advised Fund and a private foundation represents a critical decision. Each vehicle offers distinct advantages depending on your goals, resources, and desired level of control.</p>
-
-                <div class="comparison-visual">
-                    <div class="comparison-header">
-                        <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem;">Side-by-Side Comparison</h3>
-                        <p style="color: var(--text-gray);">Choose the right vehicle for your philanthropic goals</p>
-                    </div>
-                    <div class="comparison-cards">
-                        <div class="comparison-card daf">
-                            <div class="comparison-title daf">
-                                <div class="comparison-icon">🎯</div>
-                                <span>Donor Advised Fund</span>
-                            </div>
-                            <ul class="comparison-features">
-                                <li>
-                                    <span class="feature-icon pro">✓</span>
-                                    <span>Setup in 24 hours for minimal cost</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon pro">✓</span>
-                                    <span>Start with as little as $5,000</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon pro">✓</span>
-                                    <span>60% AGI deduction for cash gifts</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon pro">✓</span>
-                                    <span>No operating expenses or excise taxes</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon pro">✓</span>
-                                    <span>Complete anonymity option</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon con">✗</span>
-                                    <span>Limited to public charities only</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon con">✗</span>
-                                    <span>No direct control over investments</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="vs-divider">VS</div>
-                        <div class="comparison-card foundation">
-                            <div class="comparison-title foundation">
-                                <div class="comparison-icon">🏛️</div>
-                                <span>Private Foundation</span>
-                            </div>
-                            <ul class="comparison-features">
-                                <li>
-                                    <span class="feature-icon con">✗</span>
-                                    <span>Months to establish, $5K-25K cost</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon con">✗</span>
-                                    <span>Typically need $1-5 million</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon con">✗</span>
-                                    <span>30% AGI deduction limit</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon con">✗</span>
-                                    <span>$15K+ annual operating costs</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon con">✗</span>
-                                    <span>Must file public 990-PF</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon pro">✓</span>
-                                    <span>Can make grants to individuals</span>
-                                </li>
-                                <li>
-                                    <span class="feature-icon pro">✓</span>
-                                    <span>Complete investment control</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Choosing a Provider -->
-            <section class="content-section" id="selection">
-                <h2>Choosing the Right DAF Provider</h2>
-                <p>Selecting a DAF sponsor significantly impacts your philanthropic experience. With numerous providers offering varying features, costs, and services, understanding the landscape helps ensure alignment with your giving goals.</p>
-
-                <h3>Types of DAF Sponsors</h3>
-                <p><strong>National Charitable Sponsors:</strong> Organizations like Fidelity Charitable, Schwab Charitable, and Vanguard Charitable offer scale, technology, and integration with investment accounts. They typically feature low minimums, diverse investment options, and sophisticated online platforms. Best for donors valuing convenience and investment flexibility.</p>
-
-                <p><strong>Community Foundations:</strong> Local and regional foundations provide deep community knowledge, personalized service, and connections to area nonprofits. They often offer donor education, collaborative funding opportunities, and local expertise. Ideal for place-based philanthropy and donors seeking community engagement.</p>
-
-                <p><strong>Single-Issue Sponsors:</strong> Organizations focused on specific causes (Jewish federations, university foundations, religious organizations) combine DAF services with mission alignment. They offer specialized knowledge and connections within their focus areas. Perfect for donors with defined philanthropic interests.</p>
-            </section>
-
-            <!-- Best Practices -->
-            <section class="content-section" id="best-practices">
-                <h2>DAF Best Practices for Maximum Impact</h2>
-                <p>Successful DAF donors employ strategies that optimize both financial benefits and charitable outcomes. These proven practices help transform good intentions into meaningful impact.</p>
-
-                <h3>Optimize Your Contributions</h3>
-                <p><strong>Donate Appreciated Assets:</strong> Always contribute securities or property held over one year rather than cash when possible. This strategy eliminates capital gains taxes while providing full fair market value deductions. For highly appreciated assets, the tax savings can effectively increase your giving capacity by 20% or more.</p>
-
-                <p><strong>Time Contributions Strategically:</strong> Bunch multiple years of giving into high-income years. If you typically give $10,000 annually, consider contributing $30,000 to your DAF in a high-income year, then distribute over three years. This approach maximizes tax benefits while maintaining consistent charitable support.</p>
-
-                <h3>Enhance Your Impact</h3>
-                <p><strong>Research Before Granting:</strong> Leverage the time flexibility DAFs provide to thoroughly investigate charities. Use resources like GuideStar, Charity Navigator, and provider research tools. Visit organizations, meet leadership, and understand their impact metrics before committing support.</p>
-
-                <p><strong>Consider Multi-Year Commitments:</strong> While maintaining flexibility, communicate multi-year support intentions to charities when appropriate. This helps organizations plan effectively while preserving your ability to adjust based on performance and changing priorities.</p>
-            </section>
-
-            <!-- Common Questions -->
-            <section class="content-section" id="faqs">
-                <h2>Common Questions About DAFs</h2>
-                <p>Understanding the nuances of DAF operations helps donors make informed decisions and maximize their philanthropic impact.</p>
-
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>What happens if my DAF provider denies a grant recommendation?</span>
-                            <div class="faq-icon">+</div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>While rare, providers may decline recommendations to organizations that don't qualify as public charities or that violate their policies. Most providers work with donors to find acceptable alternatives or help organizations achieve qualifying status.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>Can I claim tax deductions for grants made from my DAF?</span>
-                            <div class="faq-icon">+</div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>No. You claim the tax deduction when you contribute to the DAF, not when grants are made. This is why DAFs are so powerful for tax planning—you get the immediate deduction but can distribute over time.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>How do fees work with DAF providers?</span>
-                            <div class="faq-icon">+</div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Most providers charge annual administrative fees ranging from 0.6% to 2.0% of assets, plus underlying investment fees. Some have minimums or transaction fees. Compare total costs, not just management fees, when evaluating providers.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>What investment options are typically available?</span>
-                            <div class="faq-icon">+</div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Most providers offer diversified investment pools ranging from conservative to aggressive growth strategies. Some provide ESG options, target-date funds, or even individual stock and bond selection for larger accounts.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span>Can I involve my family in DAF decisions?</span>
-                            <div class="faq-icon">+</div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Absolutely! Many providers allow multiple advisors and successors. This makes DAFs excellent tools for teaching philanthropy across generations and creating family giving traditions.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="content-section">
-                <h2>Your Philanthropic Journey Starts Here</h2>
-                <p>Donor Advised Funds represent more than just a giving vehicle—they're a pathway to strategic, impactful philanthropy that can span generations. Whether you're a first-time donor or a seasoned philanthropist, DAFs offer the flexibility, tax advantages, and growth potential to amplify your charitable impact.</p>
-
-                <p>The key to DAF success lies in understanding your options, choosing the right provider, and implementing best practices that align with your values and goals. With proper planning and execution, your DAF can become a cornerstone of your legacy, creating lasting change in the causes you care about most.</p>
-
-                <p>Ready to explore how a Donor Advised Fund can enhance your philanthropic journey? Our experts are here to help you navigate the options and develop a strategy that maximizes both your tax benefits and charitable impact.</p>
-            </section>
-        </article>
-
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-card">
-                <h3>Ready to Start Your DAF?</h3>
-                <p>Our experts can help you choose the right provider and develop strategies to maximize your philanthropic impact.</p>
-                <a href="index.html#contact" class="cta-button">Schedule Consultation</a>
-            </div>
-
-            <div class="stat-widget">
-                <div class="widget-content">
-                    <div class="widget-title">DAF Growth</div>
-                    <div class="widget-stat">20%</div>
-                    <div class="widget-description">Annual growth rate of DAF assets over the past decade</div>
                 </div>
             </div>
 
-            <div class="sidebar-card">
-                <h3>Tax Planning Tip</h3>
-                <p>Consider "bunching" several years of charitable giving into one high-income year to maximize your tax benefits while maintaining steady support to your favorite causes.</p>
+            <div class="tax-calculator-visual">
+                <div class="calculator-content">
+                    <div class="calculator-header">
+                        <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem;">See Your Potential Tax Savings</h3>
+                        <p style="color: var(--text-gray);">Example: Contributing appreciated stock worth $100,000 (cost basis $25,000)</p>
+                    </div>
+                    <div class="calculator-visual">
+                        <div class="calc-item">
+                            <div class="calc-number contribution">$100,000</div>
+                            <div class="calc-label">Charitable Deduction</div>
+                        </div>
+                        <div class="calc-item">
+                            <div class="calc-number deduction">$37,000</div>
+                            <div class="calc-label">Income Tax Savings</div>
+                        </div>
+                        <div class="calc-item">
+                            <div class="calc-number savings">$15,000</div>
+                            <div class="calc-label">Capital Gains Tax Avoided</div>
+                        </div>
+                    </div>
+                    <p class="calculator-note">Total Tax Benefit: $52,000 (52% of your contribution!)</p>
+                </div>
             </div>
-        </aside>
-    </div>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <ul class="footer-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                <li><a href="legal-disclosures.html">Disclosures</a></li>
-                <li><a href="form-crs.pdf" target="_blank">Form CRS</a></li>
-                <li><a href="form-adv-part-2a.pdf" target="_blank">Form ADV</a></li>
-            </ul>
-            <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
-            <p class="disclosure">Investment advisory services offered through Together Forward Capital, a DBA of R.F. Lafferty & Co., Inc., an investment adviser registered with the Securities and Exchange Commission.</p>
+        <!-- Strategic Uses -->
+        <section class="content-section" id="strategies">
+            <h2>Strategic Uses for Different Life Situations</h2>
+            <p>DAFs adapt to various life circumstances and financial events, providing tailored solutions for strategic philanthropy. Understanding these applications helps donors maximize both charitable impact and personal financial benefits.</p>
+
+            <div class="strategy-visual-grid">
+                <div class="strategy-visual-card">
+                    <div class="strategy-visual-header strategy-1">💼</div>
+                    <div class="strategy-visual-content">
+                        <div class="strategy-visual-title">Business Sale or IPO</div>
+                        <div class="strategy-visual-description">Contribute shares before the sale to maximize deductions and eliminate capital gains on your charitable portion.</div>
+                    </div>
+                </div>
+                <div class="strategy-visual-card">
+                    <div class="strategy-visual-header strategy-2">📈</div>
+                    <div class="strategy-visual-content">
+                        <div class="strategy-visual-title">Market Highs</div>
+                        <div class="strategy-visual-description">Lock in maximum charitable deductions when your investments reach peak values, especially for concentrated positions.</div>
+                    </div>
+                </div>
+                <div class="strategy-visual-card">
+                    <div class="strategy-visual-header strategy-3">🏛️</div>
+                    <div class="strategy-visual-content">
+                        <div class="strategy-visual-title">Estate Planning</div>
+                        <div class="strategy-visual-description">Reduce estate taxes while creating a permanent family giving vehicle that continues your legacy for generations.</div>
+                    </div>
+                </div>
+                <div class="strategy-visual-card">
+                    <div class="strategy-visual-header strategy-4">🎓</div>
+                    <div class="strategy-visual-content">
+                        <div class="strategy-visual-title">Teaching Philanthropy</div>
+                        <div class="strategy-visual-description">Engage children in charitable decisions through family grant meetings and matching programs.</div>
+                    </div>
+                </div>
+                <div class="strategy-visual-card">
+                    <div class="strategy-visual-header strategy-5">🏖️</div>
+                    <div class="strategy-visual-content">
+                        <div class="strategy-visual-title">Retirement Transitions</div>
+                        <div class="strategy-visual-description">Pre-fund charitable giving before retirement when income is higher, creating sustainable giving strategies.</div>
+                    </div>
+                </div>
+                <div class="strategy-visual-card">
+                    <div class="strategy-visual-header strategy-6">🌟</div>
+                    <div class="strategy-visual-content">
+                        <div class="strategy-visual-title">Crisis Response</div>
+                        <div class="strategy-visual-description">Maintain charitable reserves for rapid response to emergencies or coordinate giving for amplified impact.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DAF vs Private Foundation -->
+        <section class="content-section" id="comparison">
+            <h2>DAF vs. Private Foundation: Making the Right Choice</h2>
+            <p>For donors considering structured philanthropy, the choice between a Donor Advised Fund and a private foundation represents a critical decision. Each vehicle offers distinct advantages depending on your goals, resources, and desired level of control.</p>
+
+            <div class="comparison-visual">
+                <div class="comparison-header">
+                    <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem;">Side-by-Side Comparison</h3>
+                    <p style="color: var(--text-gray);">Choose the right vehicle for your philanthropic goals</p>
+                </div>
+                <div class="comparison-cards">
+                    <div class="comparison-card daf">
+                        <div class="comparison-title daf">
+                            <div class="comparison-icon">🎯</div>
+                            <span>Donor Advised Fund</span>
+                        </div>
+                        <ul class="comparison-features">
+                            <li>
+                                <span class="feature-icon pro">✓</span>
+                                <span>Setup in 24 hours for minimal cost</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon pro">✓</span>
+                                <span>Start with as little as $5,000</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon pro">✓</span>
+                                <span>60% AGI deduction for cash gifts</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon pro">✓</span>
+                                <span>No operating expenses or excise taxes</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon pro">✓</span>
+                                <span>Complete anonymity option</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon con">✗</span>
+                                <span>Limited to public charities only</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon con">✗</span>
+                                <span>No direct control over investments</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="vs-divider">VS</div>
+                    <div class="comparison-card foundation">
+                        <div class="comparison-title foundation">
+                            <div class="comparison-icon">🏛️</div>
+                            <span>Private Foundation</span>
+                        </div>
+                        <ul class="comparison-features">
+                            <li>
+                                <span class="feature-icon con">✗</span>
+                                <span>Months to establish, $5K-25K cost</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon con">✗</span>
+                                <span>Typically need $1-5 million</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon con">✗</span>
+                                <span>30% AGI deduction limit</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon con">✗</span>
+                                <span>$15K+ annual operating costs</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon con">✗</span>
+                                <span>Must file public 990-PF</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon pro">✓</span>
+                                <span>Can make grants to individuals</span>
+                            </li>
+                            <li>
+                                <span class="feature-icon pro">✓</span>
+                                <span>Complete investment control</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Choosing a Provider -->
+        <section class="content-section" id="selection">
+            <h2>Choosing the Right DAF Provider</h2>
+            <p>Selecting a DAF sponsor significantly impacts your philanthropic experience. With numerous providers offering varying features, costs, and services, understanding the landscape helps ensure alignment with your giving goals.</p>
+
+            <h3>Types of DAF Sponsors</h3>
+            <p><strong>National Charitable Sponsors:</strong> Organizations like Fidelity Charitable, Schwab Charitable, and Vanguard Charitable offer scale, technology, and integration with investment accounts. They typically feature low minimums, diverse investment options, and sophisticated online platforms. Best for donors valuing convenience and investment flexibility.</p>
+
+            <p><strong>Community Foundations:</strong> Local and regional foundations provide deep community knowledge, personalized service, and connections to area nonprofits. They often offer donor education, collaborative funding opportunities, and local expertise. Ideal for place-based philanthropy and donors seeking community engagement.</p>
+
+            <p><strong>Single-Issue Sponsors:</strong> Organizations focused on specific causes (Jewish federations, university foundations, religious organizations) combine DAF services with mission alignment. They offer specialized knowledge and connections within their focus areas. Perfect for donors with defined philanthropic interests.</p>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="content-section" id="best-practices">
+            <h2>DAF Best Practices for Maximum Impact</h2>
+            <p>Successful DAF donors employ strategies that optimize both financial benefits and charitable outcomes. These proven practices help transform good intentions into meaningful impact.</p>
+
+            <h3>Optimize Your Contributions</h3>
+            <p><strong>Donate Appreciated Assets:</strong> Always contribute securities or property held over one year rather than cash when possible. This strategy eliminates capital gains taxes while providing full fair market value deductions. For highly appreciated assets, the tax savings can effectively increase your giving capacity by 20% or more.</p>
+
+            <p><strong>Time Contributions Strategically:</strong> Bunch multiple years of giving into high-income years. If you typically give $10,000 annually, consider contributing $30,000 to your DAF in a high-income year, then distribute over three years. This approach maximizes tax benefits while maintaining consistent charitable support.</p>
+
+            <h3>Enhance Your Impact</h3>
+            <p><strong>Research Before Granting:</strong> Leverage the time flexibility DAFs provide to thoroughly investigate charities. Use resources like GuideStar, Charity Navigator, and provider research tools. Visit organizations, meet leadership, and understand their impact metrics before committing support.</p>
+
+            <p><strong>Consider Multi-Year Commitments:</strong> While maintaining flexibility, communicate multi-year support intentions to charities when appropriate. This helps organizations plan effectively while preserving your ability to adjust based on performance and changing priorities.</p>
+        </section>
+
+        <!-- Common Questions -->
+        <section class="content-section" id="faqs">
+            <h2>Common Questions About DAFs</h2>
+            <p>Understanding the nuances of DAF operations helps donors make informed decisions and maximize their philanthropic impact.</p>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What happens if my DAF provider denies a grant recommendation?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While rare, providers may decline recommendations to organizations that don't qualify as public charities or that violate their policies. Most providers work with donors to find acceptable alternatives or help organizations achieve qualifying status.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I claim tax deductions for grants made from my DAF?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. You claim the tax deduction when you contribute to the DAF, not when grants are made. This is why DAFs are so powerful for tax planning—you get the immediate deduction but can distribute over time.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do fees work with DAF providers?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most providers charge annual administrative fees ranging from 0.6% to 2.0% of assets, plus underlying investment fees. Some have minimums or transaction fees. Compare total costs, not just management fees, when evaluating providers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What investment options are typically available?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most providers offer diversified investment pools ranging from conservative to aggressive growth strategies. Some provide ESG options, target-date funds, or even individual stock and bond selection for larger accounts.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I involve my family in DAF decisions?</span>
+                        <div class="faq-icon">+</div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Many providers allow multiple advisors and successors. This makes DAFs excellent tools for teaching philanthropy across generations and creating family giving traditions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Your Philanthropic Journey Starts Here</h2>
+            <p>Donor Advised Funds represent more than just a giving vehicle—they're a pathway to strategic, impactful philanthropy that can span generations. Whether you're a first-time donor or a seasoned philanthropist, DAFs offer the flexibility, tax advantages, and growth potential to amplify your charitable impact.</p>
+
+            <p>The key to DAF success lies in understanding your options, choosing the right provider, and implementing best practices that align with your values and goals. With proper planning and execution, your DAF can become a cornerstone of your legacy, creating lasting change in the causes you care about most.</p>
+
+            <p>Ready to explore how a Donor Advised Fund can enhance your philanthropic journey? Our experts are here to help you navigate the options and develop a strategy that maximizes both your tax benefits and charitable impact.</p>
+        </section>
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-card">
+            <h3>Ready to Start Your DAF?</h3>
+            <p>Our experts can help you choose the right provider and develop strategies to maximize your philanthropic impact.</p>
+            <a href="index.html#contact" class="cta-button">Schedule Consultation</a>
         </div>
-    </footer>
 
-    <script>
-        // Dark mode toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('.theme-icon');
-        const htmlElement = document.documentElement;
+        <div class="stat-widget">
+            <div class="widget-content">
+                <div class="widget-title">DAF Growth</div>
+                <div class="widget-stat">20%</div>
+                <div class="widget-description">Annual growth rate of DAF assets over the past decade</div>
+            </div>
+        </div>
 
-        // Check for saved theme preference or default to light mode
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        htmlElement.setAttribute('data-theme', currentTheme);
-        updateThemeIcon(currentTheme);
+        <div class="sidebar-card">
+            <h3>Tax Planning Tip</h3>
+            <p>Consider "bunching" several years of charitable giving into one high-income year to maximize your tax benefits while maintaining steady support to your favorite causes.</p>
+        </div>
+    </aside>
+</div>
 
-        // Toggle theme
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="legal-disclosures.html">Disclosures</a></li>
+            <li><a href="form-crs.pdf" target="_blank">Form CRS</a></li>
+            <li><a href="form-adv-part-2a.pdf" target="_blank">Form ADV</a></li>
+        </ul>
+        <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
+        <p class="disclosure">Investment advisory services offered through Together Forward Capital, a DBA of R.F. Lafferty & Co., Inc., an investment adviser registered with the Securities and Exchange Commission.</p>
+    </div>
+</footer>
+
+<script>
+    // Dark mode toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+    const htmlElement = document.documentElement;
+
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    htmlElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
+
+    // Toggle theme
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+
+    // Mobile menu functionality (only runs on mobile)
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
 
-        function updateThemeIcon(theme) {
-            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-        }
-
-        // Navigation background on scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            
-            if (window.scrollY > 50) {
-                if (currentTheme === 'dark') {
-                    nav.style.background = 'rgba(15, 20, 25, 0.98)';
-                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
-                } else {
-                    nav.style.background = 'rgba(255, 255, 255, 0.98)';
-                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-                }
-            } else {
-                nav.style.background = '';
-                nav.style.boxShadow = '';
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
             }
         });
 
-        // Table of Contents active state
-        const sections = document.querySelectorAll('.content-section');
-        const tocLinks = document.querySelectorAll('.toc-list a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            tocLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') && link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                // Don't close if clicking on dropdown toggle
+                if (!link.parentElement.classList.contains('nav-dropdown') && 
+                    !link.classList.contains('has-submenu')) {
+                    navLinks.classList.remove('active');
                 }
             });
         });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const navHeight = document.querySelector('nav').offsetHeight;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+        // Handle dropdown menus on mobile
+        const dropdowns = document.querySelectorAll('.nav-dropdown > a');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const parent = dropdown.parentElement;
+                    parent.classList.toggle('active');
                     
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
+                    // Close other dropdowns
+                    document.querySelectorAll('.nav-dropdown').forEach(other => {
+                        if (other !== parent) {
+                            other.classList.remove('active');
+                        }
                     });
                 }
             });
         });
+    }
 
-        // FAQ functionality
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                const isActive = faqItem.classList.contains('active');
+    // Navigation background on scroll
+    window.addEventListener('scroll', function() {
+        const nav = document.querySelector('nav');
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        
+        if (window.scrollY > 50) {
+            if (currentTheme === 'dark') {
+                nav.style.background = 'rgba(15, 20, 25, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        } else {
+            nav.style.background = '';
+            nav.style.boxShadow = '';
+        }
+    });
+
+    // Table of Contents active state
+    const sections = document.querySelectorAll('.content-section');
+    const tocLinks = document.querySelectorAll('.toc-list a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') && link.getAttribute('href').slice(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
                 
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
-                
-                // Open clicked item if it wasn't already active
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                }
-            });
+            }
         });
+    });
 
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+    // FAQ functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const faqItem = question.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
             });
-        }, observerOptions);
-
-        // Apply animation to cards and sections
-        document.querySelectorAll('.stat-visual, .benefit-card, .strategy-visual-card, .comparison-card, .faq-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
+            
+            // Open clicked item if it wasn't already active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
         });
-    </script>
+    });
+
+    // Animate elements on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Apply animation to cards and sections
+    document.querySelectorAll('.stat-visual, .benefit-card, .strategy-visual-card, .comparison-card, .faq-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+</script>
 </body>
 </html>

@@ -759,6 +759,296 @@
                 font-size: 20px;
             }
         }
+
+        /* ===== MOBILE-ONLY STYLES - DESKTOP REMAINS UNCHANGED ===== */
+
+        /* Mobile Menu Button - Hidden on Desktop */
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Mobile-Only Media Query */
+        @media (max-width: 768px) {
+            /* Show mobile menu button ONLY on mobile */
+            .mobile-menu-toggle {
+                display: flex;
+                flex-direction: column;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 5px;
+                z-index: 1001;
+            }
+
+            .hamburger-line {
+                width: 25px;
+                height: 3px;
+                background: var(--text-dark);
+                margin: 3px 0;
+                transition: 0.3s;
+            }
+
+            [data-theme="dark"] .hamburger-line {
+                background: var(--text-dark);
+            }
+
+            /* Hamburger animation when active */
+            .nav-links.active ~ .mobile-menu-toggle .hamburger-line:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .nav-links.active ~ .mobile-menu-toggle .hamburger-line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-links.active ~ .mobile-menu-toggle .hamburger-line:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            /* Transform navigation ONLY on mobile */
+            .nav-links {
+                position: fixed !important;
+                right: -100%;
+                top: 127px;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 127px);
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                overflow-y: auto;
+                z-index: 999;
+                align-items: flex-start;
+                gap: 1rem;
+                display: flex !important;
+            }
+
+            [data-theme="dark"] .nav-links {
+                background: var(--nav-bg);
+                box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            /* Mobile dropdown behavior */
+            .nav-dropdown {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                box-shadow: none !important;
+                margin-top: 0.5rem;
+                margin-bottom: 1rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-dropdown.active .dropdown-menu {
+                max-height: 500px;
+            }
+
+            .submenu {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                margin-left: 1rem;
+                margin-top: 0.5rem;
+                box-shadow: none !important;
+            }
+
+            /* Smaller logo on mobile */
+            .logo img {
+                height: 80px;
+            }
+
+            /* Adjust hero for smaller nav */
+            .page-header {
+                margin-top: 112px;
+                padding: 6rem 1rem 3rem;
+            }
+
+            /* Make images responsive on mobile */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Typography adjustments for mobile - Override desktop */
+            .page-header h1 {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+
+            .page-header p {
+                font-size: 1.1rem !important;
+            }
+
+            .mission h2, .section-header h2, .commitment-content h2, .cta-section h2 {
+                font-size: 1.75rem !important;
+            }
+
+            .mission-statement {
+                font-size: 1.1rem !important;
+                padding: 1.25rem !important;
+            }
+
+            .mission-description {
+                font-size: 1rem !important;
+            }
+
+            .mission-description p {
+                text-indent: 1rem !important;
+            }
+
+            .section-header p {
+                font-size: 1rem !important;
+            }
+
+            .value-card h3 {
+                font-size: 1.25rem !important;
+            }
+
+            .value-card p {
+                font-size: 0.95rem !important;
+            }
+
+            .commitment-content p {
+                font-size: 1rem !important;
+            }
+
+            .commitment-points li {
+                font-size: 0.95rem !important;
+                padding: 0.75rem 0;
+                padding-left: 1.5rem;
+            }
+
+            .commitment-text {
+                font-size: 1.2rem !important;
+                padding: 1.5rem !important;
+            }
+
+            .cta-section p {
+                font-size: 1rem !important;
+            }
+
+            /* Touch-friendly buttons */
+            .cta-button {
+                min-height: 44px;
+                padding: 0.875rem 2rem;
+            }
+
+            /* Section padding adjustments */
+            .mission,
+            .values,
+            .commitment {
+                padding: 3rem 1rem !important;
+            }
+
+            .cta-section {
+                padding: 3rem 1rem !important;
+            }
+
+            /* Values grid single column - Override desktop */
+            .values-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem;
+            }
+
+            .value-card {
+                padding: 2rem !important;
+            }
+
+            .value-icon {
+                width: 60px !important;
+                height: 60px !important;
+                font-size: 1.5rem !important;
+            }
+
+            /* Commitment section adjustments - Override desktop */
+            .commitment-container {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            .commitment-circle {
+                width: 250px !important;
+                height: 250px !important;
+            }
+
+            .commitment-circle::before {
+                width: 200px !important;
+                height: 200px !important;
+            }
+
+            /* Footer adjustments - Already handled above */
+
+            /* Navigation container padding */
+            .nav-container {
+                padding: 1rem;
+            }
+
+            /* Adjust theme toggle for mobile - Already handled above */
+
+            /* Disable hover effects on touch devices */
+            @media (hover: none) {
+                .value-card:hover {
+                    transform: none;
+                }
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.75rem !important;
+            }
+
+            .mission h2,
+            .section-header h2,
+            .commitment-content h2 {
+                font-size: 1.5rem !important;
+            }
+
+            .mission-statement {
+                font-size: 1rem !important;
+                padding: 1rem !important;
+            }
+
+            .value-card {
+                padding: 1.5rem !important;
+            }
+
+            .commitment-circle {
+                width: 200px !important;
+                height: 200px !important;
+            }
+
+            .commitment-circle::before {
+                width: 160px !important;
+                height: 160px !important;
+            }
+
+            .commitment-text {
+                font-size: 1rem !important;
+                padding: 1rem !important;
+            }
+
+            .cta-section h2 {
+                font-size: 1.5rem !important;
+            }
+        }
+
+        /* ===== END OF MOBILE-ONLY STYLES ===== */
     </style>
 </head>
 <body>
@@ -804,6 +1094,12 @@
                 </li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
+            <!-- Mobile Menu Button - Only visible on mobile -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </nav>
 
@@ -943,6 +1239,53 @@
 
         function updateThemeIcon(theme) {
             themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Mobile menu functionality (only runs on mobile)
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Don't close if clicking on dropdown toggle
+                    if (!link.parentElement.classList.contains('nav-dropdown') && 
+                        !link.classList.contains('has-submenu')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // Handle dropdown menus on mobile
+            const dropdowns = document.querySelectorAll('.nav-dropdown > a');
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const parent = dropdown.parentElement;
+                        parent.classList.toggle('active');
+                        
+                        // Close other dropdowns
+                        document.querySelectorAll('.nav-dropdown').forEach(other => {
+                            if (other !== parent) {
+                                other.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            });
         }
 
         // Smooth scrolling for navigation links

@@ -324,6 +324,118 @@
                 font-size: 20px;
             }
         }
+
+        /* ===== MOBILE-ONLY STYLES - DESKTOP REMAINS UNCHANGED ===== */
+
+        /* Mobile-Only Media Query */
+        @media (max-width: 768px) {
+            /* Smaller logo on mobile */
+            .logo img {
+                height: 80px;
+            }
+
+            /* Adjust navigation padding */
+            .nav-container {
+                padding: 1rem;
+            }
+
+            /* Adjust content margins for smaller nav */
+            .privacy-content {
+                margin-top: 130px !important;
+                padding: 0 1rem;
+            }
+
+            /* Make images responsive on mobile */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Typography adjustments for mobile - Override desktop */
+            .privacy-header {
+                padding: 2rem 1.5rem;
+            }
+
+            .privacy-header h1 {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+
+            .content-section {
+                padding: 1.5rem !important;
+            }
+
+            .content-section h2 {
+                font-size: 1.25rem !important;
+            }
+
+            .content-section p,
+            .content-section li {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .content-section ul {
+                padding-left: 1.5rem;
+            }
+
+            /* Touch-friendly links */
+            .contact-info a {
+                display: inline-block;
+                padding: 0.5rem 0;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Back link adjustments */
+            .back-link {
+                font-size: 0.9rem;
+                padding: 0.5rem;
+            }
+
+            /* Reduce padding on mobile */
+            section {
+                padding: 2rem 1rem !important;
+            }
+
+            /* Footer adjustments */
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            .disclosure {
+                font-size: 0.8rem;
+                padding: 0 1rem;
+            }
+
+            /* Adjust theme toggle for mobile - Already handled above */
+
+            /* Disable hover effects on touch devices */
+            @media (hover: none) {
+                .content-section:hover {
+                    transform: none;
+                }
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 480px) {
+            .privacy-header h1 {
+                font-size: 1.75rem !important;
+            }
+
+            .content-section h2 {
+                font-size: 1.1rem !important;
+            }
+
+            .content-section {
+                padding: 1.25rem !important;
+            }
+        }
+
+        /* ===== END OF MOBILE-ONLY STYLES ===== */
     </style>
 </head>
 <body>
