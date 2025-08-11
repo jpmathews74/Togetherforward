@@ -727,6 +727,253 @@
                 font-size: 20px;
             }
         }
+
+        /* ===== MOBILE-ONLY STYLES - DESKTOP REMAINS UNCHANGED ===== */
+
+        /* Mobile Menu Button - Hidden on Desktop */
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Mobile-Only Media Query */
+        @media (max-width: 768px) {
+            /* Show mobile menu button ONLY on mobile */
+            .mobile-menu-toggle {
+                display: flex;
+                flex-direction: column;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 5px;
+                z-index: 1001;
+            }
+
+            .hamburger-line {
+                width: 25px;
+                height: 3px;
+                background: var(--text-dark);
+                margin: 3px 0;
+                transition: 0.3s;
+            }
+
+            [data-theme="dark"] .hamburger-line {
+                background: var(--text-dark);
+            }
+
+            /* Hamburger animation when active */
+            .nav-links.active ~ .mobile-menu-toggle .hamburger-line:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .nav-links.active ~ .mobile-menu-toggle .hamburger-line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-links.active ~ .mobile-menu-toggle .hamburger-line:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            /* Transform navigation ONLY on mobile */
+            .nav-links {
+                position: fixed !important;
+                right: -100%;
+                top: 127px;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 127px);
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                overflow-y: auto;
+                z-index: 999;
+                align-items: flex-start;
+                gap: 1rem;
+                display: flex !important;
+            }
+
+            [data-theme="dark"] .nav-links {
+                background: var(--nav-bg);
+                box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            /* Mobile dropdown behavior */
+            .nav-dropdown {
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                box-shadow: none !important;
+                margin-top: 0.5rem;
+                margin-bottom: 1rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-dropdown.active .dropdown-menu {
+                max-height: 500px;
+            }
+
+            .submenu {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                margin-left: 1rem;
+                margin-top: 0.5rem;
+                box-shadow: none !important;
+            }
+
+            /* Smaller logo on mobile */
+            .logo img {
+                height: 80px;
+            }
+
+            /* Adjust navigation padding */
+            .nav-container {
+                padding: 1rem;
+            }
+
+            /* Adjust hero for smaller nav */
+            .hero {
+                padding: 130px 1rem 3rem;
+            }
+
+            /* Make images responsive on mobile */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            /* Typography adjustments for mobile - Override desktop */
+            .hero h1 {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+
+            .hero p {
+                font-size: 1.1rem !important;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem !important;
+            }
+
+            .member-info h3 {
+                font-size: 1.25rem !important;
+            }
+
+            .join-team h2 {
+                font-size: 1.75rem !important;
+            }
+
+            /* Touch-friendly buttons */
+            .contact-link,
+            .view-full-bio,
+            .join-team-btn {
+                min-height: 44px;
+                padding: 0.875rem 1.5rem;
+            }
+
+            /* Leadership section adjustments */
+            .leadership-section,
+            .advisory-section {
+                padding: 3rem 1rem !important;
+            }
+
+            /* Team member adjustments */
+            .member-image {
+                height: 300px;
+            }
+
+            .member-info {
+                padding: 1.5rem;
+            }
+
+            .member-bio {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            /* Contact links stack on mobile */
+            .member-contact {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .contact-link {
+                width: 100%;
+                justify-content: center;
+                padding: 0.75rem;
+            }
+
+            /* Advisory grid already handled above */
+            .advisory-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Join team section adjustments */
+            .join-team {
+                padding: 3rem 1rem;
+            }
+
+            .join-team p {
+                font-size: 1rem !important;
+            }
+
+            /* Reduce padding on mobile */
+            section {
+                padding: 3rem 1rem !important;
+            }
+
+            /* Footer adjustments - Already handled above */
+
+            /* Adjust theme toggle for mobile - Already handled above */
+
+            /* Disable hover effects on touch devices */
+            @media (hover: none) {
+                .team-member:hover,
+                .advisor-card:hover {
+                    transform: none;
+                }
+
+                .team-member:hover .member-image img {
+                    transform: none;
+                }
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.75rem !important;
+            }
+
+            .member-info h3 {
+                font-size: 1.1rem !important;
+            }
+
+            .member-credentials {
+                gap: 0.25rem;
+            }
+
+            .credential-tag {
+                font-size: 0.75rem;
+                padding: 0.2rem 0.5rem;
+            }
+        }
+
+        /* ===== END OF MOBILE-ONLY STYLES ===== */
     </style>
 </head>
 <body>
@@ -772,6 +1019,12 @@
                 </li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
+            <!-- Mobile Menu Button - Only visible on mobile -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </nav>
 
@@ -892,6 +1145,53 @@
 
         function updateThemeIcon(theme) {
             themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Mobile menu functionality (only runs on mobile)
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Don't close if clicking on dropdown toggle
+                    if (!link.parentElement.classList.contains('nav-dropdown') && 
+                        !link.classList.contains('has-submenu')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // Handle dropdown menus on mobile
+            const dropdowns = document.querySelectorAll('.nav-dropdown > a');
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const parent = dropdown.parentElement;
+                        parent.classList.toggle('active');
+                        
+                        // Close other dropdowns
+                        document.querySelectorAll('.nav-dropdown').forEach(other => {
+                            if (other !== parent) {
+                                other.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            });
         }
 
         // Navigation background on scroll
