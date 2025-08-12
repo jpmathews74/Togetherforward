@@ -1290,21 +1290,6 @@
                     }
                 });
             });
-
-            // Handle submenu items on mobile - ADD THIS NEW CODE HERE
-            const submenuTriggers = document.querySelectorAll('.has-submenu');
-            submenuTriggers.forEach(trigger => {
-                trigger.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        const submenu = trigger.nextElementSibling;
-                        if (submenu && submenu.classList.contains('submenu')) {
-                            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-                        }
-        }
-    });
-});
-}
         }
 
         // Smooth scrolling for navigation links
