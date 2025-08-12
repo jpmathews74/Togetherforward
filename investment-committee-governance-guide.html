@@ -36,6 +36,36 @@
             background: var(--light-gray);
         }
 
+        /* Back to Home Button */
+        .back-to-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .back-to-home:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .back-to-home svg {
+            width: 16px;
+            height: 16px;
+        }
+
         .guide-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -46,7 +76,7 @@
         /* Cover Page */
         .cover-page {
             background-image: 
-                linear-gradient(135deg, rgba(30, 77, 139, 0.9) 0%, rgba(46, 125, 50, 0.9) 100%),
+                linear-gradient(135deg, rgba(30, 77, 139, 0.45) 0%, rgba(46, 125, 50, 0.45) 100%),
                 url('committee-meeting-background.jpg');
             background-size: cover;
             background-position: center;
@@ -93,7 +123,7 @@
         }
 
         .cover-logo {
-            width: 500px;
+            width: 650px;
             max-width: 90%;
             margin-bottom: 50px;
         }
@@ -711,18 +741,449 @@
             text-decoration: underline;
         }
 
+        /* Disclosure Page */
+        .disclosure-page {
+            padding: 80px 50px;
+            background: var(--white);
+            min-height: 100vh;
+            page-break-before: always;
+        }
+
+        .disclosure-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .disclosure-header .disclosure-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .disclosure-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .disclosure-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+        }
+
+        .disclosure-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .disclosure-section {
+            display: grid;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .disclosure-item {
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary-green);
+            transition: all 0.3s ease;
+        }
+
+        .disclosure-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transform: translateX(5px);
+        }
+
+        .disclosure-icon-small {
+            float: left;
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-right: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .disclosure-item h3 {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            padding-top: 8px;
+        }
+
+        .disclosure-item p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            clear: both;
+        }
+
+        .disclosure-footer {
+            margin-top: 50px;
+        }
+
+        .disclosure-contact-box {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 100%);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .disclosure-contact-box h4 {
+            color: var(--primary-blue);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .disclosure-contact-box p {
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-info strong {
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+
+        .contact-info a {
+            color: var(--secondary-blue);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .disclosure-date {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            font-style: italic;
+        }
+
         /* Print Styles */
         @media print {
-            .download-section, .download-button {
+            /* Hide non-printable elements */
+            .download-section, 
+            .download-button, 
+            .download-buttons,
+            .download-btn,
+            .back-to-home {
+                display: none !important;
+            }
+            
+            /* General print settings */
+            body {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+            
+            /* Page setup */
+            @page {
+                size: letter;
+                margin: 0.5in;
+            }
+            
+            /* Ensure each major section starts on a new page */
+            .cover-page,
+            .toc-page,
+            .content-page,
+            .disclosure-page {
+                page-break-before: always;
+                page-break-after: always;
+                min-height: 10in;
+                position: relative;
+            }
+            
+            /* First page should not have page break before */
+            .cover-page:first-child {
+                page-break-before: auto;
+            }
+            
+            /* Adjust cover page for print */
+            .cover-page {
+                background-image: linear-gradient(135deg, rgba(30, 77, 139, 0.45) 0%, rgba(46, 125, 50, 0.45) 100%) !important;
+                padding: 60px 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 9in;
+            }
+            
+            .cover-page::before,
+            .cover-page::after {
                 display: none;
             }
             
-            .content-page {
-                page-break-before: always;
+            .cover-logo {
+                width: 500px;
+                max-width: 85%;
+                margin-bottom: 40px;
             }
             
-            .cover-page {
-                min-height: 100vh;
+            .cover-title {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .cover-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .cover-description {
+                font-size: 1rem;
+                max-width: 500px;
+            }
+            
+            /* TOC page adjustments */
+            .toc-page {
+                padding: 40px 30px;
+            }
+            
+            .toc-header h2 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+            
+            .toc-grid {
+                gap: 20px;
+            }
+            
+            .toc-item {
+                page-break-inside: avoid;
+                padding: 20px;
+            }
+            
+            .toc-item:hover {
+                transform: none;
+            }
+            
+            /* Content page adjustments */
+            .content-page {
+                padding: 35px 25px;
+            }
+            
+            .content-header {
+                page-break-after: avoid;
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+            }
+            
+            .content-header h2 {
+                font-size: 2rem;
+            }
+            
+            /* Prevent awkward breaks */
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+            
+            p {
+                orphans: 3;
+                widows: 3;
+            }
+            
+            /* Keep related elements together */
+            .practice-card,
+            .quarter-card,
+            .agenda-item,
+            .checklist-item,
+            .disclosure-item {
+                page-break-inside: avoid;
+            }
+            
+            /* Calendar visual adjustments */
+            .calendar-visual {
+                padding: 30px;
+                page-break-inside: avoid;
+            }
+            
+            .calendar-quarters {
+                gap: 15px;
+            }
+            
+            .quarter-card {
+                padding: 20px 15px;
+            }
+            
+            .quarter-card:hover {
+                transform: none;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            }
+            
+            /* Governance wheel adjustments */
+            .governance-wheel {
+                padding: 30px 15px;
+                page-break-inside: avoid;
+                margin: 30px 0;
+            }
+            
+            .wheel-container {
+                width: 400px;
+                height: 400px;
+                margin: 0 auto;
+            }
+            
+            .wheel-segment {
+                width: 160px;
+                padding: 15px;
+            }
+            
+            .wheel-segment:hover {
+                transform: none;
+            }
+            
+            .wheel-center {
+                width: 120px;
+                height: 120px;
+                font-size: 0.9rem;
+            }
+            
+            /* Matrix table adjustments */
+            .responsibility-matrix {
+                font-size: 0.9rem;
+                page-break-inside: avoid;
+            }
+            
+            .responsibility-matrix th,
+            .responsibility-matrix td {
+                padding: 15px;
+            }
+            
+            /* Practice cards grid adjustments */
+            .practices-grid {
+                gap: 15px;
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+            
+            .practice-card {
+                page-break-inside: avoid;
+            }
+            
+            .practice-card:hover {
+                transform: none;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            }
+            
+            .practice-icon {
+                height: 80px;
+                font-size: 1.8rem;
+            }
+            
+            .practice-content {
+                padding: 20px;
+            }
+            
+            .practice-title {
+                font-size: 1.1rem;
+            }
+            
+            .practice-text {
+                font-size: 0.85rem;
+            }
+            
+            /* Agenda template adjustments */
+            .agenda-template {
+                page-break-inside: avoid;
+                margin: 30px 0;
+            }
+            
+            /* Checklist adjustments */
+            .governance-checklist {
+                page-break-inside: avoid;
+                padding: 30px;
+                margin: 30px 0;
+            }
+            
+            .checklist-columns {
+                gap: 20px;
+            }
+            
+            /* Disclosure page adjustments */
+            .disclosure-page {
+                padding: 40px 30px;
+            }
+            
+            .disclosure-header {
+                margin-bottom: 40px;
+            }
+            
+            .disclosure-header h2 {
+                font-size: 2rem;
+            }
+            
+            .disclosure-section {
+                gap: 20px;
+            }
+            
+            .disclosure-item {
+                padding: 20px;
+                page-break-inside: avoid;
+            }
+            
+            .disclosure-item:hover {
+                transform: none;
+                box-shadow: none;
+            }
+            
+            .disclosure-contact-box {
+                page-break-inside: avoid;
+            }
+            
+            /* Footer adjustments */
+            .guide-footer {
+                padding: 30px;
+                page-break-inside: avoid;
+            }
+            
+            .footer-logo {
+                width: 200px;
+            }
+            
+            /* Remove animations and transitions */
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+            
+            /* Ensure backgrounds print */
+            .quarter-card::before,
+            .practice-card::before,
+            .toc-item::before {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            
+            /* Force page numbers and headers */
+            .content-page::after {
+                content: "";
+                display: block;
+                height: 20px;
             }
         }
 
@@ -746,6 +1207,13 @@
         }
 
         @media (max-width: 768px) {
+            .back-to-home {
+                top: 10px;
+                left: 10px;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
             .cover-title {
                 font-size: 2.5rem;
             }
@@ -767,9 +1235,44 @@
                 width: 150px;
             }
         }
+
+        /* Additional print-friendly classes */
+        .print-page-break {
+            page-break-after: always;
+        }
+
+        .print-avoid-break {
+            page-break-inside: avoid;
+        }
+
+        /* Ensure content fills pages appropriately */
+        .content-wrapper {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Page number styling (for browsers that support it) */
+        @media print {
+            @page {
+                @bottom-right {
+                    content: counter(page);
+                    font-size: 10pt;
+                    color: #666;
+                }
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Back to Home Button -->
+    <a href="index.html" class="back-to-home">
+        <svg fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+        </svg>
+        Back to Home
+    </a>
+
     <div class="guide-container">
         <!-- Cover Page -->
         <div class="cover-page">
@@ -781,7 +1284,7 @@
                     A comprehensive resource for nonprofit boards and investment committees to build robust governance frameworks, 
                     fulfill fiduciary responsibilities, and maximize investment impact through structured oversight and strategic planning.
                 </p>
-                <a href="#" class="download-button" onclick="window.print(); return false;">
+                <a href="Investment Committee Governance Guide.pdf" class="download-button" target="_blank">
                     📥 Download PDF Guide
                 </a>
             </div>
@@ -1194,19 +1697,349 @@
             </div>
         </div>
 
-        <!-- Download Section -->
+        <!-- Section 6: Implementation Tools -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Implementation Tools & Templates</h2>
+                <p>Practical resources to help you implement best-in-class governance practices</p>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin-bottom: 30px;">Essential Documents Checklist</h3>
+            <div class="governance-checklist">
+                <div class="checklist-columns">
+                    <div class="checklist-group">
+                        <h4>Core Governance Documents</h4>
+                        <div class="checklist-item">Investment Committee Charter</div>
+                        <div class="checklist-item">Investment Policy Statement (IPS)</div>
+                        <div class="checklist-item">Spending Policy Document</div>
+                        <div class="checklist-item">Gift Acceptance Policy</div>
+                        <div class="checklist-item">Conflict of Interest Policy</div>
+                        <div class="checklist-item">Delegation of Authority Matrix</div>
+                    </div>
+                    <div class="checklist-group">
+                        <h4>Operational Documents</h4>
+                        <div class="checklist-item">Annual Meeting Calendar</div>
+                        <div class="checklist-item">Meeting Agenda Templates</div>
+                        <div class="checklist-item">Performance Report Templates</div>
+                        <div class="checklist-item">Due Diligence Questionnaires</div>
+                        <div class="checklist-item">Manager Evaluation Forms</div>
+                        <div class="checklist-item">Committee Self-Assessment Tool</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin: 40px 0 20px;">Key Performance Indicators (KPIs)</h3>
+            <div class="practices-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">📈</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Portfolio Performance</div>
+                        <div class="practice-text">
+                            • Absolute and relative returns<br>
+                            • Risk-adjusted performance metrics<br>
+                            • Performance vs. policy benchmarks<br>
+                            • Asset allocation compliance
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">💰</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Cost Management</div>
+                        <div class="practice-text">
+                            • Total expense ratio<br>
+                            • Manager fee benchmarking<br>
+                            • Transaction cost analysis<br>
+                            • Cost per basis point of return
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">⚡</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Risk Metrics</div>
+                        <div class="practice-text">
+                            • Portfolio volatility<br>
+                            • Downside capture ratio<br>
+                            • Maximum drawdown<br>
+                            • Liquidity coverage ratio
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="agenda-template" style="margin-top: 40px;">
+                <div class="agenda-header">
+                    <h3>Annual Governance Calendar Template</h3>
+                    <p>A month-by-month guide to essential governance activities</p>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">JAN</div>
+                    <div class="agenda-content">
+                        <h4>Annual Planning & Review</h4>
+                        <p>Prior year performance review, goal setting, economic outlook briefing</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">MAR</div>
+                    <div class="agenda-content">
+                        <h4>Q1 Review & Policy Check</h4>
+                        <p>Quarterly performance, spending policy review, rebalancing decisions</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">JUN</div>
+                    <div class="agenda-content">
+                        <h4>Mid-Year Assessment</h4>
+                        <p>Semi-annual deep dive, manager reviews, fee analysis</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">SEP</div>
+                    <div class="agenda-content">
+                        <h4>Governance Review</h4>
+                        <p>IPS annual review, committee self-assessment, education planning</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">DEC</div>
+                    <div class="agenda-content">
+                        <h4>Year-End Planning</h4>
+                        <p>Annual rebalancing, tax strategies, next year's calendar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Risk Management Framework -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Risk Management Framework</h2>
+                <p>Comprehensive approach to identifying, monitoring, and mitigating investment risks</p>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin-bottom: 30px;">Risk Categories & Mitigation Strategies</h3>
+            <div class="practices-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">📊</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Market Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • Diversification across asset classes<br>
+                            • Regular rebalancing protocols<br>
+                            • Defined risk tolerance limits<br>
+                            • Stress testing scenarios
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">💧</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Liquidity Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • Maintain adequate cash reserves<br>
+                            • Ladder illiquid investments<br>
+                            • Regular cash flow projections<br>
+                            • Emergency liquidity plan
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">⚖️</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Compliance Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • Regular policy reviews<br>
+                            • UPMIFA compliance checks<br>
+                            • Documentation protocols<br>
+                            • Annual compliance audit
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🎯</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Concentration Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • Position size limits<br>
+                            • Sector exposure caps<br>
+                            • Manager diversification<br>
+                            • Regular monitoring
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">👥</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Operational Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • Clear roles & responsibilities<br>
+                            • Succession planning<br>
+                            • Cybersecurity protocols<br>
+                            • Regular training
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🌍</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Reputational Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • ESG screening criteria<br>
+                            • Mission alignment checks<br>
+                            • Transparent reporting<br>
+                            • Stakeholder communication
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="governance-checklist" style="margin-top: 40px;">
+                <div class="checklist-header">
+                    <h3>Risk Management Action Items</h3>
+                    <p>Essential steps for comprehensive risk oversight</p>
+                </div>
+                <div class="checklist-columns">
+                    <div class="checklist-group">
+                        <h4>Quarterly Reviews</h4>
+                        <div class="checklist-item">Portfolio risk metrics dashboard</div>
+                        <div class="checklist-item">Compliance checklist review</div>
+                        <div class="checklist-item">Liquidity stress testing</div>
+                        <div class="checklist-item">Manager risk assessments</div>
+                        <div class="checklist-item">Economic scenario analysis</div>
+                    </div>
+                    <div class="checklist-group">
+                        <h4>Annual Assessments</h4>
+                        <div class="checklist-item">Enterprise risk management review</div>
+                        <div class="checklist-item">Investment policy risk limits</div>
+                        <div class="checklist-item">Fiduciary liability insurance</div>
+                        <div class="checklist-item">Cybersecurity audit</div>
+                        <div class="checklist-item">Business continuity planning</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: Success Metrics -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Measuring Governance Success</h2>
+                <p>Key indicators and benchmarks for evaluating committee effectiveness</p>
+            </div>
+
+            <div class="matrix-container">
+                <table class="responsibility-matrix">
+                    <thead>
+                        <tr>
+                            <th>Success Metric</th>
+                            <th>Target</th>
+                            <th>Measurement Frequency</th>
+                            <th>Responsible Party</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Meeting Attendance</td>
+                            <td>90%+ attendance rate</td>
+                            <td>Quarterly</td>
+                            <td>Committee Chair</td>
+                        </tr>
+                        <tr>
+                            <td>Policy Compliance</td>
+                            <td>100% adherence to IPS</td>
+                            <td>Quarterly</td>
+                            <td>Investment Advisor</td>
+                        </tr>
+                        <tr>
+                            <td>Performance vs. Benchmark</td>
+                            <td>Within policy ranges</td>
+                            <td>Quarterly</td>
+                            <td>Investment Advisor</td>
+                        </tr>
+                        <tr>
+                            <td>Cost Effectiveness</td>
+                            <td>Below peer median</td>
+                            <td>Annual</td>
+                            <td>CFO/Treasurer</td>
+                        </tr>
+                        <tr>
+                            <td>Documentation Quality</td>
+                            <td>Complete minutes within 2 weeks</td>
+                            <td>Each Meeting</td>
+                            <td>Secretary/Staff</td>
+                        </tr>
+                        <tr>
+                            <td>Education Completion</td>
+                            <td>4+ hours annually per member</td>
+                            <td>Annual</td>
+                            <td>Committee Chair</td>
+                        </tr>
+                        <tr>
+                            <td>Risk Management</td>
+                            <td>No material breaches</td>
+                            <td>Quarterly</td>
+                            <td>Full Committee</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin: 40px 0 20px;">Committee Self-Assessment Framework</h3>
+            <div class="agenda-template">
+                <div class="agenda-header">
+                    <h3>Annual Committee Effectiveness Review</h3>
+                    <p>Structured approach to continuous improvement</p>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">1</div>
+                    <div class="agenda-content">
+                        <h4>Governance Structure</h4>
+                        <p>Evaluate committee composition, skills matrix, succession planning, and meeting effectiveness</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">2</div>
+                    <div class="agenda-content">
+                        <h4>Fiduciary Oversight</h4>
+                        <p>Assess policy adherence, decision-making processes, and documentation practices</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">3</div>
+                    <div class="agenda-content">
+                        <h4>Performance Management</h4>
+                        <p>Review investment results, risk management effectiveness, and cost control</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">4</div>
+                    <div class="agenda-content">
+                        <h4>Strategic Alignment</h4>
+                        <p>Confirm mission alignment, stakeholder communication, and long-term planning</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">5</div>
+                    <div class="agenda-content">
+                        <h4>Improvement Planning</h4>
+                        <p>Identify gaps, set improvement goals, and establish accountability measures</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Download Section -->
         <div class="download-section">
             <h2>Ready to Transform Your Investment Governance?</h2>
-            <p>Download this guide and access our complete toolkit of templates and resources</p>
             <div class="download-buttons">
-                <a href="#" class="download-btn" onclick="window.print(); return false;">
+                <a href="Investment Committee Governance Guide.pdf" class="download-btn" target="_blank">
                     📄 Download PDF Guide
-                </a>
-                <a href="#" class="download-btn">
-                    📊 Get Excel Templates
-                </a>
-                <a href="#" class="download-btn">
-                    📋 Access Checklists
                 </a>
             </div>
         </div>
@@ -1223,51 +2056,56 @@
                 a DBA of R.F. Lafferty & Co., Inc., an investment adviser registered with the SEC.
             </p>
         </div>
-    </div>
 
-    <script>
-        // Add smooth scrolling for TOC items
-        document.querySelectorAll('.toc-item').forEach((item, index) => {
-            item.addEventListener('click', () => {
-                const sections = document.querySelectorAll('.content-page');
-                if (sections[index]) {
-                    sections[index].scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+        <!-- Disclosure Page -->
+        <div class="disclosure-page">
+            <div class="disclosure-header">
+                <div class="disclosure-icon">
+                    <span>📋</span>
+                </div>
+                <h2>Important Disclosures</h2>
+                <div class="disclosure-subtitle">Regulatory Information and Legal Notices</div>
+            </div>
 
-        // Add interactive hover effects
-        document.querySelectorAll('.quarter-card, .practice-card, .wheel-segment').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = '';
-            });
-        });
+            <div class="disclosure-container">
+                <div class="disclosure-section">
+                    <div class="disclosure-item">
+                        <div class="disclosure-icon-small">🏛️</div>
+                        <h3>Regulatory Registration</h3>
+                        <p>Together Forward Capital operates as a DBA of R.F. Lafferty & Co., Inc., an investment adviser registered with the Securities and Exchange Commission with principal offices in Boca Raton, Florida. Together Forward Capital is authorized to conduct business solely in states where it maintains registration or meets exemption or exclusion criteria from registration obligations.</p>
+                    </div>
 
-        // Checklist interaction
-        document.querySelectorAll('.checklist-item').forEach(item => {
-            item.addEventListener('click', function() {
-                this.classList.toggle('checked');
-                if (this.classList.contains('checked')) {
-                    this.style.textDecoration = 'line-through';
-                    this.style.opacity = '0.6';
-                    const checkmark = document.createElement('span');
-                    checkmark.textContent = '✓';
-                    checkmark.style.position = 'absolute';
-                    checkmark.style.left = '5px';
-                    checkmark.style.color = 'var(--secondary-green)';
-                    this.insertBefore(checkmark, this.firstChild);
-                } else {
-                    this.style.textDecoration = '';
-                    this.style.opacity = '';
-                    const checkmark = this.querySelector('span');
-                    if (checkmark) checkmark.remove();
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                    <div class="disclosure-item">
+                        <div class="disclosure-icon-small">📚</div>
+                        <h3>Educational Purpose</h3>
+                        <p>This governance guide serves educational and informational purposes exclusively. Investment decisions carry inherent risks and returns cannot be guaranteed. The content provided aims to educate a general audience and should not be construed as an offer or solicitation to buy or sell any securities, investment products, or investment strategies. All investments involve risk and guarantees cannot be provided.</p>
+                    </div>
+
+                    <div class="disclosure-item">
+                        <div class="disclosure-icon-small">✓</div>
+                        <h3>Content Accuracy</h3>
+                        <p>Together Forward Capital maintains reasonable confidence that this guide contains no false or materially misleading statements or fact omissions concerning our services, investment approaches, or client experiences. We believe the content presents a fair and accurate representation that will not create misleading implications about our advisory services, investment strategies, or client outcomes. For comprehensive risk disclosures, please consult our Form ADV Part 2A.</p>
+                    </div>
+
+                    <div class="disclosure-item">
+                        <div class="disclosure-icon-small">📊</div>
+                        <h3>Performance Information</h3>
+                        <p>Historical performance data for specific investment recommendations should be evaluated considering relevant market conditions, investment characteristics and timing, and applicable constraints. Together Forward Capital strives to present all information in an objective and balanced manner.</p>
+                    </div>
+
+                    <div class="disclosure-item">
+                        <div class="disclosure-icon-small">⚖️</div>
+                        <h3>Professional Advice</h3>
+                        <p>This guide does not provide tax, legal, or accounting guidance. We recommend consulting qualified tax or legal professionals for advice specific to your circumstances.</p>
+                    </div>
+
+                    <div class="disclosure-item">
+                        <div class="disclosure-icon-small">📈</div>
+                        <h3>Investment Tools & Analysis</h3>
+                        <p>Any charts, graphs, formulas, or investment examples discussed within this guide serve illustrative purposes only and should not be used independently to make investment decisions regarding which securities to purchase or sell, or the timing of such transactions. These visual aids provide limited scope and require consultation with a licensed financial professional for proper application.</p>
+                    </div>
+
+                    <div class="disclosure-item">
+                        <div class="disclosure-icon-small">💭</div>
+                        <h3>Forward-Looking Statements</h3>
+                        <p>The views and opinions presented represent those of Together Forward Capital as of the publication date and remain subject to revision without notice. These perspectives reflect the date of publication and may evolve based on market fluctuations or economic developments, with no assurance of future accuracy. Any opinions, projections, or forward-looking statements contained herein represent solely the author's views and may diverge from positions held by other divisions within our firm, serving only general informational purposes as of the indicated date.</p>
