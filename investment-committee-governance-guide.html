@@ -9,6 +9,23 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            .checklist-columns {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .agenda-header {
+                margin: -30px -40px 30px;
+                padding: 30px 40px;
+            }
+
+            .agenda-template {
+                padding: 40px;
+            }
+
+            .governance-checklist {
+                padding: 40px;
+            }
         }
 
         :root {
@@ -487,7 +504,195 @@
             line-height: 1.6;
         }
 
-        /* Download Section */
+        /* Checklist and governance styles */
+        .governance-checklist {
+            background: var(--light-gray);
+            padding: 30px 20px;
+            border-radius: 16px;
+            margin: 30px 0;
+        }
+
+        .checklist-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .checklist-header h3 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .checklist-columns {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .checklist-group {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .checklist-group h4 {
+            color: var(--secondary-green);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .checklist-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--secondary-green);
+            border-radius: 4px;
+            background: white;
+        }
+
+        .checklist-item:hover::before {
+            background: var(--light-green);
+        }
+
+        /* Meeting Agenda Template */
+        .agenda-template {
+            background: white;
+            border: 2px solid var(--secondary-green);
+            border-radius: 16px;
+            padding: 30px 20px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .agenda-header {
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--light-blue) 100%);
+            margin: -30px -20px 25px;
+            padding: 25px 20px;
+            border-radius: 14px 14px 0 0;
+        }
+
+        .agenda-header h3 {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .agenda-header p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .agenda-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .agenda-item:last-child {
+            border-bottom: none;
+        }
+
+        .agenda-number {
+            width: 35px;
+            height: 35px;
+            background: var(--secondary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        .agenda-content h4 {
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .agenda-content p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Responsibility Matrix */
+        .matrix-container {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        .responsibility-matrix {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 0.85rem;
+        }
+
+        .responsibility-matrix th {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: white;
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .responsibility-matrix td {
+            padding: 15px 10px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .responsibility-matrix tr:last-child td {
+            border-bottom: none;
+        }
+
+        .responsibility-matrix tr:hover {
+            background: var(--light-gray);
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .role-primary {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        .role-support {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+        }
+
+        .role-review {
+            background: var(--light-purple);
+            color: var(--accent-purple);
+        }
         .download-section {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
             color: white;
@@ -948,7 +1153,7 @@
             </div>
         </div>
 
-        <!-- Sample Content Section with Mobile-Optimized Calendar -->
+        <!-- Section 2: Annual Planning Framework -->
         <div class="content-page">
             <div class="content-header">
                 <h2>Annual Planning Framework</h2>
@@ -1004,9 +1209,680 @@
                     </div>
                 </div>
             </div>
+
+            <div class="governance-checklist">
+                <div class="checklist-header">
+                    <h3>Annual Governance Checklist</h3>
+                    <p>Ensure all critical responsibilities are addressed each year</p>
+                </div>
+                <div class="checklist-columns">
+                    <div class="checklist-group">
+                        <h4>Policy & Documentation</h4>
+                        <div class="checklist-item">Review and update Investment Policy Statement</div>
+                        <div class="checklist-item">Confirm spending policy alignment</div>
+                        <div class="checklist-item">Update conflict of interest declarations</div>
+                        <div class="checklist-item">Review gift acceptance policies</div>
+                        <div class="checklist-item">Document meeting minutes and decisions</div>
+                    </div>
+                    <div class="checklist-group">
+                        <h4>Performance & Strategy</h4>
+                        <div class="checklist-item">Conduct quarterly performance reviews</div>
+                        <div class="checklist-item">Evaluate asset allocation targets</div>
+                        <div class="checklist-item">Assess manager performance</div>
+                        <div class="checklist-item">Review fee structures and benchmarks</div>
+                        <div class="checklist-item">Plan for liquidity needs</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Download Section -->
+        <!-- Section 3: Meeting Excellence -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Meeting Excellence Framework</h2>
+                <p>Transform your committee meetings into strategic sessions that drive results</p>
+            </div>
+
+            <div class="agenda-template">
+                <div class="agenda-header">
+                    <h3>Sample Quarterly Meeting Agenda</h3>
+                    <p>A structured approach to maximize meeting productivity</p>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">1</div>
+                    <div class="agenda-content">
+                        <h4>Opening & Governance (10 min)</h4>
+                        <p>Roll call, approve minutes, review meeting objectives</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">2</div>
+                    <div class="agenda-content">
+                        <h4>Market Update & Economic Outlook (15 min)</h4>
+                        <p>Review current market conditions and potential impacts on portfolio</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">3</div>
+                    <div class="agenda-content">
+                        <h4>Portfolio Performance Review (20 min)</h4>
+                        <p>Analyze returns, attribution, and comparison to benchmarks</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">4</div>
+                    <div class="agenda-content">
+                        <h4>Strategic Focus Topic (25 min)</h4>
+                        <p>Deep dive into quarterly theme (e.g., asset allocation, risk management)</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">5</div>
+                    <div class="agenda-content">
+                        <h4>Action Items & Next Steps (10 min)</h4>
+                        <p>Document decisions, assign responsibilities, confirm next meeting</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin: 40px 0 20px;">Meeting Best Practices</h3>
+            <div class="practices-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">📅</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Consistent Schedule</div>
+                        <div class="practice-text">Set quarterly meetings well in advance and stick to the schedule to ensure consistent oversight.</div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">📚</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Pre-Meeting Materials</div>
+                        <div class="practice-text">Distribute comprehensive materials at least one week before meetings to allow thorough review.</div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🎯</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Clear Action Items</div>
+                        <div class="practice-text">End each meeting with documented decisions and assigned responsibilities with deadlines.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Roles & Responsibilities -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Roles & Responsibilities Matrix</h2>
+                <p>Clear delineation of duties ensures effective governance and accountability</p>
+            </div>
+
+            <div class="matrix-container">
+                <table class="responsibility-matrix">
+                    <thead>
+                        <tr>
+                            <th>Responsibility</th>
+                            <th>Committee Chair</th>
+                            <th>Committee Members</th>
+                            <th>Staff/CFO</th>
+                            <th>Investment Advisor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Meeting Leadership</td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                        </tr>
+                        <tr>
+                            <td>Policy Development</td>
+                            <td><span class="role-badge role-review">Review</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                        </tr>
+                        <tr>
+                            <td>Performance Monitoring</td>
+                            <td><span class="role-badge role-review">Review</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                            <td><span class="role-badge role-review">Review</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                        </tr>
+                        <tr>
+                            <td>Risk Assessment</td>
+                            <td><span class="role-badge role-review">Review</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                        </tr>
+                        <tr>
+                            <td>Documentation</td>
+                            <td><span class="role-badge role-review">Review</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                            <td><span class="role-badge role-primary">Primary</span></td>
+                            <td><span class="role-badge role-support">Support</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin: 40px 0 20px;">Committee Member Expectations</h3>
+            <div class="practices-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="practice-card">
+                    <div class="practice-icon">📖</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Preparation & Participation</div>
+                        <div class="practice-text">
+                            • Review all materials before meetings<br>
+                            • Attend meetings consistently<br>
+                            • Ask thoughtful questions<br>
+                            • Contribute expertise and perspectives
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🤝</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Fiduciary Excellence</div>
+                        <div class="practice-text">
+                            • Act in organization's best interest<br>
+                            • Maintain confidentiality<br>
+                            • Disclose conflicts of interest<br>
+                            • Support committee decisions
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Education & Development -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Continuous Education & Development</h2>
+                <p>Building expertise through ongoing learning and professional development</p>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin-bottom: 20px;">Annual Education Calendar</h3>
+            <div class="calendar-visual">
+                <div class="calendar-quarters">
+                    <div class="quarter-card">
+                        <div class="quarter-icon">📚</div>
+                        <div class="quarter-label">Q1</div>
+                        <div class="quarter-focus">Market Outlook</div>
+                        <div class="quarter-tasks">
+                            Economic trends and forecasts for strategic planning
+                        </div>
+                    </div>
+                    <div class="quarter-card">
+                        <div class="quarter-icon">🌱</div>
+                        <div class="quarter-label">Q2</div>
+                        <div class="quarter-focus">ESG/Impact Investing</div>
+                        <div class="quarter-tasks">
+                            Mission-aligned investment strategies and opportunities
+                        </div>
+                    </div>
+                    <div class="quarter-card">
+                        <div class="quarter-icon">⚡</div>
+                        <div class="quarter-label">Q3</div>
+                        <div class="quarter-focus">Risk Management</div>
+                        <div class="quarter-tasks">
+                            Understanding and mitigating portfolio risks
+                        </div>
+                    </div>
+                    <div class="quarter-card">
+                        <div class="quarter-icon">🔍</div>
+                        <div class="quarter-label">Q4</div>
+                        <div class="quarter-focus">Alternative Investments</div>
+                        <div class="quarter-tasks">
+                            Exploring diversification opportunities
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin: 40px 0 20px;">Committee Development Resources</h3>
+            <div class="practices-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">🎓</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Onboarding Program</div>
+                        <div class="practice-text">Comprehensive orientation for new members including governance training, policy review, and portfolio overview.</div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">📊</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Performance Dashboards</div>
+                        <div class="practice-text">Visual tools and reports that help committee members quickly understand portfolio performance and trends.</div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🌐</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Industry Resources</div>
+                        <div class="practice-text">Access to research, whitepapers, and best practices from leading investment and nonprofit organizations.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Implementation Tools -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Implementation Tools & Templates</h2>
+                <p>Practical resources to help you implement best-in-class governance practices</p>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin-bottom: 30px;">Essential Documents Checklist</h3>
+            <div class="governance-checklist">
+                <div class="checklist-columns">
+                    <div class="checklist-group">
+                        <h4>Core Governance Documents</h4>
+                        <div class="checklist-item">Investment Committee Charter</div>
+                        <div class="checklist-item">Investment Policy Statement (IPS)</div>
+                        <div class="checklist-item">Spending Policy Document</div>
+                        <div class="checklist-item">Gift Acceptance Policy</div>
+                        <div class="checklist-item">Conflict of Interest Policy</div>
+                        <div class="checklist-item">Delegation of Authority Matrix</div>
+                    </div>
+                    <div class="checklist-group">
+                        <h4>Operational Documents</h4>
+                        <div class="checklist-item">Annual Meeting Calendar</div>
+                        <div class="checklist-item">Meeting Agenda Templates</div>
+                        <div class="checklist-item">Performance Report Templates</div>
+                        <div class="checklist-item">Due Diligence Questionnaires</div>
+                        <div class="checklist-item">Manager Evaluation Forms</div>
+                        <div class="checklist-item">Committee Self-Assessment Tool</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin: 40px 0 20px;">Key Performance Indicators (KPIs)</h3>
+            <div class="practices-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">📈</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Portfolio Performance</div>
+                        <div class="practice-text">
+                            • Absolute and relative returns<br>
+                            • Risk-adjusted performance metrics<br>
+                            • Performance vs. policy benchmarks<br>
+                            • Asset allocation compliance
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">💰</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Cost Management</div>
+                        <div class="practice-text">
+                            • Total expense ratio<br>
+                            • Manager fee benchmarking<br>
+                            • Transaction cost analysis<br>
+                            • Cost per basis point of return
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">⚡</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Risk Metrics</div>
+                        <div class="practice-text">
+                            • Portfolio volatility<br>
+                            • Downside capture ratio<br>
+                            • Maximum drawdown<br>
+                            • Liquidity coverage ratio
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="agenda-template" style="margin-top: 40px;">
+                <div class="agenda-header">
+                    <h3>Annual Governance Calendar Template</h3>
+                    <p>A month-by-month guide to essential governance activities</p>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">JAN</div>
+                    <div class="agenda-content">
+                        <h4>Annual Planning & Review</h4>
+                        <p>Prior year performance review, goal setting, economic outlook briefing</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">MAR</div>
+                    <div class="agenda-content">
+                        <h4>Q1 Review & Policy Check</h4>
+                        <p>Quarterly performance, spending policy review, rebalancing decisions</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">JUN</div>
+                    <div class="agenda-content">
+                        <h4>Mid-Year Assessment</h4>
+                        <p>Semi-annual deep dive, manager reviews, fee analysis</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">SEP</div>
+                    <div class="agenda-content">
+                        <h4>Governance Review</h4>
+                        <p>IPS annual review, committee self-assessment, education planning</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">DEC</div>
+                    <div class="agenda-content">
+                        <h4>Year-End Planning</h4>
+                        <p>Annual rebalancing, tax strategies, next year's calendar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Risk Management Framework -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Risk Management Framework</h2>
+                <p>Comprehensive approach to identifying, monitoring, and mitigating investment risks</p>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin-bottom: 30px;">Risk Categories & Mitigation Strategies</h3>
+            <div class="practices-grid">
+                <div class="practice-card">
+                    <div class="practice-icon">📊</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Market Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • Diversification across asset classes<br>
+                            • Regular rebalancing protocols<br>
+                            • Defined risk tolerance limits<br>
+                            • Stress testing scenarios
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">💧</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Liquidity Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • Maintain adequate cash reserves<br>
+                            • Ladder illiquid investments<br>
+                            • Regular cash flow projections<br>
+                            • Emergency liquidity plan
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">⚖️</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Compliance Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • Regular policy reviews<br>
+                            • UPMIFA compliance checks<br>
+                            • Documentation protocols<br>
+                            • Annual compliance audit
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🎯</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Concentration Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • Position size limits<br>
+                            • Sector exposure caps<br>
+                            • Manager diversification<br>
+                            • Regular monitoring
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">👥</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Operational Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • Clear roles & responsibilities<br>
+                            • Succession planning<br>
+                            • Cybersecurity protocols<br>
+                            • Regular training
+                        </div>
+                    </div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-icon">🌐</div>
+                    <div class="practice-content">
+                        <div class="practice-title">Reputational Risk</div>
+                        <div class="practice-text">
+                            <strong>Mitigation:</strong><br>
+                            • ESG screening criteria<br>
+                            • Mission alignment checks<br>
+                            • Transparent reporting<br>
+                            • Stakeholder communication
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="governance-checklist" style="margin-top: 40px;">
+                <div class="checklist-header">
+                    <h3>Risk Management Action Items</h3>
+                    <p>Essential steps for comprehensive risk oversight</p>
+                </div>
+                <div class="checklist-columns">
+                    <div class="checklist-group">
+                        <h4>Quarterly Reviews</h4>
+                        <div class="checklist-item">Portfolio risk metrics dashboard</div>
+                        <div class="checklist-item">Compliance checklist review</div>
+                        <div class="checklist-item">Liquidity stress testing</div>
+                        <div class="checklist-item">Manager risk assessments</div>
+                        <div class="checklist-item">Economic scenario analysis</div>
+                    </div>
+                    <div class="checklist-group">
+                        <h4>Annual Assessments</h4>
+                        <div class="checklist-item">Enterprise risk management review</div>
+                        <div class="checklist-item">Investment policy risk limits</div>
+                        <div class="checklist-item">Fiduciary liability insurance</div>
+                        <div class="checklist-item">Cybersecurity audit</div>
+                        <div class="checklist-item">Business continuity planning</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: Success Metrics -->
+        <div class="content-page">
+            <div class="content-header">
+                <h2>Measuring Governance Success</h2>
+                <p>Key indicators and benchmarks for evaluating committee effectiveness</p>
+            </div>
+
+            <div class="matrix-container">
+                <table class="responsibility-matrix">
+                    <thead>
+                        <tr>
+                            <th>Success Metric</th>
+                            <th>Target</th>
+                            <th>Measurement Frequency</th>
+                            <th>Responsible Party</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Meeting Attendance</td>
+                            <td>90%+ attendance rate</td>
+                            <td>Quarterly</td>
+                            <td>Committee Chair</td>
+                        </tr>
+                        <tr>
+                            <td>Policy Compliance</td>
+                            <td>100% adherence to IPS</td>
+                            <td>Quarterly</td>
+                            <td>Investment Advisor</td>
+                        </tr>
+                        <tr>
+                            <td>Performance vs. Benchmark</td>
+                            <td>Within policy ranges</td>
+                            <td>Quarterly</td>
+                            <td>Investment Advisor</td>
+                        </tr>
+                        <tr>
+                            <td>Cost Effectiveness</td>
+                            <td>Below peer median</td>
+                            <td>Annual</td>
+                            <td>CFO/Treasurer</td>
+                        </tr>
+                        <tr>
+                            <td>Documentation Quality</td>
+                            <td>Complete minutes within 2 weeks</td>
+                            <td>Each Meeting</td>
+                            <td>Secretary/Staff</td>
+                        </tr>
+                        <tr>
+                            <td>Education Completion</td>
+                            <td>4+ hours annually per member</td>
+                            <td>Annual</td>
+                            <td>Committee Chair</td>
+                        </tr>
+                        <tr>
+                            <td>Risk Management</td>
+                            <td>No material breaches</td>
+                            <td>Quarterly</td>
+                            <td>Full Committee</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color: var(--primary-blue); margin: 40px 0 20px;">Committee Self-Assessment Framework</h3>
+            <div class="agenda-template">
+                <div class="agenda-header">
+                    <h3>Annual Committee Effectiveness Review</h3>
+                    <p>Structured approach to continuous improvement</p>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">1</div>
+                    <div class="agenda-content">
+                        <h4>Governance Structure</h4>
+                        <p>Evaluate committee composition, skills matrix, succession planning, and meeting effectiveness</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">2</div>
+                    <div class="agenda-content">
+                        <h4>Fiduciary Oversight</h4>
+                        <p>Assess policy adherence, decision-making processes, and documentation practices</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">3</div>
+                    <div class="agenda-content">
+                        <h4>Performance Management</h4>
+                        <p>Review investment results, risk management effectiveness, and cost control</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">4</div>
+                    <div class="agenda-content">
+                        <h4>Strategic Alignment</h4>
+                        <p>Confirm mission alignment, stakeholder communication, and long-term planning</p>
+                    </div>
+                </div>
+                <div class="agenda-item">
+                    <div class="agenda-number">5</div>
+                    <div class="agenda-content">
+                        <h4>Improvement Planning</h4>
+                        <p>Identify gaps, set improvement goals, and establish accountability measures</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclosure Page -->
+        <div class="content-page" style="page-break-before: always;">
+            <div class="content-header" style="text-align: center; border-bottom: none;">
+                <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;">
+                    <span>📋</span>
+                </div>
+                <h2>Important Disclosures</h2>
+                <p>Regulatory Information and Legal Notices</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="display: grid; gap: 20px; margin-bottom: 40px;">
+                    <div style="background: var(--light-gray); padding: 25px; border-radius: 12px; border-left: 4px solid var(--secondary-green);">
+                        <div style="float: left; width: 35px; height: 35px; background: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-right: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            🏛️
+                        </div>
+                        <h3 style="color: var(--primary-blue); font-size: 1rem; margin-bottom: 10px; padding-top: 6px;">Regulatory Registration</h3>
+                        <p style="color: var(--text-dark); font-size: 0.9rem; line-height: 1.6; clear: both;">
+                            Together Forward Capital operates as a DBA of R.F. Lafferty & Co., Inc., an investment adviser registered with the Securities and Exchange Commission with principal offices in Boca Raton, Florida. Together Forward Capital is authorized to conduct business solely in states where it maintains registration or meets exemption or exclusion criteria from registration obligations.
+                        </p>
+                    </div>
+
+                    <div style="background: var(--light-gray); padding: 25px; border-radius: 12px; border-left: 4px solid var(--secondary-green);">
+                        <div style="float: left; width: 35px; height: 35px; background: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-right: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            📚
+                        </div>
+                        <h3 style="color: var(--primary-blue); font-size: 1rem; margin-bottom: 10px; padding-top: 6px;">Educational Purpose</h3>
+                        <p style="color: var(--text-dark); font-size: 0.9rem; line-height: 1.6; clear: both;">
+                            This governance guide serves educational and informational purposes exclusively. Investment decisions carry inherent risks and returns cannot be guaranteed. The content provided aims to educate a general audience and should not be construed as an offer or solicitation to buy or sell any securities, investment products, or investment strategies.
+                        </p>
+                    </div>
+
+                    <div style="background: var(--light-gray); padding: 25px; border-radius: 12px; border-left: 4px solid var(--secondary-green);">
+                        <div style="float: left; width: 35px; height: 35px; background: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-right: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            ✓
+                        </div>
+                        <h3 style="color: var(--primary-blue); font-size: 1rem; margin-bottom: 10px; padding-top: 6px;">Content Accuracy</h3>
+                        <p style="color: var(--text-dark); font-size: 0.9rem; line-height: 1.6; clear: both;">
+                            Together Forward Capital maintains reasonable confidence that this guide contains no false or materially misleading statements or fact omissions concerning our services, investment approaches, or client experiences. For comprehensive risk disclosures, please consult our Form ADV Part 2A.
+                        </p>
+                    </div>
+
+                    <div style="background: var(--light-gray); padding: 25px; border-radius: 12px; border-left: 4px solid var(--secondary-green);">
+                        <div style="float: left; width: 35px; height: 35px; background: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-right: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            ⚖️
+                        </div>
+                        <h3 style="color: var(--primary-blue); font-size: 1rem; margin-bottom: 10px; padding-top: 6px;">Professional Advice</h3>
+                        <p style="color: var(--text-dark); font-size: 0.9rem; line-height: 1.6; clear: both;">
+                            This guide does not provide tax, legal, or accounting guidance. We recommend consulting qualified tax or legal professionals for advice specific to your circumstances.
+                        </p>
+                    </div>
+
+                    <div style="background: var(--light-gray); padding: 25px; border-radius: 12px; border-left: 4px solid var(--secondary-green);">
+                        <div style="float: left; width: 35px; height: 35px; background: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-right: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                            💭
+                        </div>
+                        <h3 style="color: var(--primary-blue); font-size: 1rem; margin-bottom: 10px; padding-top: 6px;">Forward-Looking Statements</h3>
+                        <p style="color: var(--text-dark); font-size: 0.9rem; line-height: 1.6; clear: both;">
+                            The views and opinions presented represent those of Together Forward Capital as of the publication date and remain subject to revision without notice. Any opinions, projections, or forward-looking statements contained herein represent solely the author's views and may diverge from positions held by other divisions within our firm.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 100%); padding: 30px; border-radius: 16px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
+                    <h4 style="color: var(--primary-blue); font-size: 1.2rem; margin-bottom: 15px;">Questions About This Guide?</h4>
+                    <p style="color: var(--text-dark); margin-bottom: 10px;">For additional information or clarification on any content within this governance guide:</p>
+                    <div style="background: white; padding: 20px; border-radius: 10px; display: inline-block; margin-top: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+                        <strong style="color: var(--primary-blue); font-size: 1rem;">Together Forward Capital</strong><br>
+                        <a href="mailto:info@togetherforwardcap.com" style="color: var(--secondary-blue); text-decoration: none;">info@togetherforwardcap.com</a><br>
+                        <span style="color: var(--text-dark);">(888) 330-7090</span>
+                    </div>
+                    <span style="display: block; margin-top: 15px; font-size: 0.8rem; color: var(--text-gray); font-style: italic;">
+                        Last Updated: August 2025
+                    </span>
+                </div>
+            </div>
+        </div>
         <div class="download-section">
             <h2>Ready to Transform Your Investment Governance?</h2>
             <p>Download the complete guide and start implementing best practices today</p>
