@@ -73,105 +73,99 @@
             box-shadow: 0 0 40px rgba(0,0,0,0.1);
         }
 
-/* Cover Page - Fixed for mobile */
-.cover-page {
-    background: linear-gradient(135deg, rgba(30, 77, 139, 0.95) 0%, rgba(46, 125, 50, 0.95) 100%);
-    color: white;
-    padding: 100px 50px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+        /* Cover Page */
+        .cover-page {
+            background-image: 
+                linear-gradient(135deg, rgba(30, 77, 139, 0.45) 0%, rgba(46, 125, 50, 0.45) 100%),
+                url('committee-meeting-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 100px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-/* Background pattern instead of image for better mobile support */
-.cover-page::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(255,255,255,0.08) 0%, transparent 50%);
-    z-index: 0;
-}
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 40%);
+            animation: float 25s ease-in-out infinite;
+        }
 
-.cover-page::after {
-    content: '';
-    position: absolute;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle at 70% 80%, rgba(255,255,255,0.08) 0%, transparent 40%);
-    animation: float 30s ease-in-out infinite reverse;
-    z-index: 0;
-}
+        .cover-page::after {
+            content: '';
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle at 70% 80%, rgba(255,255,255,0.08) 0%, transparent 40%);
+            animation: float 30s ease-in-out infinite reverse;
+        }
 
-@keyframes float {
-    0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
-    33% { transform: translate(-30%, -60%) rotate(120deg); }
-    66% { transform: translate(-70%, -40%) rotate(240deg); }
-}
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+            33% { transform: translate(-30%, -60%) rotate(120deg); }
+            66% { transform: translate(-70%, -40%) rotate(240deg); }
+        }
 
-.cover-content {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 800px;
-}
+        .cover-content {
+            position: relative;
+            z-index: 1;
+        }
 
-.cover-logo {
-    width: 650px;
-    max-width: 90%;
-    height: auto;
-    margin-bottom: 50px;
-    filter: drop-shadow(0 4px 20px rgba(0,0,0,0.2));
-}
+        .cover-logo {
+            width: 650px;
+            max-width: 90%;
+            margin-bottom: 50px;
+        }
 
-.cover-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-}
+        .cover-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
 
-.cover-subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 40px;
-    opacity: 0.9;
-}
+        .cover-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
 
-.cover-description {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto 60px;
-    line-height: 1.8;
-    opacity: 0.85;
-}
+        .cover-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            line-height: 1.8;
+            opacity: 0.85;
+        }
 
-.download-button {
-    display: inline-block;
-    background: white;
-    color: var(--primary-blue);
-    padding: 18px 40px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
+        .download-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-blue);
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
 
-.download-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-}
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
 
         /* Table of Contents */
         .toc-page {
@@ -1220,40 +1214,10 @@
                 font-size: 0.9rem;
             }
 
-            /* Cover page mobile optimization */
-            .cover-page {
-                padding: 60px 20px;
-                min-height: 100vh;
-            }
-
-            .cover-logo {
-                width: 100%;
-                max-width: 280px;
-                margin-bottom: 30px;
-            }
-
             .cover-title {
-                font-size: 2rem;
-                line-height: 1.2;
-                margin-bottom: 15px;
+                font-size: 2.5rem;
             }
-
-            .cover-subtitle {
-                font-size: 1.2rem;
-                margin-bottom: 25px;
-            }
-
-            .cover-description {
-                font-size: 1rem;
-                margin-bottom: 40px;
-                padding: 0 10px;
-            }
-
-            .download-button {
-                padding: 15px 30px;
-                font-size: 1rem;
-            } 
-
+            
             .content-page {
                 padding: 40px 20px;
             }
