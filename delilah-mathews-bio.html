@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team - Together Forward Capital</title>
+    <title>Delilah C. Mathews - Chief Operating Officer | Together Forward Capital</title>
     <style>
         * {
             margin: 0;
@@ -46,7 +46,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
-            background-color: var(--light-gray);
+            background-color: var(--white);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
@@ -127,10 +127,6 @@
             filter: brightness(1.2);
         }
 
-        .logo:hover {
-            transform: translateY(-2px);
-        }
-
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -158,14 +154,8 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
+        .nav-links a:hover::after {
             width: 100%;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--secondary-blue);
         }
 
         /* Dropdown Menu Styles */
@@ -289,400 +279,181 @@
             border-radius: 0 0 8px 8px;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
-            color: #ffffff;
-            padding: 200px 2rem 4rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        [data-theme="dark"] .hero {
-            background: linear-gradient(135deg, #1a3a5c 0%, #1a4a1e 100%);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(-50px, -50px) rotate(120deg); }
-            66% { transform: translate(50px, -25px) rotate(240deg); }
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Leadership Section */
-        .leadership-section {
-            padding: 4rem 2rem;
-            background: var(--white);
-        }
-
-        [data-theme="dark"] .leadership-section {
-            background: var(--nav-bg);
-        }
-
-        .team-container {
+        /* Bio Container */
+        .bio-container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 180px auto 4rem;
+            padding: 0 2rem;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--primary-blue);
-            margin-bottom: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
         }
 
-        .leadership-grid {
+        .back-button:hover {
+            color: var(--secondary-blue);
+            transform: translateX(-5px);
+        }
+
+        /* Bio Header */
+        .bio-header {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            grid-template-columns: 350px 1fr;
             gap: 3rem;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
+            align-items: start;
         }
 
-        .team-member {
-            background: var(--white);
+        .bio-image-container {
+            position: relative;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        [data-theme="dark"] .team-member {
-            background: var(--card-bg);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            border: 1px solid var(--border-color);
-        }
-
-        .team-member:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        }
-
-        [data-theme="dark"] .team-member:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-
-        .member-image {
-            position: relative;
-            height: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            flex-shrink: 0;
         }
 
-        [data-theme="dark"] .member-image {
+        [data-theme="dark"] .bio-image-container {
             background: linear-gradient(135deg, #1a2332 0%, #1a2e1c 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .member-image img {
-            width: 280px;
-            height: 280px;
-            object-fit: cover;
-            object-position: center;
-            transition: transform 0.3s ease;
-            border-radius: 50%;
-            border: 5px solid var(--white);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        .bio-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        [data-theme="dark"] .member-image img {
-            border-color: var(--card-bg);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
-
-        .team-member:hover .member-image img {
-            transform: scale(1.05);
-        }
-
-        .member-info {
-            padding: 2rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-
-        .member-info h3 {
-            font-size: 1.5rem;
+        .bio-header-content h1 {
+            font-size: 2.5rem;
             color: var(--primary-blue);
             margin-bottom: 0.5rem;
-            height: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .member-info h3 a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .member-info h3 a:hover {
-            color: var(--secondary-blue);
-        }
-
-        .member-title {
+        .bio-header-content .title {
+            font-size: 1.25rem;
             color: var(--secondary-green);
             font-weight: 600;
-            margin-bottom: 1rem;
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .member-bio {
-            color: var(--text-gray);
-            line-height: 1.8;
             margin-bottom: 1.5rem;
-            text-align: left;
-            flex: 1;
-            min-height: 200px;
         }
 
-        .member-credentials {
+        .contact-info {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            justify-content: center;
-            min-height: 40px;
-            align-items: center;
-        }
-
-        .credential-tag {
-            background: var(--light-blue);
-            color: var(--primary-blue);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        [data-theme="dark"] .credential-tag {
-            background: var(--light-gray);
-            border: 1px solid var(--border-color);
-        }
-
-        .member-contact {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            justify-content: center;
-            min-height: 40px;
-            margin-bottom: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .contact-link {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--light-blue);
             color: var(--primary-blue);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 0.5rem 1rem;
-        }
-
-        .contact-link:hover {
-            color: var(--secondary-blue);
-        }
-
-        .view-full-bio {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
+            border-radius: 8px;
             font-weight: 500;
             transition: all 0.3s ease;
-            height: 45px;
-            align-self: center;
         }
 
-        .view-full-bio:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Advisory Board Section */
-        .advisory-section {
+        [data-theme="dark"] .contact-link {
             background: var(--light-gray);
-            padding: 4rem 2rem;
-        }
-
-        [data-theme="dark"] .advisory-section {
-            background: var(--bg-dark);
-        }
-
-        .advisory-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .advisor-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-        }
-
-        [data-theme="dark"] .advisor-card {
-            background: var(--card-bg);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
             border: 1px solid var(--border-color);
         }
 
-        .advisor-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        .contact-link:hover {
+            background: var(--secondary-blue);
+            color: white;
+            transform: translateY(-2px);
         }
 
-        [data-theme="dark"] .advisor-card:hover {
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+        /* Credentials */
+        .credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .advisor-card h4 {
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .advisor-title {
-            color: var(--secondary-green);
+        .credential-tag {
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--secondary-green) 100%);
+            color: white;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
             font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Bio Content */
+        .bio-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="dark"] .bio-content {
+            background: var(--card-bg);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .bio-content h2 {
+            color: var(--primary-blue);
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--light-blue);
+        }
+
+        .bio-content h3 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-top: 2rem;
             margin-bottom: 1rem;
         }
 
-        .advisor-bio {
+        .bio-content p {
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bio-content li {
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+            line-height: 1.8;
+        }
+
+        .bio-content strong {
+            color: var(--primary-blue);
+        }
+
+        /* Disclosure */
+        .bio-disclosure {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-left: 4px solid var(--secondary-green);
+            border-radius: 8px;
+            font-style: italic;
             color: var(--text-gray);
-            font-size: 0.9rem;
-            line-height: 1.6;
         }
 
-        /* Join Our Team CTA */
-        .join-team {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
-            color: #ffffff;
-            padding: 4rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        [data-theme="dark"] .join-team {
-            background: linear-gradient(135deg, #1a3a5c 0%, #1a4a1e 100%);
-        }
-
-        .join-team::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: float 25s ease-in-out infinite reverse;
-        }
-
-        .join-team-content {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .join-team h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .join-team p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .join-team-btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: #ffffff;
-            color: var(--primary-blue);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        [data-theme="dark"] .join-team-btn {
-            background: var(--secondary-green);
-            color: var(--bg-dark);
-        }
-
-        .join-team-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        [data-theme="dark"] .bio-disclosure {
+            background: var(--light-gray);
+            border-left-color: var(--secondary-green);
         }
 
         /* Footer */
@@ -691,6 +462,7 @@
             color: #ffffff;
             padding: 2rem;
             text-align: center;
+            margin-top: 4rem;
         }
 
         [data-theme="dark"] footer {
@@ -735,21 +507,20 @@
                 display: none;
             }
 
-            .hero h1 {
+            .bio-header {
+                grid-template-columns: 1fr;
+            }
+
+            .bio-header-content h1 {
                 font-size: 2rem;
             }
 
-            .leadership-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .advisory-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-links {
+            .contact-info {
                 flex-direction: column;
-                gap: 1rem;
+            }
+
+            .bio-content {
+                padding: 2rem;
             }
 
             .theme-toggle {
@@ -889,14 +660,10 @@
                 height: 80px;
             }
 
-            /* Adjust navigation padding */
-            .nav-container {
-                padding: 1rem;
-            }
-
-            /* Adjust hero for smaller nav */
-            .hero {
-                padding: 130px 1rem 3rem;
+            /* Adjust bio container for smaller nav */
+            .bio-container {
+                margin-top: 120px;
+                padding: 0 1rem;
             }
 
             /* Make images responsive on mobile */
@@ -906,98 +673,93 @@
             }
 
             /* Typography adjustments for mobile - Override desktop */
-            .hero h1 {
+            .bio-header-content h1 {
                 font-size: 2rem !important;
                 line-height: 1.2;
             }
 
-            .hero p {
+            .bio-header-content .title {
                 font-size: 1.1rem !important;
             }
 
-            .section-header h2 {
-                font-size: 1.75rem !important;
+            .bio-content h2 {
+                font-size: 1.5rem !important;
             }
 
-            .member-info h3 {
+            .bio-content h3 {
                 font-size: 1.25rem !important;
             }
 
-            .join-team h2 {
-                font-size: 1.75rem !important;
+            .bio-content p,
+            .bio-content li {
+                font-size: 0.95rem !important;
             }
 
             /* Touch-friendly buttons */
-            .contact-link,
-            .view-full-bio,
-            .join-team-btn {
+            .contact-link {
                 min-height: 44px;
                 padding: 0.875rem 1.5rem;
-            }
-
-            /* Leadership section adjustments */
-            .leadership-section,
-            .advisory-section {
-                padding: 3rem 1rem !important;
-            }
-
-            /* Team member adjustments */
-            .member-image {
-                height: 300px;
-            }
-
-            .member-info {
-                padding: 1.5rem;
-            }
-
-            .member-bio {
-                font-size: 0.95rem;
-                line-height: 1.6;
-            }
-
-            /* Contact links stack on mobile */
-            .member-contact {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .contact-link {
                 width: 100%;
                 justify-content: center;
-                padding: 0.75rem;
             }
 
-            /* Advisory grid already handled above */
-            .advisory-grid {
+            .back-button {
+                padding: 0.5rem 0;
+            }
+
+            /* Bio header single column - Override desktop */
+            .bio-header {
                 grid-template-columns: 1fr !important;
+                gap: 2rem;
             }
 
-            /* Join team section adjustments */
-            .join-team {
-                padding: 3rem 1rem;
+            .bio-image-container {
+                max-width: 300px;
+                margin: 0 auto;
             }
 
-            .join-team p {
-                font-size: 1rem !important;
+            /* Contact info single column - Override desktop */
+            .contact-info {
+                flex-direction: column !important;
+                gap: 1rem;
             }
 
-            /* Reduce padding on mobile */
-            section {
-                padding: 3rem 1rem !important;
+            /* Credentials adjustments */
+            .credentials {
+                justify-content: center;
             }
 
-            /* Footer adjustments - Already handled above */
+            .credential-tag {
+                font-size: 0.8rem !important;
+                padding: 0.25rem 0.75rem;
+            }
+
+            /* Bio content adjustments - Override desktop */
+            .bio-content {
+                padding: 1.5rem !important;
+            }
+
+            .bio-content ul {
+                margin-left: 1.5rem !important;
+            }
+
+            .bio-disclosure {
+                padding: 1rem;
+                font-size: 0.85rem !important;
+            }
+
+            /* Footer adjustments */
+            .footer-links {
+                flex-direction: column !important;
+                gap: 1rem;
+            }
 
             /* Adjust theme toggle for mobile - Already handled above */
 
             /* Disable hover effects on touch devices */
             @media (hover: none) {
-                .team-member:hover,
-                .advisor-card:hover {
-                    transform: none;
-                }
-
-                .team-member:hover .member-image img {
+                .contact-link:hover,
+                .back-button:hover {
                     transform: none;
                 }
             }
@@ -1005,21 +767,33 @@
 
         /* Very small screens */
         @media (max-width: 480px) {
-            .hero h1 {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .bio-header-content h1 {
                 font-size: 1.75rem !important;
             }
 
-            .member-info h3 {
-                font-size: 1.1rem !important;
-            }
-
-            .member-credentials {
-                gap: 0.25rem;
+            .bio-image-container {
+                max-width: 250px;
             }
 
             .credential-tag {
-                font-size: 0.75rem;
-                padding: 0.2rem 0.5rem;
+                font-size: 0.75rem !important;
+                padding: 0.2rem 0.6rem;
+            }
+
+            .bio-content {
+                padding: 1rem !important;
+            }
+
+            .bio-content h2 {
+                font-size: 1.25rem !important;
+            }
+
+            .bio-content h3 {
+                font-size: 1.1rem !important;
             }
         }
 
@@ -1082,111 +856,94 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Meet Our Team</h1>
-            <p>Experienced professionals dedicated to your organization's financial success and mission alignment</p>
-        </div>
-    </section>
+    <!-- Bio Container -->
+    <div class="bio-container">
+        <!-- Back Button -->
+        <a href="team.html" class="back-button">
+            <span>←</span> Back to Team
+        </a>
 
-    <!-- Leadership Section -->
-    <section class="leadership-section">
-        <div class="team-container">
-            <div class="section-header">
-                <h2>Leadership</h2>
+        <!-- Bio Header -->
+        <div class="bio-header">
+            <div class="bio-image-container">
+                <img src="delilah-mathews.jpg" alt="Delilah C. Mathews">
             </div>
-            <div class="leadership-grid">
-                <div class="team-member">
-                    <a href="joel-mathews-bio.html" style="text-decoration: none;">
-                        <div class="member-image">
-                            <img src="joel-mathews.jpg" alt="Joel Mathews">
-                        </div>
+            <div class="bio-header-content">
+                <h1>Delilah C. Mathews, M.Ed., CCC-SLP</h1>
+                <p class="title">Partner, Chief Operating Officer & Head of Client Relations</p>
+                <div class="contact-info">
+                    <a href="mailto:delilah@togetherforwardcap.com" class="contact-link">
+                        <span>✉️</span> Email
                     </a>
-                    <div class="member-info">
-                        <h3><a href="joel-mathews-bio.html">Joel Mathews</a></h3>
-                        <p class="member-title">Chief Executive Officer</p>
-                        <p class="member-bio">With over 10 years of experience in investment management and nonprofit finance, Joel leads Together Forward Capital's strategic vision. He previously served as CFO and CCO for financial services firms, bringing expertise in foundation and endowment management, regulatory compliance, and fiduciary best practices. Joel holds multiple FINRA licenses including Series 7, 24, 27, 65, and 79, demonstrating his commitment to the highest standards of professional excellence. His client-focused approach combines analytical rigor with a genuine dedication to helping organizations achieve their missions through sound financial stewardship.</p>
-                        <div class="member-credentials">
-                            <span class="credential-tag">AIF®</span>
-                            <span class="credential-tag">Series 65</span>
-                            <span class="credential-tag">DAF Professional</span>
-                        </div>
-                        <div class="member-contact">
-                            <a href="mailto:joel@togetherforwardcap.com" class="contact-link">
-                                <span>✉️</span> Email
-                            </a>
-                            <a href="tel:8883307090" class="contact-link">
-                                <span>📞</span> Call
-                            </a>
-                        </div>
-                        <a href="joel-mathews-bio.html" class="view-full-bio">View Full Biography →</a>
-                    </div>
-                </div>
-                <div class="team-member">
-                    <a href="delilah-mathews-bio.html" style="text-decoration: none;">
-                        <div class="member-image">
-                            <img src="delilah-mathews.jpg" alt="Delilah Mathews">
-                        </div>
+                    <a href="tel:8883307090" class="contact-link">
+                        <span>📞</span> (888) 330-7090
                     </a>
-                    <div class="member-info">
-                        <h3><a href="delilah-mathews-bio.html">Delilah C. Mathews, M.Ed., CCC-SLP</a></h3>
-                        <p class="member-title">Partner, Chief Operating Officer & Head of Client Relations</p>
-                        <p class="member-bio">With over 25 years of operational excellence and compliance expertise, Delilah serves as Together Forward Capital's Chief Operating Officer and Head of Client Relations. Her extensive background in complex regulatory environments and strategic leadership, combined with advanced education and professional certifications, positions her perfectly to architect the firm's operational infrastructure while ensuring exceptional service delivery to philanthropic partners.</p>
-                        <div class="member-credentials">
-                            <span class="credential-tag">M.Ed.</span>
-                            <span class="credential-tag">CCC-SLP</span>
-                            <span class="credential-tag">Clinical Fellow Mentor</span>
-                        </div>
-                        <div class="member-contact">
-                            <a href="mailto:delilah@togetherforwardcap.com" class="contact-link">
-                                <span>✉️</span> Email
-                            </a>
-                            <a href="tel:8883307090" class="contact-link">
-                                <span>📞</span> Call
-                            </a>
-                        </div>
-                        <a href="delilah-mathews-bio.html" class="view-full-bio">View Full Biography →</a>
-                    </div>
+                </div>
+                <div class="credentials">
+                    <span class="credential-tag">M.Ed.</span>
+                    <span class="credential-tag">CCC-SLP</span>
+                    <span class="credential-tag">ASHA Certified</span>
+                    <span class="credential-tag">Clinical Fellow Mentor</span>
+                    <span class="credential-tag">PECS Certified</span>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Advisory Board -->
-    <section class="advisory-section">
-        <div class="team-container">
-            <div class="section-header">
-                <h2>Advisory Board</h2>
-            </div>
-            <div class="advisory-grid">
-                <div class="advisor-card">
-                    <h4>Dr. Robert Chen</h4>
-                    <p class="advisor-title">Former Foundation President</p>
-                    <p class="advisor-bio">Brings 30 years of nonprofit leadership experience and deep understanding of philanthropic governance.</p>
-                </div>
-                <div class="advisor-card">
-                    <h4>Lisa Martinez</h4>
-                    <p class="advisor-title">Impact Investment Expert</p>
-                    <p class="advisor-bio">Specializes in aligning investment strategies with social and environmental impact goals.</p>
-                </div>
-                <div class="advisor-card">
-                    <h4>James Thompson</h4>
-                    <p class="advisor-title">Regulatory Compliance Specialist</p>
-                    <p class="advisor-bio">Former SEC examiner with expertise in nonprofit investment regulations and UPMIFA compliance.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Bio Content -->
+        <div class="bio-content">
+            <p>Delilah C. Mathews brings over 25 years of operational excellence, compliance expertise, and strategic leadership to Together Forward Capital, where she serves as Partner, Chief Operating Officer, and Head of Client Relations. Her unique combination of advanced education, professional certifications, and extensive experience in complex regulatory environments positions her perfectly to build the firm's operational infrastructure from the ground up while ensuring exceptional service delivery to philanthropic partners.</p>
 
-    <!-- Join Our Team CTA -->
-    <section class="join-team">
-        <div class="join-team-content">
-            <h2>Join Our Growing Team</h2>
-            <p>We're always looking for talented professionals who share our passion for helping nonprofits achieve their missions.</p>
-            <a href="careers.html" class="join-team-btn">View Open Positions</a>
+            <h3>Professional Background & Experience</h3>
+            <p>Throughout her distinguished career, Delilah has demonstrated exceptional leadership in managing complex operations, ensuring regulatory compliance, and building strong stakeholder relationships. Her extensive experience includes over two decades of managing multifaceted projects, coordinating interdisciplinary teams, and maintaining the highest standards of professional excellence in highly regulated environments.</p>
+            
+            <p>Delilah's background spans comprehensive work with data-driven decision-making, regulatory compliance, and strategic planning. She has successfully managed Florida and Illinois State Board of Education documentation requirements, Medicaid compliance protocols, and complex stakeholder communications throughout her career. This deep experience in navigating regulatory frameworks and maintaining meticulous documentation standards provides the perfect foundation for overseeing Together Forward Capital's SEC compliance and fiduciary obligations.</p>
+
+            <h3>Leadership at Together Forward Capital</h3>
+            <p>As Chief Operating Officer of this RIA, Delilah is architecting comprehensive operational systems designed specifically for philanthropic organizations. Her proven expertise in developing and implementing individualized service plans translates seamlessly into creating customized investment management processes that address each nonprofit client's unique mission and goals.</p>
+            
+            <p>In her role as Head of Client Relations, Delilah is developing the firm's client service framework with an unwavering focus on personalized attention and mission alignment. Drawing on her extensive experience in stakeholder coordination and cross-functional team leadership, she is creating processes that will guide philanthropic partners from initial consultation through long-term partnership.</p>
+
+            <h3>Areas of Expertise</h3>
+            <ul>
+                <li><strong>Operational Excellence:</strong> Building scalable systems and processes that ensure efficient service delivery while maintaining the highest standards of quality and compliance</li>
+                <li><strong>Regulatory Compliance:</strong> Deep understanding of complex regulatory environments, with proven ability to implement and maintain comprehensive compliance frameworks</li>
+                <li><strong>Client Relations:</strong> Exceptional ability to build trust with diverse stakeholders, translating complex concepts into clear, actionable insights for informed decision-making</li>
+                <li><strong>Data Management:</strong> Expertise in data-driven decision-making, performance tracking, and maintaining accurate records for regulatory and operational purposes</li>
+                <li><strong>Technology Integration:</strong> Proficiency in Google Suite and various data management platforms, enabling implementation of cutting-edge reporting and communication systems</li>
+                <li><strong>Team Leadership:</strong> Proven track record as a mentor and team leader, fostering cultures of excellence and continuous improvement</li>
+            </ul>
+
+            <h3>Educational Background & Professional Credentials</h3>
+            <p>Delilah holds a Master of Education (M.Ed.) degree in Communication Disorders from North Carolina Central University, where she graduated in June 2000. She also earned a Bachelor of Arts degree with honors in Communication Sciences and Disorders from the University of Florida in May 1998.</p>
+            
+            <p>Her professional certifications include:</p>
+            <ul>
+                <li>Certificate of Clinical Competence in Speech-Language Pathology (CCC-SLP) from the American Speech-Language-Hearing Association (ASHA)</li>
+                <li>Florida Department of Financial and Professional Regulation licensure</li>
+                <li>PECS (Picture Exchange Communication System) Certification</li>
+                <li>Clinical Fellow Mentor designation (2022-2023)</li>
+            </ul>
+
+            <h3>Professional Philosophy</h3>
+            <p>Delilah's approach to operational leadership is rooted in her belief that exceptional service delivery requires both systematic precision and genuine human connection. Her career-long commitment to serving others through measurable outcomes and stakeholder collaboration aligns perfectly with Together Forward Capital's mission of helping philanthropic organizations achieve sustainable financial success.</p>
+            
+            <p>She brings a unique perspective to the financial services industry, combining analytical rigor with deep empathy for the organizations and communities served. Her experience in creating individualized plans, managing sensitive information with discretion, and fostering collaborative relationships ensures that every client receives the personalized attention and strategic support they deserve.</p>
+
+            <h3>Building Together Forward Capital</h3>
+            <p>As a founding partner of Together Forward Capital, Delilah is instrumental in establishing the firm's operational foundation and service standards. She is developing proprietary processes for mission-aligned portfolio monitoring, values-based reporting, and comprehensive client support that will distinguish the firm in the philanthropic advisory marketplace.</p>
+            
+            <p>Her vision for Together Forward Capital encompasses not just operational excellence, but a transformative approach to client service that recognizes the unique challenges and opportunities facing philanthropic organizations. By combining her extensive operational expertise with a deep understanding of mission-driven organizations, Delilah ensures that Together Forward Capital delivers on its promise of "Investing in Mission, Building Tomorrow."</p>
+
+            <h3>Personal Commitment</h3>
+            <p>Delilah thrives in mission-driven settings where impact and relationships matter as much as performance metrics. Her dedication to service excellence, combined with her comprehensive operational expertise and genuine commitment to client success, makes her an essential partner in launching and growing Together Forward Capital.</p>
+            
+            <p>Her approach embodies the firm's core values of transparency, integrity, and partnership, ensuring that every interaction reflects the highest standards of professional excellence while maintaining the personal touch that sets Together Forward Capital apart in the industry.</p>
+
+            <div class="bio-disclosure">
+                <em>Delilah C. Mathews serves as Partner, Chief Operating Officer, and Head of Client Relations at Together Forward Capital, a DBA of R.F. Lafferty & Co., Inc., an SEC-registered investment adviser.</em>
+            </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -1198,7 +955,7 @@
                 <li><a href="form-adv-part-2a.pdf" target="_blank">Form ADV</a></li>
             </ul>
             <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
-            <p class="disclosure">Investment advisory services offered through Together Forward Capital, a DBA of <a href="https://www.rflafferty.com" target="_blank" style="color: #ffffff; text-decoration: underline;">R.F. Lafferty & Co., Inc.</a>, an investment adviser registered with the Securities and Exchange Commission.</p>
+            <p class="disclosure">Investment advisory services offered through Together Forward Capital, a DBA of R.F. Lafferty & Co., Inc., an investment adviser registered with the Securities and Exchange Commission.</p>
         </div>
     </footer>
 
@@ -1309,29 +1066,6 @@ hasSubmenus.forEach(submenuToggle => {
                 nav.style.background = '';
                 nav.style.boxShadow = '';
             }
-        });
-
-        // Animate elements on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Apply animation to elements
-        document.querySelectorAll('.team-member, .advisor-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
         });
     </script>
 </body>
