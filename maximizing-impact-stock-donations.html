@@ -624,7 +624,7 @@
             padding: 2.5rem;
             border-radius: 16px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -635,7 +635,7 @@
 
         .calc-scenario {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .calc-scenario h4 {
@@ -647,18 +647,20 @@
         .calc-comparison {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 2.5rem;
             margin-top: 2rem;
         }
 
         .calc-option {
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 12px;
             border: 2px solid var(--border-light);
+            position: relative;
         }
 
         .calc-option.cash {
             border-color: var(--accent-coral);
+            background: rgba(255, 107, 107, 0.05);
         }
 
         .calc-option.stock {
@@ -666,23 +668,71 @@
             background: var(--light-green);
         }
 
-        .calc-option h5 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+        [data-theme="dark"] .calc-option.cash {
+            background: rgba(255, 135, 135, 0.1);
         }
 
-        .calc-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
+        .calc-option h5 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .calc-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .calc-table tr {
             border-bottom: 1px solid var(--border-light);
         }
 
-        .calc-row:last-child {
-            border-bottom: 2px solid var(--accent-gold);
-            margin-top: 1rem;
+        .calc-table tr:last-child {
+            border-bottom: 3px solid var(--accent-gold);
             font-weight: bold;
+        }
+
+        .calc-table tr.calc-final {
+            margin-top: 1rem;
+            border-top: 2px solid var(--border-light);
+        }
+
+        .calc-table td {
+            padding: 0.75rem 0;
+            vertical-align: middle;
+        }
+
+        .calc-table td:first-child {
+            color: var(--text-dark);
+            font-weight: 500;
+            width: 65%;
+        }
+
+        .calc-table td:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary-blue);
+            width: 35%;
+        }
+
+        .calc-table tr:last-child td:last-child {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
+        .calc-advantage {
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: var(--secondary-green);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
         /* Process Steps */
@@ -1346,42 +1396,55 @@
                         <div class="calc-comparison">
                             <div class="calc-option cash">
                                 <h5>Traditional Cash Donation</h5>
-                                <div class="calc-row">
-                                    <span>Stock Sale Proceeds:</span>
-                                    <span>$100,000</span>
-                                </div>
-                                <div class="calc-row">
-                                    <span>Capital Gains Tax (20%):</span>
-                                    <span>-$12,000</span>
-                                </div>
-                                <div class="calc-row">
-                                    <span>Available for Donation:</span>
-                                    <span>$88,000</span>
-                                </div>
-                                <div class="calc-row">
-                                    <span>Tax Deduction Value:</span>
-                                    <span>$32,560</span>
-                                </div>
+                                <table class="calc-table">
+                                    <tr>
+                                        <td>Stock Sale Proceeds:</td>
+                                        <td>$100,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Capital Gains Tax (20%):</td>
+                                        <td>-$12,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Available for Donation:</td>
+                                        <td>$88,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tax Deduction Value:</td>
+                                        <td>$32,560</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Net Cost to Donor:</strong></td>
+                                        <td><strong>$55,440</strong></td>
+                                    </tr>
+                                </table>
                             </div>
 
                             <div class="calc-option stock">
+                                <div class="calc-advantage">Better Choice!</div>
                                 <h5>Direct Stock Donation</h5>
-                                <div class="calc-row">
-                                    <span>Donation Amount:</span>
-                                    <span>$100,000</span>
-                                </div>
-                                <div class="calc-row">
-                                    <span>Capital Gains Tax:</span>
-                                    <span>$0</span>
-                                </div>
-                                <div class="calc-row">
-                                    <span>Tax Deduction Value:</span>
-                                    <span>$37,000</span>
-                                </div>
-                                <div class="calc-row">
-                                    <span>Additional Benefit:</span>
-                                    <span>$16,440</span>
-                                </div>
+                                <table class="calc-table">
+                                    <tr>
+                                        <td>Donation Amount:</td>
+                                        <td>$100,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Capital Gains Tax:</td>
+                                        <td>$0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tax Deduction Value:</td>
+                                        <td>$37,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tax Savings vs. Cash:</td>
+                                        <td>$12,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Net Cost to Donor:</strong></td>
+                                        <td><strong>$63,000</strong></td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -1538,7 +1601,7 @@
             <div class="sidebar-card">
                 <h3>Ready to Get Started?</h3>
                 <p>Our experienced team can help you design and implement a stock donation program that maximizes both donor benefits and organizational impact.</p>
-                <a href="#contact" class="cta-button">Schedule a Consultation</a>
+                <a href="index.html#contact" class="cta-button">Schedule a Consultation</a>
             </div>
 
             <div class="sidebar-card">
@@ -1561,7 +1624,7 @@
             <a href="maximizing-impact-stock-donations-guide.pdf" class="download-btn" target="_blank">
                 📄 Download PDF Guide
             </a>
-            <a href="#contact" class="download-btn">
+            <a href="index.html#contact" class="download-btn">
                 📞 Schedule Consultation
             </a>
         </div>
@@ -1606,50 +1669,4 @@
             themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
         }
 
-        // Mobile menu functionality (only runs on mobile)
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                    navLinks.classList.remove('active');
-                }
-            });
-
-            // Close menu when clicking a link
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    // Don't close if clicking on dropdown toggle
-                    if (!link.parentElement.classList.contains('nav-dropdown') && 
-                        !link.classList.contains('has-submenu')) {
-                        navLinks.classList.remove('active');
-                    }
-                });
-            });
-
-            // Handle dropdown menus on mobile
-            const dropdowns = document.querySelectorAll('.nav-dropdown > a');
-            dropdowns.forEach(dropdown => {
-                dropdown.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        const parent = dropdown.parentElement;
-                        parent.classList.toggle('active');
-                        
-                        // Close other dropdowns
-                        document.querySelectorAll('.nav-dropdown').forEach(other => {
-                            if (other !== parent) {
-                                other.classList.remove('active');
-                            }
-                        });
-                    }
-                });
-            });
-
-            // Handle submenu toggles on mobile
+        // Mobile menu functionality
