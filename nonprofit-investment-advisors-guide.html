@@ -1400,54 +1400,54 @@
                 right: 0;
             }
 
-/* Mobile dropdown behavior */
-.nav-dropdown {
-    width: 100%;
-}
+            /* Mobile dropdown behavior */
+            .nav-dropdown {
+                width: 100%;
+            }
 
-.dropdown-menu {
-    position: static !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    box-shadow: none !important;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    width: 100%;
-}
+            .dropdown-menu {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                box-shadow: none !important;
+                margin-top: 0.5rem;
+                margin-bottom: 1rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                width: 100%;
+            }
 
-.nav-dropdown.active .dropdown-menu {
-    max-height: 500px;
-}
+            .nav-dropdown.active .dropdown-menu {
+                max-height: 500px;
+            }
 
-/* Fix submenu positioning on mobile */
-.submenu {
-    position: static !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    margin-left: 1rem;
-    margin-top: 0.5rem;
-    box-shadow: none !important;
-    width: calc(100% - 1rem);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-}
+            /* Fix submenu positioning on mobile */
+            .submenu {
+                position: static !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                margin-left: 1rem;
+                margin-top: 0.5rem;
+                box-shadow: none !important;
+                width: calc(100% - 1rem);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
 
-.has-submenu.active + .submenu {
-    max-height: 500px;
-}
+            .has-submenu.active + .submenu {
+                max-height: 500px;
+            }
 
-/* Remove arrow indicator on mobile for submenus */
-.has-submenu::after {
-    content: ' ▼' !important;
-    font-size: 0.7rem;
-    vertical-align: middle;
-}
+            /* Remove arrow indicator on mobile for submenus */
+            .has-submenu::after {
+                content: ' ▼' !important;
+                font-size: 0.7rem;
+                vertical-align: middle;
+            }
 
             /* Smaller logo on mobile */
             .logo img {
@@ -1674,12 +1674,13 @@
                             <a href="stock-donations-guide.html">Stock Donations Guide</a>
                             <a href="financial-sustainability-guide.html">Financial Sustainability Guide</a>
                         </div>
-                            <a href="insights.html">Market Insights</a>
-                            <a href="#" class="has-submenu">Planning Tools →</a>
-                            <div class="submenu">
-                                <a href="tools.html">All Planning Tools</a>
-                                <a href="investment-committee-governance-guide.html">Investment Committee Guide</a>
-                            </div>
+                        <a href="insights.html">Market Insights</a>
+                        <a href="#" class="has-submenu">Planning Tools →</a>
+                        <div class="submenu">
+                            <div style="padding: 0.75rem 1.5rem; font-weight: bold; color: var(--primary-blue); border-bottom: 1px solid var(--border-light); margin-bottom: 0.5rem;">All Planning Tools</div>
+                            <a href="investment-committee-governance-guide.html">Investment Committee Guide</a>
+                            <a href="maximizing-impact-stock-donations.html">Maximizing Stock Donations</a>
+                        </div>
                     </div>
                 </li>
                 <li><a href="index.html#contact">Contact</a></li>
@@ -2319,42 +2320,42 @@
                 });
             });
 
-// Handle dropdown menus on mobile
-const dropdowns = document.querySelectorAll('.nav-dropdown > a');
-dropdowns.forEach(dropdown => {
-    dropdown.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            const parent = dropdown.parentElement;
-            parent.classList.toggle('active');
-            
-            // Close other dropdowns
-            document.querySelectorAll('.nav-dropdown').forEach(other => {
-                if (other !== parent) {
-                    other.classList.remove('active');
-                }
+            // Handle dropdown menus on mobile
+            const dropdowns = document.querySelectorAll('.nav-dropdown > a');
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const parent = dropdown.parentElement;
+                        parent.classList.toggle('active');
+                        
+                        // Close other dropdowns
+                        document.querySelectorAll('.nav-dropdown').forEach(other => {
+                            if (other !== parent) {
+                                other.classList.remove('active');
+                            }
+                        });
+                    }
+                });
             });
-        }
-    });
-});
 
-// Handle submenu toggles on mobile
-const hasSubmenus = document.querySelectorAll('.has-submenu');
-hasSubmenus.forEach(submenuToggle => {
-    submenuToggle.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            submenuToggle.classList.toggle('active');
-            
-            // Close other submenus
-            hasSubmenus.forEach(other => {
-                if (other !== submenuToggle) {
-                    other.classList.remove('active');
-                }
+            // Handle submenu toggles on mobile
+            const hasSubmenus = document.querySelectorAll('.has-submenu');
+            hasSubmenus.forEach(submenuToggle => {
+                submenuToggle.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        submenuToggle.classList.toggle('active');
+                        
+                        // Close other submenus
+                        hasSubmenus.forEach(other => {
+                            if (other !== submenuToggle) {
+                                other.classList.remove('active');
+                            }
+                        });
+                    }
+                });
             });
-        }
-    });
-});
         }
 
         // Navigation background on scroll

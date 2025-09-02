@@ -99,6 +99,11 @@
             z-index: 1000;
         }
 
+        [data-theme="dark"] nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
         .nav-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -526,11 +531,6 @@
         [data-theme="dark"] .practice-list li {
             background: var(--light-gray);
             border-left-color: var(--secondary-green);
-        }
-
-        [data-theme="dark"] nav {
-            background: var(--nav-bg);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .practice-list li:hover {
@@ -1070,17 +1070,18 @@
                             <a href="investment-policy-guide.html">Investment Policy Guide</a>
                             <a href="endowment-guide.html">Endowment Building Guide</a>
                             <a href="nonprofit-investing-guide.html">Nonprofit Investing Guide</a>
-			    <a href="nonprofit-investment-advisors-guide.html">Investment Advisors Guide</a>
+                            <a href="nonprofit-investment-advisors-guide.html">Investment Advisors Guide</a>
                             <a href="daf-guide.html">Donor Advised Funds Guide</a>
                             <a href="stock-donations-guide.html">Stock Donations Guide</a>
                             <a href="financial-sustainability-guide.html">Financial Sustainability Guide</a>
                         </div>
-                            <a href="insights.html">Market Insights</a>
-                            <a href="#" class="has-submenu">Planning Tools →</a>
-                            <div class="submenu">
-                                <a href="tools.html">All Planning Tools</a>
-                                <a href="investment-committee-governance-guide.html">Investment Committee Guide</a>
-                            </div>
+                        <a href="insights.html">Market Insights</a>
+                        <a href="#" class="has-submenu">Planning Tools →</a>
+                        <div class="submenu">
+                            <div style="padding: 0.75rem 1.5rem; font-weight: bold; color: var(--primary-blue); border-bottom: 1px solid var(--border-light); margin-bottom: 0.5rem;">All Planning Tools</div>
+                            <a href="investment-committee-governance-guide.html">Investment Committee Guide</a>
+                            <a href="maximizing-impact-stock-donations.html">Stock Donations Guide</a>
+                        </div>
                     </div>
                 </li>
                 <li><a href="index.html#contact">Contact</a></li>
