@@ -1593,9 +1593,69 @@
                 min-width: 500px;
             }
 
-            /* Reduce padding on mobile */
+            /* Fix visual stats section for mobile */
+            .visual-stats {
+                padding: 2rem 1rem !important;
+            }
+
+            .stats-container {
+                padding: 0;
+            }
+
+            .stats-header p {
+                padding: 0 1rem;
+                font-size: 0.9rem !important;
+            }
+
+            /* Fix sections that extend beyond viewport */
             section {
-                padding: 3rem 1rem !important;
+                padding: 2rem 1rem !important;
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+
+            /* Fix all grid containers */
+            .advisor-types-grid,
+            .criteria-grid,
+            .practices-checklist,
+            .benefits-overview {
+                padding: 0;
+                margin: 0;
+                gap: 1rem;
+            }
+
+            /* Fix cards and visual elements */
+            .advisor-type-card,
+            .criteria-card,
+            .practice-item,
+            .benefit-stat,
+            .faq-item {
+                margin: 0;
+                max-width: 100%;
+            }
+
+            /* Fix timeline */
+            .process-timeline-vertical {
+                margin: 1rem 0;
+                padding: 1.5rem 1rem;
+            }
+
+            /* Fix cost comparison */
+            .cost-comparison {
+                margin: 1rem 0;
+                padding: 1.5rem 1rem;
+            }
+
+            /* Fix best practices section */
+            .best-practices-section {
+                margin: 1rem 0;
+                padding: 1.5rem 1rem;
+            }
+
+            /* Fix red flags alert */
+            .red-flags-alert {
+                margin: 1rem 0;
+                padding: 1.5rem 1rem;
             }
 
             /* Mobile-friendly footer - Already handled above */
