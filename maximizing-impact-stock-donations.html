@@ -1662,4 +1662,115 @@
             
             htmlElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            updateThemeIcon(new
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Mobile menu functionality (only runs on mobile)
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // Close menu when clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Don't close if clicking on dropdown toggle
+                    if (!link.parentElement.classList.contains('nav-dropdown') && 
+                        !link.classList.contains('has-submenu')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // Handle dropdown menus on mobile
+            const dropdowns = document.querySelectorAll('.nav-dropdown > a');
+            dropdowns.forEach(dropdown => {
+                dropdown.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const parent = dropdown.parentElement;
+                        parent.classList.toggle('active');
+                        
+                        // Close other dropdowns
+                        document.querySelectorAll('.nav-dropdown').forEach(other => {
+                            if (other !== parent) {
+                                other.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            });
+
+            // Handle submenu toggles on mobile
+            const hasSubmenus = document.querySelectorAll('.has-submenu');
+            hasSubmenus.forEach(submenuToggle => {
+                submenuToggle.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        submenuToggle.classList.toggle('active');
+                        
+                        // Close other submenus
+                        hasSubmenus.forEach(other => {
+                            if (other !== submenuToggle) {
+                                other.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+        // Table of Contents Active State
+        const sections = document.querySelectorAll('.content-section');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+        
+        function updateActiveSection() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveSection);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
