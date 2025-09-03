@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strategic Nonprofit Investing Guide | Together Forward Capital</title>
+    <title>Building Strong Investment Policies for Nonprofits | Together Forward Capital</title>
     <style>
         * {
             margin: 0;
@@ -16,10 +16,9 @@
             --secondary-blue: #3a7bc8;
             --primary-green: #2e7d32;
             --secondary-green: #4caf50;
-            --accent-orange: #ff6b35;
+            --accent-teal: #006064;
             --light-blue: #e3f2fd;
             --light-green: #e8f5e9;
-            --light-orange: #fff3e0;
             --text-dark: #1a1a1a;
             --text-gray: #666;
             --white: #ffffff;
@@ -33,10 +32,9 @@
             --secondary-blue: #6fa3e0;
             --primary-green: #4caf50;
             --secondary-green: #66bb6a;
-            --accent-orange: #ff8a65;
+            --accent-teal: #00838f;
             --light-blue: #1a2332;
             --light-green: #1a2e1c;
-            --light-orange: #2a1f1a;
             --text-dark: #e0e0e0;
             --text-gray: #b0b0b0;
             --white: #0f1419;
@@ -91,7 +89,7 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.2);
         }
 
-        /* Navigation */
+        /* Navigation - Simplified for this page */
         nav {
             background: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -99,7 +97,6 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: all 0.3s ease;
         }
 
         [data-theme="dark"] nav {
@@ -108,7 +105,7 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 1rem 2rem;
             display: flex;
@@ -116,56 +113,22 @@
             align-items: center;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
         .logo img {
-            height: 125px;
+            height: 100px;
             width: auto;
-            transition: filter 0.3s ease;
-        }
-
-        [data-theme="dark"] .logo img {
-            filter: brightness(1.2);
-        }
-
-        .logo:hover {
-            transform: translateY(-2px);
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
-            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 500;
-            font-size: 1.1rem;
             transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--secondary-green);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
         }
 
         .nav-links a:hover {
@@ -293,398 +256,292 @@
             border-radius: 0 0 8px 8px;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-blue) 100%);
-            padding: 140px 2rem 80px;
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-teal) 100%);
+            padding: 140px 2rem 60px;
             color: white;
-            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        [data-theme="dark"] .hero {
-            background: linear-gradient(135deg, #1a4a1e 0%, #1a3a5c 100%);
+        [data-theme="dark"] .faq-item {
+            background: var(--card-bg);
+            border-color: var(--border-color);
         }
 
-        .hero::before {
+        [data-theme="dark"] .hero-banner {
+            background: linear-gradient(135deg, #1a3a5c 0%, #1a4a1e 100%);
+        }
+
+        .hero-banner::before {
             content: '';
             position: absolute;
-            width: 150%;
-            height: 150%;
-            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
-            animation: pulse 15s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(180deg); }
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff10" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,133.3C672,139,768,181,864,186.7C960,192,1056,160,1152,149.3C1248,139,1344,149,1392,154.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
+            text-align: center;
             position: relative;
             z-index: 1;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
+        .hero-content h1 {
+            font-size: 3rem;
             margin-bottom: 1.5rem;
             font-weight: 700;
-            animation: fadeInUp 0.8s ease;
         }
 
-        .hero-subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 2rem;
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
             opacity: 0.95;
-            animation: fadeInUp 0.8s ease 0.2s both;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Key Principles Bar */
-        .principles-bar {
+        /* Quick Navigation */
+        .quick-nav {
             background: var(--white);
-            padding: 3rem 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            position: relative;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 132px;
             z-index: 100;
         }
 
-        [data-theme="dark"] .principles-bar {
+        [data-theme="dark"] .quick-nav {
             background: var(--nav-bg);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
-        .principles-container {
+        .quick-nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .principle-card {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .principle-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-blue) 100%);
-            border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
-            color: white;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
 
-        .principle-title {
-            font-size: 1.1rem;
-            font-weight: bold;
+        .quick-nav a {
             color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .principle-description {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-
-        /* Main Content Layout */
-        .content-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            display: grid;
-            grid-template-columns: 250px 1fr 320px;
-            gap: 3rem;
-        }
-
-        /* Table of Contents */
-        .toc {
-            position: sticky;
-            top: 180px;
-            height: fit-content;
-        }
-
-        .toc-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        [data-theme="dark"] .toc-card {
-            background: var(--card-bg);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-            border: 1px solid var(--border-color);
-        }
-
-        .toc-title {
-            font-weight: 600;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .toc-list {
-            list-style: none;
-        }
-
-        .toc-list li {
-            margin-bottom: 0.75rem;
-        }
-
-        .toc-list a {
-            color: var(--text-gray);
             text-decoration: none;
-            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
             transition: all 0.3s ease;
-            display: block;
-            padding: 0.25rem 0;
-            border-left: 2px solid transparent;
-            padding-left: 0.75rem;
+            font-weight: 500;
         }
 
-        .toc-list a:hover {
-            color: var(--primary-green);
-            border-left-color: var(--primary-green);
-            padding-left: 1rem;
+        .quick-nav a:hover {
+            background: var(--light-blue);
+            transform: translateY(-2px);
         }
 
-        .toc-list a.active {
-            color: var(--primary-blue);
-            border-left-color: var(--primary-blue);
-            font-weight: 600;
+        [data-theme="dark"] .quick-nav a:hover {
+            background: var(--light-gray);
         }
 
         /* Main Content */
         .main-content {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 3rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        [data-theme="dark"] .main-content {
-            background: var(--card-bg);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 3rem;
         }
 
         .content-section {
-            margin-bottom: 4rem;
-            scroll-margin-top: 250px;
+            background: var(--white);
         }
 
-        .content-section h2 {
+        .content-block {
+            margin-bottom: 3rem;
+            scroll-margin-top: 240px;
+        }
+
+        .content-block h2 {
             color: var(--primary-blue);
             font-size: 2.2rem;
             margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
             border-bottom: 3px solid var(--secondary-green);
         }
 
-        .content-section h3 {
-            color: var(--primary-green);
-            font-size: 1.6rem;
+        .content-block h3 {
+            color: var(--accent-teal);
+            font-size: 1.5rem;
             margin: 2rem 0 1rem;
         }
 
-        .content-section p {
+        .content-block p {
             color: var(--text-dark);
             line-height: 1.8;
             margin-bottom: 1.5rem;
             font-size: 1.05rem;
         }
 
-        /* Investment Strategies Grid */
-        .strategies-grid {
+        /* Key Components Card */
+        .components-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .strategy-card {
-            background: linear-gradient(135deg, var(--light-orange) 0%, var(--light-blue) 100%);
-            padding: 2rem;
-            border-radius: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        [data-theme="dark"] .strategy-card {
-            background: linear-gradient(135deg, var(--light-orange) 0%, var(--light-gray) 100%);
-            border: 1px solid var(--border-color);
-        }
-
-        .strategy-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-orange) 0%, var(--secondary-blue) 100%);
-        }
-
-        .strategy-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        [data-theme="dark"] .strategy-card:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-
-        .strategy-card h4 {
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .strategy-card p {
-            color: var(--text-dark);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Risk Management Section */
-        .risk-framework {
-            background: var(--light-gray);
-            padding: 2.5rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-        }
-
-        [data-theme="dark"] .risk-framework {
-            background: var(--light-gray);
-            border: 1px solid var(--border-color);
-        }
-
-        .risk-levels {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .risk-level {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        [data-theme="dark"] .risk-level {
-            background: var(--card-bg);
-        }
-
-        .risk-level:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .risk-indicator {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-        }
-
-        .risk-low { background: var(--secondary-green); }
-        .risk-moderate { background: #ffa726; }
-        .risk-high { background: #ef5350; }
-
-        .risk-level h5 {
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .risk-level p {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        /* Best Practices Checklist */
-        .best-practices {
-            background: var(--white);
-            border: 2px solid var(--primary-green);
-            border-radius: 12px;
-            padding: 2rem;
             margin: 2rem 0;
         }
 
         [data-theme="dark"] .best-practices {
             background: var(--card-bg);
-            border-color: var(--primary-green);
+            border: 1px solid var(--border-color);
         }
 
-        .best-practices h4 {
-            color: var(--primary-green);
-            margin-bottom: 1.5rem;
+        .component-card {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 50%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        [data-theme="dark"] .component-card {
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 50%);
+            border: 1px solid var(--border-color);
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .component-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .component-card h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .component-card p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Process Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--secondary-blue) 0%, var(--secondary-green) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border: 3px solid var(--secondary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+
+        .timeline-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
             font-size: 1.3rem;
         }
 
-        .practices-list {
-            list-style: none;
+        .timeline-item p {
+            color: var(--text-dark);
+            line-height: 1.7;
         }
 
-        .practices-list li {
-            padding: 1rem;
-            margin-bottom: 0.75rem;
-            background: var(--light-green);
-            border-radius: 8px;
+        /* Best Practices Section */
+        .best-practices {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .best-practices h3 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            transition: all 0.3s ease;
+            gap: 0.5rem;
         }
 
-        [data-theme="dark"] .practices-list li {
-            background: var(--light-gray);
-        }
-
-        .practices-list li:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .practices-list li::before {
+        .best-practices h3::before {
             content: '✓';
             display: inline-block;
-            width: 25px;
-            height: 25px;
-            background: var(--primary-green);
+            width: 30px;
+            height: 30px;
+            background: var(--secondary-green);
             color: white;
             border-radius: 50%;
             text-align: center;
-            line-height: 25px;
-            margin-right: 1rem;
-            flex-shrink: 0;
+            line-height: 30px;
+        }
+
+        .practice-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .practice-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--white);
+            border-left: 4px solid var(--secondary-green);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .practice-list li {
+            background: var(--light-gray);
+            border-left-color: var(--secondary-green);
+        }
+
+        .practice-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         /* Sidebar */
         .sidebar {
             position: sticky;
-            top: 180px;
+            top: 220px;
             height: fit-content;
         }
 
@@ -716,7 +573,7 @@
 
         .cta-button {
             display: block;
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-blue) 100%);
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--secondary-green) 100%);
             color: white;
             text-decoration: none;
             padding: 1rem 1.5rem;
@@ -731,39 +588,90 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
-        /* Quick Tips */
-        .quick-tips {
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 100%);
+        /* Resource Box */
+        .resource-box {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--white) 100%);
+            border: 2px solid var(--secondary-blue);
             border-radius: 12px;
             padding: 1.5rem;
+            margin-top: 2rem;
         }
 
-        [data-theme="dark"] .quick-tips {
+        [data-theme="dark"] .resource-box {
             background: linear-gradient(135deg, var(--card-bg) 0%, var(--light-gray) 100%);
+            border-color: var(--border-color);
         }
 
-        .quick-tips h4 {
+        .resource-box h4 {
             color: var(--primary-blue);
             margin-bottom: 1rem;
-            font-size: 1.1rem;
         }
 
-        .tips-list {
+        .resource-box ul {
             list-style: none;
+            padding: 0;
         }
 
-        .tips-list li {
-            color: var(--text-dark);
+        .resource-box li {
             padding: 0.5rem 0;
-            font-size: 0.9rem;
-            padding-left: 1.5rem;
-            position: relative;
+            color: var(--text-dark);
         }
 
-        .tips-list li::before {
-            content: '💡';
-            position: absolute;
-            left: 0;
+        .resource-box li::before {
+            content: '→';
+            color: var(--secondary-green);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--light-blue);
+        }
+
+        [data-theme="dark"] .faq-question:hover {
+            background: var(--light-gray);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
         }
 
         /* Footer */
@@ -803,39 +711,9 @@
         }
 
         /* Responsive */
-        @media (max-width: 1200px) {
-            .content-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .toc, .sidebar {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .principles-container {
-                grid-template-columns: 1fr;
-            }
-
-            .risk-levels {
-                grid-template-columns: 1fr;
-            }
-
-            .strategies-grid {
-                grid-template-columns: 1fr;
-            }
-
+        @media (max-width: 968px) {
             .main-content {
-                padding: 2rem 1.5rem;
+                grid-template-columns: 1fr;
             }
 
             .theme-toggle {
@@ -844,6 +722,42 @@
                 width: 48px;
                 height: 48px;
                 font-size: 20px;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .quick-nav {
+                position: static;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-item::before {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .components-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -975,9 +889,9 @@
                 height: 80px;
             }
 
-            /* Adjust hero for smaller nav */
-            .hero {
-                padding: 100px 1rem 60px;
+            /* Adjust hero for smaller nav - FIXED: Changed from 100px to 120px */
+            .hero-banner {
+                padding: 120px 1rem 40px;
             }
 
             /* Make images responsive on mobile */
@@ -987,50 +901,21 @@
             }
 
             /* Typography adjustments for mobile - Override desktop */
-            .hero h1 {
-                font-size: 2.5rem !important;
+            .hero-content h1 {
+                font-size: 2rem !important;
                 line-height: 1.2;
             }
 
-            .hero-subtitle {
+            .hero-content p {
                 font-size: 1.1rem !important;
             }
 
-            .content-section h2 {
+            .content-block h2 {
                 font-size: 1.75rem !important;
             }
 
-            .content-section h3 {
+            .content-block h3 {
                 font-size: 1.25rem !important;
-            }
-
-            .content-section p {
-                font-size: 0.95rem !important;
-            }
-
-            .strategy-card h4 {
-                font-size: 1.1rem !important;
-            }
-
-            .strategy-card p {
-                font-size: 0.9rem !important;
-            }
-
-            .risk-level h5 {
-                font-size: 1rem !important;
-            }
-
-            .risk-level p {
-                font-size: 0.85rem !important;
-            }
-
-            .best-practices h4 {
-                font-size: 1.1rem !important;
-            }
-
-            .practices-list li {
-                font-size: 0.9rem !important;
-                padding: 0.75rem;
             }
 
             /* Touch-friendly buttons */
@@ -1039,90 +924,69 @@
                 padding: 0.875rem 1.5rem;
             }
 
-            /* Content wrapper adjustments - Override desktop */
-            .content-wrapper {
+            /* Main content single column - Override desktop */
+            .main-content {
                 grid-template-columns: 1fr !important;
                 padding: 2rem 1rem;
             }
 
-            /* Main content adjustments - Override desktop */
-            .main-content {
-                padding: 2rem 1.5rem !important;
+            /* Sidebar on mobile - Override desktop */
+            .sidebar {
+                position: static !important;
+                margin-top: 3rem;
             }
 
-            /* Principles container single column - Override desktop */
-            .principles-container {
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem;
-            }
-
-            .principle-card {
-                padding: 0.75rem;
-            }
-
-            .principle-icon {
-                width: 50px !important;
-                height: 50px !important;
-                font-size: 1.25rem !important;
-            }
-
-            .principle-title {
-                font-size: 1rem !important;
-            }
-
-            .principle-description {
-                font-size: 0.85rem !important;
-            }
-
-            /* Strategies grid single column - Override desktop */
-            .strategies-grid {
-                grid-template-columns: 1fr !important;
-                gap: 1.5rem;
-            }
-
-            .strategy-card {
-                padding: 1.5rem;
-            }
-
-            /* Risk levels single column - Override desktop */
-            .risk-levels {
+            /* Components grid single column - Override desktop */
+            .components-grid {
                 grid-template-columns: 1fr !important;
             }
 
-            .risk-framework {
-                padding: 1.5rem;
-            }
-
-            .risk-level {
+            /* Quick nav adjustments */
+            .quick-nav {
+                position: static !important;
                 padding: 1rem;
             }
 
-            /* Best practices adjustments */
+            .quick-nav-container {
+                gap: 0.5rem;
+            }
+
+            .quick-nav a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            /* Timeline adjustments - Override desktop */
+            .timeline-item {
+                padding-left: 60px !important;
+            }
+
+            .timeline-item::before {
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 1rem !important;
+            }
+
+            .timeline::before {
+                left: 20px !important;
+            }
+
+            /* Reduce padding on mobile */
+            .content-block {
+                margin-bottom: 2rem;
+                scroll-margin-top: 180px;
+            }
+
             .best-practices {
                 padding: 1.5rem;
             }
 
-            .practices-list li::before {
-                width: 20px;
-                height: 20px;
-                line-height: 20px;
-                font-size: 0.8rem;
-            }
-
-            /* Principles bar adjustments */
-            .principles-bar {
-                padding: 2rem 1rem;
-            }
-
-            /* Section padding adjustments */
-            .content-section {
-                margin-bottom: 3rem;
-                scroll-margin-top: 180px;
-            }
-
-            /* Navigation container padding */
-            .nav-container {
+            .resource-box {
                 padding: 1rem;
+            }
+
+            .sidebar-card {
+                padding: 1.5rem;
             }
 
             /* Footer adjustments */
@@ -1131,31 +995,12 @@
                 gap: 1rem;
             }
 
-            footer {
-                padding: 2rem 1rem;
-            }
-
-            /* Tips list adjustments */
-            .tips-list li {
-                font-size: 0.85rem !important;
-            }
-
-            /* Quick tips adjustments */
-            .quick-tips {
-                padding: 1rem;
-            }
-
-            .quick-tips h4 {
-                font-size: 1rem !important;
-            }
-
             /* Adjust theme toggle for mobile - Already handled above */
 
             /* Disable hover effects on touch devices */
             @media (hover: none) {
-                .strategy-card:hover,
-                .risk-level:hover,
-                .practices-list li:hover {
+                .component-card:hover,
+                .practice-list li:hover {
                     transform: none;
                 }
             }
@@ -1163,33 +1008,30 @@
 
         /* Very small screens */
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem !important;
+            .nav-container {
+                padding: 1rem;
             }
 
-            .hero-subtitle {
-                font-size: 1rem !important;
+            .hero-content h1 {
+                font-size: 1.75rem !important;
             }
 
-            .content-section h2 {
-                font-size: 1.5rem !important;
+            .quick-nav a {
+                font-size: 0.85rem;
+                padding: 0.3rem 0.6rem;
             }
 
-            .main-content {
-                padding: 1.5rem 1rem !important;
+            .timeline-item h4 {
+                font-size: 1.1rem;
             }
 
-            .strategy-card {
-                padding: 1.25rem;
+            .faq-question {
+                padding: 1rem;
+                font-size: 0.95rem;
             }
 
-            .best-practices {
-                padding: 1.25rem;
-            }
-
-            .practices-list li {
-                padding: 0.5rem;
-                font-size: 0.85rem !important;
+            .faq-question::after {
+                font-size: 1.2rem;
             }
         }
 
@@ -1238,7 +1080,7 @@
                         <div class="submenu">
                             <div style="padding: 0.75rem 1.5rem; font-weight: bold; color: var(--primary-blue); border-bottom: 1px solid var(--border-light); margin-bottom: 0.5rem;">All Planning Tools</div>
                             <a href="investment-committee-governance-guide.html">Investment Committee Guide</a>
-                            <a href="maximizing-impact-stock-donations.html">Maximizing Stock Donations</a>
+                            <a href="maximizing-impact-stock-donations.html">Stock Donations Guide</a>
                         </div>
                     </div>
                 </li>
@@ -1253,265 +1095,218 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero Banner -->
+    <section class="hero-banner">
         <div class="hero-content">
-            <h1>Strategic Nonprofit Investing</h1>
-            <p class="hero-subtitle">Transform idle cash into mission-advancing resources through disciplined investment management</p>
+            <h1>Master Your Nonprofit's Investment Policy</h1>
+            <p>A comprehensive guide to creating, implementing, and maintaining investment policies that protect your mission while growing your impact</p>
         </div>
     </section>
 
-    <!-- Key Principles Bar -->
-    <section class="principles-bar">
-        <div class="principles-container">
-            <div class="principle-card">
-                <div class="principle-icon">🎗️</div>
-                <div class="principle-title">Mission First</div>
-                <div class="principle-description">Every investment decision aligns with organizational values</div>
-            </div>
-            <div class="principle-card">
-                <div class="principle-icon">🛡️</div>
-                <div class="principle-title">Capital Preservation</div>
-                <div class="principle-description">Protecting principal while seeking prudent growth</div>
-            </div>
-            <div class="principle-card">
-                <div class="principle-icon">📈</div>
-                <div class="principle-title">Strategic Growth</div>
-                <div class="principle-description">Building sustainable revenue beyond donations</div>
-            </div>
-            <div class="principle-card">
-                <div class="principle-icon">⚖️</div>
-                <div class="principle-title">Fiduciary Excellence</div>
-                <div class="principle-description">Meeting the highest standards of stewardship</div>
-            </div>
+    <!-- Quick Navigation -->
+    <div class="quick-nav">
+        <div class="quick-nav-container">
+            <a href="#foundation">Foundation</a>
+            <a href="#components">Key Components</a>
+            <a href="#development">Development Process</a>
+            <a href="#governance">Governance</a>
+            <a href="#best-practices">Best Practices</a>
+            <a href="#faqs">FAQs</a>
         </div>
-    </section>
+    </div>
 
     <!-- Main Content -->
-    <div class="content-wrapper">
-        <!-- Table of Contents -->
-        <aside class="toc">
-            <div class="toc-card">
-                <h3 class="toc-title">Contents</h3>
-                <ul class="toc-list">
-                    <li><a href="#fundamentals" class="active">Investment Fundamentals</a></li>
-                    <li><a href="#cash-management">Cash Management</a></li>
-                    <li><a href="#reserve-investing">Reserve Investing</a></li>
-                    <li><a href="#strategies">Investment Strategies</a></li>
-                    <li><a href="#risk">Risk Management</a></li>
-                    <li><a href="#compliance">Compliance & Governance</a></li>
-                    <li><a href="#implementation">Getting Started</a></li>
-                </ul>
+    <div class="main-content">
+        <div class="content-section">
+            <!-- Foundation Section -->
+            <div class="content-block" id="foundation">
+                <h2>The Foundation: Understanding Investment Policies</h2>
+                <p>An Investment Policy Statement (IPS) serves as the North Star for your nonprofit's financial stewardship. More than just a document, it's a living framework that bridges your mission with sustainable financial management, ensuring every investment decision advances your organization's purpose.</p>
+                
+                <p>For nonprofits, foundations, and endowments, an IPS isn't merely a best practice—it's the cornerstone of fiduciary responsibility. It transforms abstract goals into actionable strategies while providing clear guardrails for decision-making during both calm markets and turbulent times.</p>
+
+                <h3>Why Your Organization Needs a Robust Policy</h3>
+                <p>Investment policies protect both your assets and your board. They create institutional memory that transcends individual board members, ensure compliance with UPMIFA and other regulations, and demonstrate to donors that their contributions are managed with professional rigor.</p>
+
+                <div class="best-practices">
+                    <h3>Core Benefits of a Well-Crafted IPS</h3>
+                    <ul class="practice-list">
+                        <li><strong>Mission Alignment:</strong> Ensures every investment decision supports your organizational purpose and values</li>
+                        <li><strong>Risk Management:</strong> Establishes clear boundaries for acceptable risk levels based on your specific needs</li>
+                        <li><strong>Consistency:</strong> Provides continuity through board transitions and market cycles</li>
+                        <li><strong>Accountability:</strong> Creates measurable benchmarks for evaluating investment performance</li>
+                        <li><strong>Donor Confidence:</strong> Demonstrates professional stewardship of charitable assets</li>
+                    </ul>
+                </div>
             </div>
-        </aside>
 
-        <!-- Main Article Content -->
-        <article class="main-content">
-            <!-- Investment Fundamentals -->
-            <section class="content-section" id="fundamentals">
-                <h2>Understanding Nonprofit Investment Fundamentals</h2>
-                <p>For many nonprofits, the concept of investing organizational funds might seem counterintuitive. After all, shouldn't every dollar go directly toward mission delivery? The reality is more nuanced. Strategic investing allows nonprofits to multiply their impact by transforming idle cash into productive assets that generate additional resources for programs and operations.</p>
-                
-                <p>Consider this: the average nonprofit maintains 3-6 months of operating expenses in reserve. For an organization with a $2 million annual budget, that's $500,000 to $1 million sitting in low-yield accounts. Even modest investment returns of 4-5% could generate $20,000 to $50,000 annually—enough to fund an additional program, hire part-time staff, or expand services.</p>
+            <!-- Key Components Section -->
+            <div class="content-block" id="components">
+                <h2>Essential Components of Your Investment Policy</h2>
+                <p>A comprehensive investment policy addresses multiple interconnected elements. Each component should reflect your organization's unique circumstances while maintaining professional investment standards.</p>
 
-                <h3>The Opportunity Cost of Idle Cash</h3>
-                <p>Every day that organizational funds sit in non-interest-bearing checking accounts represents lost opportunity. With inflation averaging 2-3% annually, cash actually loses purchasing power over time. This erosion directly impacts your ability to deliver services in the future. Smart investing isn't about speculation—it's about responsible stewardship that preserves and grows the resources entrusted to your care.</p>
-
-                <h3>Breaking Through Common Misconceptions</h3>
-                <p>Many nonprofit leaders hesitate to invest due to misconceptions about risk, complexity, or appropriateness. Let's address these concerns directly:</p>
-                
-                <p><strong>Myth: "Investing is too risky for nonprofits."</strong> Reality: Not investing is often riskier. A well-designed investment strategy can actually reduce risk through diversification while protecting against inflation.</p>
-                
-                <p><strong>Myth: "We need every dollar for programs."</strong> Reality: Strategic investing creates additional dollars for programs. Investment income becomes a sustainable revenue stream that reduces dependence on donations.</p>
-                
-                <p><strong>Myth: "Investing is too complex for our organization."</strong> Reality: With proper guidance and clear policies, nonprofit investing can be straightforward and manageable, regardless of organizational size.</p>
-            </section>
-
-            <!-- Cash Management -->
-            <section class="content-section" id="cash-management">
-                <h2>Optimizing Cash Management</h2>
-                <p>Effective cash management forms the foundation of nonprofit financial health. Before considering longer-term investments, organizations must first optimize their approach to daily cash operations. This involves understanding cash flow patterns, segmenting funds by purpose and timeline, and selecting appropriate vehicles for different needs.</p>
-
-                <h3>The Three-Bucket Approach</h3>
-                <p>Successful nonprofits typically organize their cash into three distinct categories, each with different investment implications:</p>
-
-                <div class="strategies-grid">
-                    <div class="strategy-card">
-                        <h4>Operating Cash (0-3 months)</h4>
-                        <p>Funds needed for immediate expenses like payroll, rent, and program costs. These should remain highly liquid in checking accounts or money market funds, prioritizing accessibility over returns.</p>
+                <div class="components-grid">
+                    <div class="component-card">
+                        <h4>Mission & Purpose Statement</h4>
+                        <p>Clearly articulates how investments support your charitable mission and defines the role of the investment portfolio in achieving organizational goals.</p>
                     </div>
-                    <div class="strategy-card">
-                        <h4>Reserve Funds (3-12 months)</h4>
-                        <p>Emergency reserves and funds earmarked for near-term projects. These can be invested in short-term instruments like CDs or stable value funds that offer modest returns with minimal risk.</p>
+                    <div class="component-card">
+                        <h4>Investment Objectives</h4>
+                        <p>Establishes specific, measurable goals including return targets, risk tolerance, and time horizons aligned with your spending needs.</p>
                     </div>
-                    <div class="strategy-card">
-                        <h4>Strategic Reserves (12+ months)</h4>
-                        <p>Long-term reserves, endowment funds, or capital campaign proceeds. These allow for more sophisticated investment strategies, including balanced portfolios of stocks and bonds.</p>
+                    <div class="component-card">
+                        <h4>Asset Allocation Framework</h4>
+                        <p>Defines target allocations across asset classes with acceptable ranges, rebalancing triggers, and strategic vs. tactical parameters.</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>Spending Policy</h4>
+                        <p>Outlines sustainable withdrawal rates, calculation methodologies, and smoothing mechanisms to balance current needs with long-term growth.</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>Risk Management Guidelines</h4>
+                        <p>Identifies acceptable risk levels, concentration limits, liquidity requirements, and strategies for various market scenarios.</p>
+                    </div>
+                    <div class="component-card">
+                        <h4>ESG & Values Integration</h4>
+                        <p>Incorporates environmental, social, and governance factors along with mission-related investments and screening criteria.</p>
                     </div>
                 </div>
 
-                <h3>Cash Flow Forecasting</h3>
-                <p>Understanding your organization's cash flow patterns is essential for effective investment planning. Seasonal fluctuations, grant payment schedules, and fundraising cycles all impact available investable assets. Develop a rolling 12-month cash flow forecast that identifies periods of surplus and shortage, allowing you to maximize investment returns while ensuring liquidity when needed.</p>
-            </section>
+                <h3>Governance & Oversight Structure</h3>
+                <p>Your policy should clearly define roles and responsibilities for the board, investment committee, staff, and external advisors. This includes decision-making authority, reporting requirements, and review schedules.</p>
+            </div>
 
-            <!-- Reserve Investing -->
-            <section class="content-section" id="reserve-investing">
-                <h2>Building and Investing Operating Reserves</h2>
-                <p>Operating reserves serve as your organization's financial cushion, providing stability during economic downturns, funding unexpected opportunities, and demonstrating fiscal responsibility to donors and grantmakers. The question isn't whether to maintain reserves, but how to invest them wisely.</p>
+            <!-- Development Process Section -->
+            <div class="content-block" id="development">
+                <h2>Developing Your Investment Policy: A Strategic Approach</h2>
+                <p>Creating an effective investment policy requires thoughtful planning and broad stakeholder engagement. Our proven process ensures your policy reflects both best practices and your organization's unique needs.</p>
 
-                <h3>Determining Appropriate Reserve Levels</h3>
-                <p>While conventional wisdom suggests 3-6 months of operating expenses, the right reserve level depends on your specific circumstances. Organizations with predictable government funding might need less, while those dependent on major gifts might require more. Consider factors including revenue volatility, fixed versus variable costs, access to credit, and the likelihood of unexpected expenses or opportunities.</p>
-
-                <h3>Tiered Investment Approach for Reserves</h3>
-                <p>Not all reserve dollars are equal. Implement a tiered strategy that matches investment vehicles to the probability of needing the funds:</p>
-
-                <div class="risk-framework">
-                    <h4>Reserve Investment Framework</h4>
-                    <div class="risk-levels">
-                        <div class="risk-level">
-                            <div class="risk-indicator risk-low"></div>
-                            <h5>First Tier (1-2 months)</h5>
-                            <p>High-yield savings or money market accounts. Immediate access with modest returns.</p>
-                        </div>
-                        <div class="risk-level">
-                            <div class="risk-indicator risk-moderate"></div>
-                            <h5>Second Tier (2-4 months)</h5>
-                            <p>Short-term bond funds or CDs. Slightly higher returns with minimal risk.</p>
-                        </div>
-                        <div class="risk-level">
-                            <div class="risk-indicator risk-high"></div>
-                            <h5>Third Tier (4-6 months)</h5>
-                            <p>Balanced funds with stocks and bonds. Higher return potential for rarely-accessed funds.</p>
-                        </div>
+                <div class="timeline">
+                    <div class="timeline-item" data-step="1">
+                        <h4>Organizational Assessment</h4>
+                        <p>Begin with a comprehensive review of your mission, financial position, cash flow needs, and risk capacity. Survey board members and key stakeholders to understand perspectives and concerns.</p>
+                    </div>
+                    <div class="timeline-item" data-step="2">
+                        <h4>Objective Setting Workshop</h4>
+                        <p>Facilitate strategic discussions to establish clear investment objectives, return expectations, and risk parameters. Balance competing priorities between current spending and long-term sustainability.</p>
+                    </div>
+                    <div class="timeline-item" data-step="3">
+                        <h4>Policy Drafting</h4>
+                        <p>Develop initial policy framework incorporating best practices while customizing for your specific circumstances. Include all essential components with clear, actionable language.</p>
+                    </div>
+                    <div class="timeline-item" data-step="4">
+                        <h4>Stakeholder Review</h4>
+                        <p>Circulate draft policy for feedback from board, committee members, and advisors. Incorporate input while maintaining policy coherence and effectiveness.</p>
+                    </div>
+                    <div class="timeline-item" data-step="5">
+                        <h4>Board Approval & Implementation</h4>
+                        <p>Present final policy for board adoption with implementation timeline. Establish monitoring procedures and schedule regular reviews.</p>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- Investment Strategies -->
-            <section class="content-section" id="strategies">
-                <h2>Investment Strategies for Different Nonprofit Types</h2>
-                <p>No single investment approach works for all nonprofits. Your strategy should reflect your organization's size, mission, risk tolerance, and financial sophistication. Here's how different organizations can approach investing:</p>
+            <!-- Governance Section -->
+            <div class="content-block" id="governance">
+                <h2>Governance Excellence: Roles & Responsibilities</h2>
+                <p>Effective investment governance requires clear delineation of responsibilities across multiple levels of your organization. Success depends on each party understanding and fulfilling their specific role.</p>
 
-                <h3>Small Nonprofits (Under $1M Budget)</h3>
-                <p>Focus on simplicity and low costs. Start with high-yield savings accounts and CDs for reserves. As comfort grows, consider low-cost index funds or target-date funds that automatically rebalance. Partner with a community foundation for investment management if internal expertise is limited.</p>
+                <h3>Board of Directors</h3>
+                <p>The board holds ultimate fiduciary responsibility for investment assets. Key responsibilities include approving the investment policy, selecting and overseeing the investment committee, and ensuring alignment with the organizational mission. The board should receive regular reports but avoid day-to-day investment decisions.</p>
 
-                <h3>Mid-Size Organizations ($1M-$10M Budget)</h3>
-                <p>Develop formal investment policies and committees. Diversify across asset classes using mutual funds or ETFs. Consider working with an investment advisor specializing in nonprofits. Explore socially responsible investment options that align with your mission.</p>
+                <h3>Investment Committee</h3>
+                <p>This specialized body implements the investment policy through tactical decisions and ongoing oversight. Committee members should bring diverse expertise including investment knowledge, risk management experience, and understanding of nonprofit operations. Regular meetings, documented decisions, and clear reporting to the board are essential.</p>
 
-                <h3>Large Institutions ($10M+ Budget)</h3>
-                <p>Implement sophisticated strategies including alternative investments, direct indexing, and active management where appropriate. Maintain dedicated finance committees with investment expertise. Consider establishing endowments or quasi-endowments for long-term sustainability.</p>
+                <h3>Staff & External Partners</h3>
+                <p>Executive leadership ensures policy compliance and coordinates with external advisors. Investment consultants provide professional expertise and independent perspective. Clear service agreements and performance expectations keep all parties aligned.</p>
 
-                <h3>Mission-Aligned Investing Options</h3>
-                <p>Modern nonprofits increasingly seek investments that advance their missions while generating returns. Environmental organizations might prioritize green bonds, while community development nonprofits could invest in CDFIs. These approaches demonstrate values alignment to stakeholders while potentially enhancing returns through focused expertise.</p>
-            </section>
-
-            <!-- Risk Management -->
-            <section class="content-section" id="risk">
-                <h2>Risk Management and Asset Allocation</h2>
-                <p>Effective risk management doesn't mean avoiding all risk—it means taking appropriate risks that align with your objectives and constraints. For nonprofits, this requires balancing the duty to preserve charitable assets with the need to grow resources for future impact.</p>
-
-                <h3>Understanding Different Types of Risk</h3>
-                <p>Nonprofits face multiple investment risks beyond simple market volatility. Inflation risk erodes purchasing power, liquidity risk affects your ability to access funds when needed, and concentration risk arises from over-reliance on single investments. Reputational risk—the possibility that investment choices could damage donor relationships—deserves special attention in the nonprofit context.</p>
-
-                <h3>Developing Your Risk Profile</h3>
-                <p>Your organization's risk tolerance depends on several factors: time horizon for funds, overall financial strength, board and stakeholder attitudes, and mission-critical timing needs. Document these factors in your investment policy to guide decision-making and prevent emotional reactions during market turbulence.</p>
-
-                <div class="best-practices">
-                    <h4>Risk Management Best Practices</h4>
-                    <ul class="practices-list">
-                        <li>Diversify across asset classes, sectors, and geographies to reduce concentration risk</li>
-                        <li>Maintain adequate liquidity for 6-12 months of operations regardless of market conditions</li>
-                        <li>Rebalance portfolios regularly to maintain target allocations</li>
-                        <li>Stress-test your portfolio against historical downturns</li>
-                        <li>Document risk parameters in your investment policy statement</li>
-                        <li>Review and adjust risk tolerance as organizational circumstances change</li>
+                <div class="resource-box">
+                    <h4>Governance Best Practices Checklist</h4>
+                    <ul>
+                        <li>Documented committee charter with clear authority</li>
+                        <li>Regular meeting schedule (typically quarterly)</li>
+                        <li>Comprehensive meeting minutes and decision logs</li>
+                        <li>Annual policy review and update process</li>
+                        <li>Ongoing education for board and committee members</li>
+                        <li>Clear conflict of interest policies</li>
+                        <li>Regular performance evaluation of advisors</li>
                     </ul>
                 </div>
-            </section>
+            </div>
 
-            <!-- Compliance & Governance -->
-            <section class="content-section" id="compliance">
-                <h2>Compliance, Governance, and Fiduciary Duties</h2>
-                <p>Nonprofit directors and officers serve as fiduciaries, legally obligated to act in the organization's best interests. This duty extends to investment decisions, requiring prudent management of charitable assets. Understanding and fulfilling these obligations protects both the organization and individual board members.</p>
+            <!-- Best Practices Section -->
+            <div class="content-block" id="best-practices">
+                <h2>Implementation Best Practices</h2>
+                <p>Moving from policy creation to successful implementation requires deliberate action and ongoing commitment. These proven practices help organizations maximize the value of their investment policies.</p>
 
-                <h3>UPMIFA and State Regulations</h3>
-                <p>The Uniform Prudent Management of Institutional Funds Act (UPMIFA), adopted by most states, provides the legal framework for nonprofit investing. It requires prudent decision-making considering the organization's purposes, establishes spending rules for endowments, and permits a total return approach to investing. Familiarize yourself with your state's specific version, as implementations vary.</p>
+                <h3>Regular Review & Updates</h3>
+                <p>Your investment policy should evolve with your organization. Schedule annual reviews to assess continued relevance and effectiveness. Major organizational changes, significant market events, or regulatory updates may trigger interim reviews. Document all changes with clear rationale and board approval.</p>
 
-                <h3>Creating Strong Governance Structures</h3>
-                <p>Effective investment governance requires clear roles, responsibilities, and processes. Establish an investment committee with defined authority, require regular reporting to the full board, document all investment decisions and rationales, and conduct annual reviews of policies and performance. This structure ensures continuity through leadership transitions while demonstrating proper stewardship to regulators and donors.</p>
+                <h3>Performance Monitoring Framework</h3>
+                <p>Establish clear benchmarks and reporting schedules from the outset. Monthly or quarterly performance reports should compare results against policy objectives and peer institutions. Look beyond returns to evaluate risk metrics, costs, and alignment with mission-related goals.</p>
 
-                <h3>Avoiding Conflicts of Interest</h3>
-                <p>Nonprofit investment decisions must be free from personal benefit to insiders. Prohibit board members from personally profiting from investment decisions, require disclosure of any potential conflicts, consider independent advisors for objectivity, and document the rationale for all investment selections. These safeguards protect your organization's reputation and tax-exempt status.</p>
-            </section>
+                <h3>Education & Communication</h3>
+                <p>Invest in ongoing education for board and committee members. Regular training on fiduciary responsibilities, market conditions, and investment strategies builds confidence and improves decision-making. Communicate policy principles to staff and stakeholders to ensure organizational alignment.</p>
+            </div>
 
-            <!-- Implementation -->
-            <section class="content-section" id="implementation">
-                <h2>Getting Started: Your Implementation Roadmap</h2>
-                <p>Transforming your nonprofit's approach to investing doesn't happen overnight. Success requires careful planning, stakeholder buy-in, and systematic implementation. Here's a practical roadmap to guide your journey:</p>
-
-                <h3>Phase 1: Assessment and Education (Months 1-2)</h3>
-                <p>Begin by evaluating your current financial position. Analyze cash reserves, review historical cash flows, and identify investable assets. Simultaneously, educate your board and key stakeholders about nonprofit investing benefits and responsibilities. Address concerns openly and build consensus around the importance of strategic financial management.</p>
-
-                <h3>Phase 2: Policy Development (Months 2-4)</h3>
-                <p>Create your Investment Policy Statement with input from board, staff, and advisors. Define objectives, risk tolerance, and constraints. Establish governance structures, including committees and reporting requirements. Have legal counsel review for compliance with state regulations and your organizational bylaws.</p>
-
-                <h3>Phase 3: Implementation (Months 4-6)</h3>
-                <p>Select appropriate investment vehicles and partners. Start conservatively with a portion of reserves, gradually increasing as comfort grows. Establish monitoring and reporting systems. Document all decisions and maintain clear records for transparency and accountability.</p>
-
-                <h3>Phase 4: Optimization (Ongoing)</h3>
-                <p>Regularly review and rebalance your portfolio. Assess performance against benchmarks and objectives. Adjust strategies based on changing organizational needs. Continue education to build internal expertise and confidence.</p>
-
-                <div class="best-practices">
-                    <h4>Implementation Checklist</h4>
-                    <ul class="practices-list">
-                        <li>Secure board resolution authorizing investment program</li>
-                        <li>Develop and approve comprehensive Investment Policy Statement</li>
-                        <li>Establish investment committee with clear charter</li>
-                        <li>Select qualified investment advisors or managers</li>
-                        <li>Open appropriate investment accounts</li>
-                        <li>Implement initial conservative allocation</li>
-                        <li>Create reporting templates and schedules</li>
-                        <li>Schedule regular review meetings</li>
-                        <li>Document all decisions and maintain proper records</li>
-                    </ul>
+            <!-- FAQ Section -->
+            <div class="content-block" id="faqs">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How often should we update our investment policy?</div>
+                    <div class="faq-answer">
+                        <p>While comprehensive reviews should occur annually, your policy should be a living document that adapts to significant changes. Major updates typically happen every 3-5 years, but trigger events like substantial gifts, organizational restructuring, or dramatic market shifts may necessitate interim revisions. The key is maintaining relevance while avoiding reactive changes to short-term market movements.</p>
+                    </div>
                 </div>
 
-                <h3>Measuring Success</h3>
-                <p>Define clear metrics for evaluating your investment program's success. These might include absolute returns versus inflation, performance relative to appropriate benchmarks, consistency of returns and risk management, contribution to organizational financial stability, and stakeholder satisfaction with transparency and governance. Regular measurement ensures your program remains aligned with organizational objectives.</p>
+                <div class="faq-item">
+                    <div class="faq-question">What's the ideal spending rate for our endowment?</div>
+                    <div class="faq-answer">
+                        <p>Most organizations adopt spending rates between 3-5% of average market value, calculated over trailing 12-20 quarters. The "right" rate depends on your return expectations, inflation assumptions, and desire for real growth. Consider using a smoothing formula to reduce volatility in annual distributions. Remember that UPMIFA provides flexibility but requires prudent consideration of long-term purchasing power preservation.</p>
+                    </div>
+                </div>
 
-                <h3>Common Pitfalls to Avoid</h3>
-                <p>Learn from others' mistakes to accelerate your success. Avoid chasing returns at the expense of appropriate risk, making emotional decisions during market volatility, neglecting regular rebalancing and review, and failing to maintain adequate documentation. Most importantly, don't let perfect be the enemy of good—starting with a simple, conservative approach beats endless planning without action.</p>
-            </section>
-        </article>
+                <div class="faq-item">
+                    <div class="faq-question">Should small nonprofits have investment policies?</div>
+                    <div class="faq-answer">
+                        <p>Absolutely. While smaller organizations may have simpler policies, the discipline of documenting investment guidelines benefits organizations of all sizes. Even if you only have operating reserves, a policy helps define liquidity needs, acceptable investments, and decision-making authority. Start with a basic framework and expand as your assets grow.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How do we incorporate ESG factors without sacrificing returns?</div>
+                    <div class="faq-answer">
+                        <p>Modern ESG integration goes beyond simple exclusion screens. Consider approaches like best-in-class selection, thematic investing, or active ownership strategies. Research increasingly shows that thoughtful ESG integration can enhance risk-adjusted returns by identifying well-managed companies and avoiding systemic risks. Define your values-based criteria clearly while maintaining focus on fiduciary duty.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What role should alternative investments play?</div>
+                    <div class="faq-answer">
+                        <p>Alternative investments can enhance diversification and returns but require careful consideration of liquidity needs, fees, complexity, and governance capabilities. Many nonprofits successfully incorporate alternatives through funds-of-funds or liquid alternatives. Your policy should address alternatives explicitly, including allocation limits, due diligence requirements, and monitoring procedures.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-card">
-                <h3>Ready to Optimize Your Nonprofit's Investments?</h3>
-                <p>Our team specializes in helping nonprofits develop and implement investment strategies that align with your mission while building financial sustainability.</p>
-                <a href="index.html#contact" class="cta-button">Schedule Consultation</a>
+                <h3>Get Expert Guidance</h3>
+                <p>Need help developing or refining your investment policy? Our team specializes in creating customized policies for nonprofits, foundations, and endowments.</p>
+                <a href="#contact" class="cta-button">Schedule Consultation</a>
             </div>
 
-            <div class="sidebar-card">
-                <div class="quick-tips">
-                    <h4>Quick Wins for Nonprofits</h4>
-                    <ul class="tips-list">
-                        <li>Move checking balances to high-yield savings accounts</li>
-                        <li>Ladder CD maturities for predictable cash needs</li>
-                        <li>Automate reserve transfers to build discipline</li>
-                        <li>Review and consolidate redundant bank accounts</li>
-                        <li>Negotiate better rates with current banking partners</li>
-                        <li>Explore community foundation investment pools</li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="sidebar-card">
-                <h3>Key Takeaway</h3>
-                <p>Strategic investing isn't about maximizing returns—it's about optimizing resources to advance your mission. Start small, focus on safety and liquidity, and gradually build sophistication as your comfort and expertise grow.</p>
-            </div>
         </aside>
     </div>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact" style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%); color: white; padding: 4rem 2rem; text-align: center;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready to Strengthen Your Investment Policy?</h2>
+        <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem;">Let our experts help you create a policy that protects your mission while optimizing returns.</p>
+        <a href="mailto:info@togetherforwardcap.com" class="cta-button" style="display: inline-block; background: white; color: var(--primary-blue);">Get Started Today</a>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -1636,24 +1431,20 @@ hasSubmenus.forEach(submenuToggle => {
             }
         });
 
-        // Table of Contents active state
-        const sections = document.querySelectorAll('.content-section');
-        const tocLinks = document.querySelectorAll('.toc-list a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            tocLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
                 }
             });
         });
@@ -1664,7 +1455,7 @@ hasSubmenus.forEach(submenuToggle => {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    const offset = 250;
+                    const offset = 240;
                     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
                     window.scrollTo({
                         top: targetPosition,
@@ -1689,7 +1480,7 @@ hasSubmenus.forEach(submenuToggle => {
             });
         }, observerOptions);
 
-        document.querySelectorAll('.strategy-card, .risk-level, .practices-list li, .principle-card').forEach(el => {
+        document.querySelectorAll('.component-card, .timeline-item, .faq-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
