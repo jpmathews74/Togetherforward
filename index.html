@@ -24,6 +24,10 @@
             --light-gray: #f8f9fa;
         }
 
+        html {
+            scroll-padding-top: 170px; /* Account for fixed nav height + some padding */
+        }
+
         /* Dark mode variables */
         [data-theme="dark"] {
             --primary-blue: #4a7dc7;
@@ -787,6 +791,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            html {
+                scroll-padding-top: 120px; /* Smaller for mobile nav */
+            }
+
             .nav-links {
                 display: none;
             }
@@ -1371,12 +1379,18 @@ hasSubmenus.forEach(submenuToggle => {
                 if (target) {
                     // Get the height of the fixed navigation
                     const navHeight = document.querySelector('nav').offsetHeight;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+                    // Calculate the target position
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
                     
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
                     });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                    }
                 }
             });
         });
