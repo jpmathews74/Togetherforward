@@ -736,7 +736,7 @@
         }
 
         .checklist-items li::before {
-            content: '✓';
+            content: '✔';
             display: inline-block;
             width: 25px;
             height: 25px;
@@ -1088,8 +1088,10 @@
 
             /* Typography adjustments for mobile - Override desktop */
             .hero h1 {
-                font-size: 2rem !important;
-                line-height: 1.2;
+                font-size: 2.25rem !important;  /* FIXED: Increased from 2rem */
+                line-height: 1.3;  /* FIXED: Increased from 1.2 */
+                word-break: break-word;  /* FIXED: Added for long words */
+                hyphens: auto;  /* FIXED: Added hyphenation */
             }
 
             .hero-subtitle {
@@ -1206,7 +1208,8 @@
             }
 
             .hero h1 {
-                font-size: 1.75rem !important;
+                font-size: 1.85rem !important;  /* FIXED: Increased from 1.75rem */
+                padding: 0 0.5rem;  /* FIXED: Added padding to prevent edge touching */
             }
 
             .stat-number {
@@ -1686,53 +1689,4 @@
             
             if (window.scrollY > 50) {
                 if (currentTheme === 'dark') {
-                    nav.style.background = 'rgba(15, 20, 25, 0.98)';
-                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
-                } else {
-                    nav.style.background = 'rgba(255, 255, 255, 0.98)';
-                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-                }
-            } else {
-                nav.style.background = '';
-                nav.style.boxShadow = '';
-            }
-        });
-
-        // Table of Contents active state
-        const sections = document.querySelectorAll('.content-section');
-        const tocLinks = document.querySelectorAll('.toc-list a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            tocLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                    nav.style
