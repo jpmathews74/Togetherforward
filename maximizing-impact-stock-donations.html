@@ -600,7 +600,7 @@
         }
 
         .benefit-list li::before {
-            content: '✓';
+            content: '✔';
             position: absolute;
             left: 0;
             color: var(--secondary-green);
@@ -1662,11 +1662,4 @@
             
             htmlElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
-
-        function updateThemeIcon(theme) {
-            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-        }
-
-        // Mobile menu functionality
+            updateThemeIcon(new
