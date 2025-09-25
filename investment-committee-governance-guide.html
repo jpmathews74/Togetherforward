@@ -376,8 +376,8 @@
 
         .wheel-container {
             position: relative;
-            width: 350px;
-            height: 350px;
+            width: 420px;
+            height: 420px;
         }
 
         .wheel-center {
@@ -402,7 +402,7 @@
 
         .wheel-segment {
             position: absolute;
-            width: 150px;
+            width: 130px;
             background: white;
             padding: 15px;
             border-radius: 12px;
@@ -414,6 +414,7 @@
         .wheel-segment:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            z-index: 20;
         }
 
         .segment-icon {
@@ -441,10 +442,10 @@
         }
 
         /* Position wheel segments for mobile */
-        .wheel-segment:nth-child(2) { top: 0; left: 50%; transform: translateX(-50%); }
-        .wheel-segment:nth-child(3) { top: 25%; right: 0; }
-        .wheel-segment:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); }
-        .wheel-segment:nth-child(5) { top: 25%; left: 0; }
+        .wheel-segment:nth-child(2) { top: -20px; left: 50%; transform: translateX(-50%); }
+        .wheel-segment:nth-child(3) { top: 50%; right: -20px; transform: translateY(-50%); }
+        .wheel-segment:nth-child(4) { bottom: -20px; left: 50%; transform: translateX(-50%); }
+        .wheel-segment:nth-child(5) { top: 50%; left: -20px; transform: translateY(-50%); }
 
         /* Best Practices Cards */
         .practices-grid {
@@ -785,12 +786,12 @@
             }
             
             .wheel-container {
-                width: 300px;
-                height: 300px;
+                width: 340px;
+                height: 340px;
             }
             
             .wheel-segment {
-                width: 130px;
+                width: 110px;
                 padding: 12px;
             }
         }
