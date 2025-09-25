@@ -600,7 +600,7 @@
         }
 
         .benefit-list li::before {
-            content: '✔';
+            content: '✓';
             position: absolute;
             left: 0;
             color: var(--secondary-green);
@@ -1183,13 +1183,90 @@
                 grid-template-columns: 1fr !important;
             }
 
+            /* FIXED MOBILE STYLES FOR CALCULATION TABLES */
             .calc-option {
                 max-width: 100%;
-                overflow-x: auto;
+                overflow: visible !important;
+                padding: 1.5rem 0.75rem;
             }
 
             .calc-table {
+                font-size: 0.82rem;
+                width: 100%;
+            }
+
+            .calc-table td {
+                padding: 0.5rem 0.25rem;
+                word-break: normal;
+            }
+
+            .calc-table td:first-child {
+                width: 58%;
+                font-size: 0.75rem;
+                padding-right: 0.5rem;
+                line-height: 1.3;
+            }
+
+            .calc-table td:last-child {
+                width: 42%;
+                font-size: 0.8rem;
+                white-space: nowrap;
+                text-align: right;
+                font-weight: 600;
+            }
+
+            .calc-table tr:last-child td:last-child {
                 font-size: 0.9rem;
+            }
+
+            /* Ensure calculation cards have proper spacing */
+            .calculation-example {
+                padding: 2rem 0.5rem;
+                margin: 2rem -1rem;
+            }
+
+            .calc-card {
+                padding: 1.25rem 0.75rem;
+            }
+
+            /* Better spacing for calc scenario */
+            .calc-scenario h4 {
+                font-size: 1.2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .calc-scenario p {
+                font-size: 0.9rem;
+                padding: 0 0.5rem;
+            }
+
+            /* Stack the options with more spacing on very small screens */
+            .calc-comparison {
+                gap: 1.5rem !important;
+            }
+
+            /* Adjust the advantage badge on mobile */
+            .calc-advantage {
+                position: absolute;
+                top: -8px;
+                right: 8px;
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            /* Ensure option titles are visible */
+            .calc-option h5 {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+
+            /* Fix borders and backgrounds on mobile */
+            .calc-option.cash {
+                border-width: 2px;
+            }
+
+            .calc-option.stock {
+                border-width: 2px;
             }
 
             .process-grid {
@@ -1274,6 +1351,27 @@
                 width: 44px;
                 height: 44px;
                 font-size: 18px;
+            }
+
+            /* Further optimize calc tables for very small screens */
+            .calc-table {
+                font-size: 0.78rem;
+            }
+
+            .calc-table td:first-child {
+                font-size: 0.7rem;
+            }
+
+            .calc-table td:last-child {
+                font-size: 0.75rem;
+            }
+
+            .calc-option {
+                padding: 1rem 0.5rem;
+            }
+
+            .calc-option h5 {
+                font-size: 1rem;
             }
         }
 
@@ -1847,3 +1945,5 @@
             });
         });
     </script>
+</body>
+</html>
