@@ -794,6 +794,15 @@
                 width: 110px;
                 padding: 12px;
             }
+            
+            /* Adjust top and bottom segments on mobile to avoid center overlap */
+            .wheel-segment:nth-child(2) { 
+                top: -40px !important;
+            }
+            
+            .wheel-segment:nth-child(4) { 
+                bottom: -40px !important;
+            }
         }
 
         /* Mobile Responsive Breakpoints */
@@ -951,6 +960,23 @@
 
             .back-to-home svg {
                 width: 14px;
+        }
+
+        @media (max-width: 480px) {
+            /* Extra spacing for small mobile screens */
+            .wheel-segment:nth-child(2) { 
+                top: -45px !important;
+            }
+            
+            .wheel-segment:nth-child(4) { 
+                bottom: -45px !important;
+            }
+            
+            .wheel-center {
+                width: 100px !important;
+                height: 100px !important;
+                font-size: 0.75rem !important;
+            }
                 height: 14px;
             }
 
