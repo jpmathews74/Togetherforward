@@ -1029,6 +1029,11 @@
                     transform: none;
                 }
             }
+
+            /* Featured post image - smaller on mobile */
+            .featured-image-container {
+                height: 250px !important;
+            }
         }
 
         /* Very small screens */
@@ -1043,6 +1048,11 @@
 
             .stat-number {
                 font-size: 2rem !important;
+            }
+
+            /* Featured post image - even smaller on tiny screens */
+            .featured-image-container {
+                height: 200px !important;
             }
         }
 
@@ -1114,7 +1124,7 @@
             <span style="display: inline-block; background: var(--primary-blue); color: white; padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.5rem;">Featured Series</span>
             <a href="upmifa-part-1-why-not-uniform.html" style="text-decoration: none; color: inherit; display: block;">
                 <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 12px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)';">
-                    <div style="width: 100%; height: 400px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <div style="width: 100%; height: 400px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; overflow: hidden;" class="featured-image-container">
                         <img src="images/upmifa-hero.png" alt="Why Uniform UPMIFA Isn't Uniform - Part 1" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
                     </div>
                     <div style="padding: 2rem;">
