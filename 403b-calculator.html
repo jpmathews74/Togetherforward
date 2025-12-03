@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403(b) Savings Calculator | Together Forward Capital</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-blue: #1e4d8b; --secondary-blue: #3a7bc8; --primary-green: #2e7d32;
+            --secondary-green: #4caf50; --accent-gold: #f9a825; --accent-coral: #ff6b6b;
+            --light-blue: #e3f2fd; --light-green: #e8f5e9; --light-gold: #fff8e1; --light-coral: #ffe0e0;
+            --text-dark: #1a1a1a; --text-gray: #666; --white: #ffffff; --light-gray: #f8f9fa; --border-light: #e0e0e0;
+        }
+        [data-theme="dark"] {
+            --primary-blue: #4a7dc7; --secondary-blue: #6fa3e0; --primary-green: #4caf50;
+            --secondary-green: #66bb6a; --accent-gold: #fbc02d; --accent-coral: #ff8787;
+            --light-blue: #1a2332; --light-green: #1a2e1c; --light-gold: #2a2a1a; --light-coral: #2a1a1a;
+            --text-dark: #e0e0e0; --text-gray: #b0b0b0; --white: #0f1419; --light-gray: #1a1f2e;
+            --bg-dark: #0a0e17; --card-bg: #151922; --nav-bg: #0f1419; --border-color: #2a3441; --border-light: #2a3441;
+        }
+        html { scroll-padding-top: 170px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: var(--text-dark); background: var(--white); transition: background-color 0.3s ease, color 0.3s ease; overflow-x: hidden; }
+        [data-theme="dark"] body { background-color: var(--bg-dark); }
+        .theme-toggle { position: fixed; bottom: 30px; right: 30px; background: var(--primary-blue); color: var(--white); border: none; border-radius: 50%; width: 56px; height: 56px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); transition: all 0.3s ease; z-index: 1001; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        [data-theme="dark"] .theme-toggle { background: var(--secondary-green); color: var(--bg-dark); }
+        .theme-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+        nav { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; transition: all 0.3s ease; }
+        [data-theme="dark"] nav { background: var(--nav-bg); box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; text-decoration: none; transition: transform 0.3s ease; }
+        .logo img { height: 125px; width: auto; transition: filter 0.3s ease; }
+        [data-theme="dark"] .logo img { filter: brightness(1.2); }
+        .logo:hover { transform: translateY(-2px); }
+        .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 1.1rem; transition: color 0.3s ease; padding: 0.5rem 0; position: relative; }
+        .nav-links a:hover { color: var(--primary-blue); }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown > a::after { content: ' ▼'; font-size: 0.8rem; vertical-align: middle; }
+        .dropdown-menu { position: absolute; top: 100%; left: 0; background: var(--white); min-width: 220px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-radius: 8px; padding: 0.5rem 0; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; z-index: 100; }
+        [data-theme="dark"] .dropdown-menu { background: var(--card-bg); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-menu a { display: block; padding: 0.75rem 1.5rem; color: var(--text-dark); transition: background 0.3s ease; }
+        .dropdown-menu a:hover { background: var(--light-gray); }
+        [data-theme="dark"] .dropdown-menu a:hover { background: var(--bg-dark); }
+        .has-submenu { position: relative; }
+        .submenu { position: absolute; left: 100%; top: 0; background: var(--white); min-width: 220px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-radius: 8px; padding: 0.5rem 0; opacity: 0; visibility: hidden; transform: translateX(-10px); transition: all 0.3s ease; }
+        [data-theme="dark"] .submenu { background: var(--card-bg); }
+        .has-submenu:hover + .submenu, .submenu:hover { opacity: 1; visibility: visible; transform: translateX(0); }
+        .mobile-menu-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 10px; }
+        .hamburger-line { width: 25px; height: 3px; background: var(--text-dark); border-radius: 2px; transition: all 0.3s ease; }
+        .hero { background: linear-gradient(135deg, var(--primary-blue), var(--primary-green)); color: white; padding: 12rem 2rem 8rem; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); animation: float 20s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-20px) rotate(1deg); } }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .hero p { font-size: 1.1rem; opacity: 0.95; }
+        .breadcrumb { margin-bottom: 1rem; font-size: 0.9rem; opacity: 0.8; }
+        .breadcrumb a { color: white; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        .calculator-wrapper { max-width: 1200px; margin: -3rem auto 2rem; padding: 0 2rem; position: relative; z-index: 10; }
+        .calculator { background: var(--white); border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); overflow: hidden; }
+        [data-theme="dark"] .calculator { background: var(--card-bg); box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .summary-bar { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 2rem; padding: 2rem; background: linear-gradient(135deg, var(--light-blue), var(--light-green)); border-bottom: 1px solid var(--border-light); }
+        [data-theme="dark"] .summary-bar { background: linear-gradient(135deg, rgba(30,77,139,0.2), rgba(46,125,50,0.2)); }
+        .summary-item { text-align: center; }
+        .summary-label { font-size: 0.85rem; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; display: block; }
+        .summary-value { font-size: 2rem; font-weight: 700; color: var(--primary-blue); }
+        .summary-value.small { font-size: 1.5rem; }
+        .tab-nav { display: flex; border-bottom: 1px solid var(--border-light); padding: 0 2rem; background: var(--light-gray); }
+        [data-theme="dark"] .tab-nav { background: var(--bg-dark); }
+        .tab { padding: 1rem 1.5rem; border: none; background: none; cursor: pointer; font-weight: 500; color: var(--text-gray); transition: all 0.3s ease; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+        .tab:hover { color: var(--primary-blue); }
+        .tab.active { color: var(--primary-blue); border-bottom-color: var(--primary-blue); background: var(--white); }
+        [data-theme="dark"] .tab.active { background: var(--card-bg); }
+        .tab-content { padding: 2rem; }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+        .inputs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .input-section { background: var(--light-gray); padding: 1.5rem; border-radius: 12px; }
+        [data-theme="dark"] .input-section { background: var(--bg-dark); }
+        .section-title { font-size: 1rem; color: var(--primary-blue); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--accent-gold); }
+        .section-icon { font-size: 1.2rem; }
+        .input-group { margin-bottom: 1.25rem; }
+        .label { display: block; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-dark); font-size: 0.9rem; }
+        .input-wrapper { display: flex; align-items: center; background: var(--white); border: 1px solid var(--border-light); border-radius: 8px; overflow: hidden; transition: border-color 0.3s ease; }
+        [data-theme="dark"] .input-wrapper { background: var(--card-bg); }
+        .input-wrapper:focus-within { border-color: var(--primary-blue); }
+        .prefix, .suffix { padding: 0.75rem; background: var(--light-gray); color: var(--text-gray); font-size: 0.9rem; }
+        [data-theme="dark"] .prefix, [data-theme="dark"] .suffix { background: var(--bg-dark); }
+        .input-field { flex: 1; padding: 0.75rem; border: none; background: transparent; font-size: 1rem; color: var(--text-dark); width: 100%; }
+        .input-field:focus { outline: none; }
+        .slider { width: 100%; height: 6px; border-radius: 3px; background: var(--border-light); appearance: none; margin-top: 0.5rem; cursor: pointer; }
+        .slider::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2); transition: transform 0.2s ease; }
+        .slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+        .help-text { display: block; font-size: 0.75rem; color: var(--text-gray); margin-top: 0.25rem; }
+        .input-mode-toggle { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .toggle-btn { flex: 1; padding: 0.5rem 0.75rem; border: 1px solid var(--border-light); background: var(--white); border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all 0.3s ease; color: var(--text-gray); }
+        [data-theme="dark"] .toggle-btn { background: var(--card-bg); }
+        .toggle-btn.active { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
+        .fee-impact { background: linear-gradient(135deg, var(--light-gold), var(--light-coral)); padding: 1rem; border-radius: 8px; font-size: 0.9rem; margin-top: 1rem; }
+        [data-theme="dark"] .fee-impact { background: linear-gradient(135deg, rgba(249,168,37,0.2), rgba(255,107,107,0.2)); }
+        .chart-container { height: 400px; padding: 1rem; }
+        .chart-wrapper { height: 100%; position: relative; }
+        .chart-note { text-align: center; color: var(--text-gray); font-size: 0.85rem; margin-top: 1rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: var(--light-gray); padding: 1.25rem; border-radius: 10px; text-align: center; border-left: 4px solid var(--primary-blue); }
+        [data-theme="dark"] .stat-card { background: var(--bg-dark); }
+        .stat-card.blue { border-left-color: var(--primary-blue); }
+        .stat-card.green { border-left-color: var(--primary-green); }
+        .stat-card.gold { border-left-color: var(--accent-gold); }
+        .stat-card.coral { border-left-color: var(--accent-coral); }
+        .stat-label { font-size: 0.8rem; color: var(--text-gray); margin-bottom: 0.5rem; }
+        .stat-value { font-size: 1.3rem; font-weight: 700; color: var(--text-dark); }
+        .stat-subtext { font-size: 0.75rem; color: var(--text-gray); margin-top: 0.25rem; }
+        .breakdown-visual { background: var(--light-gray); padding: 1.5rem; border-radius: 12px; }
+        [data-theme="dark"] .breakdown-visual { background: var(--bg-dark); }
+        .breakdown-title { margin-bottom: 1rem; color: var(--text-dark); }
+        .bar-container { display: flex; height: 40px; border-radius: 8px; overflow: hidden; margin-bottom: 1rem; }
+        .bar-segment { transition: width 0.5s ease; }
+        .bar-segment.starting { background: var(--secondary-blue); }
+        .bar-segment.employee { background: var(--primary-green); }
+        .bar-segment.employer { background: var(--accent-gold); }
+        .bar-segment.earnings { background: var(--primary-blue); }
+        .legend-grid { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+        .legend-dot.starting { background: var(--secondary-blue); }
+        .legend-dot.employee { background: var(--primary-green); }
+        .legend-dot.employer { background: var(--accent-gold); }
+        .legend-dot.earnings { background: var(--primary-blue); }
+        .calculator-disclaimer { padding: 1.5rem 2rem; background: var(--light-gray); border-top: 1px solid var(--border-light); }
+        [data-theme="dark"] .calculator-disclaimer { background: var(--bg-dark); }
+        .disclaimer-text { font-size: 0.8rem; color: var(--text-gray); line-height: 1.6; }
+        .definitions-section { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; }
+        .definitions-card { background: var(--white); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; }
+        [data-theme="dark"] .definitions-card { background: var(--card-bg); }
+        .definitions-header { background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue)); color: white; padding: 1.5rem 2rem; }
+        .definitions-header h2 { margin: 0; font-size: 1.3rem; }
+        .definition-item { padding: 1.25rem 2rem; border-bottom: 1px solid var(--border-light); }
+        .definition-item:last-child { border-bottom: none; }
+        .definition-term { font-weight: 600; color: var(--primary-blue); margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .definition-text { color: var(--text-gray); font-size: 0.9rem; line-height: 1.6; }
+        .definitions-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 1rem 2rem; background: var(--light-gray); border: none; cursor: pointer; font-size: 0.95rem; font-weight: 500; color: var(--primary-blue); transition: background 0.3s ease; }
+        [data-theme="dark"] .definitions-toggle { background: var(--bg-dark); }
+        .definitions-toggle:hover { background: var(--light-blue); }
+        [data-theme="dark"] .definitions-toggle:hover { background: rgba(30,77,139,0.2); }
+        .definitions-toggle .arrow { transition: transform 0.3s ease; }
+        .definitions-toggle.expanded .arrow { transform: rotate(180deg); }
+        .definitions-list { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .definitions-list.expanded { max-height: 2000px; }
+        .info-section { max-width: 1200px; margin: 2rem auto; padding: 0 2rem; }
+        .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .info-card { background: var(--white); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid var(--primary-green); }
+        [data-theme="dark"] .info-card { background: var(--card-bg); }
+        .info-card h3 { color: var(--primary-blue); margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .info-card p { color: var(--text-gray); font-size: 0.9rem; }
+        .cta-section { background: linear-gradient(135deg, var(--light-blue), var(--light-green)); padding: 3rem 2rem; text-align: center; margin: 2rem 0 0; }
+        [data-theme="dark"] .cta-section { background: linear-gradient(135deg, rgba(30,77,139,0.2), rgba(46,125,50,0.2)); }
+        .cta-section h2 { color: var(--primary-blue); margin-bottom: 1rem; }
+        .cta-section p { color: var(--text-gray); margin-bottom: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-button { display: inline-block; background: var(--primary-green); color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+        .cta-button:hover { background: var(--secondary-green); transform: translateY(-2px); }
+        footer { background: var(--primary-blue); color: white; padding: 2rem; text-align: center; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; list-style: none; margin-bottom: 1rem; }
+        .footer-links a { color: white; text-decoration: none; opacity: 0.8; transition: opacity 0.3s; }
+        .footer-links a:hover { opacity: 1; }
+        .disclosure { font-size: 0.75rem; opacity: 0.7; margin-top: 1rem; line-height: 1.6; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 0; right: 0; width: 80%; max-width: 300px; height: 100vh; background: var(--white); flex-direction: column; padding: 5rem 2rem 2rem; gap: 0; box-shadow: -5px 0 20px rgba(0,0,0,0.1); z-index: 999; }
+            [data-theme="dark"] .nav-links { background: var(--nav-bg); }
+            .nav-links.active { display: flex; }
+            .nav-links li { width: 100%; }
+            .nav-links a { display: block; padding: 1rem 0; border-bottom: 1px solid var(--border-light); }
+            .nav-dropdown .dropdown-menu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; display: none; padding-left: 1rem; }
+            .nav-dropdown.active .dropdown-menu { display: block; }
+            .submenu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; display: none; padding-left: 1rem; }
+            .has-submenu.active + .submenu { display: block; }
+            .mobile-menu-toggle { display: flex; }
+            .hero { padding: 10rem 1.5rem 6rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .summary-bar { grid-template-columns: 1fr; gap: 1rem; padding: 1.5rem; }
+            .summary-value { font-size: 1.5rem; }
+            .inputs-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .tab-content { padding: 1.5rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-links { flex-direction: column; gap: 0.5rem; }
+            .definitions-section { padding: 0 1rem; }
+            .definition-item { padding: 1rem 1.5rem; }
+        }
+        @media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } .stat-value { font-size: 1.2rem; } }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"><span class="theme-icon">🌙</span></button>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo"><img src="together-forward-capital-logo-horizontal.png" alt="Together Forward Capital"></a>
+            <ul class="nav-links">
+                <li class="nav-dropdown"><a href="#">About Us</a><div class="dropdown-menu"><a href="about.html">Our Story</a><a href="team.html">Our Team</a><a href="mission.html">Mission & Values</a></div></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#process">Our Process</a></li>
+                <li><a href="index.html#why-us">Why Choose Us</a></li>
+                <li class="nav-dropdown">
+                    <a href="#">Resources</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="has-submenu">Guides →</a>
+                        <div class="submenu">
+                            <a href="investment-policy-guide.html">Investment Policy Guide</a>
+                            <a href="endowment-guide.html">Endowment Building Guide</a>
+                            <a href="nonprofit-investing-guide.html">Nonprofit Investing Guide</a>
+                            <a href="nonprofit-investment-advisors-guide.html">Investment Advisors Guide</a>
+                            <a href="daf-guide.html">Donor Advised Funds Guide</a>
+                            <a href="stock-donations-guide.html">Stock Donations Guide</a>
+                            <a href="financial-sustainability-guide.html">Financial Sustainability Guide</a>
+                        </div>
+                        <a href="market-insights.html">Market Insights</a>
+                        <a href="#" class="has-submenu">Planning Tools →</a>
+                        <div class="submenu">
+                            <div style="padding: 0.75rem 1.5rem; font-weight: bold; color: var(--primary-blue); border-bottom: 1px solid var(--border-light); margin-bottom: 0.5rem;">All Planning Tools</div>
+                            <a href="investment-committee-governance-guide.html">Investment Committee Guide</a>
+                            <a href="maximizing-impact-stock-donations.html">Maximizing Stock Donations</a>
+                            <a href="403b-calculator.html" style="background: var(--light-green); font-weight: 600;">403(b) Savings Calculator</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="breadcrumb"><a href="index.html">Home</a> / <a href="#">Resources</a> / <a href="#">Planning Tools</a> / 403(b) Calculator</p>
+            <h1>403(b) Savings Calculator</h1>
+            <p>Project your retirement savings and understand how contributions, employer matching, and investment returns work together to build your future.</p>
+        </div>
+    </section>
+
+    <div class="calculator-wrapper">
+        <div class="calculator">
+            <div class="summary-bar">
+                <div class="summary-item"><span class="summary-label">Projected Balance at Age <span id="summary-age">65</span></span><span class="summary-value" id="summary-balance">$0</span></div>
+                <div class="summary-item"><span class="summary-label">Years to Retirement</span><span class="summary-value small" id="summary-years">0</span></div>
+                <div class="summary-item"><span class="summary-label">Investment Earnings</span><span class="summary-value small" id="summary-earnings">$0</span></div>
+            </div>
+
+            <div class="tab-nav">
+                <button class="tab active" data-tab="inputs">Calculator</button>
+                <button class="tab" data-tab="chart">Growth Chart</button>
+                <button class="tab" data-tab="breakdown">Detailed Breakdown</button>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-panel active" id="panel-inputs">
+                    <div class="inputs-grid">
+                        <div class="input-section">
+                            <h3 class="section-title"><span class="section-icon">👤</span> Personal Information</h3>
+                            <div class="input-group">
+                                <label class="label">Current Age</label>
+                                <div class="input-wrapper"><input type="number" id="currentAge" class="input-field has-suffix" value="35" min="18" max="80"><span class="suffix">years</span></div>
+                                <input type="range" class="slider" id="currentAge-slider" value="35" min="18" max="80">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Retirement Age</label>
+                                <div class="input-wrapper"><input type="number" id="retirementAge" class="input-field has-suffix" value="65" min="36" max="85"><span class="suffix">years</span></div>
+                                <input type="range" class="slider" id="retirementAge-slider" value="65" min="36" max="85">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Annual Salary</label>
+                                <div class="input-wrapper"><span class="prefix">$</span><input type="number" id="annualSalary" class="input-field has-prefix" value="75000" min="0" max="500000" step="1000"></div>
+                                <input type="range" class="slider" id="annualSalary-slider" value="75000" min="0" max="500000" step="1000">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Current 403(b) Balance</label>
+                                <div class="input-wrapper"><span class="prefix">$</span><input type="number" id="currentBalance" class="input-field has-prefix" value="50000" min="0" max="5000000" step="1000"></div>
+                                <input type="range" class="slider" id="currentBalance-slider" value="50000" min="0" max="500000" step="1000">
+                            </div>
+                        </div>
+
+                        <div class="input-section">
+                            <h3 class="section-title"><span class="section-icon">💰</span> Contribution Details</h3>
+                            <div class="input-group">
+                                <label class="label">Your Contribution</label>
+                                <div class="input-mode-toggle">
+                                    <button class="toggle-btn active" data-mode="percent" data-field="employee">% of Salary</button>
+                                    <button class="toggle-btn" data-mode="amount" data-field="employee">$ Amount</button>
+                                </div>
+                                <div class="input-wrapper" id="employee-percent-wrapper"><input type="number" id="employeeContributionPct" class="input-field has-suffix" value="10" min="0" max="100" step="0.5"><span class="suffix">%</span></div>
+                                <div class="input-wrapper" id="employee-amount-wrapper" style="display: none;"><span class="prefix">$</span><input type="number" id="employeeContributionAmt" class="input-field has-prefix has-suffix" value="625" min="0" max="50000" step="25"><span class="suffix">/mo</span></div>
+                                <input type="range" class="slider" id="employeeContribution-slider" value="10" min="0" max="30" step="0.5">
+                                <span class="help-text" id="employee-help">10% of salary = $625/month</span>
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Employer Match Rate</label>
+                                <div class="input-mode-toggle">
+                                    <button class="toggle-btn active" data-mode="percent" data-field="employer">% Match</button>
+                                    <button class="toggle-btn" data-mode="amount" data-field="employer">$ Amount</button>
+                                </div>
+                                <div class="input-wrapper" id="employer-percent-wrapper"><input type="number" id="employerMatchPct" class="input-field has-suffix" value="50" min="0" max="100" step="5"><span class="suffix">% match</span></div>
+                                <div class="input-wrapper" id="employer-amount-wrapper" style="display: none;"><span class="prefix">$</span><input type="number" id="employerMatchAmt" class="input-field has-prefix has-suffix" value="188" min="0" max="25000" step="25"><span class="suffix">/mo</span></div>
+                                <input type="range" class="slider" id="employerMatch-slider" value="50" min="0" max="100" step="5">
+                                <span class="help-text" id="employer-help">50% of your contribution up to 6% = $188/month</span>
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Maximum Match (% of Salary)</label>
+                                <span class="help-text">% of salary employer will match up to</span>
+                                <div class="input-wrapper"><input type="number" id="maxEmployerMatch" class="input-field has-suffix" value="6" min="0" max="20" step="0.5"><span class="suffix">%</span></div>
+                                <input type="range" class="slider" id="maxEmployerMatch-slider" value="6" min="0" max="20" step="0.5">
+                            </div>
+                        </div>
+
+                        <div class="input-section">
+                            <h3 class="section-title"><span class="section-icon">📈</span> Growth & Fee Assumptions</h3>
+                            <div class="input-group">
+                                <label class="label">Expected Annual Return</label>
+                                <div class="input-wrapper"><input type="number" id="annualReturn" class="input-field has-suffix" value="7" min="0" max="15" step="0.25"><span class="suffix">%</span></div>
+                                <input type="range" class="slider" id="annualReturn-slider" value="7" min="0" max="15" step="0.25">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Expected Salary Increase</label>
+                                <span class="help-text">Annual raise assumption</span>
+                                <div class="input-wrapper"><input type="number" id="salaryIncrease" class="input-field has-suffix" value="2" min="0" max="10" step="0.25"><span class="suffix">%</span></div>
+                                <input type="range" class="slider" id="salaryIncrease-slider" value="2" min="0" max="10" step="0.25">
+                            </div>
+                            <div class="input-group">
+                                <label class="label">Annual Investment Fee</label>
+                                <span class="help-text">Expense ratio + advisory fees</span>
+                                <div class="input-wrapper"><input type="number" id="annualFee" class="input-field has-suffix" value="0.75" min="0" max="3" step="0.05"><span class="suffix">%</span></div>
+                                <input type="range" class="slider" id="annualFee-slider" value="0.75" min="0" max="3" step="0.05">
+                            </div>
+                            <div class="fee-impact"><strong>Fee Impact:</strong> <span id="fee-impact-text">$0 over 30 years</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="panel-chart">
+                    <div class="chart-container">
+                        <div class="chart-wrapper"><canvas id="growthChart"></canvas></div>
+                        <p class="chart-note">The area between the lines represents your net investment earnings after fees.</p>
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="panel-breakdown">
+                    <div class="stats-grid">
+                        <div class="stat-card blue"><div class="stat-label">Final Balance</div><div class="stat-value" id="stat-final">$0</div><div class="stat-subtext" id="stat-final-subtext">at age 65</div></div>
+                        <div class="stat-card green"><div class="stat-label">Your Contributions</div><div class="stat-value" id="stat-employee">$0</div><div class="stat-subtext" id="stat-employee-pct">0% of total</div></div>
+                        <div class="stat-card gold"><div class="stat-label">Employer Contributions</div><div class="stat-value" id="stat-employer">$0</div><div class="stat-subtext" id="stat-employer-pct">0% of total</div></div>
+                        <div class="stat-card blue"><div class="stat-label">Investment Earnings</div><div class="stat-value" id="stat-earnings">$0</div><div class="stat-subtext" id="stat-earnings-pct">0% of total</div></div>
+                        <div class="stat-card coral"><div class="stat-label">Total Fees Paid</div><div class="stat-value" id="stat-fees">$0</div><div class="stat-subtext" id="stat-fees-pct">Cost of investing</div></div>
+                    </div>
+                    <div class="breakdown-visual">
+                        <h4 class="breakdown-title">Balance Composition</h4>
+                        <div class="bar-container">
+                            <div class="bar-segment starting" id="bar-starting" style="width: 20%"></div>
+                            <div class="bar-segment employee" id="bar-employee" style="width: 20%"></div>
+                            <div class="bar-segment employer" id="bar-employer" style="width: 20%"></div>
+                            <div class="bar-segment earnings" id="bar-earnings" style="width: 40%"></div>
+                        </div>
+                        <div class="legend-grid">
+                            <div class="legend-item"><span class="legend-dot starting"></span> Starting Balance</div>
+                            <div class="legend-item"><span class="legend-dot employee"></span> Your Contributions</div>
+                            <div class="legend-item"><span class="legend-dot employer"></span> Employer Contributions</div>
+                            <div class="legend-item"><span class="legend-dot earnings"></span> Net Earnings (after fees)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculator-disclaimer">
+                <p class="disclaimer-text"><strong>Important Disclosure:</strong> This calculator is provided for educational and informational purposes only and does not constitute investment advice. We strongly recommend that you seek the advice of a qualified financial services professional before making any investment decisions. The results presented are hypothetical and may not reflect the actual growth of your investments. This model is provided as a rough approximation of future financial performance that you should not rely upon for making financial decisions. All examples are hypothetical and are for illustrative purposes only. Future rates of return cannot be predicted with certainty, and investments that pay higher rates of return are generally subject to higher risk and volatility, including the potential loss of principal. It is not possible to invest directly in an index. Together Forward Capital and its affiliates are not responsible for the consequences of any decisions or actions taken in reliance upon or as a result of the information provided by this tool.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calculator Term Definitions Section -->
+    <section class="definitions-section">
+        <div class="definitions-card">
+            <div class="definitions-header">
+                <h2>📖 Calculator Definitions</h2>
+            </div>
+            <button class="definitions-toggle" id="definitionsToggle">
+                <span>View term definitions and assumptions</span>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="definitions-list" id="definitionsList">
+                <div class="definition-item">
+                    <div class="definition-term">Current Age</div>
+                    <div class="definition-text">Your current age in years. This is the starting point for calculating the number of years until retirement.</div>
+                </div>
+                <div class="definition-item">
+                    <div class="definition-term">Retirement Age</div>
+                    <div class="definition-text">The age at which you plan to retire. This calculator assumes that the year you retire, you do not make any contributions to your 403(b). So if you retire at age 65, your last contribution occurs when you are actually 64.</div>
+                </div>
+                <div class="definition-item">
+                    <div class="definition-term">Annual Salary</div>
+                    <div class="definition-text">Your annual salary from your employer before taxes and other benefit deductions. Since your contribution and any employer match are based on the salary paid to you by your employer, do not include any income you may receive from sources other than your employer.</div>
+                </div>
+                <div class="definition-item">
+                    <div class="definition-term">Current 403(b) Balance</div>
+                    <div class="definition-text">The starting balance or current amount you have invested or saved in your 403(b) account. This should be your total vested balance.</div>
+                </div>
+                <div class="definition-item">
+                    <div class="definition-term">Your Contribution</div>
+                    <div class="definition-text">The percentage of your salary or dollar amount you contribute to your 403(b) plan each pay period. This calculator allows you to enter either a percentage of salary or a monthly dollar amount. Contributions are subject to annual IRS limits.</div>
+                </div>
+                <div class="definition-item">
+                    <div class="definition-term">Employer Match Rate</div>
+                    <div class="definition-text">The percentage of your contribution that your employer matches. For example, a 50% match means your employer contributes $0.50 for every $1.00 you contribute, up to the maximum match limit. Not all 403(b) plans offer employer matching contributions.</div>
+                </div>
+                <div class="definition-item">
+                    <div class="definition-term">Maximum Match (% of Salary)</div>
+                    <div class="definition-text">The maximum percentage of your salary that your employer will match. For example, if your employer offers a 50% match up to 6% of salary, and you contribute 10%, the employer only matches on the first 6% of your salary contribution.</div>
+                </div>
+                <div class="definition-item">
+                    <div class="definition-term">Expected Annual Return</div>
+                    <div class="definition-text">The annual rate of return you expect to earn on your investments before fees. This calculator compounds returns monthly. The actual rate of return is largely dependent on the types of investments you select and market conditions. The S&P 500® averaged approximately 10% annually from 1970-2024, including reinvested dividends, though past performance does not guarantee future results. Investments that pay higher rates of return are generally subject to higher risk and volatility, including potential loss of principal.</div>
+                </div>
+                <div class="definition-item">
+                    <div class="definition-term">Expected Salary Increase</div>
+                    <div class="definition-text">The annual percentage you expect your salary to increase due to raises, promotions, or cost-of-living adjustments. This calculator applies salary increases at the beginning of each year and assumes your salary will continue to increase at this rate until retirement.</div>
+                </div>
+                <div class="definition-item">
+                    <div class="definition-term">Annual Investment Fee</div>
+                    <div class="definition-text">The total annual fees you pay on your 403(b) investments, including expense ratios, administrative fees, and any advisory fees. This is expressed as a percentage of your account balance. Typical 403(b) fees range from 0.25% to over 2% depending on the investment options available in your plan.</div>
+                </div>
+                <div class="definition-item">
+                    <div class="definition-term">2025 Contribution Limits</div>
+                    <div class="definition-text">For 2025, the IRS allows employee contributions up to <strong>$23,500</strong>. If you are age 50-59 or 64+, you may make additional "catch-up" contributions of <strong>$7,500</strong> (total $31,000). A new SECURE 2.0 provision allows those ages 60-63 to contribute an additional <strong>$11,250</strong> catch-up (total $34,750). Employer contributions do not count toward the employee contribution limit but are subject to a combined limit of $70,000 (or 100% of compensation, if less).</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>What is a 403(b) Plan?</h3>
+                <p>A 403(b) plan is a tax-advantaged retirement savings plan available to employees of public schools, certain nonprofits, and religious organizations (501(c)(3) organizations). Similar to a 401(k), contributions are typically made pre-tax, reducing your current taxable income while building retirement savings. Earnings grow tax-deferred until withdrawal.</p>
+            </div>
+            <div class="info-card">
+                <h3>Maximizing Employer Match</h3>
+                <p>Many employers offer matching contributions—essentially free money for your retirement. Understanding your employer's matching formula and contributing enough to receive the full match is one of the most impactful financial decisions you can make. Always try to contribute at least enough to capture the full employer match.</p>
+            </div>
+            <div class="info-card">
+                <h3>The Power of Compound Growth</h3>
+                <p>Time is your greatest asset when saving for retirement. Starting early allows compound growth to work in your favor, potentially turning modest monthly contributions into substantial retirement savings over decades. Even small increases in your contribution rate can make a significant difference over time.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Need Help Planning Your Organization's Retirement Benefits?</h2>
+        <p>Together Forward Capital partners with nonprofits and foundations to create comprehensive investment strategies, including retirement plan optimization.</p>
+        <a href="index.html#contact" class="cta-button">Schedule a Consultation</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="legal-disclosures.html">Disclosures</a></li>
+                <li><a href="form-crs.pdf" target="_blank">Form CRS</a></li>
+                <li><a href="form-adv-part-2a.pdf" target="_blank">Form ADV</a></li>
+            </ul>
+            <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
+            <p class="disclosure">Securities and advisory services offered through Together Forward Capital, a DBA of <a href="https://www.rflafferty.com" target="_blank" style="color: #ffffff; text-decoration: underline;">R.F. Lafferty & Co., Inc.</a>, member <a href="https://www.finra.org" target="_blank" style="color: #ffffff; text-decoration: underline;">FINRA</a>/<a href="https://www.sipc.org" target="_blank" style="color: #ffffff; text-decoration: underline;">SIPC</a>,<br>a broker/dealer and a Securities and Exchange Commission Registered Investment Adviser.</p>
+        </div>
+    </footer>
+
+    <script>
+        const state = { employeeMode: 'percent', employerMode: 'percent' };
+        const inputFields = ['currentAge', 'retirementAge', 'currentBalance', 'annualSalary', 'maxEmployerMatch', 'annualReturn', 'salaryIncrease', 'annualFee'];
+        let growthChart = null;
+
+        function formatCurrency(value) { 
+            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value); 
+        }
+
+        function getInputs() {
+            const annualSalary = parseFloat(document.getElementById('annualSalary').value) || 0;
+            let employeeContributionPct;
+            if (state.employeeMode === 'percent') {
+                employeeContributionPct = parseFloat(document.getElementById('employeeContributionPct').value) || 0;
+            } else {
+                const monthlyAmt = parseFloat(document.getElementById('employeeContributionAmt').value) || 0;
+                employeeContributionPct = annualSalary > 0 ? (monthlyAmt * 12 / annualSalary) * 100 : 0;
+            }
+            
+            let employerMatchPct;
+            if (state.employerMode === 'percent') {
+                employerMatchPct = parseFloat(document.getElementById('employerMatchPct').value) || 0;
+            } else {
+                const monthlyAmt = parseFloat(document.getElementById('employerMatchAmt').value) || 0;
+                const maxMatch = parseFloat(document.getElementById('maxEmployerMatch').value) || 0;
+                const effectiveContribPct = Math.min(employeeContributionPct, maxMatch);
+                const employeeMonthlyOnMatch = (annualSalary / 12) * (effectiveContribPct / 100);
+                employerMatchPct = employeeMonthlyOnMatch > 0 ? (monthlyAmt / employeeMonthlyOnMatch) * 100 : 0;
+            }
+            
+            return { 
+                currentAge: parseFloat(document.getElementById('currentAge').value) || 0, 
+                retirementAge: parseFloat(document.getElementById('retirementAge').value) || 0, 
+                currentBalance: parseFloat(document.getElementById('currentBalance').value) || 0, 
+                annualSalary, 
+                employeeContribution: employeeContributionPct, 
+                employerMatch: employerMatchPct, 
+                maxEmployerMatch: parseFloat(document.getElementById('maxEmployerMatch').value) || 0, 
+                annualReturn: parseFloat(document.getElementById('annualReturn').value) || 0, 
+                salaryIncrease: parseFloat(document.getElementById('salaryIncrease').value) || 0, 
+                annualFee: parseFloat(document.getElementById('annualFee').value) || 0 
+            };
+        }
+
+        function calculate() {
+            const inputs = getInputs();
+            const { currentAge, retirementAge, currentBalance, annualSalary, employeeContribution, employerMatch, maxEmployerMatch, annualReturn, salaryIncrease, annualFee } = inputs;
+            
+            const yearsToRetirement = Math.max(0, retirementAge - currentAge);
+            const netAnnualReturn = annualReturn - annualFee;
+            const monthlyReturn = netAnnualReturn / 100 / 12;
+            const monthlyReturnGross = annualReturn / 100 / 12;
+            
+            let balance = currentBalance;
+            let balanceNoFees = currentBalance;
+            let totalEmployeeContributions = 0;
+            let totalEmployerContributions = 0;
+            let salary = annualSalary;
+            
+            const chartData = { ages: [currentAge], balances: [currentBalance], contributions: [0] };
+            
+            for (let year = 1; year <= yearsToRetirement; year++) {
+                // Apply salary increase at beginning of each year (except first year)
+                if (year > 1) {
+                    salary *= (1 + salaryIncrease / 100);
+                }
+                
+                for (let month = 1; month <= 12; month++) {
+                    const monthlySalary = salary / 12;
+                    
+                    // Employee contribution: percentage of monthly salary
+                    const employeeMonthly = monthlySalary * (employeeContribution / 100);
+                    
+                    // Employer match calculation (CORRECTED FORMULA):
+                    // Step 1: Find the effective contribution rate that employer will match on
+                    // This is the lesser of: employee contribution % OR max employer match %
+                    const effectiveMatchRate = Math.min(employeeContribution, maxEmployerMatch);
+                    
+                    // Step 2: Calculate the dollar amount employer will contribute
+                    // Employer contributes (employerMatch%) of the (effectiveMatchRate% of salary)
+                    // Example: 50% match up to 6% of salary, employee contributes 10%
+                    // effectiveMatchRate = min(10%, 6%) = 6%
+                    // employerMonthly = salary * 6% * 50% = salary * 3%
+                    const employerMonthly = monthlySalary * (effectiveMatchRate / 100) * (employerMatch / 100);
+                    
+                    // Add contributions, then apply monthly return
+                    balance = (balance + employeeMonthly + employerMonthly) * (1 + monthlyReturn);
+                    balanceNoFees = (balanceNoFees + employeeMonthly + employerMonthly) * (1 + monthlyReturnGross);
+                    
+                    totalEmployeeContributions += employeeMonthly;
+                    totalEmployerContributions += employerMonthly;
+                }
+                
+                chartData.ages.push(currentAge + year);
+                chartData.balances.push(Math.round(balance));
+                chartData.contributions.push(Math.round(totalEmployeeContributions + totalEmployerContributions));
+            }
+            
+            const totalFees = balanceNoFees - balance;
+            const totalEarnings = balance - currentBalance - totalEmployeeContributions - totalEmployerContributions;
+            const grossEarnings = totalEarnings + totalFees;
+            
+            return { 
+                finalBalance: balance, 
+                totalEmployeeContributions, 
+                totalEmployerContributions, 
+                totalEarnings, 
+                grossEarnings, 
+                totalFees, 
+                yearsToRetirement, 
+                chartData, 
+                currentBalance, 
+                retirementAge, 
+                annualSalary, 
+                employeeContribution, 
+                employerMatch, 
+                maxEmployerMatch 
+            };
+        }
+
+        function updateHelperText() {
+            const inputs = getInputs();
+            const monthlyEmployee = (inputs.annualSalary / 12) * (inputs.employeeContribution / 100);
+            const effectiveMatchRate = Math.min(inputs.employeeContribution, inputs.maxEmployerMatch);
+            const monthlyEmployer = (inputs.annualSalary / 12) * (effectiveMatchRate / 100) * (inputs.employerMatch / 100);
+            
+            document.getElementById('employee-help').textContent = inputs.employeeContribution.toFixed(1) + '% of salary = ' + formatCurrency(monthlyEmployee) + '/month';
+            document.getElementById('employer-help').textContent = inputs.employerMatch + '% of your contribution up to ' + inputs.maxEmployerMatch + '% = ' + formatCurrency(monthlyEmployer) + '/month';
+        }
+
+        function updateUI() {
+            const results = calculate();
+            
+            document.getElementById('summary-age').textContent = results.retirementAge;
+            document.getElementById('summary-balance').textContent = formatCurrency(results.finalBalance);
+            document.getElementById('summary-years').textContent = results.yearsToRetirement;
+            document.getElementById('summary-earnings').textContent = formatCurrency(results.totalEarnings);
+            document.getElementById('fee-impact-text').textContent = formatCurrency(results.totalFees) + ' over ' + results.yearsToRetirement + ' years';
+            
+            document.getElementById('stat-final').textContent = formatCurrency(results.finalBalance);
+            document.getElementById('stat-final-subtext').textContent = 'at age ' + results.retirementAge;
+            document.getElementById('stat-employee').textContent = formatCurrency(results.totalEmployeeContributions);
+            document.getElementById('stat-employee-pct').textContent = results.finalBalance > 0 ? ((results.totalEmployeeContributions / results.finalBalance) * 100).toFixed(1) + '% of total' : '0% of total';
+            document.getElementById('stat-employer').textContent = formatCurrency(results.totalEmployerContributions);
+            document.getElementById('stat-employer-pct').textContent = results.finalBalance > 0 ? ((results.totalEmployerContributions / results.finalBalance) * 100).toFixed(1) + '% of total' : '0% of total';
+            document.getElementById('stat-earnings').textContent = formatCurrency(results.totalEarnings);
+            document.getElementById('stat-earnings-pct').textContent = results.finalBalance > 0 ? ((results.totalEarnings / results.finalBalance) * 100).toFixed(1) + '% of total' : '0% of total';
+            document.getElementById('stat-fees').textContent = formatCurrency(results.totalFees);
+            document.getElementById('stat-fees-pct').textContent = results.grossEarnings > 0 ? ((results.totalFees / results.grossEarnings) * 100).toFixed(1) + '% of gross earnings' : 'Cost of investing';
+            
+            if (results.finalBalance > 0) {
+                const startingPct = (results.currentBalance / results.finalBalance) * 100;
+                const employeePct = (results.totalEmployeeContributions / results.finalBalance) * 100;
+                const employerPct = (results.totalEmployerContributions / results.finalBalance) * 100;
+                const earningsPct = (results.totalEarnings / results.finalBalance) * 100;
+                document.getElementById('bar-starting').style.width = startingPct + '%';
+                document.getElementById('bar-employee').style.width = employeePct + '%';
+                document.getElementById('bar-employer').style.width = employerPct + '%';
+                document.getElementById('bar-earnings').style.width = earningsPct + '%';
+            }
+            
+            updateHelperText();
+            updateChart(results.chartData);
+        }
+
+        function updateChart(data) {
+            const ctx = document.getElementById('growthChart').getContext('2d');
+            if (growthChart) {
+                growthChart.data.labels = data.ages;
+                growthChart.data.datasets[0].data = data.balances;
+                growthChart.data.datasets[1].data = data.contributions;
+                growthChart.update();
+            } else {
+                growthChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: data.ages,
+                        datasets: [
+                            { label: 'Total Balance (after fees)', data: data.balances, borderColor: '#1e4d8b', backgroundColor: 'rgba(30, 77, 139, 0.1)', fill: true, tension: 0.3, borderWidth: 2 },
+                            { label: 'Total Contributions', data: data.contributions, borderColor: '#2e7d32', backgroundColor: 'rgba(46, 125, 50, 0.1)', fill: true, tension: 0.3, borderWidth: 2 }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: { intersect: false, mode: 'index' },
+                        plugins: {
+                            legend: { position: 'top', labels: { usePointStyle: true, padding: 20 } },
+                            tooltip: {
+                                backgroundColor: '#fff',
+                                titleColor: '#1e4d8b',
+                                bodyColor: '#1a1a1a',
+                                borderColor: '#e0e0e0',
+                                borderWidth: 1,
+                                padding: 12,
+                                callbacks: {
+                                    title: function(context) { return 'Age ' + context[0].label; },
+                                    label: function(context) { return context.dataset.label + ': ' + formatCurrency(context.raw); }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: { title: { display: true, text: 'Age', color: '#666' }, grid: { color: '#f0f0f0' }, ticks: { color: '#666' } },
+                            y: {
+                                grid: { color: '#f0f0f0' },
+                                ticks: {
+                                    color: '#666',
+                                    callback: function(value) {
+                                        if (value >= 1000000) return '$' + (value / 1000000).toFixed(1) + 'M';
+                                        if (value >= 1000) return '$' + (value / 1000).toFixed(0) + 'K';
+                                        return '$' + value;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        function handleModeToggle(field, mode) {
+            const inputs = getInputs();
+            if (field === 'employee') {
+                state.employeeMode = mode;
+                document.getElementById('employee-percent-wrapper').style.display = mode === 'percent' ? 'flex' : 'none';
+                document.getElementById('employee-amount-wrapper').style.display = mode === 'amount' ? 'flex' : 'none';
+                if (mode === 'amount') {
+                    const monthlyAmt = (inputs.annualSalary / 12) * (inputs.employeeContribution / 100);
+                    document.getElementById('employeeContributionAmt').value = Math.round(monthlyAmt);
+                    document.getElementById('employeeContribution-slider').max = '5000';
+                    document.getElementById('employeeContribution-slider').step = '25';
+                    document.getElementById('employeeContribution-slider').value = Math.round(monthlyAmt);
+                } else {
+                    document.getElementById('employeeContribution-slider').max = '30';
+                    document.getElementById('employeeContribution-slider').step = '0.5';
+                    document.getElementById('employeeContribution-slider').value = inputs.employeeContribution;
+                }
+            } else if (field === 'employer') {
+                state.employerMode = mode;
+                document.getElementById('employer-percent-wrapper').style.display = mode === 'percent' ? 'flex' : 'none';
+                document.getElementById('employer-amount-wrapper').style.display = mode === 'amount' ? 'flex' : 'none';
+                if (mode === 'amount') {
+                    const effectiveMatchRate = Math.min(inputs.employeeContribution, inputs.maxEmployerMatch);
+                    const monthlyAmt = (inputs.annualSalary / 12) * (effectiveMatchRate / 100) * (inputs.employerMatch / 100);
+                    document.getElementById('employerMatchAmt').value = Math.round(monthlyAmt);
+                    document.getElementById('employerMatch-slider').max = '2500';
+                    document.getElementById('employerMatch-slider').step = '25';
+                    document.getElementById('employerMatch-slider').value = Math.round(monthlyAmt);
+                } else {
+                    document.getElementById('employerMatch-slider').max = '100';
+                    document.getElementById('employerMatch-slider').step = '5';
+                    document.getElementById('employerMatch-slider').value = inputs.employerMatch;
+                }
+            }
+            updateUI();
+        }
+
+        function init() {
+            document.querySelectorAll('.tab').forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+                    document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+                    tab.classList.add('active');
+                    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+                    if (tab.dataset.tab === 'chart') {
+                        setTimeout(function() { if (growthChart) growthChart.resize(); }, 100);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.toggle-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var field = btn.dataset.field;
+                    var mode = btn.dataset.mode;
+                    btn.parentElement.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    handleModeToggle(field, mode);
+                });
+            });
+            
+            inputFields.forEach(function(field) {
+                var input = document.getElementById(field);
+                var slider = document.getElementById(field + '-slider');
+                if (input) {
+                    input.addEventListener('input', function() {
+                        if (slider) slider.value = input.value;
+                        updateUI();
+                    });
+                }
+                if (slider) {
+                    slider.addEventListener('input', function() {
+                        if (input) input.value = slider.value;
+                        updateUI();
+                    });
+                }
+            });
+            
+            var empPct = document.getElementById('employeeContributionPct');
+            var empAmt = document.getElementById('employeeContributionAmt');
+            var empSlider = document.getElementById('employeeContribution-slider');
+            
+            empPct.addEventListener('input', function() { if (state.employeeMode === 'percent') empSlider.value = empPct.value; updateUI(); });
+            empAmt.addEventListener('input', function() { if (state.employeeMode === 'amount') empSlider.value = empAmt.value; updateUI(); });
+            empSlider.addEventListener('input', function() {
+                if (state.employeeMode === 'percent') { empPct.value = empSlider.value; }
+                else { empAmt.value = empSlider.value; }
+                updateUI();
+            });
+            
+            var emplrPct = document.getElementById('employerMatchPct');
+            var emplrAmt = document.getElementById('employerMatchAmt');
+            var emplrSlider = document.getElementById('employerMatch-slider');
+            
+            emplrPct.addEventListener('input', function() { if (state.employerMode === 'percent') emplrSlider.value = emplrPct.value; updateUI(); });
+            emplrAmt.addEventListener('input', function() { if (state.employerMode === 'amount') emplrSlider.value = emplrAmt.value; updateUI(); });
+            emplrSlider.addEventListener('input', function() {
+                if (state.employerMode === 'percent') { emplrPct.value = emplrSlider.value; }
+                else { emplrAmt.value = emplrSlider.value; }
+                updateUI();
+            });
+            
+            var defToggle = document.getElementById('definitionsToggle');
+            var defList = document.getElementById('definitionsList');
+            defToggle.addEventListener('click', function() {
+                defToggle.classList.toggle('expanded');
+                defList.classList.toggle('expanded');
+            });
+            
+            updateUI();
+        }
+
+        // Theme toggle
+        var themeToggle = document.getElementById('themeToggle');
+        var themeIcon = themeToggle.querySelector('.theme-icon');
+        var htmlElement = document.documentElement;
+        var currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        
+        function updateThemeIcon(theme) { themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙'; }
+        updateThemeIcon(currentTheme);
+        
+        themeToggle.addEventListener('click', function() {
+            var curr = htmlElement.getAttribute('data-theme');
+            var newTheme = curr === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        // Mobile menu
+        var mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        var navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() { navLinks.classList.toggle('active'); });
+            
+            document.addEventListener('click', function(e) {
+                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+            
+            navLinks.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (!link.parentElement.classList.contains('nav-dropdown') && !link.classList.contains('has-submenu')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.nav-dropdown > a').forEach(function(dropdown) {
+                dropdown.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        var parent = dropdown.parentElement;
+                        parent.classList.toggle('active');
+                        document.querySelectorAll('.nav-dropdown').forEach(function(other) {
+                            if (other !== parent) { other.classList.remove('active'); }
+                        });
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.has-submenu').forEach(function(submenuToggle) {
+                submenuToggle.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        submenuToggle.classList.toggle('active');
+                        document.querySelectorAll('.has-submenu').forEach(function(other) {
+                            if (other !== submenuToggle) { other.classList.remove('active'); }
+                        });
+                    }
+                });
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
