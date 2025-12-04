@@ -633,6 +633,8 @@
                 </div>
             </div>
             
+            <p>Breaking down these numbers further: total charitable assets reached $251.52 billion (up 9.9% from $228.92 billion in 2022), with 1,782,281 DAF accounts—a number that has nearly doubled over the past five years. The average account size is $141,120. Grants to nonprofits totaled $54.77 billion (nearly doubled from $28 billion in 2019), while contributions to DAFs reached $59.43 billion. The payout rate of approximately 24% has consistently remained at or above 20% every year on record.</p>
+            
             <p>DAF grantmaking has grown at a compound annual rate of 17.8% from 2019 to 2023. While contributions dipped 21.7% in 2023 after record highs during the pandemic, the overall trajectory remains strongly upward. For context, DAF grants now represent almost half (48%) of the value of all private foundation grants and expenditures combined.</p>
         </section>
 
@@ -795,7 +797,7 @@
             
             <p><strong>Schedule a confidential consultation to discuss your organization's specific situation.</strong></p>
             <p>
-                <a href="mailto:info@togetherforwardcap.com">info@togetherforwardcap.com</a> | 
+                <a href="/cdn-cgi/l/email-protection#5f363139301f2b30383a2b373a2d39302d283e2d3b3c3e2f713c3032"><span class="__cf_email__" data-cfemail="4f262129200f3b20282a3b272a3d29203d382e3d2b2c2e3f612c2022">[email&#160;protected]</span></a> | 
                 <a href="tel:8883307090">(888) 330-7090</a>
             </p>
         </section>
@@ -840,4 +842,14 @@
             const currentTheme = htmlElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
-            htmlElement.setAttribute('data-theme', newTh
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    </script>
+</body>
+</html>
