@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endowments Aren't Just for Harvard - Together Forward Capital</title>
+    <meta name="description" content="A practical guide for small and mid-size nonprofits on building endowments. Learn how organizations of any size can use endowments for long-term sustainability.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e4d8b;
+            --secondary-blue: #3a7bc8;
+            --primary-green: #2e7d32;
+            --secondary-green: #4caf50;
+            --light-blue: #e3f2fd;
+            --light-green: #e8f5e9;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+        }
+
+        html {
+            scroll-padding-top: 170px;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary-blue: #4a7dc7;
+            --secondary-blue: #6fa3e0;
+            --primary-green: #4caf50;
+            --secondary-green: #66bb6a;
+            --light-blue: #1a2332;
+            --light-green: #1a2e1c;
+            --text-dark: #e0e0e0;
+            --text-gray: #b0b0b0;
+            --white: #0f1419;
+            --light-gray: #1a1f2e;
+            --bg-dark: #0a0e17;
+            --card-bg: #151922;
+            --nav-bg: #0f1419;
+            --border-color: #2a3441;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-color: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-dark);
+        }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--secondary-green);
+            color: var(--bg-dark);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            height: 125px;
+            width: auto;
+            transition: filter 0.3s ease;
+        }
+
+        [data-theme="dark"] .logo img {
+            filter: brightness(1.2);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Back Link */
+        .back-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 160px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .hero-image {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Article Container */
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Article Header */
+        .article-header {
+            margin-bottom: 3rem;
+        }
+
+        .series-label {
+            display: inline-block;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        [data-theme="dark"] .series-label {
+            background: var(--light-blue);
+            color: var(--secondary-blue);
+        }
+
+        .category-label {
+            display: inline-block;
+            background: var(--light-green);
+            color: var(--primary-green);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        [data-theme="dark"] .category-label {
+            background: var(--light-green);
+            color: var(--secondary-green);
+        }
+
+        .labels-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-container h1 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .meta {
+            color: var(--text-gray);
+            font-size: 0.938rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        [data-theme="dark"] .meta {
+            border-bottom-color: var(--border-color);
+        }
+
+        /* Article Content */
+        .article-content {
+            font-size: 1.063rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .article-content p {
+            margin-bottom: 1.25rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.875rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.375rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Article Images / Infographics */
+        .article-image {
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+
+        .article-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .article-image img {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .article-image-caption {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        /* Featured image - larger */
+        .article-image.featured img {
+            max-width: 100%;
+        }
+
+        /* Side-by-side images */
+        .image-row {
+            display: flex;
+            gap: 2rem;
+            margin: 2.5rem 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .image-row .article-image {
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            margin: 0;
+        }
+
+        /* Stat highlight box */
+        .stat-highlight {
+            background: linear-gradient(135deg, var(--light-blue) 0%, var(--light-green) 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+
+        [data-theme="dark"] .stat-highlight {
+            background: linear-gradient(135deg, #1a2332 0%, #1a2e1c 100%);
+        }
+
+        .stat-highlight .stat-row {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-highlight .stat-item {
+            text-align: center;
+        }
+
+        .stat-highlight .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-highlight .stat-label {
+            font-size: 1rem;
+            color: var(--text-gray);
+        }
+
+        /* Callout box */
+        .callout-box {
+            background: var(--light-gray);
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        [data-theme="dark"] .callout-box {
+            background: var(--card-bg);
+        }
+
+        .callout-box p {
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        /* List styling */
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0 1.5rem 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        /* Checklist box */
+        .checklist-box {
+            background: var(--light-green);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        [data-theme="dark"] .checklist-box {
+            background: var(--light-green);
+        }
+
+        .checklist-box h3 {
+            color: var(--primary-green);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .checklist-box ol {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .checklist-box li {
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        /* CTA Section */
+        .article-cta {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-green) 100%);
+            border-radius: 12px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .article-cta h3 {
+            color: white;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-cta p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .article-cta .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-blue);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .article-cta .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Author section */
+        .author-section {
+            display: flex;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            margin: 3rem 0;
+            align-items: center;
+        }
+
+        [data-theme="dark"] .author-section {
+            background: var(--card-bg);
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .author-info h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info .author-title {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-info p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-top: 3rem;
+            line-height: 1.6;
+        }
+
+        [data-theme="dark"] .disclaimer {
+            background: var(--card-bg);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1a365d 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        [data-theme="dark"] footer {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        footer p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        footer .disclosure {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero {
+                margin-top: 200px;
+                padding: 0 1rem;
+            }
+
+            .article-container h1 {
+                font-size: 2rem;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .article-container {
+                padding: 2rem 1rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .stat-highlight .stat-row {
+                gap: 2rem;
+            }
+
+            .stat-highlight .stat-number {
+                font-size: 2rem;
+            }
+
+            /* Make images tappable on mobile */
+            .article-image img {
+                cursor: zoom-in;
+            }
+        }
+
+        /* Image Lightbox Modal */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            cursor: zoom-out;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2001;
+            color: #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .lightbox-close:hover {
+            background: #fff;
+        }
+
+        .lightbox-caption {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            text-align: center;
+            max-width: 90%;
+            font-size: 0.9rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="together-forward-capital-logo-horizontal.png" alt="Together Forward Capital">
+            </a>
+            <a href="market-insights.html" class="back-link">← Back to Market Insights</a>
+        </div>
+    </nav>
+
+    <!-- Hero Image -->
+    <div class="hero">
+        <img src="images/Hero_picture.jpg" alt="Endowments Aren't Just for Harvard - A Practical Guide for Small and Mid-Size Nonprofits" class="hero-image">
+    </div>
+
+    <!-- Article Content -->
+    <article class="article-container">
+        <!-- Header -->
+        <header class="article-header">
+            <div class="labels-container">
+                <span class="category-label">Endowment Strategy</span>
+                <span class="series-label">Governance</span>
+            </div>
+            <h1>Endowments Aren't Just for Harvard</h1>
+            <p class="subtitle">A Practical Guide for Small and Mid-Size Nonprofits</p>
+            <p class="meta">
+                <time datetime="2025-12-09">December 9, 2025</time> | 
+                Endowment Management | 
+                12-minute read
+            </p>
+        </header>
+
+        <div class="article-content">
+            <p>When most people hear the word "endowment," they think of Ivy League universities with billion-dollar portfolios and historic donor lists. The association is understandable but incorrect. Endowments are not reserved for elite institutions. They are practical financial tools that organizations of almost any size can use to build long-term sustainability.</p>
+
+            <h2>Why This Matters for Smaller Organizations</h2>
+
+            <p>Research associated with MIT and the University of Illinois examined more than 310,000 public nonprofit organizations and found that roughly one in nine, or approximately 35,000 organizations, maintain endowment funds. These organizations collectively manage around 800 billion dollars in endowment assets. Many are not major universities. They include community foundations, regional health providers, arts organizations, and faith-based institutions that recognized the value of establishing permanent sources of support.</p>
+
+            <!-- Stat Highlight -->
+            <div class="stat-highlight">
+                <div class="stat-row">
+                    <div class="stat-item">
+                        <div class="stat-number">35,000</div>
+                        <div class="stat-label">Organizations with Endowments</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">$800B</div>
+                        <div class="stat-label">Combined Endowment Assets</div>
+                    </div>
+                </div>
+            </div>
+
+            <p>The same research suggests that organizations with endowments tend to grow assets and revenues more rapidly than similar nonprofits without them. While correlation is not causation, the governance discipline that accompanies endowment management appears to strengthen long-term financial health.</p>
+
+            <p>Yet many nonprofit leaders assume they are too small to start an endowment. Others believe their donors would not be interested. Still others worry about complexity. These concerns are understandable, but in most cases the barriers are lower than they appear.</p>
+
+            <h2>What an Endowment Really Is</h2>
+
+            <p>An endowment is a pool of donated funds that an organization invests for long-term support rather than spending immediately. The goal is to preserve principal in perpetuity and distribute a prudent portion of investment returns each year.</p>
+
+            <!-- Annual Fund vs Endowment Image -->
+            <div class="article-image">
+                <img src="images/Annual_Fund_Endowment.jpg" alt="Annual Fund versus Endowment comparison showing plant requiring constant watering versus self-sustaining tree">
+                <p class="article-image-caption">Annual funds require constant replenishment, while endowments generate sustainable support over time.</p>
+            </div>
+
+            <p>Many organizations adopt a spending policy in the range of 4 to 5 percent of the endowment's average market value. In a typical example, a donor gives 100,000 dollars. The principal remains invested and annual distributions support mission activities. If long-term investment returns exceed annual spending, the endowment can grow over time. For example, a gift made today might still generate meaningful support for a youth services program fifty years from now.</p>
+
+            <!-- Spending Policy Image -->
+            <div class="article-image">
+                <img src="images/endowment_spending_policy.jpg" alt="Endowment spending policy illustration showing 4-5% annual distribution from a larger pool">
+                <p class="article-image-caption">A prudent spending policy of 4-5% annually allows endowments to grow while providing consistent support.</p>
+            </div>
+
+            <p>This structure provides something rare in the nonprofit world: consistent support that is less dependent on annual fundraising cycles, grant uncertainty, or economic fluctuations. Endowment distributions create a long-term financial baseline as other revenue sources vary.</p>
+
+            <h2>Breaking the Stereotypes</h2>
+
+            <p>The biggest misconception is that endowments require millions of dollars to be useful. This is not accurate. Although large endowments receive attention, many organizations maintain endowments in the hundreds of thousands or low millions.</p>
+
+            <p>A more practical way to think about an endowment is as a strategy rather than a status symbol. A 500,000 dollar endowment generating 20,000 to 25,000 dollars annually can fund scholarships, staff positions, program expenses, or operating needs. For many organizations, that level of flexible funding is transformative.</p>
+
+            <div class="callout-box">
+                <p>Another common assumption is that donors only want immediate impact. That is true for some donors, but donors with greater capacity often desire permanence and legacy. For example, a donor might establish a 250,000 dollar endowment that funds after-school tutoring in Broward County. Endowment gifts appeal precisely because they provide long-lasting support and can be integrated into planned giving conversations.</p>
+            </div>
+
+            <h2>Understanding the Different Types</h2>
+
+            <p>Not all endowments are the same. Understanding the key structures helps organizations match donor intent with organizational needs:</p>
+
+            <!-- Types of Endowments Image -->
+            <div class="article-image featured">
+                <img src="images/endowment_structure.jpg" alt="Five types of endowments illustrated as branches on a tree: Unrestricted, True, Term, Quasi, and Micro">
+                <p class="article-image-caption">The five main endowment structures offer different levels of flexibility and permanence.</p>
+            </div>
+
+            <h3>Unrestricted Endowments</h3>
+            <p>Distributions can support any mission area the board deems appropriate. This type provides maximum flexibility.</p>
+
+            <h3>Donor-Restricted or "True" Endowments</h3>
+            <p>Donors specify how distributions can be used, and the organization is obligated to follow those instructions permanently, subject to applicable UPMIFA standards.</p>
+
+            <h3>Term Endowments</h3>
+            <p>Restrictions apply for a defined timeframe or until certain conditions are met. Afterward, funds may become unrestricted.</p>
+
+            <h3>Quasi-Endowments</h3>
+            <p>Board-designated funds that function like endowments but allow the board to access principal in extraordinary circumstances. Quasi-endowments provide discipline with flexibility and are often a smart starting point for smaller organizations.</p>
+
+            <h3>Micro-Endowments</h3>
+            <p>Smaller endowments, sometimes beginning at 10,000 to 25,000 dollars, that grow through additional contributions. Many organizations adopt this model to make endowment participation accessible to more donors.</p>
+
+            <h2>What Endowments Can Support</h2>
+
+            <p>Endowments may be designated for many purposes including scholarships and fellowships, critical staff positions, ongoing program support, facilities and capital maintenance, and operating needs. Named endowments offer a recognition opportunity that resonates with legacy-oriented donors.</p>
+
+            <!-- Perpetual Endowment Image -->
+            <div class="article-image">
+                <img src="images/perpetual_endowment.jpg" alt="Water wheel representing the perpetual nature of endowment distributions over time">
+                <p class="article-image-caption">Like a water wheel, endowments create a perpetual cycle of support that continues indefinitely.</p>
+            </div>
+
+            <h2>Is Your Organization Ready?</h2>
+
+            <p>Before launching an endowment initiative, evaluate three conditions:</p>
+
+            <!-- Readiness Image -->
+            <div class="article-image">
+                <img src="images/endowment_readiness.jpg" alt="Three building blocks of endowment readiness: Operating Reserves, Long-Term Planning, and Legacy Donors">
+                <p class="article-image-caption">The three foundational elements that signal endowment readiness.</p>
+            </div>
+
+            <h3>Adequate Operating Reserves</h3>
+            <p>Organizations should prioritize building general reserves equal to several months of operating expenses before establishing permanent endowment funds.</p>
+
+            <h3>Strategic Planning Beyond the Near-Term</h3>
+            <p>Endowment thinking aligns with ten-year horizons, not one-year budgets.</p>
+
+            <h3>Donor Demographics</h3>
+            <p>Endowment growth often relies on planned giving vehicles including bequests and charitable remainder trusts. Organizations with engaged donor bases and legacy prospects are strong candidates.</p>
+
+            <p><strong>Readiness is more important than size.</strong></p>
+
+            <h2>A Practical Framework for Getting Started</h2>
+
+            <!-- Launch Checklist Image -->
+            <div class="article-image featured">
+                <img src="images/Endowment_Launch_Checklist.jpg" alt="Path showing the journey to endowment success with milestones: Build Reserves, Create Policies, Board Commitment, Investment Advisor, Leadership Gift">
+                <p class="article-image-caption">The endowment journey begins with building reserves and continues through policy development, board commitment, and professional management.</p>
+            </div>
+
+            <h3>Develop Written Policies</h3>
+            <p>Create policies for investment strategy, spending rules, and gift acceptance. These documents protect both donors and the organization and are central to a compliant nonprofit endowment strategy.</p>
+
+            <h3>Secure Board Commitment</h3>
+            <p>Boards should understand fiduciary responsibilities under the Uniform Prudent Management of Institutional Funds Act (UPMIFA), which governs investment and spending for most charitable endowments in the United States.</p>
+
+            <!-- UPMIFA Image -->
+            <div class="article-image">
+                <img src="images/Governing_under_UPMIFA.jpg" alt="Roadmap showing UPMIFA governance considerations: Donor Intent, Mission Impact, Investment Policy, Spending Impact">
+                <p class="article-image-caption">UPMIFA provides the legal framework for prudent endowment management.</p>
+            </div>
+
+            <h3>Select Professional Investment Management</h3>
+            <p>Registered investment advisors are subject to fiduciary duties under the Investment Advisers Act of 1940 and must act in the best interests of their clients. Advisors experienced with nonprofit endowments and UPMIFA compliance are particularly valuable.</p>
+
+            <h3>Build Gradually</h3>
+            <p>Endowments often begin with a single leadership gift and expand through planned giving, additional contributions, or challenge opportunities. A modest endowment can still provide meaningful mission support.</p>
+
+            <h2>The Donor Perspective</h2>
+
+            <p>Donors who establish endowments are motivated by several factors:</p>
+
+            <!-- Donor Motivations Image -->
+            <div class="article-image">
+                <img src="images/donor_motivations.jpg" alt="Tree with fruit representing donor motivations: Legacy (infinity symbol), Control, Tax Benefits, and Recognition">
+                <p class="article-image-caption">Understanding what motivates endowment donors helps organizations frame compelling giving opportunities.</p>
+            </div>
+
+            <h3>Permanence</h3>
+            <p>Gifts continue supporting a mission long after the donor is gone.</p>
+
+            <h3>Control</h3>
+            <p>Restricted endowments allow donors to direct their philanthropy precisely.</p>
+
+            <h3>Tax Benefits</h3>
+            <p>Contributing appreciated securities may offer income tax deductions while avoiding capital gains tax, subject to applicable rules. Charitable bequests can also reduce taxable estates.</p>
+
+            <h3>Recognition</h3>
+            <p>Named endowments provide lasting visibility and legacy.</p>
+
+            <div class="callout-box">
+                <p>For example, a family might endow a leadership development program that carries their name in perpetuity, ensuring future generations know the origin of the support.</p>
+            </div>
+
+            <h2>What to Watch For</h2>
+
+            <p>Endowment programs require thoughtful planning. Market volatility affects distributions. Narrow restrictions may become difficult over time. Governance requires ongoing oversight. Donor communication is essential.</p>
+
+            <p>UPMIFA provides a legal framework for prudent investment and spending, but it does not eliminate the need for disciplined governance.</p>
+
+            <!-- Checklist Box -->
+            <div class="checklist-box">
+                <h3>Endowment Launch Checklist</h3>
+                <ol>
+                    <li>Build operating reserves first</li>
+                    <li>Create written policies</li>
+                    <li>Secure board commitment</li>
+                    <li>Engage a qualified investment advisor</li>
+                    <li>Begin with a leadership gift</li>
+                </ol>
+                <p style="margin-top: 1rem; margin-bottom: 0; font-style: italic;">This five-step framework provides a practical starting point for nonprofit leaders exploring long-term mission sustainability.</p>
+            </div>
+
+            <h2>Looking Forward</h2>
+
+            <p>Organizations that thrive across generations think beyond annual budgets. Endowments enable that mindset. They require patience and long-term commitment, but they provide stability that few other funding sources can match.</p>
+
+            <p>You do not need a billion-dollar portfolio to benefit from endowment building. You need mission clarity, board support, and donors who share your long-term vision. Endowments shift the conversation from this year's budget to long-term mission stability.</p>
+
+            <p><strong>The most important question is simple: where do you want your organization to be in twenty years?</strong></p>
+
+            <!-- Guide Reference Box -->
+            <div class="callout-box" style="background: var(--light-blue); border-left-color: var(--primary-blue);">
+                <h3 style="color: var(--primary-blue); margin-bottom: 0.75rem;">Want to Go Deeper?</h3>
+                <p style="margin-bottom: 1rem;">This article provides an introduction to endowment concepts. For comprehensive guidance on investment management strategies, governance frameworks, and measuring endowment success, explore our complete guide.</p>
+                <a href="endowment-guide.html" style="color: var(--primary-blue); font-weight: 600; text-decoration: none;">Read the Full Endowment Building Guide →</a>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="article-cta">
+                <h3>Ready to Explore Endowment Strategy?</h3>
+                <p>Together Forward Capital specializes in helping foundations and nonprofits build sustainable investment programs.</p>
+                <a href="contact.html" class="cta-button">Schedule a Consultation</a>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="disclaimer">
+                <p><em><strong>Important Disclaimer:</strong> This article provides general information only and does not constitute legal, tax, or investment advice. Donors and organizations should consult with qualified legal, tax, and financial advisors to understand their specific situations and obligations. Investment advisory services offered through R.F. Lafferty & Co., Inc., a registered investment advisor.</em></p>
+                <p>© 2025 Together Forward Capital. All rights reserved.</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="legal-disclosures.html">Disclosures</a></li>
+                <li><a href="form-crs.pdf" target="_blank">Form CRS</a></li>
+                <li><a href="form-adv-part-2a.pdf" target="_blank">Form ADV</a></li>
+            </ul>
+            <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
+            <p class="disclosure">Securities and advisory services offered through Together Forward Capital, a DBA of <a href="https://www.rflafferty.com" target="_blank" style="color: #ffffff; text-decoration: underline;">R.F. Lafferty & Co., Inc.</a>, member <a href="https://www.finra.org" target="_blank" style="color: #ffffff; text-decoration: underline;">FINRA</a>/<a href="https://www.sipc.org" target="_blank" style="color: #ffffff; text-decoration: underline;">SIPC</a>,<br>
+            a broker/dealer and a Securities and Exchange Commission Registered Investment Adviser.</p>
+        </div>
+    </footer>
+
+    <!-- Image Lightbox Modal -->
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" aria-label="Close">&times;</button>
+        <img class="lightbox-content" id="lightbox-img" src="" alt="">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <script>
+        // Dark mode functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        const htmlElement = document.documentElement;
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Lightbox functionality for mobile
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        // Only enable on mobile/tablet
+        function isMobileOrTablet() {
+            return window.innerWidth <= 1024;
+        }
+
+        // Add click handlers to article images
+        document.querySelectorAll('.article-image img').forEach(img => {
+            img.addEventListener('click', function() {
+                if (isMobileOrTablet()) {
+                    lightboxImg.src = this.src;
+                    lightboxImg.alt = this.alt;
+                    
+                    // Get caption from sibling element if exists
+                    const caption = this.parentElement.querySelector('.article-image-caption');
+                    lightboxCaption.textContent = caption ? caption.textContent : this.alt;
+                    
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close lightbox on click
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox || e.target === lightboxClose || e.target === lightboxImg) {
+                closeLightbox();
+            }
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+</body>
+</html>
