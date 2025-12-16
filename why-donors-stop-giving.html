@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Donor retention strategies for foundations and endowments. Learn why impact reporting is critical for major gift retention and how to reduce donor attrition.">
+    <meta name="keywords" content="donor retention, major gifts, impact reporting, nonprofit fundraising, foundation stewardship, endowment management, philanthropic giving">
+    <title>Why Your Donors Stop Giving (And What to Do About It) | Together Forward Capital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e4d8b;
+            --secondary-blue: #3a7bc8;
+            --primary-green: #2e7d32;
+            --secondary-green: #4caf50;
+            --light-blue: #e3f2fd;
+            --light-green: #e8f5e9;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+        }
+
+        /* Dark mode variables */
+        [data-theme="dark"] {
+            --primary-blue: #4a7dc7;
+            --secondary-blue: #6fa3e0;
+            --primary-green: #4caf50;
+            --secondary-green: #66bb6a;
+            --light-blue: #1a2332;
+            --light-green: #1a2e1c;
+            --text-dark: #e0e0e0;
+            --text-gray: #b0b0b0;
+            --white: #0f1419;
+            --light-gray: #1a1f2e;
+            --bg-dark: #0a0e17;
+            --card-bg: #151922;
+            --nav-bg: #0f1419;
+            --border-color: #2a3441;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--white);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        [data-theme="dark"] body {
+            background-color: var(--bg-dark);
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--secondary-green);
+            color: var(--bg-dark);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] nav {
+            background: var(--nav-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            height: 125px;
+            width: auto;
+            transition: filter 0.3s ease;
+        }
+
+        [data-theme="dark"] .logo img {
+            filter: brightness(1.2);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* Main content */
+        .article-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .article-container {
+            background: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .labels-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-label {
+            background-color: #f0f7ff;
+            color: #1e4d8b;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-label {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .category-label {
+            background-color: #1a2332;
+            color: #6fa3e0;
+        }
+
+        [data-theme="dark"] .resource-label {
+            background-color: #1a2e1c;
+            color: #66bb6a;
+        }
+
+        .author-date {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        [data-theme="dark"] .author-date {
+            border-bottom-color: var(--border-color);
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: var(--secondary-blue);
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            color: var(--primary-green);
+            font-size: 1.15rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.2rem;
+            margin-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.6rem;
+        }
+
+        .inline-image {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            margin: 2rem auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .inline-image {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            opacity: 0.9;
+        }
+
+        .call-out-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        [data-theme="dark"] .call-out-box {
+            background-color: #1a2e1c;
+            border-left-color: #66bb6a;
+        }
+
+        .call-out-box h4 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+
+        [data-theme="dark"] .call-out-box h4 {
+            color: #66bb6a;
+        }
+
+        .stat-highlight {
+            background: linear-gradient(135deg, #1e4d8b 0%, #3a7bc8 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .stat-highlight .big-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-highlight .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .action-list {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        [data-theme="dark"] .action-list {
+            background-color: #2e2416;
+            border-left-color: #ffb84d;
+        }
+
+        [data-theme="dark"] .action-list h4,
+        [data-theme="dark"] .action-list p,
+        [data-theme="dark"] .action-list li {
+            color: #e0e0e0;
+        }
+
+        .action-list h4 {
+            margin-top: 0;
+            color: #e65100;
+        }
+
+        [data-theme="dark"] .action-list h4 {
+            color: #ffb84d;
+        }
+
+        .key-stat-box {
+            background-color: #f0f7ff;
+            border: 2px solid var(--primary-blue);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        [data-theme="dark"] .key-stat-box {
+            background-color: #1a2332;
+            border-color: #6fa3e0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] .comparison-table {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .comparison-table th {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        [data-theme="dark"] .comparison-table th {
+            background: var(--secondary-blue);
+        }
+
+        .comparison-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        [data-theme="dark"] .comparison-table td {
+            border-bottom-color: var(--border-color);
+        }
+
+        .comparison-table tr:hover {
+            background-color: var(--light-gray);
+        }
+
+        [data-theme="dark"] .comparison-table tr:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #1e4d8b 0%, #2d5a7b 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-section p {
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary-green);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #388e3c;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a3a52 0%, #0d1f2d 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer a {
+            color: #4caf50;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .disclosure {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        strong {
+            color: var(--primary-blue);
+        }
+
+        [data-theme="dark"] strong {
+            color: var(--secondary-blue);
+        }
+
+        em {
+            color: var(--text-dark);
+        }
+
+        [data-theme="dark"] em {
+            color: #c0c0c0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.25rem;
+            }
+
+            .labels-container {
+                gap: 0.5rem;
+            }
+
+            .category-label,
+            .resource-label {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.85rem;
+            }
+
+            .logo img {
+                height: 80px;
+            }
+
+            .back-link {
+                font-size: 0.9rem;
+            }
+
+            .stat-highlight .big-number {
+                font-size: 2.5rem;
+            }
+
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+
+            .comparison-table th, 
+            .comparison-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="together-forward-capital-logo-horizontal.png" alt="Together Forward Capital">
+            </a>
+            <a href="market-insights.html" class="back-link">← Back to Market Insights</a>
+        </div>
+    </nav>
+
+    <!-- Hero Image -->
+    <div style="max-width: 900px; margin: 157px auto 0; padding: 0 2rem;">
+        <img src="images/donor-retention-hero.jpg" alt="Why Your Donors Stop Giving - Impact Reporting Strategy" style="width: 100%; height: auto; border-radius: 8px 8px 0 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+    </div>
+
+    <!-- Hero Section -->
+    <div style="max-width: 900px; margin: 0 auto; background: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 100%); color: white; padding: 3rem 2rem; text-align: center; border-radius: 0 0 8px 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem; font-weight: 700;">Why Your Donors Stop Giving</h1>
+        <p style="font-size: 1.3rem; opacity: 0.95; max-width: 900px; margin: 0 auto;">And What to Do About It: The Case for Impact Reporting as a Major Gift Strategy</p>
+    </div>
+
+    <!-- Main Article Content -->
+    <div class="article-container">
+        <div class="labels-container">
+            <span class="category-label">Donor Relations</span>
+            <span class="resource-label">Strategy</span>
+        </div>
+
+        <div class="author-date">
+            <strong>Author:</strong> Joel Mathews | <strong>Date:</strong> December 16, 2025
+        </div>
+
+        <div class="content">
+            <h2>A $592 Billion Paradox</h2>
+
+            <p>Charitable giving hit $592.50 billion in 2024—a record. You'd think that's good news. It is, mostly. But here's what keeps me up at night: that money came from fewer people than the year before. Donor participation dropped 4.5% while total dollars went up 6.3%.</p>
+
+            <p>What does that mean? Bigger checks from a shrinking pool. That's a concentration risk, and if you've spent any time in finance, you know concentration risk eventually catches up with you.</p>
+
+            <img src="images/concentration_risk_paradox.jpg" alt="The Concentration Risk Paradox - A few donors holding up the entire structure" class="inline-image">
+
+            <p>I work with foundations and endowments every day, and I see this playing out in real time. The organizations that thrive aren't necessarily the ones with the flashiest galas or the biggest marketing budgets. They're the ones that do something deceptively simple: <strong>they tell their donors what happened with the money.</strong></p>
+
+            <h2>Let's Talk Numbers</h2>
+
+            <p>There's a statistic that gets thrown around in fundraising circles: 88% of dollars raised come from 12% of donors. I've seen various versions of this over the years, and the Fundraising Effectiveness Project data backs it up. It's real.</p>
+
+            <div class="stat-highlight">
+                <span class="big-number">88%</span>
+                <span class="stat-label">of dollars raised come from just 12% of donors</span>
+            </div>
+
+            <p>Think about what that means for your organization. Lose a few key relationships, and you're not just down a donation—you're potentially facing a budget crisis.</p>
+
+            <p>Here's where it gets worse. The average nonprofit retains only 40-45% of its donors year over year. For first-time donors, it's closer to 20%. That means if you bring in 100 new donors this year, roughly 80 of them won't give again.</p>
+
+            <p>I don't care how good your acquisition strategy is—you can't outrun those numbers forever.</p>
+
+            <div class="key-stat-box">
+                <h4 style="margin-top: 0;">Retention Rate Comparison</h4>
+                <table class="comparison-table" style="margin: 1rem 0 0 0; box-shadow: none;">
+                    <tr>
+                        <td><strong>First-time donors</strong></td>
+                        <td style="text-align: right;">~20%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Average all donors</strong></td>
+                        <td style="text-align: right;">40-45%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multi-year repeat donors</strong></td>
+                        <td style="text-align: right;">60%+</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monthly recurring donors</strong></td>
+                        <td style="text-align: right;">80-90%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p>But here's what's interesting. Monthly recurring donors? They stick around at rates of 80-90%. Repeat donors who've given multiple years in a row? North of 60%. The gap between those numbers and the 20% first-time retention rate tells you everything you need to know about where to focus.</p>
+
+            <h2>What Actually Works</h2>
+
+            <p>I'm going to tell you something that sounds obvious but apparently isn't, based on how few organizations do it well: <strong>donors want to know what you did with their money.</strong></p>
+
+            <p>That's it. That's the secret.</p>
+
+            <img src="images/executive_stewardship.jpg" alt="Numbers and stories together - The dual nature of effective impact reporting" class="inline-image">
+
+            <p>There's research from McConkey International showing that donors who get a personal thank-you within 48 hours are four times more likely to give again. Penelope Burk's work found that a thank-you call from a board member within 24 hours increases the next gift by 39%. These aren't small effects.</p>
+
+            <p>But the thank-you is just the beginning. What really moves the needle is ongoing communication about impact. Not "we need more money" communication—<strong>"here's what your money did" communication.</strong></p>
+
+            <p>I've sat in meetings with foundation boards where the development director couldn't answer basic questions about program outcomes. That's a problem. Your major donors are sophisticated people. Many of them run businesses or manage investments. They understand ROI. If you can't articulate your ROI in mission terms, you're leaving money on the table.</p>
+
+            <h2>What Good Reporting Actually Looks Like</h2>
+
+            <p>I'm not talking about glossy annual reports that cost $50,000 to produce and nobody reads. I'm talking about consistent, honest communication that answers three questions:</p>
+
+            <div class="call-out-box">
+                <h4>The Three Essential Questions</h4>
+                <ol>
+                    <li><strong>What did you set out to do?</strong></li>
+                    <li><strong>What actually happened?</strong></li>
+                    <li><strong>What did you learn?</strong></li>
+                </ol>
+            </div>
+
+            <img src="images/bridge_of_impact.jpg" alt="Bridging donor dollars to community impact" class="inline-image">
+
+            <p>Notice I said "what actually happened," not "what went well." Donors aren't stupid. They know not everything works. An organization that only reports successes looks like an organization that's either lying or not trying anything ambitious. Neither is a good look.</p>
+
+            <p>The best impact reports I've seen combine hard numbers with real stories. Something like: "Last year, 847 students completed our after-school program. 94% improved their reading scores by at least one grade level. Here's a note from Maria, who's now reading Harry Potter to her little brother."</p>
+
+            <p><strong>Numbers give credibility. Stories give meaning. You need both.</strong></p>
+
+            <h2>The Investment Angle</h2>
+
+            <p>Here's where I'll put on my investment advisor hat for a minute.</p>
+
+            <p>If you're a foundation or endowment, your donors made a bet on your long-term viability. They gave you money expecting it to be there—and working—for years or decades. That means you owe them two kinds of reporting: <strong>program impact AND financial stewardship.</strong></p>
+
+            <p>I'm consistently surprised by how many organizations separate these conversations. The development team talks about programs. The finance committee talks about investments. The donor gets a fragmented picture at best.</p>
+
+            <p>Your investment advisor should be part of your stewardship strategy. Not in a sales-y way—in a "here's how we're managing your trust" way. When a donor asks how the endowment is doing, someone should be able to give a clear, honest answer that connects portfolio performance to mission capacity.</p>
+
+            <p>Foundation assets in the U.S. have grown from around $533 billion in 2009 to over $1.6 trillion today. That's real money. It deserves real accountability.</p>
+
+            <h2>Build the Pipeline</h2>
+
+            <p>One more thing worth mentioning: monthly giving programs are quietly becoming the backbone of sustainable fundraising. Monthly donors now account for about 31% of online revenue, and that number keeps climbing.</p>
+
+            <p>Why does this matter for major gifts? Because your monthly donors are your farm team. They've already demonstrated commitment. They're giving regularly. They're engaged. Research shows they're six times more likely to include you in their estate plans than one-time donors.</p>
+
+            <p>The path from $25/month donor to $25,000 major gift donor isn't automatic, but it's a lot shorter than the path from stranger to major donor. And the bridge between those two points? <strong>Consistent impact communication that deepens the relationship over time.</strong></p>
+
+            <h2>What to Do Monday Morning</h2>
+
+            <p>I'll wrap up with some practical suggestions. These aren't revolutionary, but they work:</p>
+
+            <div class="action-list">
+                <h4>📋 Action Items for Your Team</h4>
+                <ul>
+                    <li><strong>Get your thank-you time under 48 hours.</strong> Automate the initial acknowledgment if you have to, but make it good. Then follow up with something personal within a week for any gift over your threshold.</li>
+                    <li><strong>Pick 3-5 metrics that actually matter.</strong> Not 47 things you could measure—the handful that genuinely indicate whether you're succeeding. Track them consistently. Report them honestly.</li>
+                    <li><strong>Create a stewardship calendar.</strong> Map out when each major donor hears from you and about what. If the only time they hear from you is when you're asking for money, that's a problem.</li>
+                    <li><strong>Get your development and finance teams talking.</strong> Seriously. If your CFO and your development director aren't coordinating on donor communication, you're probably sending mixed messages or missing opportunities.</li>
+                    <li><strong>Ask your investment advisor for help.</strong> If they can't explain your endowment's performance in plain English suitable for a donor letter, find one who can.</li>
+                </ul>
+            </div>
+
+            <h2>The Bottom Line</h2>
+
+            <img src="images/broken_atm.jpg" alt="From ATM thinking to partnership - The evolution of donor relationships" class="inline-image">
+
+            <p>Donor retention isn't a mystery. People keep giving to organizations that respect their investment, communicate honestly, and demonstrate results. The 88/12 rule means you can't afford to lose your key relationships. And you won't—if you treat them like the partners they are.</p>
+
+            <p>The organizations that figure this out will thrive. The ones that keep treating donors like ATMs will keep wondering why the ATMs stop working.</p>
+
+            <div class="cta-section">
+                <h2>About Together Forward Capital</h2>
+                <p>Together Forward Capital works exclusively with foundations, endowments, and nonprofit organizations. We provide investment advisory services with a fiduciary standard, and we actually understand the unique reporting and stewardship needs of philanthropic clients. If you're looking for an advisor who gets both sides of the equation—portfolio performance and mission impact—let's talk.</p>
+                <a href="mailto:info@togetherforwardcapital.com?subject=Portfolio%20Review%20Request" class="cta-button">Schedule a Complimentary Portfolio Review</a>
+            </div>
+
+            <p style="margin-top: 2rem; font-size: 0.9rem; font-style: italic; color: var(--text-gray);">
+                <strong>Disclosures:</strong> This article is for informational purposes only and is not investment, legal, or tax advice. Together Forward Capital is an SEC-registered investment adviser operating as a DBA of R.F. Lafferty & Co., Inc. Registration does not imply a certain level of skill or training.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Together Forward Capital. All rights reserved.</p>
+            <p class="disclosure">Securities and advisory services offered through Together Forward Capital, a DBA of <a href="https://www.rflafferty.com" target="_blank">R.F. Lafferty & Co., Inc.</a>, member <a href="https://www.finra.org" target="_blank">FINRA</a>/<a href="https://www.sipc.org" target="_blank">SIPC</a>, a broker/dealer and a Securities and Exchange Commission Registered Investment Adviser.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        const htmlElement = document.documentElement;
+
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    </script>
+</body>
+</html>
